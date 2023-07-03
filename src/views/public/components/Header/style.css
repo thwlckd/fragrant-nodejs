@@ -88,14 +88,14 @@ header {
   width: 100%;
 }
 
-.list {
+.lnb .list {
   color: #999;
   text-decoration: none;
   display: block;
   transition: color.25s ease-in-out;
 }
 
-.list:hover {
+.lnb .list:hover {
   color: #6B83C2;
   text-decoration: underline;
 }

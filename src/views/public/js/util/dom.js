@@ -14,5 +14,3 @@ export const $append = (parent, ...children) => {
     parent.append(...children);
   }
 };
-
-
