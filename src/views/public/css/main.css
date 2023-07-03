@@ -1,0 +1,10 @@
+main{
+  width: 100%;
+  height: auto;
+}
+
+.jumbotron-wrap{
+  width: 100%;
+  height: 928px;
+  overflow: hidden;
+}
