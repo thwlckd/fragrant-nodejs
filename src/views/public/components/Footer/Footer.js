@@ -7,9 +7,9 @@ $footer.append($footerWrap);
 const fnbCategory = [
   {
     category: $newLnb,
-    title: "신제품",
+    title: "팀 소개",
     itemList: [
-      { name: "비바 마젠타", href: "#viva_majenta" },
+      { name: "팀명", href: "#viva_majenta" },
       { name: "베리 페리", href: "#veri_peri" },
       { name: "엘리스", href: "#alice" },
     ],
