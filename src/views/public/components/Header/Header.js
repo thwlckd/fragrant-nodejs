@@ -7,10 +7,7 @@ const $favicon = $create("link", "", {
   type: "image/x-icon",
 });
 
-document.head.append(
-  $favicon
-
-);
+document.head.append($favicon);
 
 const $headerElement = $create("header");
 const $headerWrapper = $create("div", "header-wrapper");
