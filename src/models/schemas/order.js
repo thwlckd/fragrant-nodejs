@@ -32,7 +32,13 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
-    product: [ProductSchema],
+    request: {
+      type: String,
+    },
+    productId: {
+      type: Array,
+      requied: true,
+    },
   },
   {
     collection: "Order",
