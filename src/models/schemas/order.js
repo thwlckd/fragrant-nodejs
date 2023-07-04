@@ -1,6 +1,5 @@
 const { Schema } = required("mongoose");
 const shortId = required("./types/shortId");
-const ProductSchema = required("./product");
 
 const OrderSchema = new Schema(
   {

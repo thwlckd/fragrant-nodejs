@@ -11,13 +11,15 @@ const ProductSchema = new Schema(
       unique: true,
       index: true,
     },
-    nameOrigin: {
-      type: String,
-      required: true,
-    },
-    nameKr: {
-      type: String,
-      required: true,
+    name: {
+      origin: {
+        type: String,
+        required: true,
+      },
+      korean: {
+        type: String,
+        required: true,
+      },
     },
     price: {
       type: Number,

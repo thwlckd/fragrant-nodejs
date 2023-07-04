@@ -101,7 +101,12 @@ section {
   display: block;
 }
 body {
+<<<<<<< HEAD
   line-height: 1;
+=======
+	line-height: 1;
+  font-family: 'Alice', 'Nanum Gothic', serif;
+>>>>>>> a29a5a08f0ac315973f6c9a76aaa284847b265a9
 }
 ol,
 ul {
