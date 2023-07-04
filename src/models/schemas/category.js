@@ -8,7 +8,7 @@ const CategorySchema = new Schema(
     },
   },
   {
-    collection: "Sort",
+    collection: "Catogory",
     timestamps: true,
   }
 );

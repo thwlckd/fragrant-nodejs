@@ -14,13 +14,8 @@ const ReviewSchema = new Schema(
       type: String,
       required: true,
     },
-    uploadTime: {
-      type: Date,
-      default: Date.now(),
-      required: true,
-    },
     comment: {
-      type: Number,
+      type: String,
     },
   },
   {
