@@ -35,7 +35,7 @@ const fnbCategory = [
       { name: "왕지은", href: "#" },
       { name: "우윤하", href: "#" },
       { name: "이수민", href: "#" },
-      { name: "임수정", href: "#" },
+      { name: "임소정", href: "#" },
     ],
   },
   {
