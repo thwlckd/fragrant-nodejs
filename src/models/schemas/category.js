@@ -2,7 +2,7 @@ const { Schema } = require("mongoose");
 
 const CategorySchema = new Schema(
   {
-    type: {
+    category: {
       type: String,
       required: true,
     },
