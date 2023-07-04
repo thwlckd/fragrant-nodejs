@@ -3,4 +3,14 @@ const { CategorySchema } = require("../schema");
 
 const Category = mongoose.model("Category", CategorySchema);
 
-module.exports = Category;
+const categoryDAO = {
+  async getIdByName(categoryName) {
+    const { id } = await Category.findOne({
+      category: categoryName,
+    });
+
+    return id;
+  },
+};
+
+module.exports = categoryDAO;
