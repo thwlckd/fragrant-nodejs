@@ -11,7 +11,7 @@ function adminOnly(req, res, next) {
   }
 
   try {
-    const secretKey = process.env.JWT_SECRET_KEY || "secret-key";
+    const secretKey = process.env.JWT_SECRET_KEY || "secret";
     const jwtDecoded = jwt.verify(token, secretKey);
 
     const isAdmin = jwtDecoded.isAdmin; // isAdmin: Boolean
