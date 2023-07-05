@@ -1,29 +1,16 @@
 const { Schema } = required("mongoose");
-const shortId = required("./types/shortId");
 
 const OrderSchema = new Schema(
   {
-    orderId: {
-      type: String,
-      default: shortId(),
+    products: {
+      type: [ProductSchema],
       required: true,
-      unique: true,
-      index: true,
+    },
+    orderer: {
+      type: OrdererSchema,
+      required: true,
     },
     price: {
-      type: Number,
-      required: true,
-    },
-    orderTime: {
-      type: Date,
-      default: Date.now(),
-      required: true,
-    },
-    address: {
-      type: String,
-      required: true,
-    },
-    phone: {
       type: Number,
       required: true,
     },
@@ -31,12 +18,8 @@ const OrderSchema = new Schema(
       type: String,
       required: true,
     },
-    request: {
+    requirement: {
       type: String,
-    },
-    productId: {
-      type: Array,
-      requied: true,
     },
   },
   {
@@ -44,5 +27,62 @@ const OrderSchema = new Schema(
     timestamps: true,
   }
 );
+
+const ProductSchema = new Schema({
+  productId: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    requried: true,
+  },
+  img: {
+    type: String,
+    requried: true,
+  },
+  capacity: {
+    type: Number,
+    requried: true,
+  },
+});
+
+const OrdererSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: AddressSchema,
+    required: true,
+  },
+});
+
+const AddressSchema = new Schema({
+  postalCode: {
+    type: String,
+    required: true,
+  },
+  address1: {
+    type: String,
+    required: true,
+  },
+  address2: {
+    type: String,
+    required: true,
+  },
+});
 
 module.exports = OrderSchema;
