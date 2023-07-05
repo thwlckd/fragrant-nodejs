@@ -1,5 +1,6 @@
-@charset "utf-8";
-
+#logcontent {
+    padding: 135px 0;
+}
 
 .login-wrapper {
     position: relative;
@@ -17,7 +18,7 @@
 }
 
 .login-wrapper h2 {
-    font-size: 50px;
+    font-size: 32px;
     padding: 20px;
     margin: 30px 30px 100px;
 }
