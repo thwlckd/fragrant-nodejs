@@ -1,0 +1,44 @@
+{
+  "products": [
+    {
+      "id": 4,
+      "name": {
+        "origin": "Elice OmbrÉ Leather Majenta",
+        "korean": "엘리스  옴브레 레더 마젠타"
+      },
+      "price": 237000,
+      "capacity": "25 ML",
+      "img": "/asset/perfume/elice_seoul_1.png"
+    },
+    {
+      "id": 5,
+      "name": {
+        "origin": "Elice OmbrÉ Leather Black",
+        "korean": "엘리스  옴브레 레더 블랙"
+      },
+      "price": 237000,
+      "capacity": "25 ML",
+      "img": "/asset/perfume/elice_newyork_1.png"
+    },
+    {
+      "id": 6,
+      "name": {
+        "origin": "Elice OmbrÉ Leather Deep Purple",
+        "korean": "엘리스  옴브레 레더 딥퍼플"
+      },
+      "price": 237000,
+      "capacity": "25 ML",
+      "img": "/asset/perfume/elice_sydney_1.png"
+    },
+    {
+      "id": 7,
+      "name": {
+        "origin": "Elice OmbrÉ Leather Deep Purple",
+        "korean": "엘리스  옴브레 레더 딥퍼플"
+      },
+      "price": 237000,
+      "capacity": "25 ML",
+      "img": "/asset/perfume/elice_paris_1.png"
+    }
+  ]
+}
