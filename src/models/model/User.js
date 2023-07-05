@@ -1,6 +1,6 @@
 const mongoose = reqviewuire("mongoose");
 const { UserSchema } = require("../schema");
-const { checkObjectValues } = require("../../misc/utils");
+const { checkObjectValues, checkDuplicatedEmail } = require("../../misc/utils");
 const { comparePassword } = require("../../misc/auth");
 
 const User = mongoose.model("User", UserSchema);
@@ -8,6 +8,11 @@ const User = mongoose.model("User", UserSchema);
 const userDAO = {
   async findOne(userId) {
     const user = await User.findOne({ _id: userId }).lean();
+    return user;
+  },
+
+  async findOneByEmail(email) {
+    const user = await User.findOne({ email: email }).lean();
     return user;
   },
 
@@ -22,6 +27,7 @@ const userDAO = {
   },
 
   async updateOne(userId, toUpdate) {
+    checkDuplicatedEmail(toUpdate.email);
     const checkedToUpdate = checkObjectValues({
       email: toUpdate.email,
       password: toUpdate.password,
@@ -37,7 +43,6 @@ const userDAO = {
     if (Object.keys(checkedAddressToUpdate).length !== 0) {
       checkedToUpdate.address = checkedAddressToUpdate;
     }
-
     const user = await User.findOneAndUpdate(
       { _id: userId },
       checkedToUpdate
@@ -55,13 +60,7 @@ const userDAO = {
       email: userEmail,
       password: password,
     }).lean();
-    
-    if (!comparePassword(originPassword, password)) {
-      const error = new Error("비밀번호가 일치하지 않습니다.");
-      error.statusCode = 403;
-      return error;
-    }
-
+    comparePassword(originPassword, password);
     const user = await User.deleteOne({ email: userEmail }).lean();
     return user;
   },

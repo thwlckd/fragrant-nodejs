@@ -8,7 +8,12 @@ async function hashingPassword(password) {
 
 async function comparePassword(originPassword, hashedPassword) {
   const isValid = await bcrypt.compare(originPassword, hashedPassword);
-  return isValid;
+  if (!isValid) {
+    const error = new Error("비밀번호가 일치하지 않습니다.");
+    error.statusCode = 400;
+    throw error;
+  }
+  return;
 }
 
 function createToken(userEmail, isAdmin) {
