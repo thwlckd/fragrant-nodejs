@@ -35,9 +35,9 @@ const ProductSchema = new Schema(
       default: "unisex",
       required: true,
     },
-    sort: {
+    catogory: {
       type: Schema.Types.ObjectId,
-      ref: "Sort",
+      ref: "Catogory",
       required: true,
     },
     brand: {
