@@ -4,13 +4,17 @@ const orderController = {
   async postOrder(req, res, next) {
     try {
       const { products, orderer, price, orderStatus, requirement } = req.body;
-      await orderService.createOrder({
-        products,
-        orderer,
-        price,
-        orderStatus,
-        requirement,
-      });
+      const userEmail = req.userEmail;
+      await orderService.createOrder(
+        {
+          products,
+          orderer,
+          price,
+          orderStatus,
+          requirement,
+        },
+        userEmail
+      );
       res.status(201).end();
     } catch (err) {
       next(err);

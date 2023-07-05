@@ -1,17 +1,34 @@
 const mongoose = require("mongoose");
-const { OrderSchema } = require("../schema");
+const { OrderSchema, UserSchema } = require("../schema");
 const Order = mongoose.model("Order", OrderSchema);
+const User = mongoose.model("User", UserSchema);
 
 const orderDAO = {
-  async create({ products, orderer, price, orderStatus, requirement }) {
+  async create(
+    { products, orderer, price, orderStatus, requirement },
+    userEmail
+  ) {
     const toCreate = {
-      products,
-      orderer,
-      price,
-      orderStatus,
+      products: products,
+      orderer: orderer,
+      price: price,
+      orderStatus: orderStatus,
     };
     if (requirement) toCreate.request = request;
     const order = await Order.create(toCreate);
+
+    const { postalCode, address1, address2 } = orderer.address;
+    await User.updateOne(
+      { email: userEmail },
+      {
+        address: {
+          postalCode: postalCode,
+          address1: address1,
+          address2: address2,
+        },
+      }
+    );
+
     return order.toObject();
   },
 
@@ -30,12 +47,12 @@ const orderDAO = {
     return order;
   },
 
-  async updateOne(id, toUpdate) {
+  async updateOne(orderId, toUpdate) {
     const order = await Order.findByIdAndUpdate({ _id: orderId }, toUpdate);
     return order;
   },
 
-  async deleteOne(id) {
+  async deleteOne(orderId) {
     const order = await order.findByIdAndDelete({ _id: orderId }).lean();
     return order;
   },
