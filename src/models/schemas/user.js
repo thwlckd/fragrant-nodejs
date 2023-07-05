@@ -11,7 +11,7 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    admin: {
+    isAdmin: {
       type: Boolean,
       default: false,
       required: true,
@@ -20,20 +20,9 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
+    address: AddressSchema,
     phone: {
-      type: Number,
-      required: true,
-    },
-    emailValidation: {
-      type: Boolean,
-      required: true,
-    },
-    passwordReset: {
-      type: Boolean,
+      type: String,
       required: true,
     },
   },
@@ -42,5 +31,17 @@ const UserSchema = new Schema(
     timestamps: true,
   }
 );
+
+const AddressSchema = new Schema({
+  postalCode: {
+    type: String,
+  },
+  address1: {
+    type: String,
+  },
+  address2: {
+    type: String,
+  },
+});
 
 module.exports = UserSchema;
