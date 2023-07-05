@@ -1,0 +1,61 @@
+.user-modify-page {
+  width: 1280px;
+  height: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  border-bottom: 1px solid #fafaff;
+  position: relative;
+  background-color: white;
+}
+
+.user-info-modify {
+  width: 100%;
+  height: auto;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 500;
+
+  padding: 10px;
+}
+
+.line {
+  background: rgb(75, 75, 75);
+  height: 2px;
+  border: 0;
+  margin-bottom: 20px;
+}
+
+.user-id {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  align-items: flex-start;
+}
+
+.id-column {
+  width: 10%;
+  height: auto;
+
+  font-size: 20px;
+}
+
+.id-text {
+  width: auto;
+  height: auto;
+
+  font-size: 20px;
+}
+
+.user-form {
+  width: 100%;
+  height: auto;
+  line-height: 1;
+}

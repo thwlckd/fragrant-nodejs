@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원정보 수정</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="userModify.css" />
+  </head>
+  <body>
+    <div class="user-modify-page">
+      <section class="user-info-modify">
+        <h2 class="page-title">회원정보 관리</h2>
+        <hr class="line" />
+        <div class="user-info-personal">
+          <div class="user-id">
+            <p class="id-column">아이디</p>
+            <p class="id-text">elice123@elice.io</p>
+          </div>
+          <form action="" method="get" class="user-form">
+            이름 <input type="text" name="st_name" placeholder="이수민" /><br />
+            연락처
+            <input
+              type="number"
+              name="st_phone_number"
+              placeholder="010-1234-5678"
+            /><br />
+            <table>
+              <tr>
+                <th>주소</th>
+                <td>
+                  <input
+                    type="text"
+                    id="address_kakao"
+                    name="address"
+                    readonly
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>상세 주소</th>
+                <td><input type="text" name="address_detail" /></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <input type="submit" value="회원정보 변경" />
+      </section>
+    </div>
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="./userModify.js"></script>
+  </body>
+</html>
