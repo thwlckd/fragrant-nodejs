@@ -1,5 +1,4 @@
 const { userDAO } = require("../models/model");
-const { hashingPassword } = require("../misc/auth");
 
 const userService = {
   async getUser(userId) {
