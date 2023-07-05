@@ -9,6 +9,7 @@ header {
   border-bottom: 1px solid #FAFAFF;
   position: relative;
   background-color: white;
+  z-index: 99999;
 }
 
 .header-wrapper {
