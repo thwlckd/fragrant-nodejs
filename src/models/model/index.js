@@ -1,15 +1,15 @@
-const Brand = require("./Brand");
-const Order = require("./Order");
-const Product = require("./Product");
-const Review = require("./Review");
-const Sort = require("./Sort");
-const User = require("./User");
+const brandDAO = require("./brandDAO");
+const orderDAO = require("./orderDAO");
+const productDAO = require("./productDAO");
+const reviewDAO = require("./reviewDAO");
+const categoryDAO = require("./categoryDAO");
+const userDAO = require("./userDAO");
 
 module.exports = {
-  Brand,
-  Order,
-  Product,
-  Review,
-  Sort,
-  User,
+  brandDAO,
+  orderDAO,
+  productDAO,
+  reviewDAO,
+  categoryDAO,
+  userDAO,
 };
