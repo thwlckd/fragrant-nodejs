@@ -1,17 +1,21 @@
-const { hashPassword, comparePassword } = require("../utils/authUtils");
+const {
+  hashPassword,
+  comparePassword,
+  createToken,
+} = require("../utils/authUtils");
 const { userDAO } = require("../models/model");
 
 const userService = {
   async postSignUpInfo(email, password, userName) {
-    const hashedPassword = hashPassword(password);
+    const hashedPassword = await hashPassword(password);
     const toPost = { email, password: hashedPassword, userName };
     const user = await userDAO.create(toPost);
     return user;
   },
 
   async postSignInInfo(email, originPassword) {
-    const { password, isAdmin } = await userDAO.findOne({ email });
-    if (!comparePassword(originPassword, password)) {
+    const { password, isAdmin } = await userDAO.findOneByEmail({ email });
+    if (!await comparePassword(originPassword, password)) {
       return null;
     }
     const token = createToken(email, isAdmin);

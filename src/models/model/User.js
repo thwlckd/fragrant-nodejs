@@ -15,7 +15,7 @@ const userDAO = {
   },
 
   async findOneByEmail(email) {
-    const user = await User.findOne({ email: email }).lean();
+    const user = await User.findOne(email).lean();
     return user;
   },
 
