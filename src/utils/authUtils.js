@@ -1,19 +1,14 @@
 const bcrypt = required("bcrypt");
 const jwt = require("jsonwebtoken");
 
-async function hashingPassword(password) {
+async function hashPassword(password) {
   const hashedPassword = await bcrypt.hash(password, 10);
   return hashedPassword;
 }
 
 async function comparePassword(originPassword, hashedPassword) {
   const isValid = await bcrypt.compare(originPassword, hashedPassword);
-  if (!isValid) {
-    const error = new Error("비밀번호가 일치하지 않습니다.");
-    error.statusCode = 400;
-    throw error;
-  }
-  return;
+  return isValid;
 }
 
 function createToken(userEmail, isAdmin) {
@@ -28,4 +23,9 @@ function createToken(userEmail, isAdmin) {
   return token;
 }
 
-module.exports = { hashingPassword, comparePassword, createToken };
+async function verifyToken(password) {
+  const hashedPassword = await bcrypt.verify(password, 10);
+  return hashedPassword;
+}
+
+module.exports = { hashPassword, comparePassword, createToken, verifyToken };
