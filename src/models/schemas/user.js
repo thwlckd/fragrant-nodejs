@@ -23,7 +23,6 @@ const UserSchema = new Schema(
     address: AddressSchema,
     phone: {
       type: String,
-      required: true,
     },
   },
   {
