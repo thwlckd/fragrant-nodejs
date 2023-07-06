@@ -1,5 +1,5 @@
-const mongoose = reqviewuire("mongoose");
-const { UserSchema } = require("../schema");
+const mongoose = require("mongoose");
+const { UserSchema } = require("../schemas");
 
 const User = mongoose.model("User", UserSchema);
 

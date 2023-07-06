@@ -1,4 +1,4 @@
-const bcrypt = required("bcrypt");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 async function hashPassword(password) {

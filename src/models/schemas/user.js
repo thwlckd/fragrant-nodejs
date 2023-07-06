@@ -1,5 +1,17 @@
 const { Schema } = require("mongoose");
 
+const AddressSchema = new Schema({
+  postalCode: {
+    type: String,
+  },
+  address1: {
+    type: String,
+  },
+  address2: {
+    type: String,
+  },
+});
+
 const UserSchema = new Schema(
   {
     email: {
@@ -30,17 +42,5 @@ const UserSchema = new Schema(
     timestamps: true,
   }
 );
-
-const AddressSchema = new Schema({
-  postalCode: {
-    type: String,
-  },
-  address1: {
-    type: String,
-  },
-  address2: {
-    type: String,
-  },
-});
 
 module.exports = UserSchema;

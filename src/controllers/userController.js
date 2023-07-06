@@ -1,5 +1,5 @@
 const { userService } = require("../services");
-const { checkObjectValues } = require("../../utils/utils");
+const { checkObjectValues } = require("../utils/utils");
 
 const userController = {
   async postSignUpInfo(req, res, next) {

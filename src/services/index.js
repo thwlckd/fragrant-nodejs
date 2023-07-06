@@ -1,9 +1,9 @@
 const orderService = require("./orderService");
 const userService = require("./userService");
-const producService = require("./producService");
+const productService = require("./productService");
 
 module.exports = {
   orderService,
   userService,
-  producService,
+  productService,
 };

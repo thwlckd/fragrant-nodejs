@@ -43,7 +43,7 @@ const userService = {
     return user;
   },
 
-  async deleteUserByPassword(userEmail, password) {
+  async deleteUserByPassword(userEmail, originPassword) {
     const { password } = await userDAO
       .findOne({
         email: userEmail,

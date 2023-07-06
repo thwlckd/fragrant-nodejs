@@ -1,7 +1,10 @@
 const { Router } = require("express");
 const { userController } = require("../controllers");
-const { adminOnly, loginRequired, checkDuplicatedEmail } =
-  requrie("../middlewares");
+const {
+  adminOnly,
+  loginRequired,
+  checkDuplicatedEmail,
+} = require("../middlewares");
 
 const userRouter = Router();
 

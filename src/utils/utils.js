@@ -10,5 +10,4 @@ function checkObjectValues(obj) {
 
 module.exports = {
   checkObjectValues,
-  checkDuplicatedEmail,
 };

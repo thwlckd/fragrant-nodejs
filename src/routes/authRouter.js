@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { userController } = require("../controllers");
-const { checkDuplicatedEmail } = requrie("../middlewares");
+const { checkDuplicatedEmail } = require("../middlewares");
 
 const authRouter = Router();
 
