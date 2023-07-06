@@ -65,7 +65,7 @@ function startInterval() {
   interval = setInterval(() => {
     seeAutoRolling(4, 0, "+");
     jumbotronInit();
-  }, 2000);
+  }, 5000);
   intervalRunning = true;
 }
 startInterval();

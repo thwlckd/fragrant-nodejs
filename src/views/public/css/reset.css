@@ -2,7 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url('https://fonts.googleapis.com/css2?family=Alice&family=Nanum+Gothic:wght@400;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alice&family=Nanum+Gothic:wght@400;700;800&display=fallback");
 
 html,
 body,
@@ -85,13 +85,13 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-	font-family: 'Alice', 'Nanum Gothic', serif;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  font-family: "Alice", "Nanum Gothic", serif;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -106,38 +106,35 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
-	font-family: 'Alice', 'Nanum Gothic', serif;
+  display: block;
+  font-family: "Alice", "Nanum Gothic", serif;
 }
 
 body {
-	line-height: 1;
-	font-family: 'Alice', 'Nanum Gothic', serif;
+  line-height: 1;
+  font-family: "Alice", "Nanum Gothic", serif;
 }
-
 ol,
 ul {
-	list-style: none;
-	font-family: 'Alice', 'Nanum Gothic', serif;
+  list-style: none;
+  font-family: "Alice", "Nanum Gothic", serif;
 }
-
 blockquote,
 q {
-	quotes: none;
-	font-family: 'Alice', 'Nanum Gothic', serif;
+  quotes: none;
+  font-family: "Alice", "Nanum Gothic", serif;
 }
-
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: '';
-	content: none;
-	font-family: 'Alice', 'Nanum Gothic', serif;
+  content: "";
+  content: none;
+  font-family: "Alice", "Nanum Gothic", serif;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
-	font-family: 'Alice', 'Nanum Gothic', serif;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family: "Alice", "Nanum Gothic", serif;
 }
