@@ -15,7 +15,7 @@
     }
 
     #main_section{
-
+        position: relative;
     }
 
     .product {
@@ -57,36 +57,40 @@
     }
 
     .pagepath {   
-            position: static;
+            text-align: right;
+            position: relative;
+            right: 4px;
             font-size: 11px;
-            color: #b5aca2;
-            margin: 0 0 4px 3px;
+            color: #494948;
+            margin: 0 90px 35px 0;
             }
+
     .product_name {
         line-height: 1.5;
     }      
-    div.eng_name {
-        
-        font-size: 18px;
+    .eng_name {
+        font-size: 21px;
+        position: relative;
+        bottom: 10px;
     }  
-    div.kor_name {
+    .kor_name {
         font-weight: bold;
-        font-size: 15px;
+        font-size: 16px;
         color: #908e8a;
         position: relative;
-        top: 2px;
+       
+        bottom: 5px;
     }
-    div.org_price {
-        font-size: 16px;
+    
+    .delivery_box {
         position: relative;
-        top: 4px;
-        left: 3px;
+        top: 10px;
     }
-
+    
     .delivery_info {
         line-height: 30px;
         position: relative;
-        top: 12px;
+        top: 15px;
         left: 3px;
     }
     .delivery_pay, .arrival, .desc {
@@ -108,11 +112,14 @@
             margin: 30px 0 15px 0;
             padding: 10px 10px 40px 10px;
             
-            line-height: 30px;
+            line-height: 32px;
             color: #706e6c;
             background: #fafafa;
             border-radius: 2px;
             white-space: normal;
+
+            position: relative;
+            top: 15px;
             
     }
     .count_name{
@@ -127,21 +134,31 @@
         position: relative;
         left: 10px;
     }
-    .decrease, .increase {
-        padding: 3px 7px;
-    }
+
+   input[type="text"] {
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    border: solid #868482;;
+    background: #fafafa;
+   }
+
     .total {
         font-size: 15px;
-        justify-content: flex-end;
+        text-align: right;
         position: relative;
-        left: 245px;
+        left: 337px;
+        
+        
         
         
     }
 
     .final_total {
         text-align: right;
-        
+        position: relative;
+        top: 12px;
+        right: 52px;
     }
 
         
@@ -149,7 +166,7 @@
 
 
 
-    .button {
+    input[type="button"] {
         text-align: center;      
         text-decoration: none;
               
@@ -159,12 +176,12 @@
         cursor: pointer;
         position: relative;
         top: 20px;
-        right: 20px;
+        
         }
     
     .cart {
             display :inline-block;
-            width: 45%;  
+            width: 269px;  
             padding: 5px 45px;
             border-radius: 2px;
             background: #fff;
@@ -173,7 +190,7 @@
           }
     .order {
             display :inline-block;
-            width: 45%;  
+            width: 269px;  
             padding: 5px 45px;
             border-radius: 2px;
             background: #080808;
@@ -183,27 +200,22 @@
 
 
 
-
-
-
     .menu {
-        float: center;
         clear: both;
     }
 
     .menu_list {
-        align-content: center;
-        margin: 50px 0 50px 0;
+        text-align: center;
+        margin: 300px 0 0 0;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 14px;
         color: #908e8a;
 
     }
 
     .tab {
-        
-        margin: 200px 40px 0px 40px;
-        padding: 70px 70px;
+        margin: 60px 60px 0 60px;
+        padding: 70px 70px 90px 70px;
         line-height: 20px;
 
         color: #757c8a;
@@ -212,13 +224,66 @@
         white-space: normal;
     }
 
-    .tab2_title {
-        font-size: 13px;
+   
+    .tab1_title1 {
+        font-size: 18px;
         font-weight: bold;
+        color: #34342e;
+    }
+    .tab1_title2 {
+        font-size: 18px;
+        font-weight: bold;
+        color: #34342e;
+
+        margin-top: 50px; 
+
+        border-top: 1px solid #a4a9b0;
+        padding: 55px 0 0 0;
+        
+        overflow: hidden;
+    }
+    .tab1_wrap {
+        line-height: 30px;
+        position: relative;
+        top: 40px;
+        left: 180px;
+        
+    }
+    .tab1_content {
+        font-size: 16px;
+        font-weight: bold;
+        color: #34342e;
+    
+
+    }
+
+    .tab1_text {
+        font-size: 16px;
+        color: #34342e;
+        
+    }
+    .tab1_text2 {
+        font-size: 16px;
+        color: #34342e;
+
+        position: relative;
+        bottom: 15px;
+    }
+
+
+
+    .tab2_title {
+        font-size: 16px;
+        font-weight: bold;
+        border-bottom: 1px solid #a4a9b0;
+        padding: 10px 0;
+        margin-bottom: 20px;
+        overflow: hidden;
     }
 
     .tab2_content {
-        font-size: 12px;
+        font-size: 14px;
+        
     }
 
     
