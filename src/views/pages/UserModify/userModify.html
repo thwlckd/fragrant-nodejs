@@ -11,48 +11,39 @@
     <link rel="stylesheet" href="userModify.css" />
   </head>
   <body>
-    <div class="user-modify-page">
-      <section class="user-info-modify">
-        <h2 class="page-title">회원정보 관리</h2>
-        <hr class="line" />
-        <div class="user-info-personal">
-          <div class="user-id">
-            <p class="id-column">아이디</p>
-            <p class="id-text">elice123@elice.io</p>
-          </div>
-          <form action="" method="get" class="user-form">
-            이름 <input type="text" name="st_name" placeholder="이수민" /><br />
-            연락처
-            <input
-              type="number"
-              name="st_phone_number"
-              placeholder="010-1234-5678"
-            /><br />
-            <table>
-              <tr>
-                <th>주소</th>
-                <td>
-                  <input
-                    type="text"
-                    id="address_kakao"
-                    name="address"
-                    readonly
-                  />
-                </td>
-              </tr>
-              <tr>
-                <th>상세 주소</th>
-                <td><input type="text" name="address_detail" /></td>
-              </tr>
-            </table>
-          </form>
+    <div class="container">
+      <h2 calss="user-info-title">회원 정보 관리</h2>
+      <form id="update-form">
+        <div class="form-group">
+          <label for="id">아이디 </label>
+          <input type="text" id="id" value="elice123@elice.io" disabled />
         </div>
-        <input type="submit" value="회원정보 변경" />
-      </section>
+        <div class="form-group">
+          <label for="name">이름 </label>
+          <input type="text" id="name" value="이수민" />
+        </div>
+        <div class="form-group">
+          <label for="contact">연락처 </label>
+          <input type="text" id="contact" value="010-1234-5678" />
+        </div>
+        <div class="form-group">
+          <label for="address">주소 </label>
+          <input type="text" id="address" value="서울시 광진구" />
+          <button type="button" id="address-button">주소 찾기</button>
+        </div>
+        <div class="form-group">
+          <label for="detail-address">상세 주소 </label>
+          <input type="text" id="detail-address" value="" />
+        </div>
+        <div class="btn-container">
+          <button type="submit" class="btn">회원정보 변경</button>
+        </div>
+      </form>
     </div>
     <script src="/components/Header/Header.js" type="module"></script>
     <script src="/components/Footer/Footer.js" type="module"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    //
     <script src="./userModify.js"></script>
   </body>
 </html>
