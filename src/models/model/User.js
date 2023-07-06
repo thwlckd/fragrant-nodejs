@@ -25,7 +25,7 @@ const userDAO = {
   },
 
   async findAllByUserName(userName) {
-    const users = await User.find({ userName: userName }).lean();
+    const users = await User.find(userName).lean();
     return users;
   },
 
@@ -34,13 +34,8 @@ const userDAO = {
     return user;
   },
 
-  async deleteOneByEmail(userEmail) {
-    const user = await User.deleteOne({ email: userEmail }).lean();
-    return user;
-  },
-
-  async deleteOneByPassword(userEmail) {
-    const user = await User.deleteOne({ email: userEmail }).lean();
+  async deleteOne(userId) {
+    const user = await User.deleteOne({ _id: userId }).lean();
     return user;
   },
 };

@@ -47,8 +47,8 @@ const userController = {
 
   async getUsersByUserName(req, res, next) {
     try {
-      const userName = req.query;
-      const users = await userService.getUsersByUserName(userName);
+      const { userName } = req.query;
+      const users = await userService.getUsersByUserName({ userName });
       res.json(users);
     } catch (err) {
       next(err);
@@ -66,13 +66,16 @@ const userController = {
         userName,
         phone,
       });
-      const checkedAddressToUpdate = checkObjectValues({
-        postalCode: address.postalCode,
-        address1: address.address1,
-        address2: address.address2,
-      });
-      if (Object.keys(checkedAddressToUpdate).length !== 0) {
-        checkedToUpdate.address = checkedAddressToUpdate;
+
+      if (address) {
+        const checkedAddressToUpdate = checkObjectValues({
+          postalCode: address.postalCode,
+          address1: address.address1,
+          address2: address.address2,
+        });
+        if (Object.keys(checkedAddressToUpdate).length !== 0) {
+          checkedToUpdate.address = checkedAddressToUpdate;
+        }
       }
 
       await userService.patchUser(userId, checkedToUpdate);
@@ -82,24 +85,11 @@ const userController = {
     }
   },
 
-  async deleteUserByEmail(req, res, next) {
+  async deleteUser(req, res, next) {
     try {
-      const { userEmail } = req.params;
-      await userService.deleteUserByEmail(userEmail);
-      res.end();
-    } catch (err) {
-      next(err);
-    }
-  },
-
-  async deleteUserByPassword(req, res, next) {
-    try {
-      const userEmail = req.userEmail;
+      const { userId } = req.params;
       const { password } = req.body;
-      const passwordValidation = await userService.deleteUserByPassword(
-        userEmail,
-        password
-      );
+      const passwordValidation = await userService.deleteUser(userId, password);
       if (passwordValidation === null) {
         res.status(400).json();
         return;

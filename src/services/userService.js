@@ -15,7 +15,7 @@ const userService = {
 
   async postSignInInfo(email, originPassword) {
     const { password, isAdmin } = await userDAO.findOneByEmail({ email });
-    if (!await comparePassword(originPassword, password)) {
+    if (!(await comparePassword(originPassword, password))) {
       return null;
     }
     const token = createToken(email, isAdmin);
@@ -38,27 +38,23 @@ const userService = {
   },
 
   async patchUser(userId, toUpdate) {
+    const { password } = toUpdate;
+    if (password) {
+      const hashedPassword = await hashPassword(password);
+      toUpdate.password = hashedPassword;
+    }
+
     const user = await userDAO.updateOne(userId, toUpdate);
     return user;
   },
 
-  async deleteUserByEmail(userEmail) {
-    const user = await userDAO.deleteOneByEmail(userEmail);
-    return user;
-  },
-
-  async deleteUserByPassword(userEmail, originPassword) {
-    const { password } = await userDAO
-      .findOne({
-        email: userEmail,
-        password: password,
-      })
-      .lean();
-    if (!comparePassword(originPassword, password)) {
+  async deleteUser(userId, originPassword) {
+    const { password } = await userDAO.findOne(userId);
+    if (!(await comparePassword(originPassword, password))) {
       return null;
     }
 
-    const user = await userDAO.deleteOneByPassword(userEmail);
+    const user = await userDAO.deleteOne(userId);
     return user;
   },
 };

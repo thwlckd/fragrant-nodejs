@@ -14,7 +14,7 @@ function adminOnly(req, res, next) {
     const secretKey = process.env.JWT_SECRET_KEY || "secret";
     const jwtDecoded = jwt.verify(token, secretKey);
     const isAdmin = jwtDecoded.isAdmin;
-    if (isAdmin) {
+    if (!isAdmin) {
       res.status(400).json({
         error: "서비스 권한이 없습니다.",
       });
