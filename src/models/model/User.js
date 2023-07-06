@@ -1,6 +1,6 @@
 const mongoose = reqviewuire("mongoose");
 const { UserSchema } = require("../schema");
-const { checkObjectValues, checkDuplicatedEmail } = require("../../misc/utils");
+const { checkObjectValues } = require("../../misc/utils");
 const { comparePassword } = require("../../misc/auth");
 
 const User = mongoose.model("User", UserSchema);
@@ -27,7 +27,6 @@ const userDAO = {
   },
 
   async updateOne(userId, toUpdate) {
-    checkDuplicatedEmail(toUpdate.email);
     const checkedToUpdate = checkObjectValues({
       email: toUpdate.email,
       password: toUpdate.password,
