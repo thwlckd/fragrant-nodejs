@@ -42,7 +42,7 @@
               <div class="delivery_box">
               <div class="delivery_info">
               <span class="delivery_pay">배송비</span>
-              <span class="delivery_right">2,500원 (96,000원 이상 구매시 배송비 무료)</span></br>
+              <span class="delivery_right">2,500원 (100,000원 이상 구매시 배송비 무료)</span></br>
               <span class="arrival">출고예정일</span>
               <span class="arrival_right">2시 이전 결제시 당일출고 (주말, 공휴일 제외)</span></br>
               <span class="desc">배송방법</span>
@@ -56,15 +56,14 @@
                 <button class="decrease">-</button>
                 <input type="text" name="num" value="1" readonly>
                 <button class="increase">+</button>
-
-                <div class="total">
-                  <span>277,000원</span>
-                </div></div>
+                </div>
+              </div>
+              <div class="total">
+               <span>279,000</span>
               </div>
 
-
               <div class="final_total">
-                <p>합계 277,000원</p>
+                <p> 합계 999,999</p>
               </div>
 
               <div class="button">
@@ -79,7 +78,7 @@
 
 
     <section id="detail">
-      <div class="menu">
+      
         <ul class="menu_list">
           <span class="detail_info"><a href="#tab1">상품상세정보</a></span>  | 
           <span><a href="#tab2">상품구매안내</a></span>  | 
@@ -228,18 +227,163 @@
               고객센터 :070-1234-5678</br>
             </p>
           </div>
-
-
-          </p>
         </div>
+
+
         <div id="tab3" class="tab">
-          <p>
-            리뷰칸~
+          <div class="tab3_title">상품사용후기</div>
+          <li><div class="review_wrap">
+            <div class="reply_data">
+          <span id="reply_user" class="review_pushTime">2023-07-15 14:31</span>
+          <p id="reply_user" class="review_userName">작성자</p>
+            </div>
 
-          </p>
+          <div class="review_content">
+          <div class="reply_star">
+            <span class="star">
+              ★★★★★
+              <span>★★★★★</span>
+              <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10"></span>
+            </div>
+            <div>
+              <p class="reply_content">리뷰 내용</p>
+            </div>
+          </div>
         </div>
-        
+          </li>
+
+          <li><div class="review_wrap">
+            <div class="reply_data">
+          <span id="reply_user" class="review_pushTime">2023-07-15 14:31</span>
+          <p id="reply_user" class="review_userName">작성자</p>
+            </div>
+
+          <div class="review_content">
+          <div class="reply_star">
+            <span class="star">
+              ★★★★★
+              <span>★★★★★</span>
+              <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10"></span>
+            </div>
+            <div>
+              <p class="reply_content">리뷰 내용</p>
+            </div>
+          </div>
+        </div>
+          </li>
+
+          <li><div class="review_wrap">
+            <div class="reply_data">
+          <span id="reply_user" class="review_pushTime">2023-07-15 14:31</span>
+          <p id="reply_user" class="review_userName">작성자</p>
+            </div>
+
+          <div class="review_content">
+          <div class="reply_star">
+            <span class="star">
+              ★★★★★
+              <span>★★★★★</span>
+              <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10"></span>
+            </div>
+            <div>
+              <p class="reply_content">리뷰 내용</p>
+            </div>
+          </div>
+        </div>
+          </li>
+
+          <li><div class="review_wrap">
+            <div class="reply_data">
+          <span id="reply_user" class="review_pushTime">2023-07-15 14:31</span>
+          <p id="reply_user" class="review_userName">작성자</p>
+            </div>
+
+          <div class="review_content">
+          <div class="reply_star">
+            <span class="star">
+              ★★★★★
+              <span>★★★★★</span>
+              <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10"></span>
+            </div>
+            <div>
+              <p class="reply_content">리뷰 내용</p>
+            </div>
+          </div>
+        </div>
+          </li>
+
+          <li><div class="review_wrap">
+            <div class="reply_data">
+          <span id="reply_user" class="review_pushTime">2023-07-15 14:31</span>
+          <p id="reply_user" class="review_userName">작성자</p>
+            </div>
+
+          <div class="review_content">
+          <div class="reply_star">
+            <span class="star">
+              ★★★★★
+              <span>★★★★★</span>
+              <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10"></span>
+            </div>
+            <div>
+              <p class="reply_content">리뷰 내용</p>
+            </div>
+          </div>
+        </div>
+          </li>
+
+
+
+
+
+          
+
+
+
+
+
+
+        <div class="paging">
+          <span class="prev">
+              <a href="#">< 이전</a>
+          </span>
+          <span class="num">
+              <a href="#" class="on">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              
+          </span>
+          <span class="next">
+              <a href="#">다음 ></a>
+          </span>
       </div>
+
+          
+        
+
+          <div class="write_box">
+          <div class="write_info">
+            <p> 상품은 어떠셨나요? </p>
+
+            <div class="review_star">
+              <span class="star">
+                ★★★★★
+                <span>★★★★★</span>
+                <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10"></span>
+              </div></div>
+
+            <div class="write_wrap">
+              
+            <div>
+              
+              <textarea id="write_content" placeholder="최소 10자 이상 입력해주세요."></textarea>
+            </div>
+            <button id="btnTxt" class="btn_Cancel">취소하기</button>
+            <button id="btnTxt" class="btn_Add">등록하기</button>
+            </div>
+          </div>
 
     </section>
 
