@@ -1,4 +1,5 @@
-const url = "/users/1";
+const url = "";
+
 fetch(url, {
   method: "GET",
   headers: {
@@ -12,23 +13,22 @@ fetch(url, {
     throw new Error("Failed.");
   }
 });
-/*
-  .then(function (data) {
-    document.getElementById("id").value = data.id;
-    document.getElementById("name").value = data.name;
-    document.getElementById("contact").value = data.contact;
-    document.getElementById("postcode").value = data.postcode;
-    document.getElementById("address").value = data.address;
-    document.getElementById("detail-address").value = data.detailAddress;
-  });
-  */
-/*
-  .catch(function (error) {
-    console.log(error);
-    alert("Failed");
-  });
-  */
 
+// .then(function (data) {
+//     document.getElementById("id").value = data.email;
+//     document.getElementById("name").value = data.userName;
+//     document.getElementById("contact").value = data.phone;
+//     document.getElementById("postcode").value = data.postalCode;
+//     document.getElementById("address").value = data.address1;
+//     document.getElementById("detail-address").value = data.address2;
+//   });
+
+//   .catch(function (error) {
+//     console.log(error);
+//     alert("Failed");
+//   });
+
+//카카오 주소 api 사용하여 주소 정보 입력
 document
   .getElementById("address-button")
   .addEventListener("click", function () {
@@ -56,7 +56,7 @@ document.querySelector(".close-btn").addEventListener("click", close);
 document.querySelector(".background").addEventListener("click", close);
 document.gquerySelector("modal").scrollTo(0, 0);
 
-//onkeyup 이벤트를 사용하여 실시간 유효성 검사 진행
+//onkeyup 이벤트를 사용하여 실시간 유효성 검사 진행 (예정)
 // document.getElementById("password-new-confirm").onkeyup = function () {
 //   var msg = "",
 //     val = this.value;
@@ -77,16 +77,18 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    const name = document.getElementById("name").value;
+    const name = document.getElementById("userName").value;
     const contact = document.getElementById("contact").value;
+    const postCode = document.getElementById("postcode").value;
     const address = document.getElementById("address").value;
     const detailAddress = document.getElementById("detail-address").value;
 
     const data = {
-      name: name,
-      contact: contact,
-      address: address,
-      detailAddress: detailAddress,
+      name: userName,
+      contact: phone,
+      postCode: postalCod,
+      address: address1,
+      detailAddress: address2,
     };
 
     fetch(url, {
