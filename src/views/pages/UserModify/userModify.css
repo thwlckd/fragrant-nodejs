@@ -3,27 +3,112 @@ body {
 }
 
 .container {
-  width: 400px;
-  margin: 0 auto;
+  width: 1280px;
+  height: auto;
+  margin: auto;
+  padding: 30px 0;
+}
+
+.update-form {
+  width: 900px;
+  margin: auto;
 }
 
 .form-group {
-  margin: 20px 0;
+  width: 900px;
   display: flex;
   align-items: center;
 }
 
-.form-group label {
-  flex-basis: 100px;
-  font-weight: bold;
-  margin-right: 30px;
-  text-align: right;
+.form-group-address {
+  width: 900px;
+  height: auto;
+
+  display: flex;
+  align-items: center;
 }
 
-.form-group input {
-  flex-grow: 1;
-  padding: 5px;
+#address-info {
+  width: 100%;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#find-address {
+  flex-shrink: 0;
+  width: 300px;
+}
+
+.form-group-address label {
+  width: 50%;
+  height: 100px;
+  flex-basis: 121.65px;
+  /* flex-basis: 100px; */
+  text-align: left;
+  color: aliceblue;
+  padding: 30px 30px 100px 30px;
+  background-color: rgb(57, 57, 57);
+}
+
+.form-group label {
+  width: 50%;
+  padding: 30px;
+  flex-basis: 100px;
+  text-align: left;
+  color: aliceblue;
+  background-color: rgb(57, 57, 57);
+}
+
+.password-new-confirm-label {
+  font-size: 14.2px;
+  /* padding: 30px 0 30px 30px !important; */
+}
+
+.form-group-address input {
+  width: 50%;
+  height: 32px;
+  /* flex-grow: 1; */
+  margin: 10px 0 10px 25px;
+  padding: 6px;
   font-size: 16px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(246, 246, 246);
+}
+.form-group input {
+  width: 335px;
+  height: 32px;
+  /* flex-grow: 0.1; */
+  margin: 10px 0 10px 25px;
+  padding: 6px;
+  font-size: 16px;
+
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(246, 246, 246);
+}
+
+#id {
+  border: none;
+  background-color: #ffffff;
+}
+
+#address-button {
+  width: auto;
+  padding: 5px 10px;
+  margin-left: 10px;
+  background-color: #6e6e6e;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .btn-container {
@@ -33,11 +118,147 @@ body {
 
 .btn {
   padding: 10px 20px;
-  background-color: #464646;
+  background-color: #0f0f0f;
   color: white;
   text-decoration: none;
   font-size: 16px;
+  border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
+  margin: 20px 0 50px 0;
+}
+
+.update-form-password {
+  width: 900px;
+  margin: auto;
+}
+
+.update-form-password input {
+  width: 25%;
+}
+
+#password-noti-1,
+#password-noti-2 {
+  color: rgb(126, 155, 250);
+  margin-left: 10px;
+}
+
+h2 {
+  padding: 20px 0;
+}
+
+hr {
+  margin: 0;
+}
+/*회원탈퇴*/
+.delete-account {
+  width: 900px;
+  height: 150px;
+  margin: auto;
+}
+
+.delete-account-btn {
+  float: right;
+  padding: 10px;
+  border: 0;
+  background-color: transparent;
+  color: rgb(67, 67, 67);
+  font-size: 1.1rem;
+  text-decoration: none;
+  /* border-bottom-style: solid; */
+  /*보더 속성 하나로 통합하기*/
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-box {
+  position: absolute;
+  background-color: #fff;
+  width: 450px;
+  height: 300px;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.modal-input-box {
+  width: auto;
+  height: 40%;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  top: 40px;
+  font-size: 18px;
+}
+
+.close-btn {
+  display: block;
+  width: 80px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-btn {
+  width: auto;
+  height: 40%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.close-btn {
+  width: 90px;
+  padding: 10px 25px;
+  background-color: #7c7c7c;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.delete-confirm-btn {
+  padding: 10px 25px;
+  background-color: #0f0f0f;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.modal-box input {
+  width: 70%;
+  font-size: 16px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding: 11px 20px;
+  margin: 30px auto;
+  font-size: 18px;
+  background-color: rgb(246, 246, 246);
 }

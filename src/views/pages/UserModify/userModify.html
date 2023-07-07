@@ -5,45 +5,119 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>회원정보 수정</title>
-    <link rel="stylesheet" href="/css/reset.css" />
+    <!-- <link rel="stylesheet" href="/css/reset.css" /> -->
     <link rel="stylesheet" href="/components/Header/style.css" />
     <link rel="stylesheet" href="/components/Footer/style.css" />
     <link rel="stylesheet" href="userModify.css" />
   </head>
   <body>
     <div class="container">
-      <h2 calss="user-info-title">회원 정보 관리</h2>
-      <form id="update-form">
+      <!-- 회원정보 변경-->
+      <form action="" class="update-form">
+        <h2 style="font-size: 30px">회원 정보 변경</h2>
+        <hr color="#464646" />
         <div class="form-group">
           <label for="id">아이디 </label>
           <input type="text" id="id" value="elice123@elice.io" disabled />
         </div>
+        <hr />
         <div class="form-group">
           <label for="name">이름 </label>
-          <input type="text" id="name" value="이수민" />
+          <input type="text" id="name" value="이수민" required />
         </div>
+        <hr />
+
         <div class="form-group">
           <label for="contact">연락처 </label>
-          <input type="text" id="contact" value="010-1234-5678" />
+          <input
+            type="tel"
+            id="contact"
+            value="010-1234-5678"
+            required
+            maxlength="13"
+          />
         </div>
-        <div class="form-group">
+        <hr />
+        <!-- 주소 찾기-->
+        <div class="form-group-address">
           <label for="address">주소 </label>
-          <input type="text" id="address" value="서울시 광진구" />
-          <button type="button" id="address-button">주소 찾기</button>
+          <div id="address-info">
+            <div id="find-address">
+              <input
+                type="text"
+                id="postcode"
+                placeholder="우편번호"
+                disabled
+              />
+              <button type="button" id="address-button">주소 찾기</button><br />
+            </div>
+            <input type="text" id="address" value="" disabled /><br />
+            <input
+              type="text"
+              id="detail-address"
+              value=""
+              placeholder="상세주소를 입력해주세요."
+            />
+          </div>
         </div>
-        <div class="form-group">
-          <label for="detail-address">상세 주소 </label>
-          <input type="text" id="detail-address" value="" />
-        </div>
+        <hr />
+
         <div class="btn-container">
           <button type="submit" class="btn">회원정보 변경</button>
         </div>
       </form>
+
+      <!-- 비밀번호 변경-->
+      <form action="" class="update-form-password">
+        <h2 style="font-size: 30px">비밀번호 변경</h2>
+        <hr color="#464646" />
+        <div class="form-group">
+          <label for="password-now">현재 비밀번호 </label>
+          <input type="password" id="password-now" value="" />
+        </div>
+        <hr />
+        <div class="form-group">
+          <label for="password-new">새 비밀번호 </label>
+          <input type="password" id="password-new" value="" />
+          <p id="password-noti-1">
+            비밀번호는 8자 이상의 영문으로 입력해주세요.
+          </p>
+        </div>
+        <hr />
+        <div class="form-group">
+          <label for="password-new-confirm" class="password-new-confirm-label"
+            >새 비밀번호 확인</label
+          >
+          <input type="password" id="password-new-confirm" value="" />
+          <p id="password-noti-2">비밀번호 변경을 위해 한번 더 입력해주세요.</p>
+        </div>
+        <hr />
+        <div class="btn-container">
+          <button type="submit" class="btn">비밀번호 변경</button>
+        </div>
+      </form>
+      <div class="delete-account">
+        <a class="delete-account-btn">회원탈퇴</a>
+        <div class="modal hidden">
+          <div class="background"></div>
+          <div class="modal-box">
+            <div class="modal-input-box">
+              <p>정말 탈퇴하시겠습니까?</p>
+              <br />
+              <p>본인 확인을 위해 비밀번호를 입력해주세요.</p>
+              <input type="password" placeholder="비밀번호를 입력해주세요." />
+            </div>
+            <div class="modal-btn">
+              <button class="close-btn">취소</button>
+              <button class="delete-confirm-btn">탈퇴하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="/components/Header/Header.js" type="module"></script>
     <script src="/components/Footer/Footer.js" type="module"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    //
     <script src="./userModify.js"></script>
   </body>
 </html>

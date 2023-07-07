@@ -1,5 +1,4 @@
-// Get the logged-in user's information using a GET request
-const url = "/users/:userId"; // Replace with your server-side endpoint
+const url = "/users/1";
 fetch(url, {
   method: "GET",
   headers: {
@@ -8,48 +7,80 @@ fetch(url, {
 })
   .then(function (response) {
     if (response.ok) {
+      // console.log(response.body.json());
       return response.json();
     } else {
       throw new Error("Failed to retrieve user information.");
     }
   })
   .then(function (data) {
-    // Fill the input fields with the retrieved user information
     document.getElementById("id").value = data.id;
     document.getElementById("name").value = data.name;
     document.getElementById("contact").value = data.contact;
+    document.getElementById("postcode").value = data.postcode;
     document.getElementById("address").value = data.address;
     document.getElementById("detail-address").value = data.detailAddress;
-  })
+  });
+/*
   .catch(function (error) {
     console.log(error);
     alert("Failed");
   });
+  */
 
 document
   .getElementById("address-button")
   .addEventListener("click", function () {
     new daum.Postcode({
       oncomplete: function (data) {
+        console.log(data);
+        document.getElementById("postcode").value = data.zonecode;
         document.getElementById("address").value = data.address;
         document.getElementById("detail-address").focus();
       },
     }).open();
   });
 
+//회원탈퇴 모달
+const open = () => {
+  document.querySelector(".modal").classList.remove("hidden");
+};
+
+const close = () => {
+  document.querySelector(".modal").classList.add("hidden");
+};
+
+document.querySelector(".delete-account-btn").addEventListener("click", open);
+document.querySelector(".close-btn").addEventListener("click", close);
+document.querySelector(".background").addEventListener("click", close);
+document.gquerySelector("modal").scrollTo(0, 0);
+
+//onkeyup 이벤트를 사용하여 실시간 유효성 검사 진행
+// document.getElementById("password-new-confirm").onkeyup = function () {
+//   var msg = "",
+//     val = this.value;
+//   if (val.length > 7) {
+//     msg = GetAjaxPW(val);
+//   } else {
+//     msg = "비밀번호는 8자 이상의 영문으로 입력해주세요.";
+//   }
+//   document.getElementById("password-noti-1").textContent = msg;
+// };
+
+// const GetAjaxPW = function (val) {
+//   return val + " 사용가능한 비밀번호입니다.";
+// };
+
 document
   .getElementById("update-form")
   .addEventListener("submit", function (event) {
     event.preventDefault();
 
-    // Get input values
     const name = document.getElementById("name").value;
     const contact = document.getElementById("contact").value;
     const address = document.getElementById("address").value;
     const detailAddress = document.getElementById("detail-address").value;
 
-    // Perform AJAX request to update the user information on the server
-    // Replace the URL with your server-side endpoint
     const data = {
       name: name,
       contact: contact,
@@ -57,7 +88,6 @@ document
       detailAddress: detailAddress,
     };
 
-    // Send the data to the server using the Fetch API
     fetch(url, {
       method: "PATCH",
       headers: {
