@@ -1,0 +1,17 @@
+{
+  "_id": "64a6fdfc28cde9f88faba48c",
+  "email": "test1@gmail.com",
+  "password": "$2b$10$EE2jUXZCjQHSRIf4a2bjoeCINEKUScQ3.cVzOKGj2W8FfP3z7fWfW",
+  "isAdmin": false,
+  "userName": "테스트",
+  "createdAt": "2023-07-06T17:46:36.612Z",
+  "updatedAt": "2023-07-07T05:13:40.168Z",
+  "__v": 0,
+  "address": {
+    "postalCode": 123456,
+    "address1": "최근 주문 주소지1",
+    "address2": "최근 주문 주소지2",
+    "_id": "64a79f042291703e7f70036a"
+  },
+  "phone": "01012341234"
+}
