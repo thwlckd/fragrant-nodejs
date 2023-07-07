@@ -1,61 +1,70 @@
 const { Schema } = require("mongoose");
 
-const ProductSchema = new Schema({
-  productId: {
-    type: String,
-    required: true,
+const ProductSchema = new Schema(
+  {
+    productId: {
+      type: Number,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      requried: true,
+    },
+    img: {
+      type: String,
+      requried: true,
+    },
+    capacity: {
+      type: Number,
+      requried: true,
+    },
   },
-  name: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    requried: true,
-  },
-  img: {
-    type: String,
-    requried: true,
-  },
-  capacity: {
-    type: Number,
-    requried: true,
-  },
-});
+  { _id: false }
+);
 
-const AddressSchema = new Schema({
-  postalCode: {
-    type: String,
-    required: true,
+const AddressSchema = new Schema(
+  {
+    postalCode: {
+      type: String,
+      required: true,
+    },
+    address1: {
+      type: String,
+      required: true,
+    },
+    address2: {
+      type: String,
+      required: true,
+    },
   },
-  address1: {
-    type: String,
-    required: true,
-  },
-  address2: {
-    type: String,
-    required: true,
-  },
-});
+  { _id: false }
+);
 
-const OrdererSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
+const OrdererSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: AddressSchema,
+      required: true,
+    },
   },
-  phone: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  address: {
-    type: AddressSchema,
-    required: true,
-  },
-});
+  { _id: false }
+);
 
 const OrderSchema = new Schema(
   {
@@ -73,6 +82,7 @@ const OrderSchema = new Schema(
     },
     orderStatus: {
       type: String,
+      default: "주문완료",
       required: true,
     },
     requirement: {

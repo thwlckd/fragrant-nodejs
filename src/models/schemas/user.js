@@ -1,16 +1,19 @@
 const { Schema } = require("mongoose");
 
-const AddressSchema = new Schema({
-  postalCode: {
-    type: String,
+const AddressSchema = new Schema(
+  {
+    postalCode: {
+      type: Number,
+    },
+    address1: {
+      type: String,
+    },
+    address2: {
+      type: String,
+    },
   },
-  address1: {
-    type: String,
-  },
-  address2: {
-    type: String,
-  },
-});
+  { _id: false }
+);
 
 const UserSchema = new Schema(
   {
