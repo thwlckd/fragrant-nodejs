@@ -1,6 +1,6 @@
-const { Schema } = required("mongoose");
-const shortId = required("./types/shortId");
-const ReviewSchema = required("./review");
+const { Schema } = require("mongoose");
+const shortId = require("./types/shortId");
+const ReviewSchema = require("./review");
 
 const ProductSchema = new Schema(
   {
