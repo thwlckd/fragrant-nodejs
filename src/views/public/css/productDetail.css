@@ -1,6 +1,12 @@
+    * {
+        scroll-behavior: smooth;
+    }
     a {
         color: inherit;
         text-decoration: none;
+    }
+    li {
+        list-style: none;
     }
 
     input:focus {
@@ -14,9 +20,7 @@
         position: relative;
     }
 
-    #main_section{
-
-    }
+    
 
     .product {
         display: flex;
@@ -36,15 +40,15 @@
         justify-content: space-between;
         position: relative;
         
-        left: 250px;
+        left: 200px;
     }
 
     .product_content {
-        width: 45%;
-        line-height: 20px;
+        width: 48%;
+        line-height: 30px;
         position: relative;
         top: 50px;
-        left: 300px;
+        left: 280px;
     }
 
    
@@ -54,48 +58,56 @@
         margin: 0 5px 25px 0; 
         position: relative;
         bottom: 40px;
+        
     }
 
     .pagepath {   
-            position: static;
-            font-size: 11px;
-            color: #b5aca2;
-            margin: 0 0 4px 3px;
+            text-align: right;
+            position: relative;
+            
+            font-size: 15px;
+            color: #494948;
+            margin: 0 73px 30px 0;
             }
+
     .product_name {
         line-height: 1.5;
     }      
-    div.eng_name {
-        
-        font-size: 18px;
+    .eng_name {
+        font-size: 24px;
+        position: relative;
+        bottom: 10px;
     }  
-    div.kor_name {
-        font-weight: bold;
-        font-size: 15px;
-        color: #908e8a;
-        position: relative;
-        top: 2px;
-    }
-    div.org_price {
+    .kor_name {
         font-size: 16px;
-        position: relative;
-        top: 4px;
-        left: 3px;
+        color: #908e8a;
+       
     }
-
+    .korname_deco {
+        font-weight: bold;
+        font-size: 18px; 
+        position: relative;
+        bottom: 5px
+    }
+    
+    .delivery_box {
+        position: relative;
+        top: 10px;
+    }
+    
     .delivery_info {
         line-height: 30px;
         position: relative;
-        top: 12px;
+        top: 15px;
         left: 3px;
     }
     .delivery_pay, .arrival, .desc {
         font-weight: bold;
-        font-size: 14px;
+        font-size: 18px;
     }
 
     .delivery_right, .arrival_right, .desc_right {
-        font-size: 13px;
+        font-size: 17px;
         float: right;
         position: relative;
         right: 50px;
@@ -104,44 +116,61 @@
     
     .count {
             width: 90%;
-            height: 30px;
+            height: 50px;
             margin: 30px 0 15px 0;
             padding: 10px 10px 40px 10px;
             
-            line-height: 30px;
+            line-height: 32px;
             color: #706e6c;
             background: #fafafa;
             border-radius: 2px;
             white-space: normal;
+
+            position: relative;
+            top: 15px;
             
     }
     .count_name{
-        font-size: 15px;
+        font-size: 18px;
         position: relative;
+        top: 2px;
         left: 10px;
     }
     .count_num {
         
-        height: 20px;
+        height: 25px;
         display: flex;
         position: relative;
+        top: 10px;
         left: 10px;
     }
-    .decrease, .increase {
-        padding: 3px 7px;
-    }
+
+   #num {
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    border: 1px solid #868482;
+    background: #fafafa;
+   }
+
     .total {
-        font-size: 15px;
-        justify-content: flex-end;
+        font-size: 22px;
+        color: #868482;
+        text-align: right;
         position: relative;
-        left: 245px;
+        bottom: 50px;
+        right: 55px;
+        
         
         
     }
 
     .final_total {
+        font-size: 23px;
         text-align: right;
-        
+        position: relative;
+ 
+        right: 55px;
     }
 
         
@@ -149,22 +178,23 @@
 
 
 
-    .button {
+    input[type="button"] {
         text-align: center;      
         text-decoration: none;
               
         margin-top: 5px;
-        font-size: 15px;
+        font-size: 22px;
        
         cursor: pointer;
         position: relative;
-        top: 20px;
-        right: 20px;
+        top: 25px;
+        
+        
         }
     
     .cart {
             display :inline-block;
-            width: 45%;  
+            width: 285px;  
             padding: 5px 45px;
             border-radius: 2px;
             background: #fff;
@@ -173,7 +203,7 @@
           }
     .order {
             display :inline-block;
-            width: 45%;  
+            width: 285px;  
             padding: 5px 45px;
             border-radius: 2px;
             background: #080808;
@@ -183,27 +213,20 @@
 
 
 
-
-
-
-    .menu {
-        float: center;
-        clear: both;
-    }
-
     .menu_list {
-        align-content: center;
-        margin: 50px 0 50px 0;
-        font-weight: bold;
-        font-size: 16px;
+        text-align: center;
+        margin: 300px 0 0 0;
+        
+        font-size: 22px;
         color: #908e8a;
+        border-top: 1px solid #a4a9b0;
+        padding: 60px 0 0 0;
 
     }
 
     .tab {
-        
-        margin: 200px 40px 0px 40px;
-        padding: 70px 70px;
+        margin: 60px 60px 0 60px;
+        padding: 70px 100px 90px 100px;
         line-height: 20px;
 
         color: #757c8a;
@@ -212,13 +235,240 @@
         white-space: normal;
     }
 
-    .tab2_title {
-        font-size: 13px;
+   
+    .tab1_title1 {
+        font-size: 22px;
         font-weight: bold;
+        color: #34342e;
+    }
+    .tab1_title2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #34342e;
+
+        margin-top: 50px; 
+
+        border-top: 1px solid #a4a9b0;
+        padding: 55px 0 0 0;
+        
+        overflow: hidden;
+    }
+
+    .tab1_wrap {
+        line-height: 30px;
+        position: relative;
+        top: 40px;
+        left: 180px;
+        
+    }
+    .tab1_content {
+        font-size: 20px;
+        font-weight: bold;
+        color: #34342e;
+    
+
+    }
+
+    .tab1_text {
+        font-size: 20px;
+        color: #34342e;
+        
+    }
+    .tab1_text2 {
+        font-size: 18px;
+        color: #34342e;
+
+        position: relative;
+        bottom: 15px;
+    }
+
+
+
+    .tab2_title {
+        font-size: 19px;
+        font-weight: bold;
+        border-bottom: 1px solid #a4a9b0;
+        padding: 10px 0;
+        margin-bottom: 20px;
+        overflow: hidden;
     }
 
     .tab2_content {
-        font-size: 12px;
+        font-size: 16px;
+        line-height: 25px;
     }
 
     
+    .tab3_title {
+        font-size: 19px;
+        font-weight: bold;
+        border-bottom: 1px solid #a4a9b0;
+        padding: 10px 0;
+        margin-bottom: 20px;
+    }
+
+
+
+
+    .review_box {
+        display: flex;
+        width: 90%;
+        height: 180px;
+        margin: 40px 0 40px 50px;
+
+        border-bottom: 1px solid #a4a9b0;
+        padding: 10px 0;
+        
+        
+    
+    }/*  background-color: #908e8a;   */
+
+    #reply_user {
+        display: flex;
+        justify-content: left;
+        width: 180px;
+        height: 80px;
+       
+
+        font-size: 20px;
+        
+    } /*   background-color: #29241a;  */
+
+
+    .review_userName {
+        position: relative;
+        bottom: 38px;
+    }
+
+    .review_content {
+        box-sizing: border-box;
+        width: 660px;
+        height: 175px;
+
+        margin: 0 0 0 24px;
+        
+    } /* background-color: #29241a;   */
+
+    .review_star {
+       font-size: 23px;
+
+    }
+
+    .review_write {
+        font-size: 18px;
+        margin: 20px 0 0 0;
+
+    }
+
+
+
+
+
+
+
+
+
+   .write_box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+
+    .write_info {
+        margin: 10px 50px 0 0;
+        padding: 0 0 20px 0;
+        line-height: 40px;
+    }
+
+        
+    .write_box p {
+        font-size: 22px;
+        font-weight: bold;
+
+    }
+
+    
+    textarea {
+        display: flex;
+        width: 660px;
+        height: 140px;
+        border: 1px solid #979393;
+        resize: none;
+        font-size: 18px;
+    }
+
+   
+    textarea::placeholder {
+        font-size: 18px;
+      }
+
+    #btnTxt {
+            display :inline-block;
+            width: 330px;
+            height: 42px;
+            padding: 5px 45px;
+            border-radius: 2px;
+
+            margin-top: 15px;
+            font-size: 20px;
+
+            cursor: pointer;
+    }
+    
+    .btn_Cancel {
+        background: #fff;
+        border: 1px solid #979393;
+        color: #212121;
+
+        margin-right: 3px;
+    }
+    .btn_Add {
+        background: #080808;
+            border: 1px solid #080808;
+            color: #ededed;
+    }
+    
+    
+
+
+
+    .review_star {
+       position: relative;
+       left: 10px;
+
+    }
+
+    .star {
+        position: relative;
+        font-size: 2rem;
+        color: #ddd;
+      }
+      
+      .star input {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      .star span {
+        width: 0;
+        position: absolute; 
+        left: 0;
+        color: black;
+        overflow: hidden;
+        pointer-events: none;
+      }
+    
+    
+
+
+
+    .paging {
+        width: 100%;
+        font-size: 20px;
+        padding: 0 0 34px 0;
+        text-align: center;
+        }
