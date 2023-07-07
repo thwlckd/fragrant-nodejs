@@ -40,6 +40,15 @@
     padding-left: 10px;
 }
 
+.login-msg{
+    position: relative;
+    display: block;
+
+    font-size: 10px;
+    color: #e55;
+    right: 140px;
+}
+
 .upw{
     margin-top: 20px;
 }
