@@ -10,7 +10,7 @@ main {
   position: relative;
 }
 
-.jumbotron-wrap>article {
+.jumbotron-wrap > article {
   width: 100%;
   height: 100%;
   display: inline-block;
@@ -21,7 +21,7 @@ main {
   background-color: black;
 }
 
-.jumbotron-wrap>article>a {
+.jumbotron-wrap > article > a {
   width: 100%;
   height: 100%;
   display: inline-block;
@@ -30,23 +30,23 @@ main {
   background-position: 50% 50%;
 }
 
-.jumbotron-wrap>article:nth-child(1)>a {
+.jumbotron-wrap > article:nth-child(1) > a {
   background-image: url(/asset/jumbotron/viva_magenta_swipe.png);
 }
 
-.jumbotron-wrap>article:nth-child(2)>a {
+.jumbotron-wrap > article:nth-child(2) > a {
   background-image: url(/asset/jumbotron/veri_peri_swipe.png);
 }
 
-.jumbotron-wrap>article:nth-child(3)>a {
+.jumbotron-wrap > article:nth-child(3) > a {
   background-image: url(/asset/jumbotron/jomalone_Collection.png);
 }
 
-.jumbotron-wrap>article:nth-child(4)>a {
+.jumbotron-wrap > article:nth-child(4) > a {
   background-image: url(/asset/jumbotron/alice_Collection.png);
 }
 
-.jumbotron-wrap>article:nth-child(5)>a {
+.jumbotron-wrap > article:nth-child(5) > a {
   background-image: url(/asset/jumbotron/classic_Collection.png);
 }
 
@@ -56,7 +56,7 @@ main {
   position: absolute;
   top: 50%;
   left: 40px;
-  filter: drop-shadow(0 6px 3px rgba(0, 0, 0, .3));
+  filter: drop-shadow(0 6px 3px rgba(0, 0, 0, 0.3));
   cursor: pointer;
 }
 
@@ -76,7 +76,7 @@ main {
   position: absolute;
   top: 50%;
   right: 40px;
-  filter: drop-shadow(0 6px 3px rgba(0, 0, 0, .3));
+  filter: drop-shadow(0 6px 3px rgba(0, 0, 0, 0.3));
   cursor: pointer;
 }
 
@@ -90,26 +90,25 @@ main {
   stroke: #ccc;
 }
 
-.jumbotron-wrap>article:nth-child(1) {
+.jumbotron-wrap > article:nth-child(1) {
   left: 0;
 }
 
-.jumbotron-wrap>article:nth-child(2) {
+.jumbotron-wrap > article:nth-child(2) {
   left: 100%;
 }
 
-.jumbotron-wrap>article:nth-child(3) {
+.jumbotron-wrap > article:nth-child(3) {
   left: 200%;
 }
 
-.jumbotron-wrap>article:nth-child(4) {
+.jumbotron-wrap > article:nth-child(4) {
   left: 300%;
 }
 
-.jumbotron-wrap>article:nth-child(5) {
+.jumbotron-wrap > article:nth-child(5) {
   left: 400%;
 }
-
 
 .jumbo-idx-wrap {
   position: absolute;
