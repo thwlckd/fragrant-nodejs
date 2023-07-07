@@ -19,19 +19,22 @@
             <h2>로그인</h2>
             <div class="loginbox">
                 <form action="" method="post" class="userinput">
-                    <div class="uput">
-                        <input type="text" name="uname" placeholder="아이디">
-                        <span class="login-msg">이메일을 입력하세요.</span>
-                    </div>
-                    <div class="uput upw">
-                        <input type="text" name="upassword" placeholder="패스워드">
-                    </div>
+                    <ul class="uput">
+                        <li>
+                            <input type="text" id="uid" placeholder="아이디(이메일)">
+                            <span class="login-msg">이메일을 입력하세요.</span>
+                        </li>
+                        <li>
+                            <input type="text" id="upassword" placeholder="패스워드">
+                        </li>
+                    </ul>
                     <div class="loginbtn">
                         <input type="submit" id="sbtn" value="로그인">
                     </div>
 
                 </form>
             </div>
+
 
             <ul class="addbox">
                 <li><a href="#">아이디 찾기</a></li>
@@ -46,6 +49,7 @@
 
     <script src="/components/Header/Header.js" type="module"></script>
     <script src="/components/Footer/Footer.js" type="module"></script>
+    <script src="login.js" type="module"></script>
 </body>
 
 </html>
