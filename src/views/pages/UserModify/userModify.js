@@ -4,15 +4,15 @@ fetch(url, {
   headers: {
     "Content-Type": "application/json",
   },
-})
-  .then(function (response) {
-    if (response.ok) {
-      // console.log(response.body.json());
-      return response.json();
-    } else {
-      throw new Error("Failed to retrieve user information.");
-    }
-  })
+}).then(function (response) {
+  if (response.ok) {
+    // console.log(response.body.json());
+    return response.json();
+  } else {
+    throw new Error("Failed.");
+  }
+});
+/*
   .then(function (data) {
     document.getElementById("id").value = data.id;
     document.getElementById("name").value = data.name;
@@ -21,6 +21,7 @@ fetch(url, {
     document.getElementById("address").value = data.address;
     document.getElementById("detail-address").value = data.detailAddress;
   });
+  */
 /*
   .catch(function (error) {
     console.log(error);
