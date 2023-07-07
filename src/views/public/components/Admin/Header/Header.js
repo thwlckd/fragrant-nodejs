@@ -1,11 +1,17 @@
 import { headerFetch } from "../../../js/util/admin.js";
+import { $ } from "../../../js/util/dom.js";
 
-const { head, body } = await headerFetch();
+const { head, header, closeBtn } = await headerFetch();
 
 document.head.append(head);
-document.body.prepend(body);
+$("#app").prepend(closeBtn);
+$("#app").prepend(header);
 
-const $header = document.querySelector("header");
-$header.addEventListener("click", ()=>{
-  console.log("ss")
-})
+const $headerClostBtn = $(".header-close-btn");
+const $header = $("header");
+$headerClostBtn.addEventListener("click", () => {
+  $header.classList.toggle("header-off");
+});
+
+// 임시코드
+$header.classList.add("header-off");

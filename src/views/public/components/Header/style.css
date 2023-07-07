@@ -23,11 +23,19 @@ header {
 
 .gnb-left img {
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .gnb-right img {
   cursor: pointer;
   margin-left: 30px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .header-wrapper>a {

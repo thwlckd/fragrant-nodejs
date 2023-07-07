@@ -5,11 +5,14 @@ export const headerFetch = async () => {
   const head = new DOMParser().parseFromString(data, "text/html").head
     .children[0];
   //header
-  const body = new DOMParser().parseFromString(data, "text/html").body
+  const header = new DOMParser().parseFromString(data, "text/html").body
     .children[0];
-
+  // footer-close-btn
+  const closeBtn = new DOMParser().parseFromString(data, "text/html").body
+    .children[1];
   return {
     head,
-    body,
+    header,
+    closeBtn,
   };
 };
