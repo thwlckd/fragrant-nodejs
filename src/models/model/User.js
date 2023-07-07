@@ -25,7 +25,7 @@ const userDAO = {
   },
 
   async findAllByUserName(userName) {
-    const users = await User.find(userName).lean();
+    const users = await User.find({ userName }).lean();
     return users;
   },
 

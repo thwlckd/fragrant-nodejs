@@ -1,5 +1,5 @@
 const { userService } = require("../services");
-const { checkObjectValues } = require("../utils/utils");
+const { checkObjectValues, filterResponse } = require("../utils/utils");
 
 const userController = {
   async postSignUpInfo(req, res, next) {
@@ -30,7 +30,7 @@ const userController = {
     try {
       const { userId } = req.params;
       const user = await userService.getUser(userId);
-      res.json(user);
+      res.json(filterResponse(user));
     } catch (err) {
       next(err);
     }
@@ -39,7 +39,7 @@ const userController = {
   async getUsers(req, res, next) {
     try {
       const users = await userService.getUsers();
-      res.json(users);
+      res.json(filterResponse(users));
     } catch (err) {
       next(err);
     }
@@ -48,8 +48,8 @@ const userController = {
   async getUsersByUserName(req, res, next) {
     try {
       const { userName } = req.query;
-      const users = await userService.getUsersByUserName({ userName });
-      res.json(users);
+      const users = await userService.getUsersByUserName(userName);
+      res.json(filterResponse(users));
     } catch (err) {
       next(err);
     }
@@ -58,11 +58,8 @@ const userController = {
   async patchUser(req, res, next) {
     try {
       const { userId } = req.params;
-      const { email, password, isAdmin, userName, phone, address } = req.body;
+      const { userName, phone, address } = req.body;
       const checkedToUpdate = checkObjectValues({
-        email,
-        password,
-        isAdmin,
         userName,
         phone,
       });
@@ -79,6 +76,25 @@ const userController = {
       }
 
       await userService.patchUser(userId, checkedToUpdate);
+      res.status(201).end();
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  async patchUserPassword(req, res, next) {
+    try {
+      const { userId } = req.params;
+      const { oldPassword, newPassword } = req.body;
+      if (
+        !(await userService.patchUser(userId, {
+          oldPassword,
+          newPassword,
+        }))
+      ) {
+        res.status(400).end();
+        return;
+      }
       res.status(201).end();
     } catch (err) {
       next(err);

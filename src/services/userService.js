@@ -38,14 +38,20 @@ const userService = {
   },
 
   async patchUser(userId, toUpdate) {
-    const { password } = toUpdate;
-    if (password) {
-      const hashedPassword = await hashPassword(password);
-      toUpdate.password = hashedPassword;
+    const { oldPassword, newPassword } = toUpdate;
+    if (oldPassword) {
+      const { password } = await userDAO.findOne(userId);
+      if (await comparePassword(oldPassword, password)) {
+        const hashedPassword = await hashPassword(newPassword);
+        await userDAO.updateOne(userId, { password: hashedPassword });
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      const user = await userDAO.updateOne(userId, toUpdate);
+      return user;
     }
-
-    const user = await userDAO.updateOne(userId, toUpdate);
-    return user;
   },
 
   async deleteUser(userId, originPassword) {
