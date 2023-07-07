@@ -29,17 +29,17 @@ const orderService = {
   },
 
   async getOrdersByUserEmail(userEmail) {
-    const order = await orderDAO.getOrdersByUserEmail(userEmail);
+    const order = await orderDAO.findAllByUserEmail(userEmail);
     return order;
   },
 
-  async updatePost(orderId, toUpdate) {
+  async updateUserOrder(orderId, toUpdate) {
     const order = await orderDAO.updateOne(orderId, toUpdate);
     return order;
   },
 
-  async deletePost(orderId) {
-    const order = await orderDAO.delteOne(orderId);
+  async deleteOrder(orderId) {
+    const order = await orderDAO.deleteOne(orderId);
     return order;
   },
 };
