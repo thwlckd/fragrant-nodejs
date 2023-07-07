@@ -89,7 +89,8 @@ input {
 
 .msg {
     position: relative;
-    display: block;
+    /* display: block; */
+    display: none;
     line-height: 13px;
     font-size: 10px;
     color: #e55;
