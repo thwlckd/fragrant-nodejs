@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const { UserSchema } = require("../schemas");
+const mongoose = require('mongoose');
+const { UserSchema } = require('../schemas');
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema);
 
 const userDAO = {
   async create(toCreate) {
