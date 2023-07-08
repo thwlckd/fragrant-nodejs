@@ -10,6 +10,9 @@ loginForm.addEventListener("submit", e => {
 
   fetch("/auth/sign-in", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       email: idEmail.value,
       password: password.value
