@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const { BrandSchema } = require("../schemas");
+const mongoose = require('mongoose');
+const { BrandSchema } = require('../schemas');
 
-const Brand = mongoose.model("Brand", BrandSchema);
+const Brand = mongoose.model('Brand', BrandSchema);
 
 const brandDAO = {
   async getIdByName(brandName) {

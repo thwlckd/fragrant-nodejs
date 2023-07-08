@@ -1,4 +1,4 @@
-const productService = require("../services/productService");
+const productService = require('../services/productService');
 
 const productController = {
   // 전체 상품

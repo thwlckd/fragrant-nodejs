@@ -2,8 +2,8 @@ const {
   hashPassword,
   comparePassword,
   createToken,
-} = require("../utils/authUtils");
-const { userDAO } = require("../models/model");
+} = require('../utils/authUtils');
+const { userDAO } = require('../models/model');
 
 const userService = {
   async postSignUpInfo(email, password, userName) {
@@ -45,13 +45,11 @@ const userService = {
         const hashedPassword = await hashPassword(newPassword);
         await userDAO.updateOne(userId, { password: hashedPassword });
         return true;
-      } else {
-        return false;
       }
-    } else {
-      const user = await userDAO.updateOne(userId, toUpdate);
-      return user;
+      return false;
     }
+    const user = await userDAO.updateOne(userId, toUpdate);
+    return user;
   },
 
   async deleteUser(userId, originPassword) {
