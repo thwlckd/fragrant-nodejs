@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const ReviewSchema = new Schema(
   {
@@ -19,9 +19,9 @@ const ReviewSchema = new Schema(
     },
   },
   {
-    collection: "Review",
+    collection: 'Review',
     timestamps: true,
-  }
+  },
 );
 
 module.exports = ReviewSchema;

@@ -1,5 +1,5 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 async function hashPassword(password) {
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -12,13 +12,13 @@ async function comparePassword(originPassword, hashedPassword) {
 }
 
 function createToken(userEmail, isAdmin) {
-  const secretKey = process.env.JWT_SECRET_KEY || "secret";
+  const secretKey = process.env.JWT_SECRET_KEY || 'secret';
   const token = jwt.sign(
     {
-      userEmail: userEmail,
-      isAdmin: isAdmin,
+      userEmail,
+      isAdmin,
     },
-    secretKey
+    secretKey,
   );
   return token;
 }
@@ -28,4 +28,6 @@ async function verifyToken(password) {
   return hashedPassword;
 }
 
-module.exports = { hashPassword, comparePassword, createToken, verifyToken };
+module.exports = {
+  hashPassword, comparePassword, createToken, verifyToken,
+};

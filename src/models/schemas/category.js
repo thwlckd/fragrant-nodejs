@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const CategorySchema = new Schema(
   {
@@ -8,9 +8,9 @@ const CategorySchema = new Schema(
     },
   },
   {
-    collection: "Catogory",
+    collection: 'Catogory',
     timestamps: true,
-  }
+  },
 );
 
 module.exports = CategorySchema;
