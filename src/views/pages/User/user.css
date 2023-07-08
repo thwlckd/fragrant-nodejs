@@ -1,4 +1,4 @@
-/* .mypage {
+.mypage {
   width: 1280px;
   height: auto;
   left: 50%;
@@ -11,37 +11,27 @@
   border-bottom: 1px solid #fafaff;
   position: relative;
   background-color: white;
-} */
-
-body {
-  font-family: Arial, sans-serif;
-}
-
-.mypage {
-  width: 1280px;
-  height: auto;
-  margin: auto;
-  padding: 30px 0;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .page-title {
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 500;
 
-  padding: 20px;
+  padding: 10px;
 }
 
 .user-info {
   width: 100%;
-  height: 160px;
+  height: 180px;
   background-color: rgb(29, 29, 29);
 
   margin: 20px 0;
 }
 
 .user-name {
-  font-size: 24px;
+  font-size: 28px;
   color: aliceblue;
 
   padding: 30px 60px 0 20px;
@@ -54,7 +44,7 @@ body {
 
 .user-id {
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 20px;
+  font-size: 22px;
   color: aliceblue;
 
   margin: 0 20px 0 40px;
@@ -66,7 +56,7 @@ body {
   background-color: rgb(117, 117, 117);
 
   font-family: "Noto Sans KR", sans-serif;
-  font-size: 0.5rem;
+  font-size: 16px;
   font-weight: 400;
   text-align: center;
   text-decoration: none;
@@ -80,38 +70,71 @@ body {
   border-radius: 4px;
 }
 
+.order-history-section {
+  width: 100%;
+  height: 1200px;
+}
+
 .order-history {
   width: 100%;
-  height: 700px;
+  height: 850px;
+  border-bottom: 2px solid rgb(21, 21, 21);
+  overflow: auto;
 }
 
 .order-title {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 500;
 
   padding: 10px;
+  margin-top: 50px;
+}
+
+.order-contents-value {
+  font-size: 18px;
+}
+
+.order-contents-value span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding-left: 30px;
+  letter-spacing: normal;
 }
 
 .hr-1 {
-  background: rgb(75, 75, 75);
-  height: 2px;
-  border: 0;
-  margin-bottom: 20px;
+  width: 100%;
+  border: 1.5px solid rgb(21, 21, 21);
+  margin-bottom: 40px;
 }
 .order-header {
   width: auto;
   height: auto;
   margin: 5px, 0;
 
+  font-size: 24px;
+
   display: flex;
   justify-content: space-between;
 }
+
+.order-header a {
+  color: rgb(83, 83, 83);
+  letter-spacing: -1px;
+  padding-right: 30px;
+  font-size: 16px;
+  text-decoration: none;
+}
+
 .order-list {
   width: 100%;
-  height: 140px;
-  padding: 8px, 0;
+  padding: 5px 0;
+  margin-top: 10px;
+}
 
-  font-family: "Noto Sans KR", sans-serif;
+.order-list-1 {
+  padding: 15px 30px 15px 15px;
+  margin-top: 15px;
+  border-top: 1px solid rgb(198, 198, 198);
 }
 
 .order-list-component {
@@ -129,20 +152,13 @@ body {
   height: auto;
   padding: 8px;
 
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: -1px;
   flex-grow: 2;
 
   line-height: 1.9;
 }
 
-.view-order-detail {
-  color: rgb(83, 83, 83);
-  letter-spacing: -1px;
-  text-decoration: none;
-
-  font-size: 12px;
-}
 .order-status-box {
   width: 20%;
   height: auto;
@@ -157,19 +173,20 @@ body {
   height: auto;
   padding: 30px;
   color: rgb(59, 59, 59);
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   position: static;
 }
 
-#order-cancel {
+.order-cancel {
   width: 100px;
   height: 30px;
+  font-size: 15px;
   border: 0;
   outline: 0;
   background-color: rgb(229, 229, 229);
 }
-#order-cancel-hidden {
+.order-cancel-hidden {
   visibility: hidden;
   margin-left: 37px;
 }
