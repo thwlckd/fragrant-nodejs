@@ -1,7 +1,37 @@
 console.log("확인");
 
-const emailList = document.querySelector("#eml");
+const idInput = document.querySelector("#mid");
 const emailInput = document.querySelector("#mid-email");
+const password = document.querySelector("#mpw");
+const memberName = document.querySelector("#mnm");
+
+const signupForm = document.querySelector(".member-input");
+
+signupForm.addEventListener("SUBMIT", (e) => {
+  e.preventDefault();
+
+  console.log(idInput.value + "@" + emailInput.value);
+  console.log(password.value);
+  console.log(memberName.value);
+  fetch("/auth/sign-up", {
+    method: "POST",
+    Headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      email: idInput.value + "@" + emailInput.value,
+      password: password.value,
+      userName: memberName.value,
+    }),
+  })
+    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+    });
+});
+
+
+
+const emailList = document.querySelector("#eml");
+
 
 // select 옵션변경시
 emailList.addEventListener("change", (event) => {
@@ -17,7 +47,7 @@ emailList.addEventListener("change", (event) => {
 });
 
 // 아이디창 오류메시지
-const idInput = document.querySelector("#mid");
+
 idInput.onblur = function () {
   if (idInput.value === "") {
     idInput.classList.add("invalid");
@@ -38,7 +68,7 @@ const pwRegExp =
   /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*+=\-_`~\[\]\{\}\\\|<>\/?\.\,;:'"])[a-zA-Z0-9!@#$%^&*+=\-_`~\[\]\{\}\\\|<>\/?\.\,;:'"]{8,15}$/;
 
 // 비밀번호 입력창 오류메시지
-const password = document.querySelector("#mpw");
+
 const passwordError = document.querySelector("#mpw+.msg");
 const comparePassword = document.querySelector("#mpw2");
 const passwordChkError = document.querySelector("#mpw2+.msg");
@@ -85,7 +115,7 @@ comparePassword.onblur = function () {
 };
 
 // 이름 입력창 오류메시지
-const memberName = document.querySelector("#mnm");
+
 const nameError = document.querySelector("#mnm+.msg");
 console.log(nameError);
 
