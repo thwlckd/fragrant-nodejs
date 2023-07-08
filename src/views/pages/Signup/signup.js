@@ -7,27 +7,19 @@ const memberName = document.querySelector("#mnm");
 
 const signupForm = document.querySelector(".member-input");
 
-signupForm.addEventListener("SUBMIT", (e) => {
+signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  console.log(idInput.value + "@" + emailInput.value);
-  console.log(password.value);
-  console.log(memberName.value);
   fetch("/auth/sign-up", {
     method: "POST",
-    Headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      email: idInput.value + "@" + emailInput.value,
+      email: `${idInput.value}@${emailInput.value}`,
       password: password.value,
       userName: memberName.value,
     }),
   })
-    .then((res) => res.json())
-    .then((res) => {
-      console.log(res);
-    });
 });
-
 
 
 const emailList = document.querySelector("#eml");
@@ -47,21 +39,15 @@ emailList.addEventListener("change", (event) => {
 });
 
 // 아이디창 오류메시지
-
-idInput.onblur = function () {
+idInput.onblur = () => {
   if (idInput.value === "") {
     idInput.classList.add("invalid");
     document.querySelector(".msg").style.display = "block";
-  }
+  } else
+    document.querySelector('.msg').style.display = 'none';
 };
 
-idInput.onfocus = function () {
-  if (this.classList.contains("invalid")) {
-    // 사용자가 새로운 값을 입력하려고 하므로 에러 메시지를 지움
-    this.classList.remove("invalid");
-    document.querySelector(".msg").style.display = "none";
-  }
-};
+
 
 // 비밀번호 유효성 체크 (영문, 숫자, 특수문자 조합으로 이루어진 8~15자)
 const pwRegExp =
@@ -77,39 +63,41 @@ console.log(passwordError);
 console.log(passwordChkError);
 
 const passwordErrorMsg = {
-  0: "비밀번호를 입력해주세요",
-  1: "비밀번호를 한번 더 입력해주세요.",
-  2: "비밀번호가 일치 하지 않습니다.",
-  3: "비밀번호는 영문,숫자,특수문자 를 모두 조합하여 최소 8~15자 입력해 주세요.",
+  error0: "비밀번호를 입력해주세요",
+  error1: "비밀번호를 한번 더 입력해주세요.",
+  error2: "비밀번호가 일치 하지 않습니다.",
+  error3: "비밀번호는 영문,숫자,특수문자 를 모두 조합하여 최소 8~15자 입력해 주세요.",
 };
 
+const { error0, error1, error2, error3 } = passwordErrorMsg;
+
 // 비밀번호 입력창
-password.onblur = function () {
+password.onblur = () => {
   if (password.value !== "") {
     console.log(pwRegExp.test(password.value));
     if (pwRegExp.test(password.value)) {
       passwordError.style.display = "none";
     } else {
-      passwordError.textContent = passwordErrorMsg[3];
+      passwordError.textContent = error3;
       passwordError.style.display = "block";
     }
   } else {
-    passwordError.textContent = passwordErrorMsg[0];
+    passwordError.textContent = error0;
     passwordError.style.display = "block";
   }
 };
 
 // 비밀번호 확인 입력창
-comparePassword.onblur = function () {
+comparePassword.onblur = () => {
   if (comparePassword.value !== "") {
     if (comparePassword.value !== password.value) {
-      passwordChkError.textContent = passwordErrorMsg[2];
+      passwordChkError.textContent = error2;
       passwordChkError.style.display = "block";
     } else {
       passwordChkError.style.display = "none";
     }
   } else if (comparePassword.value === "") {
-    passwordChkError.textContent = passwordErrorMsg[1];
+    passwordChkError.textContent = error1;
     passwordChkError.style.display = "block";
   }
 };
@@ -119,7 +107,7 @@ comparePassword.onblur = function () {
 const nameError = document.querySelector("#mnm+.msg");
 console.log(nameError);
 
-memberName.onblur = function () {
+memberName.onblur = () => {
   if (memberName.value !== "") {
     nameError.style.display = "none";
   } else {
