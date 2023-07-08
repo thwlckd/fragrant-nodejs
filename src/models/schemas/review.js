@@ -1,4 +1,4 @@
-const { Schema } = required("mongoose");
+const { Schema } = require("mongoose");
 
 const ReviewSchema = new Schema(
   {
