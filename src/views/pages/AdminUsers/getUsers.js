@@ -10,6 +10,7 @@ let data;
 const $deleteAllBtn = $(".delete-all");
 let deleteList = [];
 getUsers("/dummy/getUsers.json").then((res) => {
+// getUsers("/users").then((res) => {
   data = res;
   const $tbody = $(".main-tbody");
   const tdCreate = (data) => {
@@ -31,23 +32,7 @@ getUsers("/dummy/getUsers.json").then((res) => {
 
     const $select = $create("td", "list");
     const $checkbox = $create("input", "", { type: "checkbox" });
-    $checkbox.addEventListener("click", () => {
-      // console.dir($checkbox);
-      if ($checkbox.checked) {
-        deleteList.push($tr);
-      } else {
-        // console.log($tr.children[0].textContent)
-        deleteList = deleteList.filter((node) => {
-          // console.log(node.children[0].textContent);
-          return $tr.children[0].textContent !== node.children[0].textContent;
-        });
-      }
-      deleteList.length === 0
-        ? ($deleteAllBtn.style.display = "")
-        : ($deleteAllBtn.style.display = "block");
 
-      console.log(deleteList);
-    });
     $select.append($checkbox);
 
     const $userInfo = $create("td", "list");
@@ -72,6 +57,24 @@ getUsers("/dummy/getUsers.json").then((res) => {
       $userInfo,
       $delete
     );
+
+    $checkbox.addEventListener("click", () => {
+      // console.dir($checkbox);
+      if ($checkbox.checked) {
+        deleteList.push($tr);
+      } else {
+        // console.log($tr.children[0].textContent)
+        deleteList = deleteList.filter((node) => {
+          // console.log(node.children[0].textContent);
+          return $tr.children[0].textContent !== node.children[0].textContent;
+        });
+      }
+      deleteList.length === 0
+        ? $deleteAllBtn.classList.remove("delete-all-visible")
+        : $deleteAllBtn.classList.add("delete-all-visible");
+
+      // console.log(deleteList);
+    });
 
     return $tr;
   });

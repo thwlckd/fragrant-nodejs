@@ -22,10 +22,13 @@ main > :not(.main-header){
 .main-header {
   width: 100%;
   font-size: 32px;
+  font-weight: bold;
 }
 .main-header small {
   color: #999999;
   font-size: smaller;
+  font-weight:normal;
+
 }
 
 .list-option-wrap{
@@ -221,7 +224,8 @@ table{
   background-color: #C80000;
   color: white;
   position: sticky;
-  bottom: 60px;
+  /* bottom: 60px; */
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   font-size: 16px;
@@ -229,5 +233,12 @@ table{
   font-family: "Alice", "Nanum Gothic", serif;
   padding: 15px 10px;
   cursor: pointer;
-  display: none;
+  /* display: none; */
+  opacity: 0;
+  transition: bottom.25s ease-in-out, opacity.25s ease-in-out;
+}
+.delete-all-visible{
+  /* display: block; */
+  bottom: 60px;
+  opacity: 1;
 }

@@ -8,7 +8,12 @@
   <link rel="stylesheet" href="/components/Admin/Header/style.css">
   <link rel="stylesheet" href="./style.css">
   <title>ELICE ADMIN</title>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
   <script src="/components/Admin/Header/Header.js" type="module"></script>
+  <script src="./getUser.js" type="module"></script>
+  <script src="./getAddress.js" type="module"></script>
+  <script src="./validate.js" type="module"></script>
+
 </head>
 
 <body>
@@ -23,52 +28,76 @@
       </section>
 
       <!-- 유저 상세 정보 -->
-      <section>
+      <section class="user-detail">
         <h2>개인 정보</h2>
 
         <!-- username -->
-        <div class="input-box">
-          <label for="">사용자 명 <span>username</span></label>
-          <input type="text" id="username" name="username" placeholder="이름을 입력하세요">
+        <div id="username-form" class="input-box">
+          <label for="username">사용자 명 <span>username</span></label>
+          <input type="text" id="username" name="username" placeholder="홍길동" autocomplete="off">
+          <small></small>
         </div>
 
-        <!-- e-mail -->
-        <div class="input-box">
-          <label for="">이메일 <span>e-mail</span></label>
-          <input type="text" id="e-mail" name="e-mail" placeholder="이메일을 입력하세요">
+        <div class="input-wrap1">
+          <!-- e-mail -->
+          <div id="e-mail-form" class="input-box">
+            <label for="e-mail">이메일 <span>e-mail</span></label>
+            <input type="text" id="e-mail" name="e-mail" placeholder="example@example.com" autocomplete="off">
+            <small></small>
+          </div>
+
+          <!-- phone-number -->
+          <div id="phone-number-form" class="input-box">
+            <label for="phone-number">전화번호 <span>phone-number(?)</span></label>
+            <input type="text" id="phone-number" name="phone-number" placeholder="-없이 입력" autocomplete="off">
+            <small></small>
+          </div>
         </div>
 
-        <!-- phone-number -->
-        <div class="input-box">
-          <label for="">전화번호 <span>phone-number</span></label>
-          <input type="text" id="phone-number" name="phone-number" placeholder="전화번호를 입력하세요">
-        </div>
 
-        <!-- password -->
-        <div class="input-box">
-          <label for="">비밀번호 <span>password</span></label>
-          <input type="text" id="password" name="password" placeholder="password를 입력하세요">
-        </div>
+        <div class="input-wrap2">
+          <!-- password -->
+          <div id="password-form" class="input-box">
+            <label for="password">비밀번호 <span>password</span></label>
+            <input type="password" id="password" name="password" placeholder="password를 입력" autocomplete="off">
+            <small></small>
+          </div>
 
-        <!-- pw-validate -->
-        <div class="input-box">
-          <label for="">비밀번호 확인 <span>pw-validate</span></label>
-          <input type="text" id="pw-validate" name="pw-validate" placeholder="password를 재입력하세요">
+          <!-- pw-validate -->
+          <div id="pw-validate-form" class="input-box">
+            <label for="pw-validate">비밀번호 확인 <span>pw-validate</span></label>
+            <input type="password" id="pw-validate" name="pw-validate" placeholder="password를 재입력" autocomplete="off" readonly>
+            <small></small>
+          </div>
+
         </div>
 
         <!-- isAdmin -->
         <div class="input-box">
-          <label for="">권한 <span>isAdmin</span></label>
+          <label for="isAdmin">권한 <span>isAdmin</span></label>
           <select type="text" id="isAdmin" name="isAdmin">
-            <option value=""></option>
-            <option value=""></option>
+            <option value="true">true</option>
+            <option value="false">false</option>
           </select>
         </div>
 
         <!-- address -->
         <div class="input-box input-address">
-          <label for="">주소 <span>address</span></label>
-          <input type="text" id="pw-validate" name="pw-validate" placeholder="password를 재입력하세요">
+          <label for="address">주소 <span>address(?)</span></label>
+          <div>
+            <input type="text" id="postalCode" name="postalCode" readonly>
+            <button id="address-search">주소검색</button>
+          </div>
+          <input type="text"  id="address1" name="address1"readonly>
+          <input type="text"  id="address2" name="address2" placeholder="상세 주소를 입력하세요" autocomplete="off">
+          <small></small>
+        </div>
+
+        <!-- btn -->
+        <div class="btn-gr">
+          <button>초기화</button>
+          <button>저장</button>
+          <button>삭제</button>
         </div>
       </section>
 

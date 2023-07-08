@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Alice&family=Nanum+Gothic:wght@400;700;800&display=fallback");
 
+* {
+  font-family: "Alice", "Nanum Gothic", serif;
+}
+
 main {
   width: 100%;
   height: 100%;
@@ -10,11 +14,12 @@ main {
   align-items: center;
   position: relative;
 }
-main hr{
+
+main hr {
   margin: 30px 0;
 }
 
-main > :not(.main-header){
+main> :not(.main-header) {
   max-width: 1280px;
   width: 100%;
 }
@@ -22,8 +27,102 @@ main > :not(.main-header){
 .main-header {
   width: 100%;
   font-size: 32px;
+  font-weight: bold;
 }
+
+.main-header div {
+  margin-bottom: 10px;
+}
+
 .main-header small {
   color: #999999;
   font-size: smaller;
+  font-weight: normal;
+}
+
+.user-detail {
+  padding-top: 10px;
+}
+
+.user-detail h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+
+}
+
+.user-detail button {
+  width: 100px;
+  height: 50px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  transition: filter.25s ease-in-out;
+}
+.user-detail button:hover {
+ filter: brightness(120%);
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box label {
+  font-size: 18px;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.input-box label span {
+  font-size: 14px;
+  color: #999999;
+  font-weight: 500;
+}
+
+.input-box input,
+.input-box select {
+  width: 200px;
+  height: 50px;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 0 10px 10px 0;
+  background-color: #fafafa;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #999999;
+}
+.input-box input:read-only{
+  filter: brightness(90%);
+}
+
+.input-box small {
+  font-size: small;
+  margin-bottom: 10px;
+}
+
+.input-wrap1,
+.input-wrap2 {
+  display: flex;
+}
+
+
+.input-address button {
+  background-color: #464646;
+}
+
+.btn-gr button:nth-child(1) {
+  background-color: #644646;
+}
+
+.btn-gr button:nth-child(2) {
+  background-color: #464664;
+}
+
+.btn-gr button:nth-child(3) {
+  background-color: #c80000;
 }
