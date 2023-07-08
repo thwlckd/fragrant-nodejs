@@ -1,11 +1,11 @@
 const adminOnly = require('./adminOnly');
 const loginRequired = require('./loginRequired');
 const asyncHandler = require('./asyncHandler');
-const checkDuplicatedEmail = require('./checkDuplicatedEmail');
+const errorLogger = require('./errorLogger');
 
 module.exports = {
   adminOnly,
   loginRequired,
   asyncHandler,
-  checkDuplicatedEmail,
+  errorLogger,
 };
