@@ -39,7 +39,7 @@ async function displayOrderList() {
       <div class="order-header">
         <p class="order-date">${createdAt}</p>
         <a class="view-order-detail" href="../orders/:orderId">
-          주문내역 상세보기
+          주문내역 상세보기 >
         </a>
       </div>
       <div class="order-list-1">

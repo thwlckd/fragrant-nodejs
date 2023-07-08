@@ -13,13 +13,35 @@
     <div class="mypage">
       <h1 class="page-title">My page</h1>
       <!-- 회원 정보 -->
-      <div class="user-info">
-        <div class="user-name">이수민</div>
+      <section class="user-info">
+        <div class="user-name">이수민 님</div>
         <div class="user-info-1">
           <div class="user-id">elice123@elice.io</div>
-          <a class="change-info-btn" href="../modify"> 회원정보 변경하기 </a>
+          <a class="change-info-btn" href="../modify">회원정보 변경하기</a>
+          <button type="button" class="logout-btn">로그아웃</button>
         </div>
-      </div>
+      </section>
+      <!--주문 현황-->
+      <section class="order-status-count">
+        <ul class="order-status-count-list">
+          <li>
+            <p>주문완료</p>
+            <p class="order-num">0</p>
+          </li>
+          <li>
+            <p>배송준비중</p>
+            <p class="order-num">0</p>
+          </li>
+          <li>
+            <p>배송중</p>
+            <p class="order-num">0</p>
+          </li>
+          <li>
+            <p>배송완료</p>
+            <p class="order-num">0</p>
+          </li>
+        </ul>
+      </section>
       <!-- 주문 내역 -->
       <section class="order-history-section">
         <h2 class="order-title">주문 내역</h2>
