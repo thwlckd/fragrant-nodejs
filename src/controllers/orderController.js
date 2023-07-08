@@ -1,10 +1,12 @@
-const { orderService } = require("../services");
+const { orderService } = require('../services');
 
 const orderController = {
   async postOrder(req, res, next) {
     try {
-      const { products, orderer, price, orderStatus, requirement } = req.body;
-      const userEmail = req.userEmail;
+      const {
+        products, orderer, price, orderStatus, requirement,
+      } = req.body;
+      const { userEmail } = req;
       await orderService.createOrder(
         {
           products,
@@ -13,7 +15,7 @@ const orderController = {
           orderStatus,
           requirement,
         },
-        userEmail
+        userEmail,
       );
       res.status(201).end();
     } catch (err) {
@@ -42,7 +44,7 @@ const orderController = {
 
   async getOrdersByUserEmail(req, res, next) {
     try {
-      const userEmail = req.userEmail;
+      const { userEmail } = req;
       const orders = await orderService.getOrdersByUserEmail(userEmail);
       res.json(orders);
     } catch (err) {

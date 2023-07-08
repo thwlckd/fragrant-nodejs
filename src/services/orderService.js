@@ -1,9 +1,11 @@
-const { orderDAO } = require("../models/model");
+const { orderDAO } = require('../models/model');
 
 const orderService = {
   async createOrder(
-    { products, orderer, price, orderStatus, requirement },
-    userEmail
+    {
+      products, orderer, price, orderStatus, requirement,
+    },
+    userEmail,
   ) {
     const order = await orderDAO.create(
       {
@@ -13,7 +15,7 @@ const orderService = {
         orderStatus,
         requirement,
       },
-      userEmail
+      userEmail,
     );
     return order;
   },
