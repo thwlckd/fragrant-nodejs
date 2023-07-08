@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const BrandSchema = new Schema(
   {
@@ -18,9 +18,9 @@ const BrandSchema = new Schema(
     },
   },
   {
-    collection: "Brand",
+    collection: 'Brand',
     timestamps: true,
-  }
+  },
 );
 
 module.exports = BrandSchema;

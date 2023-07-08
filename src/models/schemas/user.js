@@ -1,4 +1,19 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
+
+const AddressSchema = new Schema(
+  {
+    postalCode: {
+      type: Number,
+    },
+    address1: {
+      type: String,
+    },
+    address2: {
+      type: String,
+    },
+  },
+  { _id: false },
+);
 
 const UserSchema = new Schema(
   {
@@ -11,7 +26,7 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    admin: {
+    isAdmin: {
       type: Boolean,
       default: false,
       required: true,
@@ -20,27 +35,15 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    address: {
-      type: String,
-      required: true,
-    },
+    address: AddressSchema,
     phone: {
-      type: Number,
-      required: true,
-    },
-    emailValidation: {
-      type: Boolean,
-      required: true,
-    },
-    passwordReset: {
-      type: Boolean,
-      required: true,
+      type: String,
     },
   },
   {
-    collection: "User",
+    collection: 'User',
     timestamps: true,
-  }
+  },
 );
 
 module.exports = UserSchema;

@@ -1,10 +1,12 @@
-const { orderService } = require("../services");
+const { orderService } = require('../services');
 
 const orderController = {
   async postOrder(req, res, next) {
     try {
-      const { products, orderer, price, orderStatus, requirement } = req.body;
-      const userEmail = req.userEmail;
+      const {
+        products, orderer, price, orderStatus, requirement,
+      } = req.body;
+      const { userEmail } = req;
       await orderService.createOrder(
         {
           products,
@@ -13,7 +15,7 @@ const orderController = {
           orderStatus,
           requirement,
         },
-        userEmail
+        userEmail,
       );
       res.status(201).end();
     } catch (err) {
@@ -23,8 +25,8 @@ const orderController = {
 
   async getOrder(req, res, next) {
     try {
-      const { id } = req.params;
-      const order = await orderService.getOrder(id);
+      const { orderId } = req.params;
+      const order = await orderService.getOrder(orderId);
       res.json(order);
     } catch (err) {
       next(err);
@@ -42,7 +44,7 @@ const orderController = {
 
   async getOrdersByUserEmail(req, res, next) {
     try {
-      const userEmail = req.userEmail;
+      const { userEmail } = req;
       const orders = await orderService.getOrdersByUserEmail(userEmail);
       res.json(orders);
     } catch (err) {
@@ -50,13 +52,25 @@ const orderController = {
     }
   },
 
-  async patchOrder(req, res, next) {
+  async patchUserOrder(req, res, next) {
     try {
       const { orderId } = req.params;
-      const { products, orderer, price, orderStatus, requirement } = req.body;
-      const toUpdate = { products, orderer, price, orderStatus };
-      if (requirement) obj.requirement = requirement;
-      await orderService.updatePost(orderId, toUpdate);
+      const { orderer, requirement } = req.body;
+      orderer.email = req.userEmail;
+      const toUpdate = { orderer };
+      if (requirement) toUpdate.requirement = requirement;
+      await orderService.updateUserOrder(orderId, toUpdate);
+      res.status(201).end();
+    } catch (err) {
+      next(err);
+    }
+  },
+
+  async patchAdminOrder(req, res, next) {
+    try {
+      const { orderId } = req.params;
+      const { orderStatus } = req.body;
+      await orderService.updateUserOrder(orderId, { orderStatus });
       res.status(201).end();
     } catch (err) {
       next(err);

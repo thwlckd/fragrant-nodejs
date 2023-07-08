@@ -1,6 +1,6 @@
-const { Schema } = required("mongoose");
-const shortId = required("./types/shortId");
-const ReviewSchema = required("./review");
+const { Schema } = require('mongoose');
+const shortId = require('./types/shortId');
+const ReviewSchema = require('./review');
 
 const ProductSchema = new Schema(
   {
@@ -31,26 +31,26 @@ const ProductSchema = new Schema(
     },
     gender: {
       type: String,
-      enum: ["man", "woman", "unisex"],
-      default: "unisex",
+      enum: ['man', 'woman', 'unisex'],
+      default: 'unisex',
       required: true,
     },
     catogory: {
       type: Schema.Types.ObjectId,
-      ref: "Catogory",
+      ref: 'Catogory',
       required: true,
     },
     brand: {
       type: Schema.Types.ObjectId,
-      ref: "Brand",
+      ref: 'Brand',
       required: true,
     },
     review: [ReviewSchema],
   },
   {
-    collection: "Product",
+    collection: 'Product',
     timestamps: true,
-  }
+  },
 );
 
 module.exports = ProductSchema;
