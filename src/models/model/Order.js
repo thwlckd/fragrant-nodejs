@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
 const { OrderSchema, UserSchema } = require('../schemas');
+const { formatDate } = require('../../utils/utils');
 
 const Order = mongoose.model('Order', OrderSchema);
 const User = mongoose.model('User', UserSchema);
 
 const orderDAO = {
-  async create(
-    {
-      products, orderer, price, orderStatus, requirement,
-    },
-    userEmail,
-  ) {
+  async create({ products, orderer, price, orderStatus, requirement }, userEmail) {
     const toCreate = {
       products,
       orderer,
@@ -36,20 +32,18 @@ const orderDAO = {
 
   async findOne(orderId) {
     const order = await Order.findById(orderId).lean();
-    return order;
+    return formatDate(order);
   },
 
   async findAll() {
     const order = await Order.find({}).lean();
-    return order;
+    return formatDate(order);
   },
 
   async findAllByUserEmail(userEmail) {
     const orders = await Order.find({}).lean();
-    const ordersByEmail = orders.filter(
-      (order) => order.orderer.email === userEmail,
-    );
-    return ordersByEmail;
+    const ordersByEmail = orders.filter((order) => order.orderer.email === userEmail);
+    return formatDate(ordersByEmail);
   },
 
   async updateOne(orderId, toUpdate) {
