@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const ProductSchema = new Schema(
   {
@@ -23,7 +23,7 @@ const ProductSchema = new Schema(
       requried: true,
     },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const AddressSchema = new Schema(
@@ -41,7 +41,7 @@ const AddressSchema = new Schema(
       required: true,
     },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const OrdererSchema = new Schema(
@@ -63,7 +63,7 @@ const OrdererSchema = new Schema(
       required: true,
     },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const OrderSchema = new Schema(
@@ -82,7 +82,7 @@ const OrderSchema = new Schema(
     },
     orderStatus: {
       type: String,
-      default: "주문완료",
+      default: '주문완료',
       required: true,
     },
     requirement: {
@@ -90,9 +90,9 @@ const OrderSchema = new Schema(
     },
   },
   {
-    collection: "Order",
+    collection: 'Order',
     timestamps: true,
-  }
+  },
 );
 
 module.exports = OrderSchema;

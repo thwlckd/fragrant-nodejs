@@ -1,7 +1,5 @@
-const { nanoid } = require("nanoid");
+const { nanoid } = require('nanoid');
 
-const shortId = () => {
-  return nanoid();
-};
+const shortId = () => nanoid();
 
 module.exports = shortId;

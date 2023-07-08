@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const AddressSchema = new Schema(
   {
@@ -12,7 +12,7 @@ const AddressSchema = new Schema(
       type: String,
     },
   },
-  { _id: false }
+  { _id: false },
 );
 
 const UserSchema = new Schema(
@@ -41,9 +41,9 @@ const UserSchema = new Schema(
     },
   },
   {
-    collection: "User",
+    collection: 'User',
     timestamps: true,
-  }
+  },
 );
 
 module.exports = UserSchema;

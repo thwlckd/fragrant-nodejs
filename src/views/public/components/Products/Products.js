@@ -1,4 +1,4 @@
-import { $, $create, $append } from "../../js/util/dom.js";
+import { $, $create, $append } from '../../js/util/dom';
 
 const insertList = async ($target, url) => {
   const $fragment = document.createDocumentFragment();
@@ -6,23 +6,23 @@ const insertList = async ($target, url) => {
   const { products } = await fetch(url).then((res) => res.json());
 
   products.forEach(({ id, name: { origin, korean }, price, capacity, img }) => {
-    const $liElement = $create("li", "product");
+    const $liElement = $create('li', 'product');
 
-    const $anchorElemenet = $create("a", "", { href: `/products/${id}` });
+    const $anchorElemenet = $create('a', '', { href: `/products/${id}` });
     $liElement.append($anchorElemenet);
 
-    const $imgElement = $create("img", "", { src: img });
+    const $imgElement = $create('img', '', { src: img });
 
-    const $koreanNameElement = $create("p", "name-kr");
+    const $koreanNameElement = $create('p', 'name-kr');
     $koreanNameElement.textContent = korean;
 
-    const $originNameElement = $create("p", "name-origin");
+    const $originNameElement = $create('p', 'name-origin');
     $originNameElement.textContent = origin;
 
-    const $priceElement = $create("p");
+    const $priceElement = $create('p');
     $priceElement.textContent = `${price.toLocaleString()} ￦`;
 
-    const $capacityElement = $create("p");
+    const $capacityElement = $create('p');
     $capacityElement.textContent = capacity;
 
     $append(
@@ -31,11 +31,11 @@ const insertList = async ($target, url) => {
       $koreanNameElement,
       $originNameElement,
       $priceElement,
-      $capacityElement
+      $capacityElement,
     );
 
-    const $addCartBtnElement = $create("button", "add-cart-btn");
-    $addCartBtnElement.textContent = "장바구니 담기";
+    const $addCartBtnElement = $create('button', 'add-cart-btn');
+    $addCartBtnElement.textContent = '장바구니 담기';
 
     $append($liElement, $addCartBtnElement);
 
@@ -45,11 +45,10 @@ const insertList = async ($target, url) => {
   $target.replaceChildren($fragment);
 };
 
-if (location.pathname === "/") {
-  const $newProducts = $("#new-products");
-  setTimeout(() => insertList($newProducts, "/dummy/newProducts.json"), 1000);
+if (window.location.pathname === '/') {
+  const $newProducts = $('#new-products');
+  setTimeout(() => insertList($newProducts, '/dummy/newProducts.json'), 1000);
 
-  const $pbProducts = $("#PB-products");
-  setTimeout(() => insertList($pbProducts, "/dummy/pbProducts.json"), 1000);
-} else {
+  const $pbProducts = $('#PB-products');
+  setTimeout(() => insertList($pbProducts, '/dummy/pbProducts.json'), 1000);
 }
