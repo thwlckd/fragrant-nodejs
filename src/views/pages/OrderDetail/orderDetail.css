@@ -9,9 +9,9 @@
 
 .order-status {
   width: auto;
-  height: 200px;
-  margin-top: 60px;
-  background-color: rgb(243, 243, 243);
+  height: 240px;
+  margin-top: 80px;
+  background-color: rgb(232, 232, 232);
 
   display: flex;
   justify-content: space-around;
@@ -21,37 +21,53 @@
   width: 100px;
   height: 100px;
   text-align: center;
-  line-height: ;
+  font-size: 18px;
 
   margin: auto;
-  padding: 40px;
+  padding: 35px;
   border-radius: 50%;
   background-color: #fff;
+}
+
+.order-status > div > p {
+  color: rgb(59, 59, 59);
+  line-height: 45px;
 }
 
 .order-info > h2 {
   font-size: 28px;
   padding: 30px 0;
-  border-bottom: 1px solid darkgray;
+  margin-top: 70px;
+  border-bottom: 2px solid rgb(21, 21, 21);
 }
 
 .order-info > div {
   width: 100%;
+  margin: 30px 0;
+  font-size: 20px;
 
   display: flex;
-  justify-content: center;
-  margin: 30px 0;
+  justify-content: space-between;
+}
+
+.order-info > div > div > span {
+  margin: 0 20px;
 }
 
 .product-list-title {
   font-size: 28px;
   padding: 30px 0;
-  border-bottom: 1px solid darkgray;
+  margin-top: 80px;
+  border-bottom: 2px solid rgb(21, 21, 21);
 }
 
 .products-list {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid lightgray;
   display: flex;
   align-items: center;
+  overflow: auto;
 }
 
 .product-image {
@@ -62,19 +78,31 @@
   width: 80%;
   padding: 30px 0;
   line-height: 1.5;
+  font-size: 20px;
 }
 
 .payment {
   padding: 30px 20px;
+  margin: 40px 0;
   color: #fcfcfc;
   background-color: rgb(41, 41, 41);
+  font-size: 20px;
 
   display: flex;
   justify-content: space-between;
 }
 
+.shipping-address {
+  width: 100%;
+  height: 700px;
+  margin-top: 100px;
+}
+
 .address-header {
+  width: 100%;
+  border-bottom: 2px solid rgb(21, 21, 21);
   display: flex;
+  justify-content: space-between;
 }
 
 .address-header > h2 {
@@ -84,14 +112,99 @@
 
 .address-modify-btn {
   all: unset;
+  font-size: 18px;
 }
 
 .shipping-address > table {
   width: 100%;
   line-height: 4;
-  border-top: 1px solid darkgray;
+  font-size: 20px;
 }
 
 .order-cancel-btn {
   all: unset;
+  padding: 15px 40px;
+  margin-top: 50px;
+  color: rgb(67, 67, 67);
+  font-size: 20px;
+  border: 1px solid rgb(67, 67, 67);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-box {
+  width: 450px;
+  height: 300px;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  position: absolute;
+  background-color: #fff;
+}
+.modal-box p {
+  font-size: 18px;
+  line-height: 2;
+  margin: 40px 0;
+}
+
+.close-btn {
+  display: block;
+  width: 80px;
+  margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-btn {
+  width: auto;
+  height: 25%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.close-btn {
+  width: 110px;
+  padding: 10px 25px;
+  background-color: #7c7c7c;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.delete-confirm-btn {
+  padding: 10px 25px;
+  background-color: #0f0f0f;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
 }
