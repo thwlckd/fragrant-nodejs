@@ -1,0 +1,97 @@
+.order-detail-page {
+  width: 1280px;
+  height: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.order-status {
+  width: auto;
+  height: 200px;
+  margin-top: 60px;
+  background-color: rgb(243, 243, 243);
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.order-status > div {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: ;
+
+  margin: auto;
+  padding: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.order-info > h2 {
+  font-size: 28px;
+  padding: 30px 0;
+  border-bottom: 1px solid darkgray;
+}
+
+.order-info > div {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.product-list-title {
+  font-size: 28px;
+  padding: 30px 0;
+  border-bottom: 1px solid darkgray;
+}
+
+.products-list {
+  display: flex;
+  align-items: center;
+}
+
+.product-image {
+  padding: 30px 5px;
+}
+
+.order-info-column {
+  width: 80%;
+  padding: 30px 0;
+  line-height: 1.5;
+}
+
+.payment {
+  padding: 30px 20px;
+  color: #fcfcfc;
+  background-color: rgb(41, 41, 41);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.address-header {
+  display: flex;
+}
+
+.address-header > h2 {
+  font-size: 28px;
+  padding: 30px 0;
+}
+
+.address-modify-btn {
+  all: unset;
+}
+
+.shipping-address > table {
+  width: 100%;
+  line-height: 4;
+  border-top: 1px solid darkgray;
+}
+
+.order-cancel-btn {
+  all: unset;
+}

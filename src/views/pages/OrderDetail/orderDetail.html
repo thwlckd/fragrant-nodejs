@@ -7,9 +7,72 @@
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/components/Header/style.css" />
     <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="orderDetail.css" />
   </head>
   <body>
+    <div class="order-detail-page">
+      <section class="order-status">
+        <div>주문완료</div>
+        <div>상품준비중</div>
+        <div>배송중</div>
+        <div>배송완료</div>
+      </section>
+      <section class="order-info">
+        <h2>주문상세내역</h2>
+        <div>
+          <span>주문일자</span>
+          <span>주문번호</span>
+          <div class="order-status-text">주문완료</div>
+        </div>
+      </section>
+      <!--주문상품리스트-->
+      <h2 class="product-list-title">주문상품</h2>
+      <section class="products-list">
+        <a href="/products/:productId">
+          <img
+            class="product-image"
+            src="/asset/perfume/red_elice.png"
+            style="width: 100px; height: 100px"
+        /></a>
+        <div class="order-info-column">
+          <div id="product-name">상품명</div>
+          <div id="product-capa">00ml</div>
+          <div id="product-price">000,000원 | 0개</div>
+        </div>
+      </section>
+      <div class="payment">
+        <span id="payment-amount"></span>
+        <span>상품금액 000,000원 + 배송비 0원</span>
+      </div>
+      <section class="shipping-address address-hidden">
+        <div class="address-header">
+          <h2>배송지정보</h2>
+          <button class="address-modify-btn">수정하기</button>
+        </div>
+        <table>
+          <tr>
+            <td>이름</td>
+            <td>이수민</td>
+          </tr>
+          <tr>
+            <td>연락처</td>
+            <td>010-1234-5678</td>
+          </tr>
+          <tr>
+            <td>주소</td>
+            <td>서울 성동구 서울숲길 17 101호</td>
+          </tr>
+          <tr>
+            <td>요청사항</td>
+            <td>부재 시 문앞에 놓아주세요.</td>
+          </tr>
+        </table>
+        <button class="order-cancel-btn">주문취소</button>
+      </section>
+    </div>
+
     <script src="/components/Header/Header.js" type="module"></script>
     <script src="/components/Footer/Footer.js" type="module"></script>
+    <script src="./orderDetail.js"></script>
   </body>
 </html>
