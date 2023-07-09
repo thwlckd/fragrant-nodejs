@@ -1,5 +1,6 @@
 const { userService } = require('../services');
 const { checkObjectValues, filterResponse } = require('../utils/utils');
+const { setUserToken } = require('../utils/authUtils');
 
 const userController = {
   async postSignUpInfo(req, res, next) {
@@ -14,13 +15,10 @@ const userController = {
 
   async postSignInInfo(req, res, next) {
     try {
-      const { email, password } = req.body;
-      const token = await userService.postSignInInfo(email, password);
-      if (token === null) {
-        res.status(400).json();
-        return;
-      }
-      res.status(201).json({ token });
+      const { email } = req.body;
+      const { isAdmin } = await userService.getUserByEmail(email);
+      setUserToken(res, email, isAdmin);
+      res.status(201).end();
     } catch (err) {
       next(err);
     }

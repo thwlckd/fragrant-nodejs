@@ -44,7 +44,7 @@ const orderController = {
 
   async getOrdersByUserEmail(req, res, next) {
     try {
-      const { userEmail } = req;
+      const { userEmail } = req.user;
       const orders = await orderService.getOrdersByUserEmail(userEmail);
       res.json(orders);
     } catch (err) {
