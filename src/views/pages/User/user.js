@@ -1,3 +1,5 @@
+import { $, $create, $append } from '/js/util/dom.js';
+
 async function getOrderList() {
   const orders = await fetch('/orders/user', {
     method: 'GET',
@@ -20,7 +22,8 @@ async function displayOrderList() {
   console.log(orderList);
 
   // 주문 내역 데이터를 리스트에 추가
-  const orderListDiv = document.getElementById('order-history-list');
+  // const orderListDiv = document.querySelector('#order-history-list');
+  const $orderListDiv = $('#order-history-list');
 
   for (let i = 0; i < orderList.length; i += 1) {
     const orderItem = orderList[i];
@@ -32,7 +35,7 @@ async function displayOrderList() {
     if (products.length > 1) {
       productName += ` 외 ${products.length - 1} 건`;
     }
-
+    /*
     const listItem = document.createElement('li');
     const { createdAt, _id, orderStatus } = orderItem;
     listItem.innerHTML = `<div class="order-list"> 
@@ -52,8 +55,7 @@ async function displayOrderList() {
             />
           </a>
           <div class="order-info">
-            <div class="order-contents-value">상품명<span>${productName}</span>
-      </div>
+            <div class="order-contents-value">상품명<span>${productName}</span></div>
             <div class="order-contents-value">주문번호<span>${_id}</div>
             <div class="order-contents-value">결제금액<span>${paymentUnit} 원</span></div>
           </div>
@@ -67,6 +69,27 @@ async function displayOrderList() {
       </div>
     </div>`;
     orderListDiv.appendChild(listItem);
+*/
+    const { createdAt, _id, orderStatus } = orderItem;
+
+    const $liElement = $create('li', '');
+
+    const $orderList = $create('div', 'order-list');
+    $liElement.append($orderList);
+
+    const $orderHeader = $create('div', 'order-header');
+    const $orderList1 = $create('div', 'order-list-1');
+
+    $append($orderList, $orderHeader, $orderList1);
+
+    const $orderDate = $create('p', 'order-date');
+    $orderDate.textContent = `${createdAt}`;
+    const $orderDetailBtn = $create('a', 'view-order-detail', { href: `../orders/${_id}` });
+    $orderDetailBtn.textContent = '주문내역 상세보기>';
+
+    $append($orderHeader, $orderDate, $orderDetailBtn);
+
+    $orderListDiv.append($liElement);
 
     // let btnOrderCancel = document.querySelector(".order-cancel");
     // btnOrderCancel.classList.add("order-cancel-hidden");
