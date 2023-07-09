@@ -2,7 +2,7 @@ const brandDAO = require('./Brand');
 const orderDAO = require('./Order');
 const productDAO = require('./Product');
 const reviewDAO = require('./Review');
-const categoryDAO = require('./Category');
+// const categoryDAO = require('./Category');
 const userDAO = require('./User');
 
 module.exports = {
@@ -10,6 +10,6 @@ module.exports = {
   orderDAO,
   productDAO,
   reviewDAO,
-  categoryDAO,
+  // categoryDAO,
   userDAO,
 };
