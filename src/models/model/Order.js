@@ -40,6 +40,12 @@ const orderDAO = {
     return formatDate(order);
   },
 
+  async findAllByUserName(name) {
+    const orders = await Order.find({}).lean();
+    const ordersByName = orders.filter((order) => order.orderer.name === name);
+    return formatDate(ordersByName);
+  },
+
   async findAllByUserEmail(userEmail) {
     const orders = await Order.find({}).lean();
     const ordersByEmail = orders.filter((order) => order.orderer.email === userEmail);
