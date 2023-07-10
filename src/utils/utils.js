@@ -1,3 +1,21 @@
+const { productService } = require('../services');
+
+async function addProductsQuantity(products) {
+  await Promise.all(
+    products.map(async (product) =>
+      productService.updateQuantity(product.productId, { quantity: product.quantity }),
+    ),
+  );
+}
+
+async function subtractProductsQuantity(products) {
+  await Promise.all(
+    products.map(async (product) =>
+      productService.updateQuantity(product.productId, { quantity: -product.quantity }),
+    ),
+  );
+}
+
 function checkObjectValues(obj) {
   const result = Object.entries(obj).reduce((map, [key, value]) => {
     if (value !== undefined || value !== '') {
@@ -74,6 +92,8 @@ function formatDate(orders) {
 }
 
 module.exports = {
+  addProductsQuantity,
+  subtractProductsQuantity,
   checkObjectValues,
   filterResponse,
   filterResponseOrder,
