@@ -1,12 +1,39 @@
 import { $, $create, $append } from '/js/util/dom.js';
 
+//유저의 회원정보 불어오기
+async function getUserInfo() {
+  const users = await fetch('/users/64a6d7d9b2cb5883241008de', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  let result;
+  if (users.ok) {
+    result = await users.json();
+  }
+  return result;
+}
+
+async function setUserInfo() {
+  const userInfo = await getUserInfo();
+  console.log(userInfo);
+  const { email, userName } = userInfo;
+
+  $('#user-name').textContent = `${userName} 님`;
+  $('#user-email').textContent = email;
+}
+
+setUserInfo();
+
+//유저의 주문내역 불러오기
 async function getOrderList() {
   const orders = await fetch('/orders/user', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODg4MjY2OTJ9.h30XrRfX7cAuwfvGgyxB5e6DTB-WLaCeQVbhH_NaXwQ',
+      // Authorization:
+      //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODg4MjY2OTJ9.h30XrRfX7cAuwfvGgyxB5e6DTB-WLaCeQVbhH_NaXwQ',
     },
   });
   let result;
@@ -22,6 +49,10 @@ async function displayOrderList() {
   console.log(orderList);
 
   const $orderListDiv = $('#order-history-list');
+  let orderComplete = 0;
+  let shippingReady = 0;
+  let onShipping = 0;
+  let shippingComplete = 0;
 
   for (let i = orderList.length - 1; i >= 0; i -= 1) {
     const orderItem = orderList[i];
@@ -32,6 +63,23 @@ async function displayOrderList() {
     let productName = products[0].name;
     if (products.length > 1) {
       productName += ` 외 ${products.length - 1} 건`;
+    }
+
+    switch (orderStatus) {
+      case '주문완료':
+        orderComplete += 1;
+        break;
+      case '상품준비중':
+        shippingReady += 1;
+        break;
+      case '배송중':
+        onShipping += 1;
+        break;
+      case '배송완료':
+        shippingComplete += 1;
+        break;
+      default:
+        break;
     }
 
     const $liElement = $create('li', '');
@@ -82,6 +130,10 @@ async function displayOrderList() {
       $orderCancelBtn.classList.add('order-cancel-hidden');
     }
   }
+  $('#order-complete').textContent = orderComplete;
+  $('#shipping-ready').textContent = shippingReady;
+  $('#on-shipping').textContent = onShipping;
+  $('#shipping-complete').textContent = shippingComplete;
 }
 
 displayOrderList();
