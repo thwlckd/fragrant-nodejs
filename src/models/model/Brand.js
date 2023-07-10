@@ -10,6 +10,25 @@ const brandDAO = {
     return brands;
   },
 
+  async getAllBrandsBySearch(search) {
+    const brandIds = [
+      ...(await Brand.find({
+        $or: [
+          {
+            'brand.origin': { $regex: new RegExp(search, 'i') },
+          },
+          {
+            'brand.korean': { $regex: new RegExp(search, 'i') },
+          },
+        ],
+      })
+        .select('_id')
+        .lean()),
+    ].map(({ _id }) => _id);
+
+    return brandIds;
+  },
+
   async getBrandByBrandId(brandId) {
     const brand = await Brand.findOne({ _id: brandId }).lean();
 

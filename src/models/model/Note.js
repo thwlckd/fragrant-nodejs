@@ -10,6 +10,16 @@ const noteDAO = {
     return notes;
   },
 
+  async getAllNotesBySearch(search) {
+    const notes = [
+      ...(await Note.find({ type: { $regex: new RegExp(search, 'i') } })
+        .select('_id')
+        .lean()),
+    ].map(({ _id }) => _id);
+
+    return notes;
+  },
+
   async getNoteByNoteId(noteId) {
     const note = await Note.findOne({ _id: noteId }).lean();
 
