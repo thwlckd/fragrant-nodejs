@@ -32,6 +32,27 @@ function filterResponse(toResponse) {
   };
 }
 
+function filterformatOrder(order) {
+  const { _id, products, orderer, price, orderStatus, requirement, orderTime } = order;
+  return {
+    _id,
+    products,
+    orderer,
+    price,
+    orderStatus,
+    requirement,
+    orderTime,
+  };
+}
+
+function filterResponseOrder(toResponse) {
+  if (Array.isArray(toResponse)) {
+    const filteredList = toResponse.map((order) => filterformatOrder(order));
+    return filteredList;
+  }
+  return filterformatOrder(toResponse);
+}
+
 function timeFormat(orders) {
   const dateList = String(orders.createdAt.toLocaleString()).split('. ');
   if (dateList[1].length === 1) dateList[1] = `0${dateList[1]}`;
@@ -55,5 +76,6 @@ function formatDate(orders) {
 module.exports = {
   checkObjectValues,
   filterResponse,
+  filterResponseOrder,
   formatDate,
 };
