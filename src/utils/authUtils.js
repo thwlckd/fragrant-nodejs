@@ -11,7 +11,7 @@ async function comparePassword(originPassword, hashedPassword) {
   return isValid;
 }
 
-function createToken(userEmail, isAdmin) {
+function setUserToken(res, userEmail, isAdmin) {
   const secretKey = process.env.JWT_SECRET_KEY || 'secret';
   const token = jwt.sign(
     {
@@ -20,14 +20,11 @@ function createToken(userEmail, isAdmin) {
     },
     secretKey,
   );
-  return token;
-}
-
-async function verifyToken(password) {
-  const hashedPassword = await bcrypt.verify(password, 10);
-  return hashedPassword;
+  res.cookie('token', token);
 }
 
 module.exports = {
-  hashPassword, comparePassword, createToken, verifyToken,
+  hashPassword,
+  comparePassword,
+  setUserToken,
 };

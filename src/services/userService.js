@@ -1,29 +1,25 @@
-const {
-  hashPassword,
-  comparePassword,
-  createToken,
-} = require('../utils/authUtils');
+const { hashPassword, comparePassword } = require('../utils/authUtils');
 const { userDAO } = require('../models/model');
 
 const userService = {
-  async postSignUpInfo(email, password, userName) {
+  async postSignUpInfo(email, password, userName, isAdmin) {
+    const isDuplicatedEmail = await userDAO.findOneByEmail(email);
+    if (isDuplicatedEmail) {
+      throw new Error('이미 존재하는 이메일입니다.');
+    }
     const hashedPassword = await hashPassword(password);
-    const toPost = { email, password: hashedPassword, userName };
+    const toPost = { email, password: hashedPassword, userName, isAdmin };
     const user = await userDAO.create(toPost);
     return user;
   },
 
-  async postSignInInfo(email, originPassword) {
-    const { password, isAdmin } = await userDAO.findOneByEmail({ email });
-    if (!(await comparePassword(originPassword, password))) {
-      return null;
-    }
-    const token = createToken(email, isAdmin);
-    return token;
-  },
-
   async getUser(userId) {
     const user = await userDAO.findOne(userId);
+    return user;
+  },
+
+  async getUserByEmail(email) {
+    const user = await userDAO.findOneByEmail(email);
     return user;
   },
 
