@@ -1,4 +1,4 @@
-const { hashPassword, comparePassword, createToken } = require('../utils/authUtils');
+const { hashPassword, comparePassword } = require('../utils/authUtils');
 const { userDAO } = require('../models/model');
 
 const userService = {
@@ -13,17 +13,13 @@ const userService = {
     return user;
   },
 
-  async postSignInInfo(email, originPassword) {
-    const { password, isAdmin } = await userDAO.findOneByEmail({ email });
-    if (!(await comparePassword(originPassword, password))) {
-      return null;
-    }
-    const token = createToken(email, isAdmin);
-    return token;
-  },
-
   async getUser(userId) {
     const user = await userDAO.findOne(userId);
+    return user;
+  },
+
+  async getUserByEmail(email) {
+    const user = await userDAO.findOneByEmail(email);
     return user;
   },
 
