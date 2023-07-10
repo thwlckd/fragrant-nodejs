@@ -6,6 +6,7 @@ const userRouter = require('./userRouter');
 const orderRouter = require('./orderRouter');
 const productRouter = require('./productRouter');
 const brandRouter = require('./brandRouter');
+const noteRouter = require('./noteRouter');
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use('/users', passport.authenticate('jwt', { session: false }), userRoute
 router.use('/orders', passport.authenticate('jwt', { session: false }), orderRouter);
 router.use('/products', productRouter);
 router.use('/brands', brandRouter);
+router.use('/notes', noteRouter);
 
 module.exports = { viewRouter, router };
