@@ -10,6 +10,7 @@ const $favicon = $create('link', '', {
 document.head.append($favicon);
 
 const $headerElement = $create('header');
+
 const $headerWrapper = $create('div', 'header-wrapper');
 $headerElement.append($headerWrapper);
 

@@ -4,6 +4,8 @@
   font-family: "Alice", "Nanum Gothic", serif;
 }
 
+
+/****************** main header *******************/
 main {
   width: 100%;
   height: 100%;
@@ -15,8 +17,8 @@ main {
   position: relative;
 }
 
-main hr {
-  margin: 30px 0;
+main>hr {
+  margin: 100px 0;
 }
 
 main> :not(.main-header) {
@@ -30,21 +32,22 @@ main> :not(.main-header) {
   font-weight: bold;
 }
 
-.main-header div {
+.main-header>div {
   margin-bottom: 10px;
 }
 
-.main-header small {
+.main-header>small {
   color: #999999;
   font-size: smaller;
   font-weight: normal;
 }
 
+/****************** 유저 상세 정보 *******************/
 .user-detail {
   padding-top: 10px;
 }
 
-.user-detail h2 {
+.user-detail>h2 {
   font-size: 32px;
   margin-bottom: 40px;
 
@@ -61,8 +64,9 @@ main> :not(.main-header) {
   cursor: pointer;
   transition: filter.25s ease-in-out;
 }
+
 .user-detail button:hover {
- filter: brightness(120%);
+  filter: brightness(150%);
 }
 
 .input-box {
@@ -70,21 +74,20 @@ main> :not(.main-header) {
   flex-direction: column;
 }
 
-.input-box label {
+.input-box>label {
   font-size: 18px;
   display: inline-block;
   margin-bottom: 10px;
   font-weight: 700;
 }
 
-.input-box label span {
+.input-box>label>span {
   font-size: 14px;
   color: #999999;
   font-weight: 500;
 }
 
-.input-box input,
-.input-box select {
+.input-box input {
   width: 200px;
   height: 50px;
   font-size: 14px;
@@ -96,11 +99,12 @@ main> :not(.main-header) {
   outline: none;
   border-bottom: 1px solid #999999;
 }
-.input-box input:read-only{
+
+.input-box input:read-only {
   filter: brightness(90%);
 }
 
-.input-box small {
+.input-box>small {
   font-size: small;
   margin-bottom: 10px;
 }
@@ -115,14 +119,84 @@ main> :not(.main-header) {
   background-color: #464646;
 }
 
-.btn-gr button:nth-child(1) {
+.btn-gr>button:nth-child(1) {
   background-color: #644646;
 }
 
-.btn-gr button:nth-child(2) {
+.btn-gr>button:nth-child(2) {
   background-color: #464664;
 }
 
-.btn-gr button:nth-child(3) {
+.btn-gr>button:nth-child(3) {
   background-color: #c80000;
 }
+
+/****************** 모달창 *******************/
+.modalBg{
+  display: none;
+}
+
+.modalBg-on{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,.3);
+  z-index: 999999999;
+}
+
+
+/****************** 주문 정보 *******************/
+
+/* .user-order {
+  margin-bottom: 200px;
+}
+
+.user-order>h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+#order-date {
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 5px;
+  margin-bottom: 20px;
+  width: 120px;
+}
+
+.order-item-wrap{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  margin-bottom: 20px;
+  width: 100%;
+  cursor: pointer;
+}
+.order-item-date{
+  font-size: 20px;
+}
+.order-item-info-wrap{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.order-item-info1{
+  display: flex;
+  gap:20px
+}
+.order-item-info1 > img{
+  width: 200px;
+  aspect-ratio: 1/1;
+}
+.order-item-info1 > div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 18px;
+} */
