@@ -1,56 +1,82 @@
 const { Schema } = require('mongoose');
-const shortId = require('./types/shortId');
-const ReviewSchema = require('./review');
+const NoteSchema = require('./note');
+
+const ProductIdCounterSchema = new Schema(
+  {
+    target: {
+      type: String,
+      required: true,
+    },
+    usableId: {
+      type: Number,
+      default: 0,
+    },
+  },
+  {
+    collection: 'ProductId',
+    timestamps: true,
+    _id: false,
+  },
+);
 
 const ProductSchema = new Schema(
   {
     productId: {
       type: String,
-      default: shortId(),
-      required: true,
       unique: true,
       index: true,
     },
-    name: {
-      origin: {
-        type: String,
-        required: true,
-      },
-      korean: {
-        type: String,
-        required: true,
-      },
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    picture: {
-      type: String,
-      required: true,
-    },
-    gender: {
-      type: String,
-      enum: ['man', 'woman', 'unisex'],
-      default: 'unisex',
-      required: true,
-    },
-    catogory: {
-      type: Schema.Types.ObjectId,
-      ref: 'Catogory',
-      required: true,
-    },
-    brand: {
-      type: Schema.Types.ObjectId,
-      ref: 'Brand',
-      required: true,
-    },
-    review: [ReviewSchema],
+    // name: {
+    //   type: {
+    //     origin: {
+    //       type: String,
+    //       required: true,
+    //       unique: true,
+    //     },
+    //     korean: {
+    //       type: String,
+    //       required: true,
+    //       unique: true,
+    //     },
+    //   },
+    //   required: true,
+    // },
+    // price: {
+    //   type: Number,
+    //   required: true,
+    // },
+    // picture: {
+    //   type: String,
+    //   required: true,
+    // },
+    // gender: {
+    //   type: String,
+    //   enum: ['man', 'woman', 'unisex'],
+    //   default: 'unisex',
+    // },
+    // note: {
+    //   type: [NoteSchema],
+    //   required: true,
+    // },
+    // brand: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Brand',
+    //   required: true,
+    // },
+    // description: {
+    //   type: String,
+    //   required: true,
+    // },
+    // quantity: {
+    //   type: Number,
+    //   default: 0,
+    // },
   },
   {
     collection: 'Product',
     timestamps: true,
+    _id: false,
   },
 );
 
-module.exports = ProductSchema;
+module.exports = { ProductSchema, ProductIdCounterSchema };

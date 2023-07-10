@@ -1,49 +1,92 @@
-const { productDAO, brandDAO, categoryDAO } = require('../models/model');
+const { ObjectId } = require('mongoose').Types;
+const { productDAO, brandDAO, noteDAO } = require('../models/model');
 
 const productService = {
   // 전체 상품 조회
-  async getAllProduct() {
-    const products = await productDAO.findAllProducts();
+  async getAllProducts({ page, perPage }) {
+    const { products, total } = await productDAO.getAllProducts({ page, perPage });
 
-    return products;
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
   },
 
-  // 특정 브랜드의 상품 조회
-  async getAllProductByBrand(brand) {
-    const { id } = await brandDAO.getIdByName(brand);
+  // 검색
+  async getAllProductsBySearch(search, { page, perPage }) {
+    const [brandIds, noteIds] = await Promise.all([
+      brandDAO.getAllBrandsBySearch(search),
+      noteDAO.getAllNotesBySearch(search),
+    ]);
 
-    const products = await productDAO.findAllProductsByBrand(id);
+    const { products, total } = await productDAO.getAllProductsBySearch(search, brandIds, noteIds, {
+      page,
+      perPage,
+    });
 
-    return products;
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
   },
 
-  // 특정 카테고리의 상품 조희
-  async getAllProductByCategory(category) {
-    const { id } = await categoryDAO.getIdByName(category);
+  // 브랜드
+  async getAllProductsByBrand(target, { page, perPage }) {
+    const key = '_id';
+    const brandId = ObjectId.isValid(target)
+      ? target
+      : (await brandDAO.getBrandByBrandName(target))[key];
 
-    const products = await productDAO.findAllProductsByBrand(id);
+    const { products, total } = await productDAO.getAllProductsByBrandId(brandId, {
+      page,
+      perPage,
+    });
 
-    return products;
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
+  },
+
+  // 노트
+  async getAllProductsByNote(target, { page, perPage }) {
+    const key = '_id';
+    const noteId = ObjectId.isValid(target)
+      ? target
+      : (await noteDAO.getNoteByNoteType(target))[key];
+
+    const { products, total } = await productDAO.getAllProductsByNoteId(noteId, {
+      page,
+      perPage,
+    });
+
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
   },
 
   // 특정 성별 상품 조회
-  async getAllProductByGender(gender) {
-    const products = await productDAO.findAllProductsByGender(gender);
+  async getAllProductsByGender(gender, { page, perPage }) {
+    const { products, total } = await productDAO.getAllProductsByGender(gender, { page, perPage });
 
-    return products;
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
   },
 
   // 상품 상세조회
-  async getProductByProductId(id) {
-    const product = await productDAO.findProductByProductId(id);
+
+  async getProduct(target) {
+    const product = ObjectId.isValid(target)
+      ? await productDAO.findProductByProductId(target)
+      : await productDAO.findProductByProductName(target);
 
     return product;
   },
 
   // 관리자
   // 상품 추가
-  async addProduct(productInfo) {
-    await productDAO.createProduct(productInfo);
+  async createProduct(productInfo) {
+    const product = await productDAO.createProduct(productInfo);
+
+    return product;
   },
 
   // 상품 수정
