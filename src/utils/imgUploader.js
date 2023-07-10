@@ -16,7 +16,6 @@ const extensionFilter = (req, file, cb) => {
 };
 
 const mkdir = (dir) => {
-  dir = path.resolve(dir);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
@@ -42,6 +41,7 @@ const upload = multer({
           break;
       }
 
+      dest = path.resolve(dest);
       mkdir(dest);
 
       cb(null, dest);
