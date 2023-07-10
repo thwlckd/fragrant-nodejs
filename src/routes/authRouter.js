@@ -1,11 +1,10 @@
 const { Router } = require('express');
 const passport = require('passport');
 const { userController } = require('../controllers');
-const { checkDuplicatedEmail } = require('../middlewares');
 
 const authRouter = Router();
 
-authRouter.post('/sign-up', checkDuplicatedEmail, userController.postSignUpInfo);
+authRouter.post('/sign-up', userController.postSignUpInfo);
 authRouter.post(
   '/sign-in',
   passport.authenticate('local', { session: false }),
