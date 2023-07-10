@@ -4,7 +4,8 @@ const { adminOnly, loginRequired } = require('../middlewares');
 
 const orderRouter = Router();
 
-orderRouter.get('/', adminOnly, orderController.getOrders); // 전체 주문 목록 조회는 관리자만
+orderRouter.get('/', adminOnly, orderController.getOrders);
+orderRouter.get('/userName', adminOnly, orderController.getOrdersByUserName);
 orderRouter.post('/order', loginRequired, orderController.postOrder);
 orderRouter.get(
   '/user',
