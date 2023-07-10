@@ -19,25 +19,25 @@ const brandController = {
     const { path } = req.file;
     const picture = path.split('public')[1];
 
-    await brandService.createBrand({ origin, korean, picture });
+    const brand = await brandService.createBrand({ origin, korean, picture });
 
-    res.end();
+    res.status(201).json({ brand });
   },
 
   async updateBrand(req, res) {
-    const { brandId, originName: origin, koreanName: korean } = req.body;
+    const { target, originName: origin, koreanName: korean } = req.body;
     const { file } = req;
 
-    await brandService.updateBrandByBrandId(brandId, { origin, korean, file });
+    await brandService.updateBrand(target, { origin, korean, file });
 
-    res.end();
+    res.status(201).end();
   },
 
-  async deleteBrandByBrandId(req, res) {
-    const { brandId } = req.params;
+  async deleteBrand(req, res) {
+    const { target } = req.params;
 
-    await brandService.deleteBrandByBrandId(brandId);
-    res.end();
+    const deletedCount = await brandService.deleteBrand(target);
+    res.json({ deletedCount });
   },
 };
 

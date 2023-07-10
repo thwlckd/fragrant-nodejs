@@ -11,7 +11,7 @@ const brandService = {
   async getBrand(target) {
     const brand = ObjectId.isValid(target)
       ? await brandDAO.getBrandByBrandId(target)
-      : await brandDAO.getBrand(target);
+      : await brandDAO.getBrandByBrandName(target);
 
     return brand;
   },
@@ -20,19 +20,28 @@ const brandService = {
     await brandDAO.createBrand({ origin, korean, picture });
   },
 
-  async updateBrandByBrandId(brandId, { origin, korean, file }) {
-    const updateInfo = await brandDAO.getBrandByBrandId(brandId);
+  async updateBrand(target, { origin, korean, file }) {
+    const isObjectId = ObjectId.isValid(target);
+    const updateInfo = isObjectId
+      ? await brandDAO.getBrandByBrandId(target)
+      : await brandDAO.getBrandByBrandName(target);
 
     if (origin) updateInfo.brand.origin = origin;
     if (korean) updateInfo.brand.korean = korean;
     if (file && file.path) updateInfo.picture = file.path;
 
-    await brandDAO.updateBrandByBrandId(brandId, updateInfo);
+    if (isObjectId) await brandDAO.updateBrandByBrandId(target, updateInfo);
+    else await brandDAO.updateBrandByBrandName(target, updateInfo);
   },
 
-  async deleteBrandByBrandId(brandId) {
+  async deleteBrand(target) {
     // 해당 브랜드에 상품이 존재할경우 삭제안되게 해야함
-    await brandDAO.deleteBrandByBrandId(brandId);
+    // 관련된 상품 모두삭제?
+    const deletedCount = ObjectId.isValid(target)
+      ? await brandDAO.deleteBrandByBrandId(target)
+      : await brandDAO.deleteBrandByBrandName(target);
+
+    return deletedCount;
   },
 };
 

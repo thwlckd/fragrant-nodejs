@@ -5,21 +5,21 @@ const Brand = mongoose.model('Brand', BrandSchema);
 
 const brandDAO = {
   async getAllBrands() {
-    const brands = await Brand.find({});
+    const brands = await Brand.find({}).lean();
 
     return brands;
   },
 
   async getBrandByBrandId(brandId) {
-    const brand = await Brand.findOne({ _id: brandId });
+    const brand = await Brand.findOne({ _id: brandId }).lean();
 
     return brand;
   },
 
-  async getBrand(target) {
+  async getBrandByBrandName(brandName) {
     const brand = await Brand.findOne({
-      $or: [{ 'brand.origin': target }, { 'brand.korean': target }],
-    });
+      $or: [{ 'brand.origin': brandName }, { 'brand.korean': brandName }],
+    }).lean();
 
     return brand;
   },
@@ -36,12 +36,29 @@ const brandDAO = {
     return brand;
   },
 
-  async updateBrandByBrandId(id, updateInfo) {
-    await Brand.findByIdAndUpdate(id, updateInfo);
+  async updateBrandByBrandId(brandId, updateInfo) {
+    await Brand.findByIdAndUpdate(brandId, updateInfo).lean();
+  },
+
+  async updateBrandByBrandName(brandName, updateInfo) {
+    await Brand.findOneAndUpdate(
+      { $or: [{ 'brand.origin': brandName }, { 'brand.korean': brandName }] },
+      updateInfo,
+    ).lean();
   },
 
   async deleteBrandByBrandId(brandId) {
-    await Brand.deleteOne({ _id: brandId });
+    const { deletedCount } = await Brand.deleteOne({ _id: brandId }).lean();
+
+    return deletedCount;
+  },
+
+  async deleteBrandByBrandName(brandName) {
+    const { deletedCount } = await Brand.deleteOne({
+      $or: [{ 'brand.origin': brandName }, { 'brand.korean': brandName }],
+    }).lean();
+
+    return deletedCount;
   },
 };
 

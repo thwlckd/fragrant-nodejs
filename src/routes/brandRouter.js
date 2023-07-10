@@ -8,7 +8,7 @@ const brandRouter = Router();
 brandRouter.get('/', asyncHandler(brandController.getAllBrands));
 brandRouter.post('/', upload.single('picture'), asyncHandler(brandController.createBrand));
 brandRouter.patch('/', upload.single('picture'), asyncHandler(brandController.updateBrand));
-brandRouter.delete('/:brandId', asyncHandler(brandController.deleteBrandByBrandId));
+brandRouter.delete('/:target', asyncHandler(brandController.deleteBrand));
 
 brandRouter.get('/:target', asyncHandler(brandController.getBrand));
 
