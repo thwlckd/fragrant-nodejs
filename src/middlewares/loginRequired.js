@@ -6,13 +6,10 @@ function loginRequired(req, res, next) {
     [token] = token.split(' ').reverse();
   }
 
-  if (!token || token === undefined) {
-    res.status(400).json({
-      error: '인증되지 않은 유저입니다. 로그인 해주세요.',
-    });
-  }
-
   try {
+    if (!token) {
+      throw new Error('로그인이 필요한 서비스입니다. 로그인 해주세요.');
+    }
     const secretKey = process.env.JWT_SECRET_KEY || 'secret';
     const jwtDecoded = jwt.verify(token, secretKey);
     const { userEmail } = jwtDecoded;

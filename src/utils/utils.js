@@ -11,8 +11,9 @@ function checkObjectValues(obj) {
 function filterResponse(toResponse) {
   if (Array.isArray(toResponse)) {
     const filteredList = toResponse.map((user) => {
-      const { email, userName, address, phone } = user;
+      const { _id, email, userName, address, phone } = user;
       return {
+        _id,
         email,
         userName,
         address,
@@ -21,8 +22,9 @@ function filterResponse(toResponse) {
     });
     return filteredList;
   }
-  const { email, userName, address, phone } = toResponse;
+  const { _id, email, userName, address, phone } = toResponse;
   return {
+    _id,
     email,
     userName,
     address,
