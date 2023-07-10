@@ -14,13 +14,16 @@
     border-image: linear-gradient(to bottom, #BC5A00, #fff) 1;
 
     text-align: center;
-
 }
 
 .login-wrapper h2 {
     font-size: 32px;
     padding: 20px;
     margin: 30px 30px 100px;
+}
+
+.uput li{
+    height: 72px;
 }
 
 .loginbox {
@@ -40,13 +43,21 @@
     padding-left: 10px;
 }
 
-.upw{
-    margin-top: 20px;
+/* 아이디 메시지창 */
+.login-msg{
+    position: relative;
+    /* display: block; */
+    display: none;
+
+    text-align: justify;
+    font-size: 10px;
+    color: #e55;
+    line-height: 20px;
 }
 
 .loginbtn{
     position: absolute;
-    top: 0px;
+    top: 8px;
     left: 105%;
 }
 
