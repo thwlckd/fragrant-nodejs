@@ -90,8 +90,7 @@ const userController = {
           newPassword,
         }))
       ) {
-        res.status(400).end();
-        return;
+        throw new Error('비밀번호가 일치하지 않습니다.');
       }
       res.status(201).end();
     } catch (err) {
@@ -99,14 +98,21 @@ const userController = {
     }
   },
 
-  async deleteUser(req, res, next) {
+  async deleteUserByPassword(req, res, next) {
     try {
       const { userId } = req.params;
-      const { password } = req.body;
-      const passwordValidation = await userService.deleteUser(userId, password);
-      if (passwordValidation === null) {
-        res.status(400).json();
+      if (req.user.isAdmin) {
+        const user = await userService.deleteUserForAdmin(userId);
+        if (user.deletedCount === 0) {
+          throw new Error('존재하지 않는 유저입니다.');
+        }
+        res.end();
         return;
+      }
+      const { password } = req.body;
+      const passwordValidation = await userService.deleteUserByPassword(userId, password);
+      if (passwordValidation === null) {
+        throw new Error('비밀번호가 일치하지 않습니다.');
       }
       res.end();
     } catch (err) {

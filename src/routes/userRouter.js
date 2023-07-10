@@ -5,14 +5,10 @@ const { adminOnly, loginRequired } = require('../middlewares');
 const userRouter = Router();
 
 userRouter.get('/', adminOnly, userController.getUsers);
-userRouter.get('/list', adminOnly, userController.getUsersByUserName);
+userRouter.get('/userName', adminOnly, userController.getUsersByUserName);
 userRouter.get('/:userId', loginRequired, userController.getUser);
 userRouter.patch('/:userId', loginRequired, userController.patchUser);
-userRouter.patch(
-  '/password/:userId',
-  loginRequired,
-  userController.patchUserPassword,
-);
-userRouter.delete('/:userId', loginRequired, userController.deleteUser);
+userRouter.patch('/password/:userId', loginRequired, userController.patchUserPassword);
+userRouter.delete('/:userId', loginRequired, userController.deleteUserByPassword);
 
 module.exports = userRouter;
