@@ -129,10 +129,11 @@
   margin-top: 50px;
 }
 
-.order-contents-value {
-  font-size: 18px;
+.order-history-column-value {
+  font-size: 22px;
+  letter-spacing: 0.2px;
   display: grid;
-  grid-template-columns: 90px auto;
+  grid-template-columns: 700px auto;
 }
 
 .order-contents-value span {
@@ -151,24 +152,26 @@
   height: auto;
   margin: 5px, 0;
 
-  font-size: 24px;
+  font-size: 30px;
+  color: rgb(54, 54, 54);
 
   display: flex;
   justify-content: space-between;
 }
 
-.order-history-header a {
+.view-order-detail {
   color: rgb(83, 83, 83);
   letter-spacing: -1px;
-  padding-right: 30px;
-  font-size: 16px;
+  padding: 10px 30px 0 0;
+  font-size: 20px;
   text-decoration: none;
 }
 
 .order-list {
   width: 100%;
+  height: 200px;
   padding: 5px 0;
-  margin-top: 10px;
+  margin: 10px 0 38px 0;
 }
 
 .order-list-1 {
@@ -188,8 +191,11 @@
 }
 
 .product-image {
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
+  border: 0.2px solid #f8f8f8;
+  box-shadow: 1px 1px 5px #fafafa;
+  margin-right: 20px;
 }
 
 .order-histroy-column {
@@ -204,30 +210,26 @@
   line-height: 1.9;
 }
 
-.order-status-box {
-  width: 20%;
-  height: auto;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.order-status {
+  margin-top: 15px;
+  text-align: center;
 }
 
-.order-status {
+.order-status-text {
   width: auto;
   height: auto;
-  padding: 30px;
+  padding: 30px 30px 15px 30px;
   color: rgb(59, 59, 59);
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 700;
   position: static;
   flex: 1 1 100%;
 }
 
-.order-cancel {
+.order-cancel-btn {
   width: 100px;
   height: 30px;
-  font-size: 15px;
+  font-size: 18px;
   border: 0;
   outline: 0;
   background-color: rgb(229, 229, 229);
@@ -235,5 +237,4 @@
 }
 .order-cancel-hidden {
   visibility: hidden;
-  margin-left: 37px;
 }

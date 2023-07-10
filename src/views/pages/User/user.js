@@ -21,56 +21,18 @@ async function displayOrderList() {
 
   console.log(orderList);
 
-  // 주문 내역 데이터를 리스트에 추가
-  // const orderListDiv = document.querySelector('#order-history-list');
   const $orderListDiv = $('#order-history-list');
 
-  for (let i = 0; i < orderList.length; i += 1) {
+  for (let i = orderList.length - 1; i >= 0; i -= 1) {
     const orderItem = orderList[i];
-    const { products } = orderItem;
+    const { orderTime, products, _id, price, orderStatus } = orderItem;
 
-    const paymentUnit = orderItem.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const paymentUnit = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
     let productName = products[0].name;
     if (products.length > 1) {
       productName += ` 외 ${products.length - 1} 건`;
     }
-    /*
-    const listItem = document.createElement('li');
-    const { createdAt, _id, orderStatus } = orderItem;
-    listItem.innerHTML = `<div class="order-list"> 
-      <div class="order-history-header">
-        <p class="order-date">${createdAt}</p>
-        <a class="view-order-detail" href="../orders/:orderId">
-          주문내역 상세보기 >
-        </a>
-      </div>
-      <div class="order-list-1">
-        <div class="order-history-info">
-          <a href="/products/:productId"></a>
-            <img
-              class="product-image"
-              src="/asset/perfume/red_elice.png"
-              style="width: 100px; height: 100px"
-            />
-          </a>
-          <div class="order-histroy-column">
-            <div class="order-contents-value">상품명<span>${productName}</span></div>
-            <div class="order-contents-value">주문번호<span>${_id}</div>
-            <div class="order-contents-value">결제금액<span>${paymentUnit} 원</span></div>
-          </div>
-          <div class="order-status-box">
-            <p class="order-status">${orderStatus}</p>
-            <button type="button"  class="order-cancel">
-              주문취소
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>`;
-    orderListDiv.appendChild(listItem);
-*/
-    const { orderTime, _id, orderStatus } = orderItem;
 
     const $liElement = $create('li', '');
 
@@ -92,12 +54,33 @@ async function displayOrderList() {
     const $orderHistoryInfo = $create('div', 'order-history-info');
     $append($orderList1, $orderHistoryInfo);
 
-    const $productImg = $create('img', 'product-image');
+    const $productImg = $create('img', 'product-image', { src: `${products[0].img}` });
+    const $orderHistoryColumn = $create('div', 'order-histroy-column');
+    const $orderStatus = $create('div', 'order-status');
+
+    $append($orderHistoryInfo, $productImg, $orderHistoryColumn, $orderStatus);
+
+    const $orderHistoryColumn1 = $create('div', 'order-history-column-value');
+    $orderHistoryColumn1.textContent = `상품명 \u00a0\u00a0\u00a0\u00a0\u00a0\u00a0 ${productName}`;
+    const $orderHistoryColumn2 = $create('div', 'order-history-column-value');
+    $orderHistoryColumn2.textContent = `주문번호 \u00a0\u00a0 ${_id}`;
+    const $orderHistoryColumn3 = $create('div', 'order-history-column-value');
+    $orderHistoryColumn3.textContent = `결제금액 \u00a0\u00a0 ${paymentUnit} 원`;
+
+    const $orderStatusText = $create('p', 'order-status-text');
+    $orderStatusText.textContent = `${orderStatus}`;
+    const $orderCancelBtn = $create('button', 'order-cancel-btn');
+    $orderCancelBtn.textContent = '주문취소';
+
+    $append($orderStatus, $orderStatusText, $orderCancelBtn);
+
+    $append($orderHistoryColumn, $orderHistoryColumn1, $orderHistoryColumn2, $orderHistoryColumn3);
 
     $orderListDiv.append($liElement);
 
-    // let btnOrderCancel = document.querySelector(".order-cancel");
-    // btnOrderCancel.classList.add("order-cancel-hidden");
+    if (orderStatus === '배송중' || orderStatus === '') {
+      $orderCancelBtn.classList.add('order-cancel-hidden');
+    }
   }
 }
 
