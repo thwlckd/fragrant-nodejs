@@ -39,14 +39,14 @@ async function displayOrderList() {
     const listItem = document.createElement('li');
     const { createdAt, _id, orderStatus } = orderItem;
     listItem.innerHTML = `<div class="order-list"> 
-      <div class="order-header">
+      <div class="order-history-header">
         <p class="order-date">${createdAt}</p>
         <a class="view-order-detail" href="../orders/:orderId">
           주문내역 상세보기 >
         </a>
       </div>
       <div class="order-list-1">
-        <div class="order-list-component">
+        <div class="order-history-info">
           <a href="/products/:productId"></a>
             <img
               class="product-image"
@@ -54,7 +54,7 @@ async function displayOrderList() {
               style="width: 100px; height: 100px"
             />
           </a>
-          <div class="order-info">
+          <div class="order-histroy-column">
             <div class="order-contents-value">상품명<span>${productName}</span></div>
             <div class="order-contents-value">주문번호<span>${_id}</div>
             <div class="order-contents-value">결제금액<span>${paymentUnit} 원</span></div>
@@ -70,24 +70,29 @@ async function displayOrderList() {
     </div>`;
     orderListDiv.appendChild(listItem);
 */
-    const { createdAt, _id, orderStatus } = orderItem;
+    const { orderTime, _id, orderStatus } = orderItem;
 
     const $liElement = $create('li', '');
 
     const $orderList = $create('div', 'order-list');
     $liElement.append($orderList);
 
-    const $orderHeader = $create('div', 'order-header');
+    const $orderHistoryHeader = $create('div', 'order-history-header');
     const $orderList1 = $create('div', 'order-list-1');
 
-    $append($orderList, $orderHeader, $orderList1);
+    $append($orderList, $orderHistoryHeader, $orderList1);
 
     const $orderDate = $create('p', 'order-date');
-    $orderDate.textContent = `${createdAt}`;
+    $orderDate.textContent = `${orderTime}`;
     const $orderDetailBtn = $create('a', 'view-order-detail', { href: `../orders/${_id}` });
     $orderDetailBtn.textContent = '주문내역 상세보기>';
 
-    $append($orderHeader, $orderDate, $orderDetailBtn);
+    $append($orderHistoryHeader, $orderDate, $orderDetailBtn);
+
+    const $orderHistoryInfo = $create('div', 'order-history-info');
+    $append($orderList1, $orderHistoryInfo);
+
+    const $productImg = $create('img', 'product-image');
 
     $orderListDiv.append($liElement);
 
