@@ -32,26 +32,24 @@ function filterResponse(toResponse) {
   };
 }
 
-function formatDate(orders) {
-  if (Array.isArray(orders)) {
-    const ordersToResponse = orders.map((order) => {
-      const dateList = String(order.createdAt.toLocaleString()).split('. ');
-      if (dateList[1].length === 1) dateList[1] = `0${dateList[1]}`;
-      if (dateList[2].length === 1) dateList[2] = `0${dateList[2]}`;
-      const formattedTime = dateList[3].split(' ')[1].split(':', 2);
-      if (formattedTime[0].length === 1) formattedTime[0] = `0${formattedTime[0]}`;
-      order.orderTime = `${dateList.slice(0, 3).join('.')} ${formattedTime.join(':')}`;
-      return order;
-    });
-    return ordersToResponse;
-  }
+function timeFormat(orders) {
   const dateList = String(orders.createdAt.toLocaleString()).split('. ');
   if (dateList[1].length === 1) dateList[1] = `0${dateList[1]}`;
   if (dateList[2].length === 1) dateList[2] = `0${dateList[2]}`;
   const formattedTime = dateList[3].split(' ')[1].split(':', 2);
+  const dayOrNight = dateList[3].split(' ')[0];
+  if (dayOrNight === '오후') formattedTime[0] = `${Number(formattedTime[0]) + 12}`;
   if (formattedTime[0].length === 1) formattedTime[0] = `0${formattedTime[0]}`;
   orders.orderTime = `${dateList.slice(0, 3).join('.')} ${formattedTime.join(':')}`;
   return orders;
+}
+
+function formatDate(orders) {
+  if (Array.isArray(orders)) {
+    const timeFormattedorders = orders.map((order) => timeFormat(order));
+    return timeFormattedorders;
+  }
+  return timeFormat(orders);
 }
 
 module.exports = {
