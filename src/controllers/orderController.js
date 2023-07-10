@@ -3,9 +3,7 @@ const { orderService } = require('../services');
 const orderController = {
   async postOrder(req, res, next) {
     try {
-      const {
-        products, orderer, price, orderStatus, requirement,
-      } = req.body;
+      const { products, orderer, price, orderStatus, requirement } = req.body;
       const { userEmail } = req;
       await orderService.createOrder(
         {
@@ -42,9 +40,19 @@ const orderController = {
     }
   },
 
+  async getOrdersByUserName(req, res, next) {
+    try {
+      const { userName } = req.query;
+      const orders = await orderService.getOrdersByUserName(userName);
+      res.json(orders);
+    } catch (err) {
+      next(err);
+    }
+  },
+
   async getOrdersByUserEmail(req, res, next) {
     try {
-      const { userEmail } = req;
+      const { userEmail } = req.user;
       const orders = await orderService.getOrdersByUserEmail(userEmail);
       res.json(orders);
     } catch (err) {
