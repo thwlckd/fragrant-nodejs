@@ -7,8 +7,7 @@ const userController = {
     try {
       const { email, password, userName, isAdmin } = req.body;
       await userService.postSignUpInfo(email, password, userName, isAdmin);
-      res.status(201).end();
-      res.redirect('/login');
+      res.status(201).redirect('/login');
     } catch (err) {
       next(err);
     }
@@ -19,8 +18,7 @@ const userController = {
       const { email } = req.body;
       const { isAdmin } = await userService.getUserByEmail(email);
       setUserToken(res, email, isAdmin);
-      res.status(201).end();
-      res.redirect('/');
+      res.status(201).redirect('/');
     } catch (err) {
       next(err);
     }
