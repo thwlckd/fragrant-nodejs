@@ -1,5 +1,5 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
 
 const viewRouter = express.Router();
 
@@ -10,36 +10,36 @@ const serveStatic = (resource) => {
   return express.static(resourcePath, option);
 };
 
-viewRouter.use('/', serveStatic('Main'));
+viewRouter.get("/", serveStatic("Main"));
 
-viewRouter.use('/login', serveStatic('Login'));
-viewRouter.use('/login/auth', serveStatic('EmailAuth'));
-viewRouter.use('/password', serveStatic('FindPassword'));
-viewRouter.use('/password/reset', serveStatic('PasswordReset'));
-viewRouter.use('/signup', serveStatic('SignUp'));
+viewRouter.get("/login", serveStatic("Login"));
+viewRouter.get("/login/auth", serveStatic("EmailAuth"));
+viewRouter.get("/password", serveStatic("FindPassword"));
+viewRouter.get("/password/reset", serveStatic("PasswordReset"));
+viewRouter.get("/singup", serveStatic("SignUp"));
 
-viewRouter.use('/products', serveStatic('Products'));
-viewRouter.use('/products/:productId', serveStatic('ProductDetail'));
+viewRouter.get("/products", serveStatic("Products"));
+viewRouter.get("/products/:productId", serveStatic("ProductDetail"));
 
-viewRouter.use('/cart', serveStatic('Cart'));
-viewRouter.use('/order', serveStatic('Order'));
-viewRouter.use('/order/complete', serveStatic('OrderComplete'));
+viewRouter.get("/cart", serveStatic("Cart"));
+viewRouter.get("/order", serveStatic("Order"));
+viewRouter.get("/order/complete", serveStatic("OrderComplete"));
 
-viewRouter.use('/user/myPage', serveStatic('User'));
-viewRouter.use('/user/modify', serveStatic('UserModify'));
-viewRouter.use('/user/orders', serveStatic('Orders'));
-viewRouter.use('/user/orders/:orderId', serveStatic('OrderDetail'));
+viewRouter.get("/user/myPage", serveStatic("User"));
+viewRouter.get("/user/modify", serveStatic("UserModify"));
+viewRouter.get("/user/orders", serveStatic("Orders"));
+viewRouter.get("/user/orders/:orderId", serveStatic("OrderDetail"));
 
-viewRouter.use('/admin/login', serveStatic('AdminLogin'));
-viewRouter.use('/admin/users', serveStatic('AdminUsers'));
-viewRouter.use('/admin/users/:userId', serveStatic('AdminUserDetail'));
-viewRouter.use('/admin/products', serveStatic('AdminProducts'));
-viewRouter.use('/admin/products/:productId', serveStatic('AdminProductDetail'));
-viewRouter.use('/admin/orders', serveStatic('AdminOrders'));
-viewRouter.use('/admin/orders/:orderId', serveStatic('AdminOrderDetail'));
-viewRouter.use('/admin/brands', serveStatic('AdminBrands'));
-viewRouter.use('/admin/classify', serveStatic('AdminClassify'));
+viewRouter.get("/admin/login", serveStatic("AdminLogin"));
+viewRouter.get("/admin/users", serveStatic("AdminUsers"));
+viewRouter.get("/admin/users/:userId", serveStatic("AdminUserDetail"));
+viewRouter.get("/admin/products", serveStatic("AdminProducts"));
+viewRouter.get("/admin/products/:productId", serveStatic("AdminProductDetail"));
+viewRouter.get("/admin/orders", serveStatic("AdminOrders"));
+viewRouter.get("/admin/orders/:orderId", serveStatic("AdminOrderDetail"));
+viewRouter.get("/admin/brands", serveStatic("AdminBrands"));
+viewRouter.get("/admin/classify", serveStatic("AdminClassify"));
 
-viewRouter.use('/NotFound', serveStatic('NotFound'));
+viewRouter.get("/NotFound", serveStatic("NotFound"));
 
 module.exports = viewRouter;
