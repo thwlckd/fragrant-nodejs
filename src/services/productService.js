@@ -75,8 +75,8 @@ const productService = {
 
   async getProduct(target) {
     const product = !Number.isNaN(parseInt(target, 10))
-      ? await productDAO.findProductByProductId(target)
-      : await productDAO.findProductByProductName(target);
+      ? await productDAO.getProductByProductId(target)
+      : await productDAO.getProductByProductName(target);
 
     return product;
   },
