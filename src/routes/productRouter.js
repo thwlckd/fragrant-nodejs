@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const productController = require('../controllers/productController');
 const asyncHandler = require('../middlewares/asyncHandler');
+const upload = require('../utils/imgUploader');
 
 const productRouter = Router();
 
@@ -12,6 +13,8 @@ productRouter.get('/genders/:gender', asyncHandler(productController.getAllProdu
 
 productRouter.get('/:target', asyncHandler(productController.getProduct));
 
-productRouter.post('/', asyncHandler(productController.createProduct));
+productRouter.post('/', upload.single('picture'), asyncHandler(productController.createProduct));
+productRouter.patch('/', upload.single('picture'), asyncHandler(productController.updateProduct));
+productRouter.delete('/:target', asyncHandler(productController.deleteProduct));
 
 module.exports = productRouter;
