@@ -2,7 +2,7 @@ import { $ } from '/js/util/dom.js';
 
 //해당하는 회원 정보 보여주기
 async function getUserInfo() {
-  const url = '/users/64a6d7d9b2cb5883241008de';
+  const url = '/api/users/user/info';
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -12,6 +12,7 @@ async function getUserInfo() {
   if (response.ok) {
     return response.json();
   }
+  return null;
 }
 
 async function setUserInfo() {
@@ -42,41 +43,26 @@ document.getElementById('address-button').addEventListener('click', () => {
 });
 
 //회원정보변경 버튼 클릭 시 변경사항 적용
-async function sendUserInfo() {
-  const url = '/users/64a6d7d9b2cb5883241008de';
-  const response = fetch(url, {
+async function userModify() {
+  const response = await fetch('/api/users/user/info', {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(),
+    body: JSON.stringify({
+      userName: $('#name').value,
+      phone: $('#contact').value,
+      address: {
+        postalCode: $('#postcode').value,
+        address1: $('#address').value,
+        address2: $('#detail-address').value,
+      },
+    }),
   });
   if (response.ok) {
-    return response.json();
+    alert('complete modify!');
   }
 }
-
-async function userModify() {
-  const sendInfo = await sendUserInfo();
-  const { email, userName, phone, address } = sendInfo;
-
-  $('#userId').value = email;
-  $('#name').value = userName;
-  $('#contact').value = phone;
-  $('#postcode').value = address.postalCode;
-  $('#address').value = address.address1;
-  $('#detail-address').value = address.address2;
-}
-
-$('#update-form').addEventListener('submit', (event) => {
-  event.preventDefault();
-  userModify();
-});
-
-//   .catch(function (error) {
-//     console.log(error);
-//     alert("Failed");
-//   });
 
 // 회원탈퇴 모달
 const open = () => {
@@ -87,28 +73,39 @@ const close = () => {
   document.querySelector('.modal').classList.add('hidden');
 };
 
-document.querySelector('.delete-account-btn').addEventListener('click', open);
-document.querySelector('.close-btn').addEventListener('click', close);
-document.querySelector('.background').addEventListener('click', close);
+$('.delete-account-btn').addEventListener('click', open);
+$('.close-btn').addEventListener('click', close);
+$('.background').addEventListener('click', close);
 // document.gquerySelector('modal').scrollTo(0, 0);
 
 async function modifyPassword() {
-  const url = '/users/64a6d7d9b2cb5883241008de';
-
-  const response = fetch(url, {
+  const response = await fetch('/api/users/user/info/password', {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: {
+    body: JSON.stringify({
       oldPassword: $('#password-now').value,
       newPassword: $('#password-new').value,
-    },
+    }),
   });
+
+  console.log(response.json());
   if (response.ok) {
-    return response.json();
+    alert('비밀번호를 변경헀습니다.');
+  } else {
+    alert('error');
   }
 }
+
+onsubmit = (event) => {
+  event.preventDefault();
+  if (event.target.className === 'update-form-user') {
+    userModify();
+  } else if (event.target.className === 'update-form-password') {
+    modifyPassword();
+  }
+};
 
 // $pw.value = '';
 // $pwValidate.value = '';

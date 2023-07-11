@@ -9,11 +9,12 @@
     <link rel="stylesheet" href="/components/Header/style.css" />
     <link rel="stylesheet" href="/components/Footer/style.css" />
     <link rel="stylesheet" href="userModify.css" />
+    <script src="./userModify.js" type="module"></script>
   </head>
   <body>
     <div class="container">
       <!-- 회원정보 변경-->
-      <form action="" class="update-form">
+      <form name="updateUserForm" class="update-form-user">
         <h2 style="font-size: 30px">회원 정보 변경</h2>
         <hr color="#464646" />
         <div class="form-group">
@@ -52,12 +53,12 @@
         <hr />
 
         <div class="btn-container">
-          <button type="submit" class="btn">회원정보 변경</button>
+          <input type="submit" class="btn" id="modify-user-info" value="회원정보 변경" />
         </div>
       </form>
 
       <!-- 비밀번호 변경-->
-      <form action="" class="update-form-password">
+      <form action="#" name="updatePasswordForm" class="update-form-password">
         <h2 style="font-size: 30px">비밀번호 변경</h2>
         <hr color="#464646" />
         <div class="form-group">
@@ -105,6 +106,5 @@
     <script src="/components/Header/Header.js" type="module"></script>
     <!-- <script src="/components/Footer/Footer.js" type="module"></script> -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="./userModify.js" type="module"></script>
   </body>
 </html>
