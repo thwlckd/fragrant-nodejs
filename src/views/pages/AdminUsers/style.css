@@ -22,10 +22,16 @@ main > :not(.main-header){
 .main-header {
   width: 100%;
   font-size: 32px;
+  font-weight: bold;
 }
-.main-header small {
+.main-header > div {
+  margin-bottom: 10px;
+}
+.main-header > small {
   color: #999999;
   font-size: smaller;
+  font-weight:normal;
+
 }
 
 .list-option-wrap{
@@ -59,25 +65,28 @@ main > :not(.main-header){
 }
 .list-option-wrap button{
   width: 50px;
-  background-color: #555555;
+  background-color: #282828;
   color: white;
 }
 
 
 table{
+  max-width: 1280px;
+  width: 100%;
   margin: 20px 0 100px 0;
   table-layout: fixed;
 }
 .list-title > th{
   font-size: 18px;
-  font-weight: bold;
-  background-color: #F0F0F0;
+  /* font-weight: bold; */
+  background-color: #282828;
   vertical-align: middle;
   text-align: start;
   padding: 10px 20px;
+  color: white;
 }
 .list-title > th:nth-child(1){
-  width: 10%;
+  width: 20%;
   height: 50px;
 }
 .list-title > th:nth-child(1)::after{
@@ -87,17 +96,17 @@ table{
   font-size: 16px;
 }
 .list-title > th:nth-child(2){
-  width: 5%;
+  width: 10%;
   height: 50px;
 }
 .list-title > th:nth-child(2)::after{
-  content:"Boolean";
+  content:"String";
   font-weight:500;
   color: #999999;
   font-size: 16px;
 }
 .list-title > th:nth-child(3){
-  width: 10%;
+  width: 30%;
   height: 50px;
 }
 .list-title > th:nth-child(3)::after{
@@ -107,7 +116,7 @@ table{
   font-size: 16px;
 }
 .list-title > th:nth-child(4){
-  width: 30%;
+  width: 10%;
   height: 50px;
 }
 .list-title > th:nth-child(4)::after{
@@ -117,15 +126,11 @@ table{
   font-size: 16px;
 }
 .list-title > th:nth-child(5){
-  width: 15%;
+  width: 10%;
   height: 50px;
+  text-align: center;
 }
-.list-title > th:nth-child(5)::after{
-  content:"String";
-  font-weight:500;
-  color: #999999;
-  font-size: 16px;
-}
+
 .list-title > th:nth-child(6){
   width: 10%;
   height: 50px;
@@ -139,7 +144,6 @@ table{
 .list-title > th:nth-child(8){
   width: 10%;
   height: 50px;
-  text-align: center;
 }
 .list-empty{
   height: 30px;
@@ -165,34 +169,39 @@ table{
   font-weight: 500;
 }
 .main-tbody td:nth-child(1){
-  width: 10%;
+  width: 20%;
   height: 30px;
 }
 
 .main-tbody td:nth-child(2){
-  width: 5%;
-  height: 30px;
-}
-
-.main-tbody td:nth-child(3){
   width: 10%;
   height: 30px;
 }
 
-.main-tbody td:nth-child(4){
+.main-tbody td:nth-child(3){
   width: 30%;
   height: 30px;
 }
 
-.main-tbody td:nth-child(5){
-  width: 15%;
+.main-tbody td:nth-child(4){
+  width: 10%;
   height: 30px;
 }
 
-.main-tbody td:nth-child(6){
+.main-tbody td:nth-child(5){
+  width: 10%;
+  height: 30px;
+  text-align: center;
+}
+
+.main-tbody td:nth-child(6) {
   width: 5%;
   height: 30px;
   text-align: center;
+}
+.main-tbody td:nth-child(6) img{
+  padding: 5px;
+  cursor: pointer;
 }
 .main-tbody td:nth-child(7){
   width: 10%;
@@ -203,15 +212,7 @@ table{
   padding: 5px;
   cursor: pointer;
 }
-.main-tbody td:nth-child(8){
-  width: 10%;
-  height: 30px;
-  text-align: center;
-}
-.main-tbody td:nth-child(8) img{
-  padding: 5px;
-  cursor: pointer;
-}
+
 
 .delete-all{
   max-width: 150px !important;
@@ -221,7 +222,8 @@ table{
   background-color: #C80000;
   color: white;
   position: sticky;
-  bottom: 60px;
+  /* bottom: 60px; */
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   font-size: 16px;
@@ -229,5 +231,12 @@ table{
   font-family: "Alice", "Nanum Gothic", serif;
   padding: 15px 10px;
   cursor: pointer;
-  display: none;
+  /* display: none; */
+  opacity: 0;
+  transition: bottom.25s ease-in-out, opacity.25s ease-in-out;
+}
+.delete-all-visible{
+  /* display: block; */
+  bottom: 60px;
+  opacity: 1;
 }

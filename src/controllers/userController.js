@@ -26,7 +26,15 @@ const userController = {
 
   async getUser(req, res, next) {
     try {
-      const { userId } = req.params;
+      let userEmail;
+      let userId;
+      if (!req.params.userId) {
+        userEmail = req.user.userEmail;
+        const { _id } = await userService.getUserByEmail(userEmail);
+        userId = _id;
+      } else {
+        userId = req.params.userId;
+      }
       const user = await userService.getUser(userId);
       res.json(filterResponse(user));
     } catch (err) {
@@ -55,7 +63,15 @@ const userController = {
 
   async patchUser(req, res, next) {
     try {
-      const { userId } = req.params;
+      let userEmail;
+      let userId;
+      if (!req.params.userId) {
+        userEmail = req.user.userEmail;
+        const { _id } = await userService.getUserByEmail(userEmail);
+        userId = _id;
+      } else {
+        userId = req.params.userId;
+      }
       const { userName, phone, address } = req.body;
       const checkedToUpdate = checkObjectValues({
         userName,
@@ -82,7 +98,9 @@ const userController = {
 
   async patchUserPassword(req, res, next) {
     try {
-      const { userId } = req.params;
+      const { userEmail } = req.user;
+      const { _id } = await userService.getUserByEmail(userEmail);
+      const userId = _id;
       const { oldPassword, newPassword } = req.body;
       if (
         !(await userService.patchUser(userId, {
@@ -90,8 +108,7 @@ const userController = {
           newPassword,
         }))
       ) {
-        res.status(400).end();
-        return;
+        throw new Error('비밀번호가 일치하지 않습니다.');
       }
       res.status(201).end();
     } catch (err) {
@@ -101,12 +118,24 @@ const userController = {
 
   async deleteUser(req, res, next) {
     try {
-      const { userId } = req.params;
-      const { password } = req.body;
-      const passwordValidation = await userService.deleteUser(userId, password);
-      if (passwordValidation === null) {
-        res.status(400).json();
+      let userEmail;
+      let userId;
+      if (!req.params.userId && !req.user.isAdmin) {
+        userEmail = req.user.userEmail;
+        const { _id } = await userService.getUserByEmail(userEmail);
+        userId = _id;
+        const { password } = req.body;
+        const passwordValidation = await userService.deleteUserByPassword(userId, password);
+        if (passwordValidation === null) {
+          throw new Error('비밀번호가 일치하지 않습니다.');
+        }
+        res.end();
         return;
+      }
+      userId = req.params.userId;
+      const user = await userService.deleteUserForAdmin(userId);
+      if (user.deletedCount === 0) {
+        throw new Error('존재하지 않는 유저입니다.');
       }
       res.end();
     } catch (err) {

@@ -6,6 +6,7 @@
   <link rel="shortcut icon" href="/asset/favicon/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="./style.css">
+  <script src="./login.js" type="module"></script>
   <title>ELICE ADMIN</title>
 </head>
 <body>
@@ -15,10 +16,10 @@
   <main>
     <section>
       <div class="input-wrap">
-        <input type="text" placeholder="아이디" required>
-        <input type="text" placeholder="비밀번호" required>
+        <input type="text" id="email" placeholder="이메일" required autocomplete="off" value="admin@gmail.com">
+        <input type="password" id="password" placeholder="비밀번호" required value="admin">
       </div>
-      <button>로그인</button>
+      <button id="loginBtn">로그인</button>
     </section>
   </main>
 </body>

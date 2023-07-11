@@ -22,6 +22,10 @@ const ProductSchema = new Schema(
       type: Number,
       requried: true,
     },
+    quantity: {
+      type: Number,
+      required: true,
+    },
   },
   { _id: false },
 );
