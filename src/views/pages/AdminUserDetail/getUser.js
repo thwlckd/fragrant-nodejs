@@ -181,14 +181,14 @@ const render = async () => {
     };
 
     if (check.name && check.phNum && check.pw && check.address) {
-      if ($pwValidate.value !== '') {
-        // PATCH(pwEndPoint);
-        PATCH(endpoint, PatchData);
-        createModal(successText);
-      } else {
-        PATCH(endpoint, PatchData);
-        createModal(successText);
-      }
+      // if ($pwValidate.value !== '') {
+      //   // PATCH(pwEndPoint);
+      //   PATCH(endpoint, PatchData);
+      //   createModal(successText);
+      // } else {
+      PATCH(endpoint, PatchData);
+      createModal(successText);
+      // }
     } else {
       rejectText += ` 을(를) \n다시 확인해주세요.`;
       createModal(rejectText);
