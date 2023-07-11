@@ -1,45 +1,82 @@
-const url = '';
+import { $ } from '/js/util/dom.js';
 
-fetch(url, {
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-}).then((response) => {
+//해당하는 회원 정보 보여주기
+async function getUserInfo() {
+  const url = '/users/64a6d7d9b2cb5883241008de';
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   if (response.ok) {
-    // console.log(response.body.json());
     return response.json();
   }
-  throw new Error('Failed.');
+}
+
+async function setUserInfo() {
+  const userInfo = await getUserInfo();
+
+  const { email, userName, phone, address } = userInfo;
+
+  $('#user-id').value = email;
+  $('#name').value = userName;
+  $('#contact').value = phone;
+  $('#postcode').value = address.postalCode;
+  $('#address').value = address.address1;
+  $('#detail-address').value = address.address2;
+}
+
+setUserInfo();
+
+// 카카오 주소 api 사용하여 주소 정보 입력
+document.getElementById('address-button').addEventListener('click', () => {
+  new daum.Postcode({
+    oncomplete(data) {
+      console.log(data);
+      document.getElementById('postcode').value = data.zonecode;
+      document.getElementById('address').value = data.address;
+      document.getElementById('detail-address').focus();
+    },
+  }).open();
 });
 
-// .then(function (data) {
-//     document.getElementById("id").value = data.email;
-//     document.getElementById("name").value = data.userName;
-//     document.getElementById("contact").value = data.phone;
-//     document.getElementById("postcode").value = data.postalCode;
-//     document.getElementById("address").value = data.address1;
-//     document.getElementById("detail-address").value = data.address2;
-//   });
+//회원정보변경 버튼 클릭 시 변경사항 적용
+async function sendUserInfo() {
+  const url = '/users/64a6d7d9b2cb5883241008de';
+  const response = fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(),
+  });
+  if (response.ok) {
+    return response.json();
+  }
+}
+
+async function userModify() {
+  const sendInfo = await sendUserInfo();
+  const { email, userName, phone, address } = sendInfo;
+
+  $('#userId').value = email;
+  $('#name').value = userName;
+  $('#contact').value = phone;
+  $('#postcode').value = address.postalCode;
+  $('#address').value = address.address1;
+  $('#detail-address').value = address.address2;
+}
+
+$('#update-form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  userModify();
+});
 
 //   .catch(function (error) {
 //     console.log(error);
 //     alert("Failed");
 //   });
-
-// 카카오 주소 api 사용하여 주소 정보 입력
-document
-  .getElementById('address-button')
-  .addEventListener('click', () => {
-    new daum.Postcode({
-      oncomplete(data) {
-        console.log(data);
-        document.getElementById('postcode').value = data.zonecode;
-        document.getElementById('address').value = data.address;
-        document.getElementById('detail-address').focus();
-      },
-    }).open();
-  });
 
 // 회원탈퇴 모달
 const open = () => {
@@ -53,61 +90,55 @@ const close = () => {
 document.querySelector('.delete-account-btn').addEventListener('click', open);
 document.querySelector('.close-btn').addEventListener('click', close);
 document.querySelector('.background').addEventListener('click', close);
-document.gquerySelector('modal').scrollTo(0, 0);
+// document.gquerySelector('modal').scrollTo(0, 0);
 
-// onkeyup 이벤트를 사용하여 실시간 유효성 검사 진행 (예정)
-// document.getElementById("password-new-confirm").onkeyup = function () {
-//   var msg = "",
-//     val = this.value;
-//   if (val.length > 7) {
-//     msg = GetAjaxPW(val);
-//   } else {
-//     msg = "비밀번호는 8자 이상의 영문으로 입력해주세요.";
-//   }
-//   document.getElementById("password-noti-1").textContent = msg;
-// };
+async function modifyPassword() {
+  const url = '/users/64a6d7d9b2cb5883241008de';
 
-// const GetAjaxPW = function (val) {
-//   return val + " 사용가능한 비밀번호입니다.";
-// };
-
-document
-  .getElementById('update-form')
-  .addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const name = document.getElementById('userName').value;
-    const contact = document.getElementById('contact').value;
-    const postCode = document.getElementById('postcode').value;
-    const address = document.getElementById('address').value;
-    const detailAddress = document.getElementById('detail-address').value;
-
-    const data = {
-      name: userName,
-      contact: phone,
-      postCode: postalCod,
-      address: address1,
-      detailAddress: address2,
-    };
-
-    fetch(url, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert('회원정보가 성공적으로 수정되었습니다.');
-        } else if (!detailAddress) {
-          alert('상세 주소를 입력해주세요.');
-        } else {
-          alert('회원정보 수정에 실패했습니다.');
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('오류가 발생했습니다. 다시 시도해주세요.');
-      });
+  const response = fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: {
+      oldPassword: $('#password-now').value,
+      newPassword: $('#password-new').value,
+    },
   });
+  if (response.ok) {
+    return response.json();
+  }
+}
+
+// $pw.value = '';
+// $pwValidate.value = '';
+// check.pw = true;
+// // $isAdmin.value = data.isAdmin;
+// if (data.address) {
+//   $postalCode.value = data.address.postalCode;
+// } else {
+//   $postalCode.value = '';
+// }
+// if (data.address) {
+//   $address1.value = data.address.address1;
+// } else {
+//   $address1.value = '';
+// }
+// if (data.address) {
+//   $address2.value = data.address.address2;
+//   $addressMsg.textContent = '';
+//   $addressMsg.style.color = '';
+//   check.address = true;
+// } else {
+//   $address2.value = '';
+//   $addressMsg.textContent = guideMsg.ADDR_DETAIL_ADD_MSG.msg;
+//   $addressMsg.style.color = guideMsg.ADDR_DETAIL_ADD_MSG.color;
+//   check.address = true;
+// }
+// if ($postalCode.value === '' && $address1.value === '' && $address2.value === '') {
+//   $addressMsg.textContent = guideMsg.ADDR_ADD_MSG.msg;
+//   $addressMsg.style.color = guideMsg.ADDR_ADD_MSG.color;
+// }
+
+// document.getElementById('update-form').addEventListener('submit', (event) => {
+//   event.preventDefault();

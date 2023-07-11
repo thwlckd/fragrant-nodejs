@@ -18,24 +18,18 @@
         <hr color="#464646" />
         <div class="form-group">
           <label for="id">아이디 </label>
-          <input type="text" id="id" value="elice123@elice.io" disabled />
+          <input type="text" id="user-id" disabled />
         </div>
         <hr />
         <div class="form-group">
           <label for="name">이름 </label>
-          <input type="text" id="name" value="이수민" required />
+          <input type="text" name="userName" id="name" required />
         </div>
         <hr />
 
         <div class="form-group">
           <label for="contact">연락처 </label>
-          <input
-            type="tel"
-            id="contact"
-            value="010-1234-5678"
-            required
-            maxlength="13"
-          />
+          <input type="tel" name="phone" id="contact" required maxlength="13" />
         </div>
         <hr />
         <!-- 주소 찾기-->
@@ -43,15 +37,10 @@
           <label for="address">주소 </label>
           <div id="address-info">
             <div id="find-address">
-              <input
-                type="text"
-                id="postcode"
-                placeholder="우편번호"
-                disabled
-              />
-              <button type="button" id="address-button">주소 찾기</button><br />
+              <input type="text" name="postalCode" id="postcode" placeholder="우편번호" disabled />
+              <button type="button" name="address1" id="address-button">주소 찾기</button><br />
             </div>
-            <input type="text" id="address" value="" disabled /><br />
+            <input type="text" name="address2" id="address" disabled /><br />
             <input
               type="text"
               id="detail-address"
@@ -73,15 +62,13 @@
         <hr color="#464646" />
         <div class="form-group">
           <label for="password-now">현재 비밀번호 </label>
-          <input type="password" id="password-now" value="" />
+          <input type="password" id="password-now" />
         </div>
         <hr />
         <div class="form-group">
           <label for="password-new">새 비밀번호 </label>
-          <input type="password" id="password-new" value="" />
-          <p id="password-noti-1">
-            비밀번호는 8자 이상의 영문으로 입력해주세요.
-          </p>
+          <input type="password" id="password-new" />
+          <p id="password-noti-1">비밀번호는 8자 이상의 영문으로 입력해주세요.</p>
         </div>
         <hr />
         <div class="form-group">
@@ -116,8 +103,8 @@
       </div>
     </div>
     <script src="/components/Header/Header.js" type="module"></script>
-    <script src="/components/Footer/Footer.js" type="module"></script>
+    <!-- <script src="/components/Footer/Footer.js" type="module"></script> -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="./userModify.js"></script>
+    <script src="./userModify.js" type="module"></script>
   </body>
 </html>
