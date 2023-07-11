@@ -99,6 +99,8 @@ const productDAO = {
   async getAllProductsByBrandId(brandId, { page, perPage }) {
     const [products, total] = await Promise.all([
       Product.find({ brand: brandId }, { _id: 0 })
+        .populate('note', { _id: 1, type: 1 })
+        .populate('brand', { _id: 1, name: 1 })
         .sort({ createdAt: -1 })
         .skip(perPage * (page - 1))
         .limit(perPage)
@@ -113,6 +115,8 @@ const productDAO = {
   async getAllProductsByNoteId(noteId, { page, perPage }) {
     const [products, total] = await Promise.all([
       Product.find({ note: { $all: [noteId] } }, { _id: 0 })
+        .populate('note', { _id: 1, type: 1 })
+        .populate('brand', { _id: 1, name: 1 })
         .sort({ createdAt: -1 })
         .skip(perPage * (page - 1))
         .limit(perPage)
@@ -127,6 +131,8 @@ const productDAO = {
   async getAllProductsByGender(gender, { page, perPage }) {
     const [products, total] = await Promise.all([
       Product.find({ gender }, { _id: 0 })
+        .populate('note', { _id: 1, type: 1 })
+        .populate('brand', { _id: 1, name: 1 })
         .sort({ createdAt: -1 })
         .skip(perPage * (page - 1))
         .limit(perPage)
@@ -139,7 +145,10 @@ const productDAO = {
 
   // id로 찾기(상세조회)
   async getProductByProductId(productId) {
-    const product = await Product.findOne({ productId }, { _id: 0 }).lean();
+    const product = await Product.findOne({ productId }, { _id: 0 })
+      .populate('note', { _id: 1, type: 1 })
+      .populate('brand', { _id: 1, name: 1 })
+      .lean();
 
     return product;
   },
@@ -150,7 +159,10 @@ const productDAO = {
         $or: [{ 'name.origin': productName }, { 'name.korean': productName }],
       },
       { _id: 0 },
-    ).lean();
+    )
+      .populate('note', { _id: 1, type: 1 })
+      .populate('brand', { _id: 1, name: 1 })
+      .lean();
 
     return product;
   },
