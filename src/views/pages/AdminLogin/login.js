@@ -11,7 +11,7 @@ $loginBtn.addEventListener('click', async () => {
     password: $password.value,
   };
 
-  const login = await POST('/auth/sign-in', postData);
+  const login = await POST('/api/auth/sign-in', postData);
   console.log('🚀 ~ file: login.js:15 ~ $loginBtn.addEventListener ~ login:', login);
 
   // document.cookie = `userToken=${login.token}; path=/`;

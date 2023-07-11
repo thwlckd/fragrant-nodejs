@@ -4,7 +4,7 @@ import { check } from '/js/util/validate.js';
 import { guideMsg } from '/js/util/constant.js';
 
 const url = window.location.pathname;
-const endpoint = `/users/${url.split('/').slice(-2)[0]}`;
+const endpoint = `/api/users/${url.split('/').slice(-2)[0]}`;
 // const pwEndPoint = `/users/password/${url.split('/').slice(-2)[0]}`;
 
 const getUser = async () => {
@@ -20,8 +20,8 @@ const render = async () => {
   const $email = $('#e-mail');
   const $phNum = $('#phone-number');
   const $phNumMsg = $('#phone-number-form small');
-  const $pw = $('#password');
-  const $pwValidate = $('#pw-validate');
+  // const $pw = $('#password');
+  // const $pwValidate = $('#pw-validate');
   // const $isAdmin = $('#isAdmin');
   const $postalCode = $('#postalCode');
   const $address1 = $('#address1');
@@ -53,9 +53,9 @@ const render = async () => {
       $phNumMsg.textContent = guideMsg.PH_NUM_ADD_MSG.msg;
       $phNumMsg.style.color = guideMsg.PH_NUM_ADD_MSG.color;
     }
-    $pw.value = '';
-    $pwValidate.value = '';
-    check.pw = true;
+    // $pw.value = '';
+    // $pwValidate.value = '';
+    // check.pw = true;
     // $isAdmin.value = data.isAdmin;
     if (data.address) {
       $postalCode.value = data.address.postalCode;
@@ -116,13 +116,13 @@ const render = async () => {
         rejectText += ', 전화번호';
       }
     }
-    if (!check.pw) {
-      if (rejectText.length === 0) {
-        rejectText += '비밀번호';
-      } else {
-        rejectText += ', 비밀번호';
-      }
-    }
+    // if (!check.pw) {
+    //   if (rejectText.length === 0) {
+    //     rejectText += '비밀번호';
+    //   } else {
+    //     rejectText += ', 비밀번호';
+    //   }
+    // }
     if (!check.address) {
       if (rejectText.length === 0) {
         rejectText += '주소';

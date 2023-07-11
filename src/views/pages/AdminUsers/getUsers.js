@@ -9,7 +9,7 @@ const $deleteAllBtn = $('.delete-all');
 let deleteList = [];
 
 // getUsers('/dummy/getUsers.json').then((res) => {
-getUsers('/users').then((res) => {
+getUsers('/api/users').then((res) => {
   const $tbody = $('.main-tbody');
 
   const tdCreate = (data) => {
