@@ -1,0 +1,10 @@
+{
+  "_id": "64a6d654b2cb5883241008db",
+  "email": "admin@gmail.com",
+  "password": "$2b$10$eED98Vx7QWMW3EnlDRNXpObq.CF0UN9xL/YmdlKV2c/VuAWVJQr.K",
+  "isAdmin": true,
+  "userName": "관리자",
+  "createdAt": "2023-07-06T14:57:24.516Z",
+  "updatedAt": "2023-07-06T14:57:24.516Z",
+  "__v": 0
+}

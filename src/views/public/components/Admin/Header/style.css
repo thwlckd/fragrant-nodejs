@@ -1,0 +1,156 @@
+#app {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+
+header{
+  width: 350px;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #282828;
+  /* overflow: hidden; */
+  transition: margin-left.25s ease-in-out;
+  margin-left: 0;
+}
+.header-off{
+  /* width: 0px; */
+  margin-left: -350px;
+}
+.wrap{
+  width: 350px;
+  height: calc(100% - 60px);
+  padding: 20px 40px 20px 40px;
+  box-sizing: border-box;
+  overflow: auto;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.wrap::-webkit-scrollbar{
+  display: none;
+}
+.wrap h1{
+  color: white;
+  font-size: 48px;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.wrap hr{
+  border: 0.5px solid rgba(153, 153, 153, 0.3);
+  margin: 30px 0;
+}
+.icon-wrap{
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  margin: -5px 0;
+}
+.icon-wrap > a{
+  padding: 5px;
+}
+.icon-wrap >a:hover >img{
+  filter: brightness(200%);
+}
+.wrap h2{
+  color: white;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.wrap nav{
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.list{
+  width: 100%;
+  height: auto;
+  font-size: 20px;
+}
+
+.list a{
+  color: white;
+  text-decoration: none;
+}
+.parent{
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  line-height: 30px;
+  color: white;
+  border-bottom: 1px solid #282828;
+}
+.parent{
+  background-color: #333333;
+  box-sizing: border-box;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.parent:hover{
+  filter: brightness(120%);
+}
+
+
+.menus{
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  color: #999999;
+  font-size: 20px;
+  text-decoration: none;
+}
+.menus:hover{
+  filter: brightness(200%);
+}
+.menus img{
+  margin-right: 20px;
+}
+
+.nav-footer{
+  color: #999999;
+  width: 350px;
+  height: 60px;
+  display: flex;
+  padding: 20px 0 0px 20px;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  /* margin-top: 240px; */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: left.25s ease-in-out;
+  z-index: 9999;
+
+}
+.header-close-btn{
+  background-color: #323232;
+  /* border-radius: 5px; */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.header-off ~ .nav-footer{
+  left: -310px;
+}
+.header-off ~ .nav-footer > .header-close-btn{
+  transform:scaleX(-1);
+}
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="user.css" />
+  </head>
+  <body>
+    <div class="mypage">
+      <h1 class="page-title">My page</h1>
+      <!-- 회원 정보 -->
+      <div class="user-info">
+        <div class="user-name">이수민</div>
+        <div class="user-info-1">
+          <div class="user-id">elice123@elice.io</div>
+          <a class="change-info-btn" href="../modify"> 회원정보 변경하기 </a>
+        </div>
+      </div>
+      <!-- 주문 내역 -->
+      <div class="order-history">
+        <h2 class="order-title">주문 내역</h2>
+        <hr class="hr-1" />
+        <div class="order-list">
+          <div class="order-header">
+            <p class="order-date">2023. 07. 05 (11시 11분)</p>
+            <a class="view-order-detail" href="../orders/:orderId"
+              >주문내역 상세보기 ></a
+            >
+          </div>
+          <div class="order-list-1">
+            <hr id="hr-2" />
+            <div class="order-list-component">
+              <a href="/products/:productId">
+                <img
+                  class="product-image"
+                  src="/asset/perfume/red_elice.png"
+                  style="width: 100px; height: 100px"
+              /></a>
+              <div class="order-info">
+                <div id="product-name">상품명</div>
+                <div id="order-id">주문번호</div>
+                <div id="order-payment">결제금액</div>
+              </div>
+              <div class="order-status-box">
+                <p class="order-status">결제완료</p>
+                <button type="button" id="order-cancel">주문취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="order-list">
+          <div class="order-header">
+            <p class="order-date">2023. 07. 04 (11시 11분)</p>
+            <a class="view-order-detail" href="/user/orders/:orderId"
+              >주문내역 상세보기 ></a
+            >
+          </div>
+          <div class="order-list-1">
+            <hr id="hr-2" />
+            <div class="order-list-component">
+              <img
+                class="product-image"
+                src="/asset/perfume/black_elice.png"
+                style="width: 100px; height: 100px"
+              />
+              <div class="order-info">
+                <div id="product-name">상품명</div>
+                <div id="order-id">주문번호</div>
+                <div id="order-payment">결제금액</div>
+              </div>
+              <div class="order-status-box">
+                <p class="order-status">배송완료</p>
+                <button type="button" id="order-cancel-hidden">주문취소</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+  </body>
+</html>
