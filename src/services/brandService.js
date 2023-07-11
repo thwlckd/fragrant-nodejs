@@ -20,7 +20,7 @@ const brandService = {
     await brandDAO.createBrand({ origin, korean, picture });
   },
 
-  async updateBrand(target, { origin, korean, file }) {
+  async updateBrand(target, { origin, korean, picture }) {
     const isObjectId = ObjectId.isValid(target);
     const updateInfo = isObjectId
       ? await brandDAO.getBrandByBrandId(target)
@@ -28,7 +28,7 @@ const brandService = {
 
     if (origin) updateInfo.brand.origin = origin;
     if (korean) updateInfo.brand.korean = korean;
-    if (file && file.path) updateInfo.picture = file.path;
+    if (picture) updateInfo.picture = picture;
 
     if (isObjectId) await brandDAO.updateBrandByBrandId(target, updateInfo);
     else await brandDAO.updateBrandByBrandName(target, updateInfo);

@@ -2,7 +2,7 @@ const { Schema } = require('mongoose');
 
 const BrandSchema = new Schema(
   {
-    brand: {
+    name: {
       type: {
         origin: {
           type: String,

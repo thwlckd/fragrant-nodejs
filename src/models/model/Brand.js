@@ -15,10 +15,10 @@ const brandDAO = {
       ...(await Brand.find({
         $or: [
           {
-            'brand.origin': { $regex: new RegExp(search, 'i') },
+            'name.origin': { $regex: new RegExp(search, 'i') },
           },
           {
-            'brand.korean': { $regex: new RegExp(search, 'i') },
+            'name.korean': { $regex: new RegExp(search, 'i') },
           },
         ],
       })
@@ -37,7 +37,7 @@ const brandDAO = {
 
   async getBrandByBrandName(brandName) {
     const brand = await Brand.findOne({
-      $or: [{ 'brand.origin': brandName }, { 'brand.korean': brandName }],
+      $or: [{ 'name.origin': brandName }, { 'name.korean': brandName }],
     }).lean();
 
     return brand;
@@ -45,7 +45,7 @@ const brandDAO = {
 
   async createBrand({ origin, korean, picture }) {
     const brand = await Brand.create({
-      brand: {
+      name: {
         origin,
         korean,
       },
@@ -61,7 +61,7 @@ const brandDAO = {
 
   async updateBrandByBrandName(brandName, updateInfo) {
     await Brand.findOneAndUpdate(
-      { $or: [{ 'brand.origin': brandName }, { 'brand.korean': brandName }] },
+      { $or: [{ 'name.origin': brandName }, { 'name.korean': brandName }] },
       updateInfo,
     ).lean();
   },
@@ -74,7 +74,7 @@ const brandDAO = {
 
   async deleteBrandByBrandName(brandName) {
     const { deletedCount } = await Brand.deleteOne({
-      $or: [{ 'brand.origin': brandName }, { 'brand.korean': brandName }],
+      $or: [{ 'name.origin': brandName }, { 'name.korean': brandName }],
     }).lean();
 
     return deletedCount;

@@ -71,9 +71,79 @@ const productController = {
 
   // 상품 생성
   async createProduct(req, res) {
-    const product = productService.createProduct({});
+    const {
+      originName: origin,
+      koreanName: korean,
+      capacity,
+      price,
+      gender,
+      note,
+      brand,
+      description,
+      quantity,
+    } = req.body;
+    const { path } = req.file;
+    const picture = path.split('public')[1];
 
-    res.json({ product });
+    if (!origin || !korean || !capacity || !price || !note || !brand || !description || !picture) {
+      res.status(400).end();
+      return;
+    }
+
+    const product = productService.createProduct({
+      origin,
+      korean,
+      capacity,
+      price,
+      gender,
+      note,
+      brand,
+      description,
+      quantity,
+      picture,
+    });
+
+    res.status(201).json({ product });
+  },
+
+  async updateProduct(req, res) {
+    const {
+      target,
+      originName: origin,
+      koreanName: korean,
+      capacity,
+      price,
+      gender,
+      note,
+      brand,
+      description,
+      quantity,
+    } = req.body;
+    const { file } = req;
+    const path = file && file.path;
+    const picture = path && path.split('public')[1];
+
+    const product = productService.updateProduct(target, {
+      origin,
+      korean,
+      capacity,
+      price,
+      gender,
+      note,
+      brand,
+      description,
+      quantity,
+      picture,
+    });
+
+    res.status(201).json({ product });
+  },
+
+  async deleteProduct(req, res) {
+    const { target } = req.params;
+
+    const deletedCount = await productService.deleteProduct(target);
+    res.json({ deletedCount });
   },
 };
 
