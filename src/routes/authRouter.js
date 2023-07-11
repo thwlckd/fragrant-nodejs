@@ -14,14 +14,23 @@ authRouter.post(
 authRouter.post('/sign-out', (req, res, next) => {
   res.clearCookie('token').end();
 });
+
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 authRouter.get(
   '/google/callback',
   passport.authenticate('google', { session: false }),
   (req, res, next) => {
-    // userToken 설정하기
     setUserToken(res, req.user);
+    res.redirect('/');
+  },
+);
 
+authRouter.get('/kakao', passport.authenticate('kakao', { session: false }));
+authRouter.get(
+  '/kakao/callback',
+  passport.authenticate('kakao', { session: false }),
+  (req, res, next) => {
+    setUserToken(res, req.user);
     res.redirect('/');
   },
 );

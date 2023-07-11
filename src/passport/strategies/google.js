@@ -2,8 +2,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { userDAO } = require('../../models/model');
 
 const config = {
-  clientID: '381088820397-rh448glarg99eirrflu4vja8l4l6crli.apps.googleusercontent.com',
-  clientSecret: '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',
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: '/auth/google/callback',
 };
 
@@ -12,7 +12,6 @@ async function findOrCreateUser({ name, email }) {
   if (user) {
     return user;
   }
-
   const createdUser = await userDAO.create({
     userName: name,
     email,
@@ -24,7 +23,6 @@ async function findOrCreateUser({ name, email }) {
 
 module.exports = new GoogleStrategy(config, async (accessToken, refreshToken, profile, done) => {
   const { email, name } = profile._json;
-
   try {
     const user = await findOrCreateUser({ email, name });
     done(null, {

@@ -3,11 +3,9 @@ const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
-const cors = require('cors');
 const { getToken } = require('./middlewares');
 const { router } = require('./routes');
 const { errorLogger, errorHandler } = require('./middlewares');
-
 const { viewRouter } = require('./routes');
 
 require('dotenv').config();
@@ -22,15 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser()); // cookie-parser는 요청과 함께 들어온 쿠키를 해석하여 req.cookies객체로 만들어줌
 app.use(passport.initialize());
 app.use(getToken);
-// app.use(
-//   cors({
-//     // origin: '*', // 접근 권한을 부여하는 도메인
-//     origin: 'https://google.com', // 접근 권한을 부여하는 도메인
-//     credentials: true, // 응답 헤더에 Access-Control-Allow-Credentials 추가
-//     optionsSuccessStatus: 200, // 응답 상태 200으로 설정
-//   }),
-// );
-app.use(cors({ origin: '*' }));
 
 app.use('/', express.static(path.join(__dirname, './views/public')));
 app.use('/', viewRouter);
