@@ -1,25 +1,47 @@
 const { Schema } = require('mongoose');
-const shortId = require('./types/shortId');
-const ReviewSchema = require('./review');
+
+const ProductIdCounterSchema = new Schema(
+  {
+    _id: {
+      type: String,
+      required: true,
+    },
+    usableId: {
+      type: Number,
+      default: 0,
+    },
+  },
+  {
+    collection: 'ProductId',
+    timestamps: true,
+  },
+);
 
 const ProductSchema = new Schema(
   {
     productId: {
-      type: String,
-      default: shortId(),
-      required: true,
+      type: Number,
       unique: true,
       index: true,
     },
     name: {
-      origin: {
-        type: String,
-        required: true,
+      type: {
+        origin: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        korean: {
+          type: String,
+          required: true,
+          unique: true,
+        },
       },
-      korean: {
-        type: String,
-        required: true,
-      },
+      required: true,
+    },
+    capacity: {
+      type: String,
+      required: true,
     },
     price: {
       type: Number,
@@ -33,11 +55,14 @@ const ProductSchema = new Schema(
       type: String,
       enum: ['man', 'woman', 'unisex'],
       default: 'unisex',
-      required: true,
     },
-    catogory: {
-      type: Schema.Types.ObjectId,
-      ref: 'Catogory',
+    note: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Note',
+        },
+      ],
       required: true,
     },
     brand: {
@@ -45,7 +70,14 @@ const ProductSchema = new Schema(
       ref: 'Brand',
       required: true,
     },
-    review: [ReviewSchema],
+    description: {
+      type: String,
+      required: true,
+    },
+    quantity: {
+      type: Number,
+      default: 100,
+    },
   },
   {
     collection: 'Product',
@@ -53,4 +85,4 @@ const ProductSchema = new Schema(
   },
 );
 
-module.exports = ProductSchema;
+module.exports = { ProductSchema, ProductIdCounterSchema };

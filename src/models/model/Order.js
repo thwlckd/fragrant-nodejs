@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { OrderSchema, UserSchema } = require('../schemas');
-const { formatDate } = require('../../utils/utils');
+const { formatDate, filterResponseOrder } = require('../../utils/utils');
 
 const Order = mongoose.model('Order', OrderSchema);
 const User = mongoose.model('User', UserSchema);
@@ -32,24 +32,24 @@ const orderDAO = {
 
   async findOne(orderId) {
     const order = await Order.findById(orderId).lean();
-    return formatDate(order);
+    return filterResponseOrder(formatDate(order));
   },
 
   async findAll() {
     const order = await Order.find({}).lean();
-    return formatDate(order);
+    return filterResponseOrder(formatDate(order));
   },
 
   async findAllByUserName(name) {
     const orders = await Order.find({}).lean();
     const ordersByName = orders.filter((order) => order.orderer.name === name);
-    return formatDate(ordersByName);
+    return filterResponseOrder(formatDate(ordersByName));
   },
 
   async findAllByUserEmail(userEmail) {
     const orders = await Order.find({}).lean();
     const ordersByEmail = orders.filter((order) => order.orderer.email === userEmail);
-    return formatDate(ordersByEmail);
+    return filterResponseOrder(formatDate(ordersByEmail));
   },
 
   async updateOne(orderId, toUpdate) {
