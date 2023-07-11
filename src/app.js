@@ -30,7 +30,7 @@ mongoose.connection.on('connected', () => {
   console.log('MongoDB connected');
 });
 
-app.use('/', router);
+app.use('/api', router);
 
 app.use(errorLogger);
 app.use((error, req, res, next) => {
