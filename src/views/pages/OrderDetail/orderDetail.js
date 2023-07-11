@@ -50,8 +50,10 @@ async function displayProductList() {
 
     const $imgLink = $create('a', 'img-link', { href: `/products/${productId}` });
     const $productInfo = $create('div', 'product-info');
+    const $reviewBtn = $create('button', 'review-btn');
+    $reviewBtn.textContent = '리뷰쓰기';
 
-    $append($orderProductList, $imgLink, $productInfo);
+    $append($orderProductList, $imgLink, $productInfo, $reviewBtn);
 
     const $productImg = $create('img', 'product-image');
 
@@ -67,6 +69,10 @@ async function displayProductList() {
     $append($productInfo, $productName, $productCapa, $productPrcie);
 
     $append($productListSection, $liElement);
+
+    if (orderStatus === '배송중' || orderStatus === '배송완료') {
+      $('.order-cancel-btn').classList.add('order-cancel-hidden');
+    }
   }
 }
 displayProductList();
@@ -80,6 +86,6 @@ const close = () => {
   document.querySelector('.modal').classList.add('hidden');
 };
 
-document.querySelector('#order-cancel-btn').addEventListener('click', open);
+document.querySelector('.order-cancel-btn').addEventListener('click', open);
 document.querySelector('.close-btn').addEventListener('click', close);
 document.querySelector('.background').addEventListener('click', close);

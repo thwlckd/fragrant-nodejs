@@ -35,7 +35,7 @@
 }
 
 #order-status-text {
-  margin-right: 20px;
+  margin-right: 40px;
   font-size: 26px;
   font-weight: bold;
 }
@@ -78,7 +78,8 @@
   height: auto;
   border-bottom: 1px solid lightgray;
   display: flex;
-  align-items: start;
+  justify-content: space-between;
+  align-items: center;
   overflow: auto;
 }
 
@@ -90,20 +91,17 @@
 
 .product-info {
   padding: 30px;
-  line-height: 27px;
+  margin-right: 60%;
+  line-height: 28px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
 }
 
-.order-info-column {
-  width: 80%;
-  padding: 30px 0;
-  font-size: 22px;
-}
-
-#review-btn {
+.review-btn {
   all: unset;
   width: 80px;
   padding: 12px 20px;
-  margin-right: 40px;
+  margin-right: 36px;
   text-align: center;
   font-size: 20px;
   border: 1px solid darkgray;
@@ -148,13 +146,12 @@
 }
 .address-header > div {
   padding-top: 35px;
-
   cursor: pointer;
 }
 
 .address-modify-btn {
   all: unset;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .shipping-address > table {
@@ -162,8 +159,6 @@
   line-height: 4;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 24px;
-}
-.shipping-address > table tr {
 }
 
 .shipping-address > table td {
@@ -181,7 +176,7 @@
   text-align: right;
 }
 
-#order-cancel-btn {
+.order-cancel-btn {
   all: unset;
   padding: 15px 40px;
   margin-top: 60px;
@@ -190,6 +185,10 @@
   border: 1px solid rgb(67, 67, 67);
   border-radius: 3px;
   cursor: pointer;
+}
+
+.order-cancel-hidden {
+  display: none;
 }
 
 .modal {
