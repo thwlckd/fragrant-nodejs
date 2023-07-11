@@ -1,47 +1,47 @@
-const { orderDAO } = require('../models/model');
+const { orderDAO, userDAO } = require('../models/model');
+const { checkObjectValues, formatDate, filterResponseOrder } = require('../utils/utils');
 
 const orderService = {
-  async createOrder({ products, orderer, price, orderStatus, requirement }, userEmail) {
-    const order = await orderDAO.create(
-      {
-        products,
-        orderer,
-        price,
-        orderStatus,
-        requirement,
-      },
-      userEmail,
-    );
+  async createOrderAndUpdateUserAddress(toCreateObj, userEmail) {
+    const toCreate = checkObjectValues(toCreateObj);
+    const order = await orderDAO.create(toCreate);
+    const toUpdate = order.orderer.address;
+    await userDAO.updateOneByUserEmail(userEmail, {
+      address: toUpdate,
+    });
     return order;
   },
 
-  async getOrder(orderId) {
-    const order = await orderDAO.findOne(orderId);
-    return order;
+  async getOrderByOrderId(orderId) {
+    const order = await orderDAO.findOneByOrderId(orderId);
+    return filterResponseOrder(formatDate(order));
   },
 
   async getOrders() {
     const order = await orderDAO.findAll();
-    return order;
+    return filterResponseOrder(formatDate(order));
   },
 
   async getOrdersByUserName(name) {
-    const order = await orderDAO.findAllByUserName(name);
-    return order;
+    const orders = await orderDAO.findAll();
+    const ordersforSameName = orders.filter((order) => order.orderer.name === name);
+    return filterResponseOrder(formatDate(ordersforSameName));
   },
 
   async getOrdersByUserEmail(userEmail) {
-    const order = await orderDAO.findAllByUserEmail(userEmail);
+    const orders = await orderDAO.findAll();
+    const ordersByEmail = orders.filter((order) => order.orderer.email === userEmail);
+    return filterResponseOrder(formatDate(ordersByEmail));
+  },
+
+  async updateOrderByOrderId(orderId, toUpdateObj) {
+    const toUpdate = checkObjectValues(toUpdateObj);
+    const order = await orderDAO.updateOneByOrderId(orderId, toUpdate);
     return order;
   },
 
-  async updateUserOrder(orderId, toUpdate) {
-    const order = await orderDAO.updateOne(orderId, toUpdate);
-    return order;
-  },
-
-  async deleteOrder(orderId) {
-    const order = await orderDAO.deleteOne(orderId);
+  async deleteOrderByOrderId(orderId) {
+    const order = await orderDAO.deleteOneByOrderId(orderId);
     return order;
   },
 };

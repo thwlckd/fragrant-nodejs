@@ -18,7 +18,7 @@ async function subtractProductsQuantity(products) {
 
 function checkObjectValues(obj) {
   const result = Object.entries(obj).reduce((map, [key, value]) => {
-    if (value !== undefined || value !== '') {
+    if (!value) {
       map[key] = value;
     }
     return map;
@@ -64,6 +64,7 @@ function filterformatOrder(order) {
 }
 
 function filterResponseOrder(toResponse) {
+  if (!toResponse) return null;
   if (Array.isArray(toResponse)) {
     const filteredList = toResponse.map((order) => filterformatOrder(order));
     return filteredList;
@@ -84,6 +85,7 @@ function timeFormat(orders) {
 }
 
 function formatDate(orders) {
+  if (!orders) return null;
   if (Array.isArray(orders)) {
     const timeFormattedorders = orders.map((order) => timeFormat(order));
     return timeFormattedorders;

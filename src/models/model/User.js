@@ -34,6 +34,11 @@ const userDAO = {
     return user;
   },
 
+  async updateOneByUserEmail(email, toUpdate) {
+    const user = await User.findOneAndUpdate({ email }, toUpdate).lean();
+    return user;
+  },
+
   async deleteOne(userId) {
     const user = await User.deleteOne({ _id: userId }).lean();
     return user;

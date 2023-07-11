@@ -7,11 +7,22 @@ const orderRouter = Router();
 
 orderRouter.get('/', adminOnly, asyncHandler(orderController.getOrders));
 orderRouter.get('/userName', adminOnly, asyncHandler(orderController.getOrdersByUserName));
-orderRouter.post('/order', loginRequired, asyncHandler(orderController.postOrder));
 orderRouter.get('/user', loginRequired, asyncHandler(orderController.getOrdersByUserEmail));
-orderRouter.get('/:orderId', loginRequired, asyncHandler(orderController.getOrder));
-orderRouter.patch('/user/:orderId', loginRequired, asyncHandler(orderController.patchUserOrder));
-orderRouter.patch('/admin/:orderId', adminOnly, asyncHandler(orderController.patchAdminOrder));
-orderRouter.delete('/:orderId', loginRequired, asyncHandler(orderController.deleteOrder));
+orderRouter.get('/:orderId', loginRequired, asyncHandler(orderController.getOrderByOrderId));
+
+orderRouter.post('/order', loginRequired, asyncHandler(orderController.postOrder));
+
+orderRouter.patch(
+  '/user/:orderId',
+  loginRequired,
+  asyncHandler(orderController.patchOrderByOrderIdForUser),
+);
+orderRouter.patch(
+  '/admin/:orderId',
+  adminOnly,
+  asyncHandler(orderController.patchOrderByOrderIdForAdmin),
+);
+
+orderRouter.delete('/:orderId', loginRequired, asyncHandler(orderController.deleteOrderByOrderId));
 
 module.exports = orderRouter;
