@@ -1,4 +1,5 @@
 const { orderService } = require('../services');
+const { addProductsQuantity, subtractProductsQuantity } = require('../utils/utils');
 
 const orderController = {
   async postOrder(req, res, next) {
@@ -15,6 +16,7 @@ const orderController = {
         },
         userEmail,
       );
+      await addProductsQuantity(products);
       res.status(201).end();
     } catch (err) {
       next(err);
@@ -89,6 +91,8 @@ const orderController = {
     try {
       const { orderId } = req.params;
       await orderService.deleteOrder(orderId);
+      const order = await orderService.getOrder(orderId);
+      await subtractProductsQuantity(order.products);
       res.end();
     } catch (err) {
       next(err);

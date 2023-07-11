@@ -48,7 +48,12 @@ const userService = {
     return user;
   },
 
-  async deleteUser(userId, originPassword) {
+  async deleteUserForAdmin(userId) {
+    const user = await userDAO.deleteOne(userId);
+    return user;
+  },
+
+  async deleteUserByPassword(userId, originPassword) {
     const { password } = await userDAO.findOne(userId);
     if (!(await comparePassword(originPassword, password))) {
       return null;
