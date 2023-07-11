@@ -129,6 +129,10 @@ async function displayOrderList() {
     if (orderStatus === '배송중' || orderStatus === '') {
       $orderCancelBtn.classList.add('order-cancel-hidden');
     }
+
+    $orderList1.onclick = () => {
+      location.href = `../orders/${_id}`;
+    };
   }
   $('#order-complete').textContent = orderComplete;
   $('#shipping-ready').textContent = shippingReady;
