@@ -27,8 +27,10 @@ const brandController = {
   async updateBrand(req, res) {
     const { target, originName: origin, koreanName: korean } = req.body;
     const { file } = req;
+    const path = file && file.path;
+    const picture = path && path.split('public')[1];
 
-    await brandService.updateBrand(target, { origin, korean, file });
+    await brandService.updateBrand(target, { origin, korean, picture });
 
     res.status(201).end();
   },
