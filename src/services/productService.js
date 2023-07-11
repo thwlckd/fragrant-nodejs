@@ -1,54 +1,141 @@
-const { productDAO, brandDAO, categoryDAO } = require('../models/model');
+const { ObjectId } = require('mongoose').Types;
+const { productDAO, brandDAO, noteDAO } = require('../models/model');
 
 const productService = {
   // 전체 상품 조회
-  async getAllProduct() {
-    const products = await productDAO.findAllProducts();
+  async getAllProducts({ page, perPage }) {
+    const { products, total } = await productDAO.getAllProducts({ page, perPage });
 
-    return products;
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
   },
 
-  // 특정 브랜드의 상품 조회
-  async getAllProductByBrand(brand) {
-    const { id } = await brandDAO.getIdByName(brand);
+  // 검색
+  async getAllProductsBySearch(search, { page, perPage }) {
+    const [brandIds, noteIds] = await Promise.all([
+      brandDAO.getAllBrandsBySearch(search),
+      noteDAO.getAllNotesBySearch(search),
+    ]);
 
-    const products = await productDAO.findAllProductsByBrand(id);
+    const { products, total } = await productDAO.getAllProductsBySearch(search, brandIds, noteIds, {
+      page,
+      perPage,
+    });
 
-    return products;
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
   },
 
-  // 특정 카테고리의 상품 조희
-  async getAllProductByCategory(category) {
-    const { id } = await categoryDAO.getIdByName(category);
+  // 브랜드
+  async getAllProductsByBrand(target, { page, perPage }) {
+    const key = '_id';
+    const brandId = ObjectId.isValid(target)
+      ? target
+      : (await brandDAO.getBrandByBrandName(target))[key];
 
-    const products = await productDAO.findAllProductsByBrand(id);
+    const { products, total } = await productDAO.getAllProductsByBrandId(brandId, {
+      page,
+      perPage,
+    });
 
-    return products;
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
+  },
+
+  // 노트
+  async getAllProductsByNote(target, { page, perPage }) {
+    const key = '_id';
+    const noteId = ObjectId.isValid(target)
+      ? target
+      : (await noteDAO.getNoteByNoteType(target))[key];
+
+    const { products, total } = await productDAO.getAllProductsByNoteId(noteId, {
+      page,
+      perPage,
+    });
+
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
   },
 
   // 특정 성별 상품 조회
-  async getAllProductByGender(gender) {
-    const products = await productDAO.findAllProductsByGender(gender);
+  async getAllProductsByGender(gender, { page, perPage }) {
+    const { products, total } = await productDAO.getAllProductsByGender(gender, { page, perPage });
 
-    return products;
+    const totalPage = Math.ceil(total / perPage);
+
+    return { products, totalPage };
   },
 
   // 상품 상세조회
-  async getProductByProductId(id) {
-    const product = await productDAO.findProductByProductId(id);
+
+  async getProduct(target) {
+    const product = !Number.isNaN(parseInt(target, 10))
+      ? await productDAO.getProductByProductId(target)
+      : await productDAO.getProductByProductName(target);
 
     return product;
   },
 
   // 관리자
   // 상품 추가
-  async addProduct(productInfo) {
-    await productDAO.createProduct(productInfo);
+  async createProduct({
+    origin,
+    korean,
+    capacity,
+    price,
+    gender,
+    note,
+    brand,
+    description,
+    quantity,
+    picture,
+  }) {
+    const productInfo = {
+      name: { origin, korean },
+      capacity,
+      price,
+      note: note.split(','),
+      brand,
+      description,
+      picture,
+    };
+
+    if (gender) productInfo.gender = gender;
+    if (quantity) productInfo.quantity = quantity;
+
+    const product = await productDAO.createProduct(productInfo);
+
+    return product;
   },
 
   // 상품 수정
-  async updateProduct(id, updateInfo) {
-    await productDAO.updateProductByProductId(id, updateInfo);
+  async updateProduct(
+    target,
+    { origin, korean, capacity, price, gender, note, brand, description, quantity, picture },
+  ) {
+    const isNumberTarget = !Number.isNaN(parseInt(target, 10));
+    const updateInfo = isNumberTarget
+      ? await productDAO.getProductByProductId(target)
+      : await productDAO.getProductByProductName(target);
+
+    if (origin) updateInfo.brand.origin = origin;
+    if (korean) updateInfo.brand.korean = korean;
+    if (note) updateInfo.note = note.split(',');
+    if (capacity) updateInfo.capacity = capacity;
+    if (price) updateInfo.price = price;
+    if (gender) updateInfo.gender = gender;
+    if (brand) updateInfo.brand = brand;
+    if (description) updateInfo.description = description;
+    if (quantity) updateInfo.quantity = quantity;
+    if (picture) updateInfo.picture = picture;
+
+    if (isNumberTarget) await productDAO.updateProductByProductId(target, updateInfo);
+    else await productDAO.updateProductByProductName(target, updateInfo);
   },
 
   // 상품 삭제
@@ -57,13 +144,14 @@ const productService = {
     await productDAO.deleteProductByProductId(id);
   },
 
-  // 다수
-  async deleteProductsByProductIds(ids) {
-    const promises = ids.map(async (id) => {
-      await productDAO.deleteProductByProductId(id);
-    });
+  async deleteProduct(target) {
+    // 해당 브랜드에 상품이 존재할경우 삭제안되게 해야함
+    // 관련된 상품 모두삭제?
+    const deletedCount = !Number.isNaN(parseInt(target, 10))
+      ? await productDAO.deleteProductByProductId(target)
+      : await productDAO.deleteProductByProductName(target);
 
-    await Promise.all(promises);
+    return deletedCount;
   },
 };
 

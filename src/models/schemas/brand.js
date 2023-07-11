@@ -2,17 +2,23 @@ const { Schema } = require('mongoose');
 
 const BrandSchema = new Schema(
   {
-    brand: {
-      origin: {
-        type: String,
-        required: true,
+    name: {
+      type: {
+        origin: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        korean: {
+          type: String,
+          required: true,
+          unique: true,
+        },
       },
-      korean: {
-        type: String,
-        required: true,
-      },
+      required: true,
+      _id: false,
     },
-    logo: {
+    picture: {
       type: String,
       required: true,
     },
