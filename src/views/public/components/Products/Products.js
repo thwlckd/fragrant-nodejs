@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import { $, $create, $append } from '../../js/util/dom.js';
-=======
 import { $, $create, $append } from '/js/util/dom.js';
->>>>>>> 34a7e552b6ce0c6272980af2d297e80060b61c42
+
 
 const insertList = async ($target, url) => {
   const $fragment = document.createDocumentFragment();
