@@ -89,3 +89,14 @@
   color: #000;
   font-size: 20px;
 }
+
+/* sns로그인 */
+.sns-login {
+  position: relative;
+  top: 190px;
+}
+
+.sns-login a img {
+  width: 235px;
+  height: 45px;
+}
