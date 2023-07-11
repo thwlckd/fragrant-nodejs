@@ -18,7 +18,7 @@ const patchData = {
 let deleteData;
 
 const getNotes = async () => {
-  const datas = await GET('/notes');
+  const datas = await GET('/api/notes');
   return datas;
 };
 
@@ -65,18 +65,23 @@ const render = async () => {
   };
 
   const saveHandler = async () => {
-    const filter = [...$noteList.children].filter((node) => node.value === patchData.noteType);
-    if (filter.length >= 2) {
-      createModal('중복되는 노트가 있습니다');
+    if(patchData.noteType){
+      const filter = [...$noteList.children].filter((node) => node.value === patchData.noteType);
+      if (filter.length >= 2) {
+        createModal('중복되는 노트가 있습니다');
+      } else {
+        PATCH('/api/notes', patchData);
+        [...$noteList.children].forEach((node) => {
+          node.classList.remove('note-select');
+          node.readOnly = true;
+          node.defaultValue = node.value;
+          $noteSave.style.display = 'none';
+        });
+      }
     } else {
-      PATCH('/notes', patchData);
-      [...$noteList.children].forEach((node) => {
-        node.classList.remove('note-select');
-        node.readOnly = true;
-        node.defaultValue = node.value;
-        $noteSave.style.display = 'none';
-      });
+      createModal('수정할 값을 입력해주세요');
     }
+    
   };
 
   const noteListUpdate = async () => {
@@ -132,14 +137,18 @@ const render = async () => {
   noteListUpdate();
 
   const createHandler = async () => {
-    const filter = [...$noteList.children].filter((node) => node.value === $createInput.value);
-    if (filter.length === 0) {
-      const createData = { noteType: $createInput.value };
-      await POST('/notes', createData);
-      $createInput.value = '';
-      await noteListUpdate();
+    if ($createInput.value) {
+      const filter = [...$noteList.children].filter((node) => node.value === $createInput.value);
+      if (filter.length === 0) {
+        const createData = { noteType: $createInput.value };
+        await POST('/api/notes', createData);
+        $createInput.value = '';
+        await noteListUpdate();
+      } else {
+        createModal('중복되는 노트가 있습니다');
+      }
     } else {
-      createModal('중복되는 노트가 있습니다');
+      createModal('입력값을 넣어주세요');
     }
   };
 
@@ -155,7 +164,7 @@ const render = async () => {
   $noteDelete.addEventListener('click', async () => {
     // console.log(deleteData);
     if (deleteData) {
-      await DELETE(`/notes/${deleteData}`);
+      await DELETE(`/api/notes/${deleteData}`);
       noteListUpdate();
     } else {
       // alert('삭제할 노트를 선택하세요');
