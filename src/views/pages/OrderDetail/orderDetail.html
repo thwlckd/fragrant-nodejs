@@ -108,30 +108,21 @@
         <h2>주문상세내역</h2>
         <div>
           <div>
-            <span>주문일자</span>
-            <span>주문번호</span>
+            <span id="order-date"></span>
+            <span id="order-id"></span>
           </div>
-          <div class="order-status-text">주문완료</div>
+          <div id="order-status-text"></div>
         </div>
       </section>
       <!--주문상품리스트-->
-      <h2 class="product-list-title">주문상품</h2>
-      <section class="products-list">
-        <a href="/products/:productId">
-          <img
-            class="product-image"
-            src="/asset/perfume/red_elice.png"
-            style="width: 100px; height: 100px"
-        /></a>
-        <div class="order-info-column">
-          <div id="product-name">상품명</div>
-          <div id="product-capa">00ml</div>
-          <div id="product-price">000,000원 | 0개</div>
-        </div>
+      <section class="order-product">
+        <h2 class="product-list-title">주문상품</h2>
+        <ul id="product-list"></ul>
       </section>
+
       <div class="payment">
         <span id="payment-amount"></span>
-        <span id="payment-type">상품금액 000,000원 + 배송비 0원</span>
+        <span id="payment-type"></span>
       </div>
       <section class="shipping-address address-hidden">
         <div class="address-header">
@@ -158,22 +149,24 @@
         <table>
           <tr>
             <td>이름</td>
-            <td>이수민</td>
+            <td id="name">이수민</td>
           </tr>
           <tr>
             <td>연락처</td>
-            <td>010-1234-5678</td>
+            <td type="cont" id="contact"></td>
           </tr>
           <tr>
             <td>주소</td>
-            <td>서울 성동구 서울숲길 17 101호</td>
+            <td id="address"></td>
           </tr>
           <tr>
             <td>요청사항</td>
-            <td>부재 시 문앞에 놓아주세요.</td>
+            <td id="requirement"></td>
           </tr>
         </table>
-        <button type="button" class="order-cancel-btn">주문취소</button>
+        <div class="cancel-button">
+          <button type="button" id="order-cancel-btn">주문취소</button>
+        </div>
       </section>
       <div>
         <div class="modal hidden">
@@ -193,7 +186,7 @@
       </div>
     </div>
     <script src="/components/Header/Header.js" type="module"></script>
-    <script src="/components/Footer/Footer.js" type="module"></script>
-    <script src="./orderDetail.js"></script>
+    <!-- <script src="/components/Footer/Footer.js" type="module"></script> -->
+    <script src="./orderDetail.js" type="module"></script>
   </body>
 </html>
