@@ -14,9 +14,13 @@ export const POST = async (url, obj) => {
     },
     body: JSON.stringify(obj),
   });
-  window.location.href = '/admin/users';
-  const data = await res.json();
-  return data;
+  // window.location.href = '/admin/users';
+  try {
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    return err;
+  }
 };
 
 export const PATCH = async (url, obj) => {
