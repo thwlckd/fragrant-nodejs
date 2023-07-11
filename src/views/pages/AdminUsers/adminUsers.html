@@ -10,6 +10,7 @@
   <title>ELICE ADMIN</title>
   <script src="/components/Admin/Header/Header.js" type="module"></script>
   <script src="./getUsers.js" type="module"></script>
+
 </head>
 
 <body>
@@ -18,7 +19,7 @@
       <!-- main header -->
       <section class="main-header">
         <div>사용자 관리</div>
-        <small>User management</small>
+        <small>User Management</small>
         <hr>
       </section>
       <!-- 옵션 그룹 -->
@@ -43,12 +44,11 @@
       </section>
 
       <!-- 메인 -->
-      <section>
+      <section class="user-table">
         <table>
           <thead>
             <tr class="list-title">
               <th>email<br></th>
-              <th>isAdmin<br></th>
               <th>username<br></th>
               <th>address<br></th>
               <th>phone<br></th>
@@ -59,7 +59,6 @@
           </thead>
           <tbody class="main-tbody">
             <tr>
-              <th class="list-empty"> </th>
               <th class="list-empty"> </th>
               <th class="list-empty"> </th>
               <th class="list-empty"> </th>

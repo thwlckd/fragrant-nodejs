@@ -1,4 +1,4 @@
-import { $create, $append } from '../../js/util/dom';
+import { $create, $append } from '/js/util/dom.js';
 
 const $footer = $create('footer');
 const $footerWrap = $create('div', 'foooter-wrap');
