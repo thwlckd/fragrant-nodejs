@@ -1,5 +1,6 @@
 import { $, $create, $append } from '/js/util/dom.js';
 
+
 const insertList = async ($target, url) => {
   const $fragment = document.createDocumentFragment();
 

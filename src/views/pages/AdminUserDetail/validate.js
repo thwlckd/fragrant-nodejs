@@ -55,46 +55,46 @@ $phNum.onkeyup = () => {
   }
 };
 
-const $password = $('#password');
-const $passwordMsg = $('#password-form small');
+// const $password = $('#password');
+// const $passwordMsg = $('#password-form small');
 
-const $pwValidate = $('#pw-validate');
-const $pwValidateMsg = $('#pw-validate-form small');
+// const $pwValidate = $('#pw-validate');
+// const $pwValidateMsg = $('#pw-validate-form small');
 
-$password.onkeyup = () => {
-  if ($password.value === '') {
-    $passwordMsg.textContent = '';
-    $pwValidate.value = '';
-    $pwValidate.readOnly = true;
-    $pwValidateMsg.textContent = '';
-    check.pw = true;
-  } else if (passwordValidate($password.value)) {
-    $passwordMsg.textContent = '';
-    $pwValidate.readOnly = false;
-    $pwValidateMsg.textContent = guideMsg.PASSWORD_VALIDATE_EMPTY.msg;
-    $pwValidateMsg.style.color = guideMsg.PASSWORD_VALIDATE_EMPTY.color;
-    check.pw = false;
-  } else {
-    $passwordMsg.textContent = guideMsg.PASSWORD_SYNTAX.msg;
-    $passwordMsg.style.color = guideMsg.PASSWORD_SYNTAX.color;
-    check.pw = false;
-  }
-};
+// $password.onkeyup = () => {
+//   if ($password.value === '') {
+//     $passwordMsg.textContent = '';
+//     $pwValidate.value = '';
+//     $pwValidate.readOnly = true;
+//     $pwValidateMsg.textContent = '';
+//     check.pw = true;
+//   } else if (passwordValidate($password.value)) {
+//     $passwordMsg.textContent = '';
+//     $pwValidate.readOnly = false;
+//     $pwValidateMsg.textContent = guideMsg.PASSWORD_VALIDATE_EMPTY.msg;
+//     $pwValidateMsg.style.color = guideMsg.PASSWORD_VALIDATE_EMPTY.color;
+//     check.pw = false;
+//   } else {
+//     $passwordMsg.textContent = guideMsg.PASSWORD_SYNTAX.msg;
+//     $passwordMsg.style.color = guideMsg.PASSWORD_SYNTAX.color;
+//     check.pw = false;
+//   }
+// };
 
-$pwValidate.onkeyup = () => {
-  if ($pwValidate.value === '') {
-    $pwValidateMsg.textContent = guideMsg.PASSWORD_VALIDATE_EMPTY.msg;
-    $pwValidateMsg.style.color = guideMsg.PASSWORD_VALIDATE_EMPTY.color;
-    check.pw = false;
-  } else if ($password.value === $pwValidate.value) {
-    $pwValidateMsg.textContent = '';
-    check.pw = true;
-  } else {
-    $pwValidateMsg.textContent = guideMsg.PASSWORD_VALIDATE_SYNTAX.msg;
-    $pwValidateMsg.style.color = guideMsg.PASSWORD_VALIDATE_SYNTAX.color;
-    check.pw = false;
-  }
-};
+// $pwValidate.onkeyup = () => {
+//   if ($pwValidate.value === '') {
+//     $pwValidateMsg.textContent = guideMsg.PASSWORD_VALIDATE_EMPTY.msg;
+//     $pwValidateMsg.style.color = guideMsg.PASSWORD_VALIDATE_EMPTY.color;
+//     check.pw = false;
+//   } else if ($password.value === $pwValidate.value) {
+//     $pwValidateMsg.textContent = '';
+//     check.pw = true;
+//   } else {
+//     $pwValidateMsg.textContent = guideMsg.PASSWORD_VALIDATE_SYNTAX.msg;
+//     $pwValidateMsg.style.color = guideMsg.PASSWORD_VALIDATE_SYNTAX.color;
+//     check.pw = false;
+//   }
+// };
 
 // const $postalCode = $('#postalCode');
 // const $address1 = $('#address1');
