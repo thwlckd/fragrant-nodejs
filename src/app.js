@@ -6,7 +6,6 @@ const passport = require('passport');
 const { getToken } = require('./middlewares');
 const { router } = require('./routes');
 const { errorLogger, errorHandler } = require('./middlewares');
-
 const { viewRouter } = require('./routes');
 
 require('dotenv').config();
@@ -31,7 +30,7 @@ mongoose.connection.on('connected', () => {
   console.log('MongoDB connected');
 });
 
-app.use('/', router);
+app.use('/api', router);
 
 app.use(errorLogger);
 app.use((error, req, res, next) => {
