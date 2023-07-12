@@ -1,45 +1,44 @@
+.signup-wrapper {
+  /* position: relative; */
 
-.signup-wrapper{
-    /* position: relative; */
+  width: 900px;
+  height: 600px;
+  margin: 135px auto;
 
-    width: 900px;
-    height: 600px;
-    margin: 135px auto;
-    
-    border: 1px solid;
-    border-image: linear-gradient(to bottom, #BC5A00, #fff) 1;
-    box-sizing: border-box;
+  border: 1px solid;
+  border-image: linear-gradient(to bottom, #bc5a00, #fff) 1;
+  box-sizing: border-box;
 
-    /* text-align: center; */
+  /* text-align: center; */
 }
 
-#signup{
-    text-align: center;
-    font-size: 32px;
-    margin: 45px auto;
+#signup {
+  text-align: center;
+  font-size: 32px;
+  margin: 45px auto;
 }
 
 .member {
-    padding: 0 50px;
-    /* background-color: red; */
+  padding: 0 50px;
 }
-.member ul{
-    width: 100%;
-    font-size: 15px;
-    font-weight: bold;
-    color: #373737;
+
+.member ul {
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  color: #373737;
 }
 
 .member li {
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    margin-bottom: 20px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 20px;
 }
 
 .member label {
-    display: inline-block;
-    width: 200px;
+  display: inline-block;
+  width: 200px;
 }
 
 /* 크롬브라우저 포커스 아웃라인 없애기 */
@@ -49,68 +48,78 @@ select:focus {
 } */
 
 input {
-    width: 430px;
-    height: 40px;
-    background: #f5f5f5;
-    border: 1px solid #F5F5F5;
-    border-radius: 5px;
-    font-size: 15px;
-    color: #999999;
-    padding-left: 10px;
+  width: 430px;
+  height: 40px;
+  background: #f5f5f5;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  font-size: 15px;
+  color: #999999;
+  padding-left: 10px;
 }
 
 /* ID 입력 */
 #mid {
-    width: 165px;
+  width: 165px;
 }
 
 /* 이메일입력창 */
-#mid-email{
-    width: 105px;
-    height: 40px;
-    background: #f5f5f5;
-    border: 1px solid #F5F5F5;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #999999;
+#mid-email {
+  width: 105px;
+  height: 40px;
+  background: #f5f5f5;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #999999;
 }
 
 /* 이메일 선택 */
-#eml{
-    display: inline-block;
-    width: 123px;
-    height: 44px;
-    background: #f5f5f5;
-    border: 1px solid #F5F5F5;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #999999;
+#eml {
+  display: inline-block;
+  width: 123px;
+  height: 44px;
+  background: #f5f5f5;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #999999;
+}
+
+/* 인증번호 */
+#reqBtn {
+  width: 95px;
+  height: 32px;
+  background-color: #979393;
+  color: white;
+  font-size: 13px;
+  border: 1px solid #979393;
+  border-radius: 3px;
 }
 
 .msg {
-    position: relative;
-    /* display: block; */
-    display: none;
-    line-height: 13px;
-    font-size: 10px;
-    color: #e55;
-    left: 213px;
+  position: relative;
+  /* display: block; */
+  display: none;
+  line-height: 13px;
+  font-size: 10px;
+  color: #e55;
+  left: 213px;
 }
 
-
-.join{
-    text-align: center;
-    margin-top: 100px;
+.join {
+  text-align: center;
+  margin-top: 100px;
 }
 
 /* 서브밋 버튼 */
 #joinbtn {
-    width: 165px;
-    height: 60px;
-    background-color: #464646;
-    color: white;
-    font-size: 20px;
+  width: 165px;
+  height: 60px;
+  background-color: #080808;
+  color: white;
+  font-size: 20px;
 
-    border: 2px solid #464646;
-    border-radius: 3px;
+  border: 1px solid #080808;
+  border-radius: 4px;
 }

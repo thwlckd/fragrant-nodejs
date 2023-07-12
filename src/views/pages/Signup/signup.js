@@ -1,4 +1,3 @@
-console.log('확인');
 
 const idInput = document.querySelector('#mid');
 const emailInput = document.querySelector('#mid-email');
@@ -10,7 +9,7 @@ const signupForm = document.querySelector('.member-input');
 signupForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  fetch('/auth/sign-up', {
+  fetch('/api/auth/sign-up', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -37,7 +36,7 @@ emailList.addEventListener('change', (event) => {
 });
 
 // 아이디창 오류메시지
-idInput.oninput = () => {
+idInput.onblur = () => {
   if (idInput.value === '') {
     idInput.classList.add('invalid');
     document.querySelector('.msg').style.display = 'block';
@@ -49,13 +48,12 @@ const pwRegExp =
   /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*+=\-_`~\[\]\{\}\\\|<>\/?\.\,;:'"])[a-zA-Z0-9!@#$%^&*+=\-_`~\[\]\{\}\\\|<>\/?\.\,;:'"]{8,15}$/;
 
 // 비밀번호 입력창 오류메시지
-
 const passwordError = document.querySelector('#mpw+.msg');
 const comparePassword = document.querySelector('#mpw2');
 const passwordChkError = document.querySelector('#mpw2+.msg');
 
-console.log(passwordError);
-console.log(passwordChkError);
+// console.log(passwordError);
+// console.log(passwordChkError);
 
 const passwordErrorMsg = {
   error0: '비밀번호를 입력해주세요',
@@ -100,7 +98,6 @@ comparePassword.oninput = () => {
 };
 
 // 이름 입력창 오류메시지
-
 const nameError = document.querySelector('#mnm+.msg');
 console.log(nameError);
 
