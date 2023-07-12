@@ -1,9 +1,10 @@
 import { $ } from '/js/util/dom.js';
+import { check, phNumValidate, passwordValidate } from '/js/util/validate.js';
+import { guideMsg } from '/js/util/constant.js';
 
 //해당하는 회원 정보 보여주기
 async function getUserInfo() {
-  const url = '/api/users/user/info';
-  const response = await fetch(url, {
+  const response = await fetch('/api/users/user/info', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -23,9 +24,27 @@ async function setUserInfo() {
   $('#user-id').value = email;
   $('#name').value = userName;
   $('#contact').value = phone;
-  $('#postcode').value = address.postalCode;
-  $('#address').value = address.address1;
-  $('#detail-address').value = address.address2;
+  if (address) {
+    $('#postcode').value = address.postalCode;
+  } else {
+    $('#postcode').value = '';
+  }
+  if (address) {
+    $('#address').value = address.address1;
+  } else {
+    $('#address').value = '';
+  }
+  // if (address) {
+  //   $('#detail-address').value = address.address2;
+  //   $('#address-info small').textContent = '';
+  //   $('#address-info small').style.color = '';
+  //   check.address = true;
+  // } else {
+  //   $('#detail-address').value = '';
+  //   $('#address-info small').textContent = guideMsg.ADDR_DETAIL_ADD_MSG.msg;
+  //   $('#address-info small').style.color = guideMsg.ADDR_DETAIL_ADD_MSG.color;
+  //   check.address = true;
+  // }
 }
 
 setUserInfo();
@@ -34,10 +53,10 @@ setUserInfo();
 document.getElementById('address-button').addEventListener('click', () => {
   new daum.Postcode({
     oncomplete(data) {
-      console.log(data);
-      document.getElementById('postcode').value = data.zonecode;
-      document.getElementById('address').value = data.address;
-      document.getElementById('detail-address').focus();
+      // console.log(data);
+      $('#postcode').value = data.zonecode;
+      $('#address').value = data.address;
+      $('#detail-address').focus();
     },
   }).open();
 });
@@ -60,9 +79,112 @@ async function userModify() {
     }),
   });
   if (response.ok) {
-    alert('complete modify!');
+    alert('회원정보 변경이 완료되었습니다.');
   }
 }
+
+//비밀번호 인풋박스 초기화
+function clearPwInput() {
+  $('#password-now').value = '';
+  $('#password-new').value = '';
+  $('#password-new-confirm').value = '';
+}
+
+//비밀번호 수정
+async function modifyPassword() {
+  if ($('#password-new').value !== $('#password-new-confirm').value) {
+    alert('새 비밀번호가 일치하지 않습니다.');
+    clearPwInput();
+    return;
+  }
+  const response = await fetch('/api/users/user/info/password', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      oldPassword: $('#password-now').value,
+      newPassword: $('#password-new').value,
+    }),
+  });
+
+  // console.log(response.json());
+  if (response.ok) {
+    alert('비밀번호를 변경헀습니다.');
+    clearPwInput();
+  } else {
+    alert(response.error);
+  }
+}
+
+onsubmit = (event) => {
+  event.preventDefault();
+  if (event.target.className === 'update-form-user') {
+    userModify();
+  } else if (event.target.className === 'update-form-password') {
+    modifyPassword();
+  }
+};
+
+function checkMethod(event) {
+  const inputVal = event.target.value;
+  let checkText = '';
+
+  switch (event.target.name) {
+    case 'phone':
+      if (inputVal.length === 0) {
+        checkText = '';
+      } else if (!phNumValidate(inputVal)) {
+        checkText = '전화번호 형식에 알맞게 입력해주세요.';
+      }
+      $('.contact p').textContent = checkText;
+      break;
+
+    case 'password-new':
+      if (inputVal.length === 0 || !passwordValidate(inputVal)) {
+        checkText = '영문/숫자/특수문자 조합 8~15자로 입력해주세요.';
+      }
+      $('.password-new p').textContent = checkText;
+      break;
+
+    case 'password-new-confirm':
+      if (inputVal.length === 0) {
+        checkText = '비밀번호 변경을 위해 한번 더 입력해주세요.';
+      }
+      $('.new-pwd-confirm p').textContent = checkText;
+
+    default:
+      break;
+  }
+}
+
+// $('#name').addEventListener('keyup', checkMethod);
+$('#contact').addEventListener('keyup', checkMethod);
+$('#password-new').addEventListener('keyup', checkMethod);
+$('#password-new-confirm').addEventListener('keyup', checkMethod);
+
+// $('#name').addEventListener('keyup', (event) => {
+//   const inputValue = event.target.value;
+//   let checkText = '';
+
+//   if (inputValue.length === 0) {
+//     checkText = '이름을 입력해주세요.';
+//   }
+
+//   $('.user-name p').textContent = checkText;
+// });
+
+// $('#contact').addEventListener('keyup', (event) => {
+//   const inputValue = event.target.value;
+//   let checkText = '';
+
+//   if (inputValue.length === 0) {
+//     checkText = '연락처를 입력해주세요.';
+//   } else if (!phNumValidate(inputValue)) {
+//     checkText = '010-1234-56789 형식으로 입력해주세요.';
+//   }
+//   $('.contact p').textContent = checkText;
+// });
 
 // 회원탈퇴 모달
 const open = () => {
@@ -78,64 +200,22 @@ $('.close-btn').addEventListener('click', close);
 $('.background').addEventListener('click', close);
 // document.gquerySelector('modal').scrollTo(0, 0);
 
-async function modifyPassword() {
-  const response = await fetch('/api/users/user/info/password', {
-    method: 'PATCH',
+//회원탈퇴
+const deleteAccount = async () => {
+  const response = await fetch('/api/users/user/info', {
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      oldPassword: $('#password-now').value,
-      newPassword: $('#password-new').value,
+      password: $('#current-pw-delete').value,
     }),
   });
-
-  console.log(response.json());
   if (response.ok) {
-    alert('비밀번호를 변경헀습니다.');
+    alert('회원탈퇴가 완료되었습니다.');
   } else {
-    alert('error');
-  }
-}
-
-onsubmit = (event) => {
-  event.preventDefault();
-  if (event.target.className === 'update-form-user') {
-    userModify();
-  } else if (event.target.className === 'update-form-password') {
-    modifyPassword();
+    alert(response.error);
   }
 };
 
-// $pw.value = '';
-// $pwValidate.value = '';
-// check.pw = true;
-// // $isAdmin.value = data.isAdmin;
-// if (data.address) {
-//   $postalCode.value = data.address.postalCode;
-// } else {
-//   $postalCode.value = '';
-// }
-// if (data.address) {
-//   $address1.value = data.address.address1;
-// } else {
-//   $address1.value = '';
-// }
-// if (data.address) {
-//   $address2.value = data.address.address2;
-//   $addressMsg.textContent = '';
-//   $addressMsg.style.color = '';
-//   check.address = true;
-// } else {
-//   $address2.value = '';
-//   $addressMsg.textContent = guideMsg.ADDR_DETAIL_ADD_MSG.msg;
-//   $addressMsg.style.color = guideMsg.ADDR_DETAIL_ADD_MSG.color;
-//   check.address = true;
-// }
-// if ($postalCode.value === '' && $address1.value === '' && $address2.value === '') {
-//   $addressMsg.textContent = guideMsg.ADDR_ADD_MSG.msg;
-//   $addressMsg.style.color = guideMsg.ADDR_ADD_MSG.color;
-// }
-
-// document.getElementById('update-form').addEventListener('submit', (event) => {
-//   event.preventDefault();
+$('.delete-confirm-btn').addEventListener('click', deleteAccount);
