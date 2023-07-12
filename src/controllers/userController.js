@@ -16,6 +16,10 @@ const userController = {
     const { email } = req.body;
     const { isAdmin } = await userService.getUserByEmail(email);
     setUserToken(res, email, isAdmin);
+    if (isAdmin) {
+      res.status(201).redirect('/admin/users');
+      return;
+    }
     res.status(201).redirect('/');
   },
 
@@ -92,7 +96,7 @@ const userController = {
       if (!passwordValidation) {
         throw new Error('비밀번호가 일치하지 않습니다.');
       }
-      res.end();
+      res.redirect('/');
       return;
     }
     userId = req.params.userId;

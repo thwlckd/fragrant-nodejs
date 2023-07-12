@@ -1,5 +1,5 @@
 const { orderService } = require('../services');
-const { addProductsQuantity, subtractProductsQuantity } = require('../utils/utils');
+// const { addProductsQuantity, subtractProductsQuantity } = require('../utils/utils');
 
 const orderController = {
   async postOrder(req, res) {
@@ -18,7 +18,7 @@ const orderController = {
     if (!order) {
       throw new Error('주문에 실패했습니다.');
     }
-    await subtractProductsQuantity(products);
+    // await subtractProductsQuantity(products);
     res.status(201).end();
   },
 
@@ -85,7 +85,11 @@ const orderController = {
       throw new Error('취소할 주문이 없습니다.');
     }
     await orderService.deleteOrderByOrderId(orderId);
-    await addProductsQuantity(order.products);
+    // await addProductsQuantity(order.products);
+    if (!req.user.isAdmin) {
+      res.redirect('/user/myPage');
+      return;
+    }
     res.end();
   },
 };
