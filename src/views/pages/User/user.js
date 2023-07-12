@@ -2,7 +2,7 @@ import { $, $create, $append } from '/js/util/dom.js';
 
 //유저의 회원정보 불어오기
 async function getUserInfo() {
-  const users = await fetch('/users/64a6d7d9b2cb5883241008de', {
+  const users = await fetch('/api/users/user/info', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -28,12 +28,10 @@ setUserInfo();
 
 //유저의 주문내역 불러오기
 async function getOrderList() {
-  const orders = await fetch('/orders/user', {
+  const orders = await fetch('/api/orders/user', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      // Authorization:
-      //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2ODg4MjY2OTJ9.h30XrRfX7cAuwfvGgyxB5e6DTB-WLaCeQVbhH_NaXwQ',
     },
   });
   let result;
@@ -126,7 +124,12 @@ async function displayOrderList() {
 
     $orderListDiv.append($liElement);
 
-    if (orderStatus === '배송중' || orderStatus === '') {
+    // if (orderStatus === '배송중' || orderStatus === '배송완료') {
+    //   $orderCancelBtn.classList.add('order-cancel-hidden');
+    // }
+
+    const orderArray = ['배송중', '배송완료'];
+    if (orderArray.includes(orderStatus)) {
       $orderCancelBtn.classList.add('order-cancel-hidden');
     }
 
@@ -134,6 +137,7 @@ async function displayOrderList() {
       location.href = `../orders/${_id}`;
     };
   }
+
   $('#order-complete').textContent = orderComplete;
   $('#shipping-ready').textContent = shippingReady;
   $('#on-shipping').textContent = onShipping;

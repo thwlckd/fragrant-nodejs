@@ -109,11 +109,12 @@ async function modifyPassword() {
   });
 
   // console.log(response.json());
+  const data = await response.json();
   if (response.ok) {
     alert('비밀번호를 변경헀습니다.');
     clearPwInput();
   } else {
-    alert(response.error);
+    alert(data.error);
   }
 }
 

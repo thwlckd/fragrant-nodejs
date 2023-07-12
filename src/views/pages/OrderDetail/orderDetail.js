@@ -1,7 +1,12 @@
 import { $, $create, $append } from '/js/util/dom.js';
 
+const url = window.location.pathname.split('/');
+const id = url[url.length - 2];
+console.log(url);
+console.log(id);
+
 async function getProductList() {
-  const orders = await fetch('/orders/64a9d6ee08c6c74306d2c606', {
+  const orders = await fetch(`/api/orders/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -53,6 +58,10 @@ async function displayProductList() {
     const $reviewBtn = $create('button', 'review-btn');
     $reviewBtn.textContent = '리뷰쓰기';
 
+    $reviewBtn.addEventListener('click', () => {
+      window.location.href = `/products/${productId}/#tab3`;
+    });
+
     $append($orderProductList, $imgLink, $productInfo, $reviewBtn);
 
     const $productImg = $create('img', 'product-image');
@@ -70,8 +79,8 @@ async function displayProductList() {
 
     $append($productListSection, $liElement);
 
-    if (orderStatus === '배송중' || orderStatus === '배송완료') {
-      $('.order-cancel-btn').classList.add('order-cancel-hidden');
+    if (orderStatus === '배송완료') {
+      $reviewBtn.classList.add('review-btn-hidden');
     }
   }
 }
