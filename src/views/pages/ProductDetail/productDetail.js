@@ -1,25 +1,86 @@
-// 상품 수량 늘리는 버튼 아직 미완!ㅂ
-function count(type) {
-  const resultElement = document.getElementsByClassName('num');
+// 페이지 상품에 들어갈 경로 설정 . 이미지 브랜드명 상품명
 
-  let number = resultElement.textContent;
-  number = parseInt(number, 10);
+import { $ } from '/js/util/dom.js';
 
-  if (type === 'plus') {
-    number += 1;
-  } else if (type === 'minus') {
-    number -= 1;
-  }
+let sum;
+const productDetailRenderer = async (url) => {
+  const {
+    product: {
+      name: { origin, korean },
+      capacity,
+      price,
+      picture,
+      note,
+      brand: {
+        name: { origin: brandorigin },
+      },
+      description,
+    },
+  } = await fetch(`/api${url}`).then((res) => res.json());
+  const $krNameElementTitle = $('.name-kr');
+  $krNameElementTitle.textContent = korean;
 
-  resultElement.textContent = number;
-}
+  const $krNameElementDetail = $('#tab2 .kr-name-detail');
+  $krNameElementDetail.textContent = korean;
 
-// 장바구니버튼 눌렀을때 장바구니로 이동,
-// 구매하기버튼 눌렀을 때 결제하는 곳으로 이동
-// 둘 다 로그인했는지 체크하고 false시 alert()팝업창 띄우기
+  const $originNameElementTitle = $('.eng_name .name-origin');
+  $originNameElementTitle.textContent = origin;
 
-// 리뷰 작성칸/현재 시간(연월일 시분), username, 댓글 최솟값설정10자, 등록하면 리뷰창에 올라가기
-// 별점
-const drawStar = (target) => {
-  document.querySelector('.star span').style.width = `${target.value * 10}%`;
+  const $originNameElementSub = $('.delivery_box .name-origin');
+  $originNameElementSub.textContent = origin;
+
+  const $capacityElement = $('.capacity');
+  $capacityElement.textContent = capacity;
+
+  const $priceElement = $('.totalCost');
+  $priceElement.textContent = price; // 원가, 숫자타입이엇음
+
+  const $pictureElement = $('.product_info img');
+  $pictureElement.src = picture;
+
+  const $noteElement1 = $('.note1');
+  $noteElement1.textContent = note[0].type;
+
+  const $noteElement2 = $('.note2');
+  $noteElement2.textContent = note[1].type;
+
+  const $noteElement3 = $('.note3');
+  $noteElement3.textContent = note[2].type;
+
+  const $brandNameElement = $('.eng_name .brandname-origin');
+  $brandNameElement.textContent = brandorigin;
+
+  const $descriptionElement = $('.description');
+  $descriptionElement.textContent = description;
+
+  sum = price;
 };
+const { pathname } = window.location;
+productDetailRenderer(pathname);
+
+// 밑이 수량 증감 수정본. 수량 증감에 따른 판매가가 보여짐
+const plus = document.querySelector('.plus');
+const minus = document.querySelector('.minus');
+const result = document.querySelector('#result');
+const totalCost = document.querySelector('.totalCost');
+
+let i = 0;
+
+plus.addEventListener('click', () => {
+  i += 1;
+  result.textContent = i;
+  const totalCostNum = i * sum;
+  totalCost.textContent = `\u00a0 ${totalCostNum.toLocaleString()}`;
+});
+
+minus.addEventListener('click', () => {
+  if (i > 0) {
+    i -= 1;
+    result.textContent = i;
+    const totalCostNum = i * sum;
+    totalCost.textContent = `\u00a0 ${totalCostNum.toLocaleString()}`;
+  } else {
+    totalCost.textContent = `\u00a0 ${0}`; // 판매가
+  }
+});
+

@@ -3,6 +3,7 @@ const loginRequired = require('./loginRequired');
 const asyncHandler = require('./asyncHandler');
 const getToken = require('./getToken');
 const errorLogger = require('./errorLogger');
+const redirectUser = require('./redirectUser');
 
 module.exports = {
   adminOnly,
@@ -10,4 +11,5 @@ module.exports = {
   asyncHandler,
   getToken,
   errorLogger,
+  redirectUser,
 };

@@ -3,7 +3,7 @@ const { Schema } = require('mongoose');
 const AddressSchema = new Schema(
   {
     postalCode: {
-      type: Number,
+      type: String,
     },
     address1: {
       type: String,
