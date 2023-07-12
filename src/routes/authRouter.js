@@ -12,28 +12,36 @@ authRouter.post(
   passport.authenticate('local', { session: false }),
   asyncHandler(userController.postSignInInfo),
 );
-authRouter.post('/sign-out', (req, res, next) => {
-  res.clearCookie('token').end();
-});
+authRouter.post(
+  '/sign-out',
+  passport.authenticate('jwt', { session: false }),
+  asyncHandler((req, res) => {
+    if (req.user.isAdmin) {
+      res.clearCookie('token').redirect('/admin/login');
+    } else {
+      res.clearCookie('token').redirect('/');
+    }
+  }),
+);
 
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 authRouter.get(
   '/google/callback',
   passport.authenticate('google', { session: false }),
-  (req, res, next) => {
+  asyncHandler((req, res) => {
     setUserToken(res, req.user.userEmail, false);
     res.redirect('/');
-  },
+  }),
 );
 
 authRouter.get('/kakao', passport.authenticate('kakao', { session: false }));
 authRouter.get(
   '/kakao/callback',
   passport.authenticate('kakao', { session: false }),
-  (req, res, next) => {
+  asyncHandler((req, res) => {
     setUserToken(res, req.user.userEmail, false);
     res.redirect('/');
-  },
+  }),
 );
 
 module.exports = authRouter;
