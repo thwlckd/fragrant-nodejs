@@ -79,16 +79,16 @@ main > :not(.main-header) {
   margin-bottom: 20px;
   display: flex;
 }
-/* .order-component img {
-  width: 100%;
-  height: 100%;
-} */
+.order-component img {
+  width: 200px;
+  height: 200px;
+}
 
-.product-orderer {
+.product-content {
   font-size: 14px;
   flex-grow: 2;
   line-height: 3;
-  margin: -5px 0px 0px 20px;
+  margin: 15px 0px 0px 20px;
 }
 
 .total-price {
