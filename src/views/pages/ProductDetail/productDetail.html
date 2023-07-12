@@ -8,76 +8,67 @@
     <link rel="stylesheet" href="/components/Footer/style.css" />
     <link rel="stylesheet" href="/css/productDetail.css" />
     <title>Document</title>
+     <script defer src="./review.js"></script>
+    <script defer src="./productCount.js"></script>
+    <script  src="./productDetail.js" type="module"></script>
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
   </head>
 
   <body>
     <main id="main">
       <section id="main_section">
-        <div class="pagepath">
-          <nav>
-            <p>
-              <a href="#">HOME</a> > <span><a href="#">PB</a></span> >
-              <a href="#"><span class="brandname">엘리스</span></a>
-            </p>
-          </nav>
-        </div>
+        
 
         <div class="product">
           <div class="product_info">
-           
-              <dposition: absolute;iv class="product_image">
-              <img src="/asset/perfume/elice_sydney_1.png" alt="상품 이미지##" />
-            
+              <position: absolute;iv class="product_image">
+              <img src="/asset/elice_newyork_1.png" alt="앨리스 뉴욕 향수 이미지" />
           </div>
 
           <div class="product_content">
             <div class="product_name">
               <div class="eng_name">
                 <nav>
-                  <h1>ELICE</h1>
-                  <h3>Elice Sydney Wild Achillea Cologne</h3>
+                  <h1 class="brandname-origin">"ELICE"</h1>
+                  <h3 class="name-origin">"Elice Sydney Wild Achillea Cologne"</h3>
                 </nav>
               </div>
               <div class="kor_name">
-                <p class="korname_deco">엘리스 시드니 와일드 아킬리아 코롱</p>
+                <p class="name-kr">"엘리스 시드니 와일드 아킬리아 코롱"</p>
               </div>
             </div>
 
             <div class="delivery_box">
-
               <div class="delivery_info">
                 <span class="delivery_pay">배송비</span>
-                <span class="delivery_right">2,500원 (100,000원 이상 구매시 배송비 무료)</span
-                ><br />
+                <span class="delivery_right">2,500원 (100,000원 이상 구매시 배송비 무료)</span><br />
                 <span class="arrival">출고예정일</span>
-                <span class="arrival_right">2시 이전 결제시 당일출고 (주말, 공휴일 제외)</span
-                ><br />
+                <span class="arrival_right">2시 이전 결제시 당일출고 (주말, 공휴일 제외)</span><br />
                 <span class="desc">배송방법</span>
                 <span class="desc_right">본사 검수 및 직배송 / CJ 대한통운</span>
               </div>
 
               <div class="count">
-                <div class="count_name"><span>Elice Sydney Wild Achillea Cologne</span><br /></div>
+                <div class="count_name">
+                  <span class="name-origin">""</span>
+                  <span class="capacity">""</span><br /></div>
 
-        
-            <div class="num">
-              <span>수량</span>
-              <span class="num_count">
-                <a href="#a" class="minus">-</a>
-                <span id="result">1</span>
-                <a href="#a" class="plus">+</a>
-                <span class="totalCost">₩ 200,000</span>
-              </span>
-            </div>
-              
-
-              
+                <div class="num">
+                  <span>수량</span>
+                  <span class="num_count">
+                    <a href="#a" class="minus">-</a>
+                    <span id="result">1</span>
+                    <a href="#a" class="plus">+</a></span>
+                    <span class="won">₩<span class="totalCost"></span></span> 
+                </div>
               </div>
             </div>
-                <div class="buy_button">
-                <input type="button" class="cart" value="장바구니" onclick="장바구니경로" />
-                <input type="button" class="order" value="바로 구매하기" onclick="구매하기경로" />
-              </div>
+
+            <div class="buy_button">
+            <button class="add-cart-btn" style="cursor:pointer">장바구니</button>
+            <button class="add-order-btn" style="cursor:pointer">구매하기</button>
+            </div>
 
           </div>
         
@@ -97,25 +88,25 @@
 
           <div class="tab1_wrap">
             <span class="tab1_content">Fragrance Family: </span>
-            <span class="tab1_text"> 테스트용 텍스트 </span>
+            <span class="tab1_text"><span class="note1">""</span></span>
           </div>
           <br />
 
           <div class="tab1_wrap">
             <span class="tab1_content">Scent Type: </span>
-            <span class="tab1_text"> 테스트용 텍스트 </span>
+            <span class="tab1_text"><span class="note2">""</span></span>
           </div>
           <br />
 
           <div class="tab1_wrap">
             <span class="tab1_content">Key Notes: </span>
-            <span class="tab1_text">테스트용 텍스트</span>
+            <span class="tab1_text"><span class="note3">""</span></span>
           </div>
           <br />
 
           <div class="tab1_wrap">
             <span class="tab1_content">Fragrance Description: </span>
-            <span class="tab1_text"> 테스트용 텍스트 </span>
+            <span class="tab1_text"><span class="description">""</span></span>
           </div>
           <br /><br />
 
@@ -129,7 +120,7 @@
           <p class="tab2_title">상품정보고시</p>
           <div class="tab2_content">
             <p>
-              품명: <span class="kor_name">엘리스 시드니 와일드 아킬리아 코롱</span><br />
+              품명: <span class="kr-name-detail">엘리스 시드니 와일드 아킬리아 코롱</span><br />
               전성분: <br />
               * 제공된 성분은 동일 제품이라도 경우에 따라 변경될 수 있습니다.<br />
               * 최신정보는 제품 포장의 성분을 참고.<br /><br />
@@ -257,60 +248,39 @@
 
         <div id="tab3" class="tab">
           <div class="tab3_title">상품사용후기</div>
-          <li>
-            <div class="review_box">
-              <div class="reply_data">
-                <span id="reply_user" class="review_pushTime">2023-07-15 14:31</span>
-                <p id="reply_user" class="review_userName">작성자</p>
-              </div>
 
-              여기에 별점 기능 출력할 거, class명review_content
+         <ul><li>
+            <div id="comments">
+            
+          
             </div>
-          </li>
-        </div>
+        </li>
+         </ul>
 
-        <div class="paging">
-          <span class="prev">
-            <a href="#">< 이전</a>
-          </span>
-          <span class="page_num">
-            <a href="#" class="on">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-          </span>
-          <span class="next">
-            <a href="#">다음 ></a>
-          </span>
-        </div>
+        <div class="pagination-container">
+      <div class="prev-button">이전</div>
+      <div class="number-button-wrapper"><span class="number-button">1</span></div>
+      <div class="next-button">이후</div>
+    </div>
 
         <div class="write_box">
           <div class="write_info">
             <p>상품은 어떠셨나요?</p>
 
-            <div class="rating_box">
-               <span class="star">
-  ★★★★★
-  <span>★★★★★</span>
-  <input type="range" id="draw_Star" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-</span>
-            </div>
+           
           </div>
 
-         
-          <div class="write_wrap">
-            <textarea id="review_write" placeholder="최소 10자 이상 입력해주세요."></textarea>
-            <div class="review_button">
-              <button id="btnTxt" class="btn_Cancel">취소하기</button>
-              <button id="btnTxt" class="btn_Add">등록하기</button>
-            </div>
-          </div>
+         <div id="commentInfo">
+        <div id="commentCount"><span id="count" ></span></div>
+        <textarea id="commentText" placeholder="최소 10자 이상 입력해주세요."></textarea>
+        <button id="submitBtn">등록</button>
+    </div>
+    
+          
+        </div>
         </div>
       </section>
     </main>
-    <script defer src="./productDetail.js"></script>
-    <script src="/components/Header/Header.js" type="module"></script>
-    <script src="/components/Footer/Footer.js" type="module"></script>
+   
   </body>
 </html>
