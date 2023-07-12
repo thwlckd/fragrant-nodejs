@@ -1,20 +1,24 @@
 const { Router } = require('express');
 const { userController } = require('../controllers');
-const { adminOnly, loginRequired } = require('../middlewares');
+const { adminOnly, loginRequired, asyncHandler } = require('../middlewares');
 
 const userRouter = Router();
 
-userRouter.get('/', adminOnly, userController.getUsers);
-userRouter.get('/userName', adminOnly, userController.getUsersByUserName);
+userRouter.get('/', adminOnly, asyncHandler(userController.getUsers));
+userRouter.get('/userName', adminOnly, asyncHandler(userController.getUsersByUserName));
 
-userRouter.get('/:userId', adminOnly, userController.getUser);
-userRouter.get('/user/info', loginRequired, userController.getUser);
+userRouter.get('/:userId', adminOnly, asyncHandler(userController.getUserById));
+userRouter.get('/user/info', loginRequired, asyncHandler(userController.getUserById));
 
-userRouter.patch('/:userId', adminOnly, userController.patchUser);
-userRouter.patch('/user/info', loginRequired, userController.patchUser);
-userRouter.patch('/user/info/password', loginRequired, userController.patchUserPassword);
+userRouter.patch('/:userId', adminOnly, asyncHandler(userController.patchUserById));
+userRouter.patch('/user/info', loginRequired, asyncHandler(userController.patchUserById));
+userRouter.patch(
+  '/user/info/password',
+  loginRequired,
+  asyncHandler(userController.patchUserPasswordById),
+);
 
-userRouter.delete('/:userId', adminOnly, userController.deleteUser);
-userRouter.delete('/user/info', loginRequired, userController.deleteUser);
+userRouter.delete('/:userId', adminOnly, asyncHandler(userController.deleteUser));
+userRouter.delete('/user/info', loginRequired, asyncHandler(userController.deleteUser));
 
 module.exports = userRouter;

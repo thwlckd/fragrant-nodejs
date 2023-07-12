@@ -56,6 +56,8 @@ main> :not(.main-header) {
   display: flex;
   flex-wrap: wrap;
   gap: 80px;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
 .brand-item {
@@ -152,7 +154,7 @@ main> :not(.main-header) {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-bottom: 100px;
+  margin: 100px 0 100px 0;
 }
 
 .notes>h2 {
@@ -263,6 +265,7 @@ main> :not(.main-header) {
   top: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, .3);
