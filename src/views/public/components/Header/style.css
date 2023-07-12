@@ -14,7 +14,8 @@ header {
 
 .header-wrapper {
   display: flex;
-  width: 1280px;
+  width: 100%;
+  max-width: 1280px;
   height: 152px;
   align-items: center;
   justify-content: space-between;
