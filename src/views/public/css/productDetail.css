@@ -145,11 +145,19 @@ input:focus {
 }
 
 .num  {
-  margin: 16px 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 16px 10px 0 10px;
   font-size: 17px;
 }
+.countWrap {
+  display: flex;
+  gap: 35px;
+}
 .num_count {
-  margin: 0 0 0 50px;
+  display: flex;
+  
+  /* margin: 0 0 0 50px; */
   font-size: 20px;
 }
 
@@ -159,6 +167,13 @@ input:focus {
 .plus {
   margin-left: 20px;
 }
+#result {
+  width: 25px;
+  text-align: center;
+
+}
+
+
 
 .won {
   margin: 0 0 0 265px;
@@ -288,37 +303,8 @@ input:focus {
   padding: 10px 0;
   margin-bottom: 20px;
 }
-/*    
 
-#reply_user {
-  display: flex;
-  justify-content: left;
-  width: 180px;
-  height: 80px;
-
-  font-size: 20px;
-}   background-color: #29241a;  
-
-.review_userName {
-  position: relative;
-  bottom: 38px;
-}
-
-.review_content {
-  box-sizing: border-box;
-  width: 660px;
-  height: 175px;
-background-color: #29241a;
-  margin: 0 0 0 24px;
-} 
-
-
-.review_write {
-  font-size: 20px;
-  margin: 21px 0 0 20px;
-}
-*/
-
+ // 페이지네이션 컨테이너는 페이지네이션 구현 안됨면 걍 지움
 
 .pagination-container {
   width: 100%;
@@ -329,7 +315,7 @@ background-color: #29241a;
  
 }
 
-
+ 
 
 
 .write_box {
@@ -340,7 +326,7 @@ background-color: #29241a;
 
 .write_info {
   margin: 10px 50px 0 0;
-  padding: 0 0 20px 0;
+  padding: 0 0 60px 0;
   line-height: 40px;
 }
 
@@ -354,7 +340,8 @@ textarea {
   display: flex;
   width: 660px;
   height: 140px;
-  border: 1px solid #979393;
+ 
+  outline: none;
   resize: none;
   font-size: 18px;
 }
@@ -362,27 +349,7 @@ textarea {
 textarea::placeholder {
   font-size: 18px;
 }
-/*
-.comment_button {
-  display: inline-block;
-  width: 330px;
-  height: 42px;
-  padding: 5px 45px;
-  border-radius: 2px;
 
-  margin-top: 15px;
-  font-size: 20px;
-
-  cursor: pointer;
-}
-
-.btn_Cancel {
-  background: #fff;
-  border: 1px solid #979393;
-  color: #212121;
-
-  margin-right: 3px;
-} */
 #submitBtn {
   background: #080808;
   border: 1px solid #080808;
@@ -427,8 +394,53 @@ textarea::placeholder {
     
 }
 
-.eachComment .deleteComment{
-    background-color: red;
-    color: aliceblue;
+/* 모달
+#modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+.modal-content {
+position: fixed;
+top: 38%;
+left: 38%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+  padding: 30px 30px 20px 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: 1px solid #888;
+ 
+}
+.modal-content h2 {
+  font-size: 25px;
+}
+.modal-content p {
+  margin-top: 20px;
+  font-size: 18px;
 }
 
+#close-modal {
+  width: 30%;
+  height: 50%;
+  color: #aaa;
+ margin-left: 100px;
+ margin-top: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+#close-modal:hover,
+#close-modal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} */
