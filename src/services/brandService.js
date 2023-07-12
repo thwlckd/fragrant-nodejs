@@ -26,8 +26,8 @@ const brandService = {
       ? await brandDAO.getBrandByBrandId(target)
       : await brandDAO.getBrandByBrandName(target);
 
-    if (origin) updateInfo.brand.origin = origin;
-    if (korean) updateInfo.brand.korean = korean;
+    if (origin) updateInfo.name.origin = origin;
+    if (korean) updateInfo.name.korean = korean;
     if (picture) updateInfo.picture = picture;
 
     if (isObjectId) await brandDAO.updateBrandByBrandId(target, updateInfo);
