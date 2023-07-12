@@ -26,21 +26,8 @@ function checkObjectValues(obj) {
   return result;
 }
 
-function filterResponse(toResponse) {
-  if (Array.isArray(toResponse)) {
-    const filteredList = toResponse.map((user) => {
-      const { _id, email, userName, address, phone } = user;
-      return {
-        _id,
-        email,
-        userName,
-        address,
-        phone,
-      };
-    });
-    return filteredList;
-  }
-  const { _id, email, userName, address, phone } = toResponse;
+function filterFormatUser(user) {
+  const { _id, email, userName, address, phone } = user;
   return {
     _id,
     email,
@@ -50,7 +37,16 @@ function filterResponse(toResponse) {
   };
 }
 
-function filterformatOrder(order) {
+function filterResponseUser(toResponse) {
+  if (!toResponse) return null;
+  if (Array.isArray(toResponse)) {
+    const filteredList = toResponse.map((user) => filterFormatUser(user));
+    return filteredList;
+  }
+  return filterFormatUser(toResponse);
+}
+
+function filterFormatOrder(order) {
   const { _id, products, orderer, price, orderStatus, requirement, orderTime } = order;
   return {
     _id,
@@ -66,10 +62,10 @@ function filterformatOrder(order) {
 function filterResponseOrder(toResponse) {
   if (!toResponse) return null;
   if (Array.isArray(toResponse)) {
-    const filteredList = toResponse.map((order) => filterformatOrder(order));
+    const filteredList = toResponse.map((order) => filterFormatOrder(order));
     return filteredList;
   }
-  return filterformatOrder(toResponse);
+  return filterFormatOrder(toResponse);
 }
 
 function timeFormat(orders) {
@@ -97,7 +93,7 @@ module.exports = {
   addProductsQuantity,
   subtractProductsQuantity,
   checkObjectValues,
-  filterResponse,
+  filterResponseUser,
   filterResponseOrder,
   formatDate,
 };
