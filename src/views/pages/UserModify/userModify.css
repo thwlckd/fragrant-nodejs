@@ -9,7 +9,7 @@ body {
   padding: 30px 0;
 }
 
-.update-form {
+.update-form-user {
   width: 900px;
   margin: auto;
 }
@@ -93,7 +93,7 @@ body {
   background-color: rgb(246, 246, 246);
 }
 
-#id {
+#user-id {
   border: none;
   background-color: #ffffff;
 }
@@ -267,4 +267,11 @@ hr {
   margin: 30px 0 20px 0;
   font-size: 18px;
   background-color: rgb(246, 246, 246);
+}
+
+.user-name p,
+.contact p,
+password-new p {
+  color: rgb(126, 155, 250);
+  margin-left: 10px;
 }
