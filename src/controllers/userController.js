@@ -1,146 +1,106 @@
 const { userService } = require('../services');
-const { checkObjectValues, filterResponse } = require('../utils/utils');
 const { setUserToken } = require('../utils/authUtils');
 
 const userController = {
-  async postSignUpInfo(req, res, next) {
-    try {
-      const { email, password, userName, isAdmin } = req.body;
-      await userService.postSignUpInfo(email, password, userName, isAdmin);
-      res.status(201).redirect('/login');
-    } catch (err) {
-      next(err);
+  async postSignUpInfo(req, res) {
+    const { email, password, userName, isAdmin } = req.body;
+    const user = await userService.getUserByEmail(email);
+    if (user) {
+      throw new Error('이미 존재하는 이메일입니다.');
     }
+    await userService.postSignUpInfo(email, password, userName, isAdmin);
+    res.status(201).redirect('/login');
   },
 
-  async postSignInInfo(req, res, next) {
-    try {
-      const { email } = req.body;
-      const { isAdmin } = await userService.getUserByEmail(email);
-      setUserToken(res, email, isAdmin);
-      res.status(201).redirect('/');
-    } catch (err) {
-      next(err);
-    }
+  async postSignInInfo(req, res) {
+    const { email } = req.body;
+    const { isAdmin } = await userService.getUserByEmail(email);
+    setUserToken(res, email, isAdmin);
+    res.status(201).redirect('/');
   },
 
-  async getUser(req, res, next) {
-    try {
-      let userEmail;
-      let userId;
-      if (!req.params.userId) {
-        userEmail = req.user.userEmail;
-        const { _id } = await userService.getUserByEmail(userEmail);
-        userId = _id;
-      } else {
-        userId = req.params.userId;
-      }
-      const user = await userService.getUser(userId);
-      res.json(filterResponse(user));
-    } catch (err) {
-      next(err);
+  async getUserById(req, res) {
+    let userId;
+    if (!req.params.userId) {
+      const { _id } = await userService.getUserByEmail(req.user.userEmail);
+      userId = String(_id);
+    } else {
+      userId = req.params.userId;
     }
+    const user = await userService.getUserById(userId);
+    if (!user) {
+      throw new Error('회원정보 조회에 실패했습니다.');
+    }
+    res.json(user);
   },
 
-  async getUsers(req, res, next) {
-    try {
-      const users = await userService.getUsers();
-      res.json(filterResponse(users));
-    } catch (err) {
-      next(err);
+  async getUsers(req, res) {
+    const users = await userService.getUsers();
+    if (!users) {
+      throw new Error('회원정보 조회에 실패했습니다.');
     }
+    res.json(users);
   },
 
-  async getUsersByUserName(req, res, next) {
-    try {
-      const { userName } = req.query;
-      const users = await userService.getUsersByUserName(userName);
-      res.json(filterResponse(users));
-    } catch (err) {
-      next(err);
+  async getUsersByUserName(req, res) {
+    const { userName } = req.query;
+    const users = await userService.getUsersByUserName(userName);
+    if (!users) {
+      throw new Error('회원정보 조회에 실패했습니다.');
     }
+    res.json(users);
   },
 
-  async patchUser(req, res, next) {
-    try {
-      let userEmail;
-      let userId;
-      if (!req.params.userId) {
-        userEmail = req.user.userEmail;
-        const { _id } = await userService.getUserByEmail(userEmail);
-        userId = _id;
-      } else {
-        userId = req.params.userId;
-      }
-      const { userName, phone, address } = req.body;
-      const checkedToUpdate = checkObjectValues({
-        userName,
-        phone,
-      });
-
-      if (address) {
-        const checkedAddressToUpdate = checkObjectValues({
-          postalCode: address.postalCode,
-          address1: address.address1,
-          address2: address.address2,
-        });
-        if (Object.keys(checkedAddressToUpdate).length !== 0) {
-          checkedToUpdate.address = checkedAddressToUpdate;
-        }
-      }
-
-      await userService.patchUser(userId, checkedToUpdate);
-      res.status(201).end();
-    } catch (err) {
-      next(err);
+  async patchUserById(req, res) {
+    let userId;
+    if (!req.params.userId) {
+      const { _id } = await userService.getUserByEmail(req.user.userEmail);
+      userId = _id;
+    } else {
+      userId = req.params.userId;
     }
+    const { userName, phone, address } = req.body;
+    const user = await userService.patchUserById(userId, { userName, phone, address });
+    if (!user) {
+      throw new Error('회원정보 수정에 실패했습니다.');
+    }
+    res.status(201).end();
   },
 
-  async patchUserPassword(req, res, next) {
-    try {
-      const { userEmail } = req.user;
-      const { _id } = await userService.getUserByEmail(userEmail);
-      const userId = _id;
-      const { oldPassword, newPassword } = req.body;
-      if (
-        !(await userService.patchUser(userId, {
-          oldPassword,
-          newPassword,
-        }))
-      ) {
+  async patchUserPasswordById(req, res) {
+    const { userEmail } = req.user;
+    const { _id } = await userService.getUserByEmail(userEmail);
+    const userId = _id;
+    const { oldPassword, newPassword } = req.body;
+    const user = await userService.patchUserPasswordById(userId, {
+      oldPassword,
+      newPassword,
+    });
+    if (!user) {
+      throw new Error('비밀번호가 일치하지 않습니다.');
+    }
+    res.status(201).end();
+  },
+
+  async deleteUser(req, res) {
+    let userId;
+    if (!req.params.userId && !req.user.isAdmin) {
+      const { _id } = await userService.getUserByEmail(req.user.userEmail);
+      userId = _id;
+      const { password } = req.body;
+      const passwordValidation = await userService.deleteUserByIdForUser(userId, password);
+      if (!passwordValidation) {
         throw new Error('비밀번호가 일치하지 않습니다.');
       }
-      res.status(201).end();
-    } catch (err) {
-      next(err);
-    }
-  },
-
-  async deleteUser(req, res, next) {
-    try {
-      let userEmail;
-      let userId;
-      if (!req.params.userId && !req.user.isAdmin) {
-        userEmail = req.user.userEmail;
-        const { _id } = await userService.getUserByEmail(userEmail);
-        userId = _id;
-        const { password } = req.body;
-        const passwordValidation = await userService.deleteUserByPassword(userId, password);
-        if (passwordValidation === null) {
-          throw new Error('비밀번호가 일치하지 않습니다.');
-        }
-        res.end();
-        return;
-      }
-      userId = req.params.userId;
-      const user = await userService.deleteUserForAdmin(userId);
-      if (user.deletedCount === 0) {
-        throw new Error('존재하지 않는 유저입니다.');
-      }
       res.end();
-    } catch (err) {
-      next(err);
+      return;
     }
+    userId = req.params.userId;
+    const user = await userService.deleteUserByIdForAdmin(userId);
+    if (user.deletedCount === 0) {
+      throw new Error('존재하지 않는 유저입니다.');
+    }
+    res.end();
   },
 };
 
