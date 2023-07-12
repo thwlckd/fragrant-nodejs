@@ -11,7 +11,7 @@ const productDetailRenderer = async (url) => {
       price,
       picture,
       note,
-    brand: {
+      brand: {
         name: { origin: brandorigin },
       },
       description,
@@ -57,7 +57,6 @@ const productDetailRenderer = async (url) => {
 };
 const { pathname } = window.location;
 productDetailRenderer(pathname);
-
 
 // 밑이 수량 증감 수정본. 수량 증감에 따른 판매가가 보여짐
 const plus = document.querySelector('.plus');
