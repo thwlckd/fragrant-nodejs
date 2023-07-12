@@ -57,7 +57,7 @@ function showComment(comment) {
   commentList.appendChild(userName);
   commentList.appendChild(inputValue);
   commentList.appendChild(showTime);
-  
+
   resultComment.prepend(commentList);
   console.dir(resultComment);
 }
@@ -68,6 +68,7 @@ function pressBtn() {
 
   if (currentVal.length < 10) {
     alert('최소 10자 이상 후기를 작성해주세요.');
+    
   } else {
     showComment(currentVal);
     inputText.value = '';
@@ -75,43 +76,57 @@ function pressBtn() {
 }
 
 btn.onclick = pressBtn;
+/*
+const popBtn = document.getElementById('submitBtn');
+const modal = document.getElementById('modal');
+const closeModalBtn = document.getElementById('close-modal');
+// 모달창 열기
+popBtn.addEventListener('click', () => {
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden'; // 스크롤바 제거
+});
+// 모달창 닫기
+closeModalBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto'; // 스크롤바 보이기
+});
 
-
+*
 
 // 페이지네이션
 /*
-const COUNT_PER_PAGE = 5;
-const numberButtonWrapper = document.querySelector('.number-button-wrapper');
+const perPage = 5;
+const pageBtnWrapper = document.querySelector('.pageBtnWrapper');
 const ul = document.querySelector('ul');
-const prevButton = document.querySelector('.prev-button');
-const nextButton = document.querySelector('.next-button'); 
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next'); 
 let pageNumberButtons;
 
 let currentPage = 1; 
 
 
 function getTotalPageCount()  {
-  return Math.ceil(showComment.length / COUNT_PER_PAGE);
+  return Math.ceil(showComment.length / perPage);
 };
 
 
 function setPageButtons() {
-  numberButtonWrapper.textContent = '';
+  pageBtnWrapper.textContent = '';
   
   for (let i = 1; i <= getTotalPageCount(); i+=1) {
-    numberButtonWrapper.textContent += <span class="number-button">` ${i} `</span>;
+    pageBtnWrapper.textContent += <span class="pageButton">` ${i} `</span>;
   }
 
-  numberButtonWrapper.firstChild.classList.add('selected');
-  pageNumberButtons = document.querySelectorAll('.number-button');
+  pageBtnWrapper.firstChild.classList.add('selected');
+  pageNumberButtons = document.querySelectorAll('.pageButton');
 };
 
 const setPageOf = (pageNumber) => {
   ul.textContent = '';
 
   for (
-    let i = COUNT_PER_PAGE * (pageNumber - 1) + 1;
-    i <= COUNT_PER_PAGE * (pageNumber - 1) + 6 && i <= showComment.length;
+    let i = perPage * (pageNumber - 1) + 1;
+    i <= perPage * (pageNumber - 1) + 6 && i <= showComment.length;
     i+=1
   ) {
     const li = document.createElement('li');
@@ -127,9 +142,9 @@ const setPageOf = (pageNumber) => {
 function moveSelectedPageHighlight() {
    pageNumberButtons = document.querySelectorAll('.number-button');
 
-  pageNumberButtons.forEach((numberButton) => {
-    if (numberButton.classList.contains('selected')) {
-      numberButton.classList.remove('selected');
+  pageNumberButtons.forEach((pageButton) => {
+    if (pageButton.classList.contains('selected')) {
+      pageButton.classList.remove('selected');
     }
   });
 
