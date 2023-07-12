@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const productController = require('../controllers/productController');
+const { productController } = require('../controllers');
 const asyncHandler = require('../middlewares/asyncHandler');
 const upload = require('../utils/imgUploader');
 
