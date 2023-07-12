@@ -65,12 +65,12 @@
 #sbtn {
   width: 150px;
   height: 100px;
-  background-color: #464646;
+  background-color: #080808;
   color: white;
   font-size: 20px;
 
-  border: 2px solid #464646;
-  border-radius: 10px;
+  border: 1px solid #080808;
+  border-radius: 4px;
 }
 
 /* 기타 링크 박스*/

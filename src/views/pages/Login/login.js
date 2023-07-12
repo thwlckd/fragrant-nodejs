@@ -5,7 +5,7 @@ const loginForm = document.querySelector('.userinput');
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  fetch('/auth/sign-in', {
+  fetch('/api/auth/sign-in', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +34,8 @@ const idEmailErrorMsg = {
   error1: '아이디(이메일)는 이메일 형식으로 입력해주세요.',
 };
 
-console.log(idEmailError);
+// consol
+e.log(idEmailError);
 
 idEmail.oninput = () => {
   const { error0, error1 } = idEmailErrorMsg;
