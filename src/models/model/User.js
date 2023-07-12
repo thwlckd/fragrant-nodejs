@@ -9,7 +9,7 @@ const userDAO = {
     return user;
   },
 
-  async findOne(userId) {
+  async findOneById(userId) {
     const user = await User.findOne({ _id: userId }).lean();
     return user;
   },
@@ -29,12 +29,17 @@ const userDAO = {
     return users;
   },
 
-  async updateOne(userId, toUpdate) {
+  async updateOneById(userId, toUpdate) {
     const user = await User.findOneAndUpdate({ _id: userId }, toUpdate).lean();
     return user;
   },
 
-  async deleteOne(userId) {
+  async updateOneByUserEmail(email, toUpdate) {
+    const user = await User.findOneAndUpdate({ email }, toUpdate).lean();
+    return user;
+  },
+
+  async deleteOneById(userId) {
     const user = await User.deleteOne({ _id: userId }).lean();
     return user;
   },
