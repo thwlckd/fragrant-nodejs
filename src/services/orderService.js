@@ -1,9 +1,8 @@
 const { orderDAO, userDAO } = require('../models/model');
-const { checkObjectValues, formatDate, filterResponseOrder } = require('../utils/utils');
+const { formatDate, filterResponseOrder } = require('../utils/utils');
 
 const orderService = {
-  async createOrderAndUpdateUserAddress(toCreateObj, userEmail) {
-    const toCreate = checkObjectValues(toCreateObj);
+  async createOrderAndUpdateUserAddress(toCreate, userEmail) {
     const order = await orderDAO.create(toCreate);
     const toUpdate = order.orderer.address;
     await userDAO.updateOneByUserEmail(userEmail, {
@@ -34,8 +33,7 @@ const orderService = {
     return filterResponseOrder(formatDate(ordersByEmail));
   },
 
-  async updateOrderByOrderId(orderId, toUpdateObj) {
-    const toUpdate = checkObjectValues(toUpdateObj);
+  async updateOrderByOrderId(orderId, toUpdate) {
     const order = await orderDAO.updateOneByOrderId(orderId, toUpdate);
     return order;
   },

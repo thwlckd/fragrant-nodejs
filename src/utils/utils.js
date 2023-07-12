@@ -16,16 +16,6 @@ async function subtractProductsQuantity(products) {
   );
 }
 
-function checkObjectValues(obj) {
-  const result = Object.entries(obj).reduce((map, [key, value]) => {
-    if (!value) {
-      map[key] = value;
-    }
-    return map;
-  }, {});
-  return result;
-}
-
 function filterFormatUser(user) {
   const { _id, email, userName, address, phone } = user;
   return {
@@ -92,7 +82,6 @@ function formatDate(orders) {
 module.exports = {
   addProductsQuantity,
   subtractProductsQuantity,
-  checkObjectValues,
   filterResponseUser,
   filterResponseOrder,
   formatDate,
