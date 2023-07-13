@@ -20,6 +20,7 @@ viewRouter.use('/password/reset', serveStatic('PasswordReset'));
 viewRouter.use('/signup', serveStatic('SignUp'));
 
 viewRouter.use('/products', serveStatic('Products'));
+viewRouter.use('/products/:classified/:target', serveStatic('Products'));
 viewRouter.use('/products/:productId', serveStatic('ProductDetail'));
 
 viewRouter.use('/cart', serveStatic('Cart'));
