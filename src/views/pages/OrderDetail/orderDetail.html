@@ -8,100 +8,39 @@
     <link rel="stylesheet" href="/components/Header/style.css" />
     <link rel="stylesheet" href="/components/Footer/style.css" />
     <link rel="stylesheet" href="orderDetail.css" />
+    <script src="./orderDetail.js" type="module"></script>
   </head>
   <body>
     <div class="order-detail-page">
       <section class="order-status">
-        <div>
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 14 14"
-            fill="none"
-            alt="주문완료"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9.5 1.5H11C11.2652 1.5 11.5196 1.60536 11.7071 1.79289C11.8946 1.98043 12 2.23478 12 2.5V12.5C12 12.7652 11.8946 13.0196 11.7071 13.2071C11.5196 13.3946 11.2652 13.5 11 13.5H3C2.73478 13.5 2.48043 13.3946 2.29289 13.2071C2.10536 13.0196 2 12.7652 2 12.5V2.5C2 2.23478 2.10536 1.98043 2.29289 1.79289C2.48043 1.60536 2.73478 1.5 3 1.5H4.5"
-              stroke="rgb(143, 143, 143)"
-              stroke-width="1.3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M8.5 0.5H5.5C4.94772 0.5 4.5 0.947715 4.5 1.5V2C4.5 2.55228 4.94772 3 5.5 3H8.5C9.05228 3 9.5 2.55228 9.5 2V1.5C9.5 0.947715 9.05228 0.5 8.5 0.5Z"
-              stroke="rgb(143, 143, 143)"
-              stroke-width="1.3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M4.5 8.5L6.5 10L9 6"
-              stroke="rgb(143, 143, 143)"
-              stroke-width="1.3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-
+        <div class="order-status-current">
+          <img src="/asset/icon/checklist.svg" alt="주문완료" class="order-status-img" />
           <p>주문완료</p>
         </div>
-        <div>
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 19 20"
-            fill="none"
-            alt="상품준비중"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.6471 6.82353V4.17647C12.6471 2.42215 11.2249 1 9.47059 1C7.71627 1 6.29412 2.42215 6.29412 4.17647V6.82353M3.05348 19H15.8877C17.0218 19 17.9412 18.0977 17.9412 16.9847L16.6257 6.29409C16.6257 5.18107 15.7063 4.27878 14.5722 4.27878H4.1123C2.9782 4.27878 2.05882 5.18107 2.05882 6.29409L1 16.9847C1 18.0977 1.91937 19 3.05348 19Z"
-              stroke="rgb(143, 143, 143)"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+        <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
+        <div class="order-status-div status-prepare-product">
+          <img src="/asset/icon/bag.gray.svg" alt="상품준비중" class="order-status-img" />
           <p>상품준비중</p>
         </div>
-        <div>
-          <svg
-            width="42"
-            height="42"
-            viewBox="0 0 24 24"
-            fill="none"
+        <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
+        <div class="order-status-div">
+          <img
+            src="/asset/icon/truck.30px.svg"
             alt="배송중"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.14288 17.0286H4.2286C3.2187 17.0286 2.40002 16.2099 2.40002 15.2V6.97142C2.40002 5.96153 3.2187 5.14285 4.2286 5.14285H12.4572C13.4671 5.14285 14.2857 5.96153 14.2857 6.97142V15.2C14.2857 16.2099 13.4671 17.0286 12.4572 17.0286H11.5429M15.6572 17.0286H15.2C14.6951 17.0286 14.2857 16.6192 14.2857 16.1143V8.34285C14.2857 7.83791 14.6951 7.42857 15.2 7.42857H17.5034C17.7812 7.42857 18.0439 7.55482 18.2174 7.7717L21.3997 11.7496C21.5294 11.9117 21.6 12.1131 21.6 12.3207V16.1143C21.6 16.6192 21.1907 17.0286 20.6857 17.0286M10.6286 16.5714C10.6286 17.8338 9.60525 18.8571 8.34288 18.8571C7.08052 18.8571 6.05717 17.8338 6.05717 16.5714C6.05717 15.3091 7.08052 14.2857 8.34288 14.2857C9.60525 14.2857 10.6286 15.3091 10.6286 16.5714ZM20.2286 16.5714C20.2286 17.8338 19.2052 18.8571 17.9429 18.8571C16.6805 18.8571 15.6572 17.8338 15.6572 16.5714C15.6572 15.3091 16.6805 14.2857 17.9429 14.2857C19.2052 14.2857 20.2286 15.3091 20.2286 16.5714Z"
-              stroke="rgb(143, 143, 143)"
-              stroke-width="1.7"
-              stroke-linecap="round"
-            />
-          </svg>
+            class="order-status-img"
+            style="width: 45px; height: 50px"
+          />
           <p>배송중</p>
         </div>
-        <div>
-          <svg
-            width="35"
-            height="35"
-            viewBox="0 0 24 24"
-            fill="none"
+        <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
+        <div class="order-status-div">
+          <img
+            src="/asset/icon/gift.svg"
             alt="배송완료"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12.1746 21.6538V7.69012M10.5496 6.85244C10.7224 6.89123 10.9046 6.84368 11.0291 6.71922C11.1535 6.59476 11.201 6.41253 11.1623 6.23973C11.0071 5.60595 10.4356 3.4837 9.84873 2.89684C9.11757 2.16568 7.92757 2.16263 7.20002 2.89017C6.47253 3.61767 6.47547 4.80767 7.20669 5.53888C7.80316 6.13535 9.91581 6.6973 10.5496 6.85244ZM12.3242 6.23968C12.2854 6.41255 12.3329 6.59471 12.4574 6.71917C12.5818 6.84363 12.7641 6.89111 12.9369 6.85239C13.5706 6.69723 15.6929 6.12569 16.2797 5.53883C17.0109 4.80767 17.014 3.61767 16.2864 2.89012C15.5589 2.16263 14.3689 2.16557 13.6377 2.89679C13.0412 3.49326 12.4793 5.60591 12.3242 6.23968ZM3.09821 12.5774H20.9018C21.2874 12.5774 21.6 12.2648 21.6 11.8792V8.38831C21.6 8.00271 21.2874 7.69012 20.9018 7.69012H3.09821C2.71261 7.69012 2.40002 8.00271 2.40002 8.38831V11.8792C2.40002 12.2648 2.71261 12.5774 3.09821 12.5774ZM19.8546 12.5774V20.9556C19.8546 21.3412 19.542 21.6538 19.1564 21.6538H4.84366C4.45807 21.6538 4.14548 21.3412 4.14548 20.9556V12.5774H19.8546Z"
-              stroke="rgb(143, 143, 143)"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-
-          <p>배송완료</p>
+            class="order-status-img"
+            style="width: 35px; height: 35px"
+          />
+          <p style="line-height: 45px; padding-top: 5px">배송완료</p>
         </div>
       </section>
       <section class="order-info">
@@ -120,10 +59,13 @@
         <ul id="product-list"></ul>
       </section>
 
+      <!--결제정보-->
       <div class="payment">
         <span id="payment-amount"></span>
         <span id="payment-type"></span>
       </div>
+
+      <!--배송지정보-->
       <section class="shipping-address address-hidden">
         <div class="address-header">
           <h2>배송지정보</h2>
@@ -149,7 +91,13 @@
         <table>
           <tr>
             <td>이름</td>
-            <td id="name">이수민</td>
+            <td>
+              <input
+                type="text"
+                id="shippingName"
+                style="font-size: 22px; border: none; width: 90%; height: 34px"
+              />
+            </td>
           </tr>
           <tr>
             <td>연락처</td>
@@ -157,7 +105,26 @@
           </tr>
           <tr>
             <td>주소</td>
-            <td id="address"></td>
+            <td>
+              <div id="adress" class="info"></div>
+              <div class="form-group-address update">
+                <div id="address-info">
+                  <div id="find-address">
+                    <input
+                      type="text"
+                      name="postalCode"
+                      id="postcode"
+                      placeholder="우편번호"
+                      disabled
+                    />
+                    <button type="button" name="address1" id="address-button">주소 찾기</button>
+                  </div>
+                  <input type="text" name="address2" id="address" disabled />
+                  <input type="text" id="detail-address" placeholder="상세주소를 입력해주세요." />
+                  <p></p>
+                </div>
+              </div>
+            </td>
           </tr>
           <tr>
             <td>요청사항</td>
@@ -168,25 +135,24 @@
           <button type="button" class="order-cancel-btn">주문취소</button>
         </div>
       </section>
-      <div>
-        <div class="modal hidden">
-          <div class="background"></div>
-          <div class="modal-box">
-            <p>
-              ((주문명))
-              <br />
-              정말 주문을 취소하시겠어요?
-            </p>
-            <div class="modal-btn">
-              <button class="close-btn">돌아가기</button>
-              <button class="delete-confirm-btn">주문취소하기</button>
-            </div>
-          </div>
+    </div>
+
+    <!-- 주문 취소 -->
+    <div class="modal-order-cancel hidden">
+      <div class="background"></div>
+      <div class="modal-box1">
+        <p></p>
+        <br />
+        <p>정말 주문을 취소하시겠어요?</p>
+        <div class="modal-btn">
+          <button class="close-btn-cancel">돌아가기</button>
+          <button class="confirm-btn-cancel">주문취소하기</button>
         </div>
       </div>
     </div>
+
     <script src="/components/Header/Header.js" type="module"></script>
-    <!-- <script src="/components/Footer/Footer.js" type="module"></script> -->
-    <script src="./orderDetail.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   </body>
 </html>
