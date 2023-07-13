@@ -34,9 +34,7 @@ const idEmailErrorMsg = {
   error1: '아이디(이메일)는 이메일 형식으로 입력해주세요.',
 };
 
-// consol
-e.log(idEmailError);
-
+// console.log(idEmailError);
 idEmail.oninput = () => {
   const { error0, error1 } = idEmailErrorMsg;
 
