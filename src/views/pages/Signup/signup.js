@@ -30,6 +30,7 @@ signupForm.addEventListener('submit', (e) => {
 //     }
 //   }
 // });
+
 const mailCheck = document.querySelector('#reqBtn');
 
 mailCheck.addEventListener('click', (e) => {

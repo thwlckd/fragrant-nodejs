@@ -4,7 +4,7 @@ const { userDAO } = require('../../models/model');
 const config = {
   clientID: process.env.KAKAO_CLIENT_ID,
   clientSecret: process.env.KAKAO_CLIENT_SECRET,
-  callbackURL: 'api/auth/kakao/callback',
+  callbackURL: '/api/auth/kakao/callback',
 };
 
 async function findOrCreateUser(email, userName) {
