@@ -9,10 +9,7 @@ $footer.append($footerDetailWrap);
 const $companyName = $create('div', 'company-name');
 $companyName.textContent = '이엘아이씨이한국(유)';
 const $ceo = $create('div', 'list');
-$ceo.textContent = '팀장 : 정 충래';
-
-const $member = $create('div', 'list');
-$member.textContent = '팀원 : 박 창협, 왕 지은, 우 윤하, 이 수민, 임 소정';
+$ceo.textContent = '대표: 향기나조 (14)';
 
 const $address = $create('div', 'list');
 $address.textContent = '서울시 성동구 아차산로 17길 48로 성수낙낙 2층';
@@ -29,17 +26,7 @@ $bizCheck.textContent = '사업자정보조회';
 const $license = $create('div', 'list');
 $license.textContent = 'Copyright © 2023 Elice All Rights Reserved';
 
-$append(
-  $footerDetailWrap,
-  $companyName,
-  $ceo,
-  $member,
-  $address,
-  $regNum,
-  $bizNum,
-  $bizCheck,
-  $license,
-);
+$append($footerDetailWrap, $companyName, $ceo, $address, $regNum, $bizNum, $bizCheck, $license);
 
 // const $teamDetailWrap = $create('div', 'footer-detail-wrap');
 
