@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="/components/Footer/style.css">
     <link rel="stylesheet" href="signup.css">
 
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+    <script src="signup.js" defer></script>
 </head>
 
 <body>
@@ -21,7 +24,7 @@
                 </div>
 
                 <div class="member">
-                    <form action="" method="post" class="member-input">
+                    <form action="/auth/sign-up" method="post" class="member-input">
                         <ul>
                             <li>
                                 <label for="mid">아이디(이메일)</label>
@@ -39,9 +42,9 @@
                                     <option value="gmail.com">gmail.com</option>
                                     <option value="free">직접입력</option>
                                 </select>
+                                <button type="button" id="reqBtn">인증메일요청</button>
                                 <span class="msg">이메일을 입력하세요.</span>
                             </li>
-
                             <li>
                                 <label for="mpw">비밀번호</label>
                                 <input type="password" id="mpw" name="mpw" maxlength="20"
@@ -64,19 +67,11 @@
                         <div class="join">
                             <input type="submit" id="joinbtn" value="회원가입">
                         </div>
-
-
                     </form>
                 </div>
-
-
             </div>
         </div>
     </main>
-
-    <script src="/components/Header/Header.js" type="module"></script>
-    <script src="/components/Footer/Footer.js" type="module"></script>
-    <script src="signup.js"></script>
 </body>
 
 </html>
