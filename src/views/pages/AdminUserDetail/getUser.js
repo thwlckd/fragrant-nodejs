@@ -3,17 +3,11 @@ import { $, $create } from '/js/util/dom.js';
 import { check } from '/js/util/validate.js';
 import { guideMsg } from '/js/util/constant.js';
 
-const url = window.location.pathname;
-const endpoint = `/api/users/${url.split('/').slice(-2)[0]}`;
-// const pwEndPoint = `/users/password/${url.split('/').slice(-2)[0]}`;
-
-const getUser = async () => {
-  const data = await GET(endpoint);
-  return data;
-};
-
 const render = async () => {
-  const data = await getUser();
+  const url = window.location.pathname;
+  const id = url.split('/').slice(-2)[0];
+  const endpoint = `/api/users/${id}`;
+  const data = await GET(endpoint);
 
   // input
   const $username = $('#username');
@@ -139,7 +133,7 @@ const render = async () => {
 
     // console.log(PatchData);
 
-    const createModal = (text) => {
+    const saveModal = (text) => {
       const $modalStyle = $create('style');
       $modalStyle.textContent = `
       .modal{
@@ -184,22 +178,81 @@ const render = async () => {
       // if ($pwValidate.value !== '') {
       //   // PATCH(pwEndPoint);
       //   PATCH(endpoint, PatchData);
-      //   createModal(successText);
+      //   saveModal(successText);
       // } else {
       PATCH(endpoint, PatchData);
-      createModal(successText);
+      saveModal(successText);
       // }
     } else {
       rejectText += ` 을(를) \n다시 확인해주세요.`;
-      createModal(rejectText);
+      saveModal(rejectText);
     }
   };
 
-  const userDelete = () => {};
+  const deleteModal = (userId) => {
+    const $modalStyle = $create('style');
+    $modalStyle.textContent = `
+    .modal{
+      width: 300px;
+      height: 300px;
+      background-color: #FAFAFA;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:50px;
+      padding: 20px;
+      text-align:center;
+    }
+    .modal > button{
+      width:100px;
+      height:30px;
+      background-color:#282828;
+      color:white;
+      cursor:pointer;
+      border:none;
+      outline:none;
+    }
+    .cancel-btn{
+      background-color:#C80000 !important;
+    }
+    `;
+
+    const $modal = $create('div', 'modal');
+    const $modalText = $create('div');
+    $modal.append($modalText);
+    const $modalBtn = $create('button');
+    $modalBtn.textContent = '확인';
+    const $cancelBtn = $create('button', 'cancel-btn');
+    $cancelBtn.textContent = '취소';
+    $modal.append($modalBtn, $cancelBtn);
+
+    $modalText.textContent = '삭제하시겠습니까?';
+    $modalBg.classList.add('modalBg-on');
+    $modalBg.shadowRoot.append($modalStyle, $modal);
+
+    $modalBtn.addEventListener('click', async () => {
+      await DELETE(`/api/users/${userId}`);
+      $modalBg.classList.remove('modalBg-on');
+      $modalBg.shadowRoot.replaceChildren();
+      window.location.href = '/admin/users';
+    });
+
+    $cancelBtn.addEventListener('click', () => {
+      $modalBg.classList.remove('modalBg-on');
+      $modalBg.shadowRoot.replaceChildren();
+    });
+  };
+
+  const userDelete = (userId) => {
+    deleteModal(userId);
+  };
 
   $init.addEventListener('click', userInit);
   $save.addEventListener('click', userSave);
-  $delete.addEventListener('click', userDelete);
+  $delete.addEventListener('click', () => {
+    userDelete(id);
+  });
 
   userInit();
 };

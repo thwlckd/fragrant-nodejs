@@ -39,15 +39,9 @@ export const PATCH = async (url, obj) => {
   }
 };
 
-export const DELETE = async (url, obj) => {
+export const DELETE = async (url) => {
   const res = await fetch(url, {
     method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(obj),
   });
-
-  const data = await res.json();
-  return data;
+  return res;
 };

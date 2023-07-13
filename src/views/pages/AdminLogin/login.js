@@ -11,8 +11,15 @@ $loginBtn.addEventListener('click', async () => {
     password: $password.value,
   };
 
-  const login = await POST('/api/auth/sign-in', postData);
-  console.log('🚀 ~ file: login.js:15 ~ $loginBtn.addEventListener ~ login:', login);
+  const login = await fetch('/api/auth/sign-in', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(postData),
+  });
+
+  console.log(login);
 
   // document.cookie = `userToken=${login.token}; path=/`;
   // window.location.href = '/admin/users';

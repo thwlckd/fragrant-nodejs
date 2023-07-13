@@ -1,0 +1,120 @@
+* {
+  font-family: 'Alice', serif;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+/****************** main header *******************/
+main {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 35px 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 30px;
+}
+
+main>hr {
+  margin: 100px 0;
+}
+
+main> :not(.main-header) {
+  max-width: 1280px;
+  width: 100%;
+}
+
+.main-header {
+  width: 100%;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.main-header>div {
+  margin-bottom: 10px;
+}
+
+.main-header>small {
+  color: #999999;
+  font-size: smaller;
+  font-weight: normal;
+}
+/****************** main section *******************/
+.main-section{
+
+}
+table{
+  max-width: 1280px;
+  width: 100%;
+  /* table-layout: fixed; */
+  box-sizing: border-box;
+}
+table > tbody> tr{
+  height: auto;
+}
+table > tbody> tr > th{
+  width: 200px;
+  height: 60px;
+  background-color: #444444;
+  color: white;
+  vertical-align: middle;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+table > tbody> tr > td{
+  min-width: 340px;
+  vertical-align: middle;
+  border: 1px solid black;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.btn-gr{
+  margin: 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: sticky;
+  bottom: 50px;
+  left: 0;
+}
+.btn-gr > button {
+  width: 150px;
+  height: 50px;
+  font-size: 16px;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+}
+.btn-gr > button:nth-child(1) {
+  background-color: #383838;
+}
+.btn-gr > button:nth-child(2) {
+  background-color: #c80000;
+}
+
+/****************** 모달창 *******************/
+.modalBg {
+  display: none;
+}
+
+.modalBg-on {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 999999999;
+}
