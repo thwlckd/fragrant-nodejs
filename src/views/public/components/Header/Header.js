@@ -169,10 +169,35 @@ async function searchRenderer() {
   });
 }
 
-function gnbRightRenderer() {
-  const token = document.cookie;
-  console.log('token', token);
-  $append($gnbRight, $searchIcon, $accountIcon, $bagIcon, $logoutIcon);
+async function gnbRightRenderer() {
+  const res = await fetch('/api/auth/is-sign-in');
+  if (res.ok) {
+    const { isAdmin } = await res.json();
+    $accountIcon.addEventListener('click', () => {
+      window.location.href = '/mypage';
+    });
+
+    $logoutIcon.addEventListener('click', async () => {
+      await fetch('/api/auth/sign-out', { method: 'POST' });
+      window.location.href = '/';
+    });
+
+    if (isAdmin) {
+      const $adminIcon = $create('img', '', { src: '/asset/icon/admin.svg' });
+      $adminIcon.addEventListener('click', async () => {
+        window.location.href = '/admin/users';
+      });
+      $append($gnbRight, $adminIcon, $searchIcon, $accountIcon, $bagIcon, $logoutIcon);
+    } else {
+      $append($gnbRight, $searchIcon, $accountIcon, $bagIcon, $logoutIcon);
+    }
+  } else {
+    $accountIcon.addEventListener('click', () => {
+      window.location.href = '/login';
+    });
+
+    $append($gnbRight, $searchIcon, $accountIcon, $bagIcon);
+  }
 }
 
 function headerRenderer() {
@@ -189,8 +214,8 @@ function headerRenderer() {
   $homeLink.textContent = 'ELICE';
 
   $searchIcon.addEventListener('click', searchHandler);
-  $accountIcon.addEventListener('click', () => {
-    window.location.href = '/login';
+  $bagIcon.addEventListener('click', () => {
+    window.location.href = '/cart';
   });
 
   gnbRightRenderer();
