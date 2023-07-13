@@ -6,16 +6,13 @@ const ReviewSchema = new Schema(
       type: String,
       required: true,
     },
-    rating: {
-      type: Number,
-      required: true,
-    },
-    picture: {
-      type: String,
-      required: true,
-    },
     comment: {
       type: String,
+      required: true,
+    },
+    productId: {
+      type: Schema.Types.ObjectId,
+      required: true,
     },
   },
   {
