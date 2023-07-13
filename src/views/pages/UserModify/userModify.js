@@ -1,6 +1,5 @@
 import { $ } from '/js/util/dom.js';
-import { check, phNumValidate, passwordValidate } from '/js/util/validate.js';
-import { guideMsg } from '/js/util/constant.js';
+import { phNumValidate, passwordValidate } from '/js/util/validate.js';
 
 //해당하는 회원 정보 보여주기
 async function getUserInfo() {
@@ -34,17 +33,6 @@ async function setUserInfo() {
   } else {
     $('#address').value = '';
   }
-  // if (address) {
-  //   $('#detail-address').value = address.address2;
-  //   $('#address-info small').textContent = '';
-  //   $('#address-info small').style.color = '';
-  //   check.address = true;
-  // } else {
-  //   $('#detail-address').value = '';
-  //   $('#address-info small').textContent = guideMsg.ADDR_DETAIL_ADD_MSG.msg;
-  //   $('#address-info small').style.color = guideMsg.ADDR_DETAIL_ADD_MSG.color;
-  //   check.address = true;
-  // }
 }
 
 setUserInfo();
@@ -109,11 +97,12 @@ async function modifyPassword() {
   });
 
   // console.log(response.json());
+  const data = await response.json();
   if (response.ok) {
     alert('비밀번호를 변경헀습니다.');
     clearPwInput();
   } else {
-    alert(response.error);
+    alert(data.error);
   }
 }
 
@@ -152,7 +141,7 @@ function checkMethod(event) {
         checkText = '비밀번호 변경을 위해 한번 더 입력해주세요.';
       }
       $('.new-pwd-confirm p').textContent = checkText;
-
+      break;
     default:
       break;
   }
@@ -162,29 +151,6 @@ function checkMethod(event) {
 $('#contact').addEventListener('keyup', checkMethod);
 $('#password-new').addEventListener('keyup', checkMethod);
 $('#password-new-confirm').addEventListener('keyup', checkMethod);
-
-// $('#name').addEventListener('keyup', (event) => {
-//   const inputValue = event.target.value;
-//   let checkText = '';
-
-//   if (inputValue.length === 0) {
-//     checkText = '이름을 입력해주세요.';
-//   }
-
-//   $('.user-name p').textContent = checkText;
-// });
-
-// $('#contact').addEventListener('keyup', (event) => {
-//   const inputValue = event.target.value;
-//   let checkText = '';
-
-//   if (inputValue.length === 0) {
-//     checkText = '연락처를 입력해주세요.';
-//   } else if (!phNumValidate(inputValue)) {
-//     checkText = '010-1234-56789 형식으로 입력해주세요.';
-//   }
-//   $('.contact p').textContent = checkText;
-// });
 
 // 회원탈퇴 모달
 const open = () => {
@@ -198,7 +164,6 @@ const close = () => {
 $('.delete-account-btn').addEventListener('click', open);
 $('.close-btn').addEventListener('click', close);
 $('.background').addEventListener('click', close);
-// document.gquerySelector('modal').scrollTo(0, 0);
 
 //회원탈퇴
 const deleteAccount = async () => {
@@ -211,10 +176,14 @@ const deleteAccount = async () => {
       password: $('#current-pw-delete').value,
     }),
   });
+  const data = response.json();
+
   if (response.ok) {
     alert('회원탈퇴가 완료되었습니다.');
+    location.href = '/login';
   } else {
-    alert(response.error);
+    alert(data.error);
+    $('#current-pw-delete').value = '';
   }
 };
 
