@@ -30,10 +30,14 @@ const productService = {
 
   // 브랜드
   async getAllProductsByBrand(target, { page, perPage }) {
-    const key = '_id';
-    const brandId = ObjectId.isValid(target)
-      ? target
-      : (await brandDAO.getBrandByBrandName(target))[key];
+    let brandId = target;
+    if (!ObjectId.isValid(target)) {
+      const key = '_id';
+      const brand = await brandDAO.getBrandByBrandName(target);
+      brandId = brand ? brand[key] : undefined;
+    }
+
+    if (!brandId) return { products: [], totalPage: 0 };
 
     const { products, total } = await productDAO.getAllProductsByBrandId(brandId, {
       page,

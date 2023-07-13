@@ -4,6 +4,9 @@ const { setUserToken } = require('../utils/authUtils');
 const userController = {
   async postSignUpInfo(req, res) {
     const { email, password, userName, isAdmin } = req.body;
+    if (email !== req.user.userEmail) {
+      throw new Error('인증한 이메일로 회원가입 해주세요');
+    }
     const user = await userService.getUserByEmail(email);
     if (user) {
       throw new Error('이미 존재하는 이메일입니다.');

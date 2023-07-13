@@ -23,19 +23,19 @@ const mkdir = (dir) => {
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: async (req, file, cb) => {
       const { baseUrl } = req;
       let dest = path.join('src', 'views', 'public', 'asset');
 
       switch (baseUrl) {
         case '/brands':
-          dest += `/brands/${req.body.koreanName}`;
+          dest += `/brands`;
           break;
         case '/products':
-          dest += `/products/${req.body.productId}`;
+          dest += `/products`;
           break;
         case '/reviews':
-          dest += `/reviews/${req.body.productId}`;
+          dest += `/reviews`;
           break;
         default:
           break;

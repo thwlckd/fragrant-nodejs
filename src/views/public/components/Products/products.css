@@ -1,0 +1,86 @@
+.products-list {
+  padding: 50px 0;
+}
+
+.products-list:nth-child(even) {
+  background-color: #fff;
+}
+
+.products-list:nth-child(odd) {
+  background-color: #fffdf8;
+}
+
+.products-title {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 1280px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.product {
+  width: 280px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.product img {
+  width: 240px;
+  height: 240px;
+  background-color: #fafafa;
+  object-fit: contain;
+}
+
+.new-products img {
+  width: 335px;
+  height: 335px;
+}
+
+.new-products .product {
+  width: 375px;
+}
+
+.product a {
+  text-decoration: none;
+  color: #000;
+}
+
+.product .brand-name-kr {
+  min-height: 16px;
+  font-size: 14px;
+  margin: 10px 0;
+  color: #908e8a;
+}
+
+.product .name-origin {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  font-weight: bold;
+}
+
+.product .description {
+  min-height: 20px;
+  margin: 20px 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.product .price-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.price {
+  color: #e54e1e;
+}
