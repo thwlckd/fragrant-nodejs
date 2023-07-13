@@ -171,7 +171,7 @@ async function searchRenderer() {
 
 function gnbRightRenderer() {
   const token = document.cookie;
-  console.log(token);
+  console.log('token', token);
   $append($gnbRight, $searchIcon, $accountIcon, $bagIcon, $logoutIcon);
 }
 
@@ -205,9 +205,8 @@ function headerRenderer() {
   const $pbLnb = $create('div', 'lnb');
   const $brandLnb = $create('div', 'lnb');
   const $scentsLnb = $create('div', 'lnb');
-  const $bathLnb = $create('div', 'lnb');
 
-  $lnbWrapper.append($newLnb, $pbLnb, $brandLnb, $scentsLnb, $bathLnb);
+  $lnbWrapper.append($newLnb, $pbLnb, $brandLnb, $scentsLnb);
 
   categoryWithThumbRenderer([$newLnb, '신제품'], '/api/products?perPage=5');
   categoryWithThumbRenderer([$pbLnb, 'PB'], '/api/products/brands/PB?perPage=5');

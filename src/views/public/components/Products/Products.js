@@ -1,9 +1,9 @@
 import { $, $create, $append } from '/js/util/dom.js';
 
-const insertList = async ($target, url) => {
+const insertProducts = async ($target, url) => {
   const $fragment = document.createDocumentFragment();
 
-  const { products } = await fetch(url).then((res) => res.json());
+  const { products, totalPage } = await fetch(url).then((res) => res.json());
 
   products.forEach(
     ({
@@ -57,12 +57,17 @@ const insertList = async ($target, url) => {
   );
 
   $target.replaceChildren($fragment);
+
+  return totalPage;
 };
 
-if (window.location.pathname === '/') {
+const { pathname } = window.location;
+if (pathname === '/') {
   const $newProducts = $('#new-products');
-  insertList($newProducts, '/api/products?perPage=3');
+  insertProducts($newProducts, '/api/products?perPage=3');
 
   const $pbProducts = $('#PB-products');
-  insertList($pbProducts, '/api/products/brands/PB?perPage=4');
+  insertProducts($pbProducts, '/api/products/brands/PB?perPage=4');
 }
+
+export default insertProducts;

@@ -14,7 +14,7 @@ header {
 
 .header-wrapper {
   display: flex;
-  width: 100%;
+  width: 90%;
   max-width: 1280px;
   height: 152px;
   align-items: center;
@@ -51,6 +51,7 @@ header {
 
 .menu-wrapper {
   width: 100%;
+  max-width: 1280px;
   height: 0;
   position: absolute;
   top: 152px;
@@ -69,7 +70,8 @@ header {
 }
 
 .lnb-wrapper {
-  width: 1280px;
+  width: 90%;
+  max-width: 1280px;
   display: flex;
   transition: margin-top.25s ease-in-out;
 }
@@ -81,8 +83,10 @@ header {
 
 .lnb {
   width: 200px;
+  padding: 5px;
   height: 100%;
   margin-right: 40px;
+  box-sizing: border-box;
 }
 
 .lnb > * {
@@ -111,7 +115,8 @@ header {
 }
 
 .search-wrapper {
-  width: 1280px;
+  width: 90%;
+  max-width: 1280px;
   display: flex;
   flex-direction: column;
   align-items: center;
