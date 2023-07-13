@@ -67,7 +67,7 @@ if (pathname === '/') {
   insertProducts($newProducts, '/api/products?perPage=3');
 
   const $pbProducts = $('#PB-products');
-  insertProducts($pbProducts, '/api/products/brands/PB?perPage=4');
+  insertProducts($pbProducts, '/api/products/brands/엘리스?perPage=4');
 }
 
 export default insertProducts;
