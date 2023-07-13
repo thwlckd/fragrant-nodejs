@@ -3,9 +3,6 @@ import { $, $create, $append } from '/js/util/dom.js';
 const url = window.location.pathname.split('/');
 const id = url[url.length - 2];
 
-// console.log(url);
-// console.log(id);
-
 async function getOrders() {
   const orders = await fetch(`/api/orders/${id}`, {
     method: 'GET',
@@ -26,9 +23,6 @@ async function getOrders() {
 async function displayProductList() {
   const orderList = await getOrders();
   const prodcutList = orderList.products;
-
-  console.log(orderList);
-  console.log(prodcutList);
 
   const { orderTime, _id, orderStatus, price, orderer, requirement } = orderList;
   const paymentUnit = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -114,7 +108,6 @@ async function displayProductList() {
 
   //주문취소 모달 헤더 세팅
   let productName = prodcutList[0].name;
-  console.log(productName);
   if (prodcutList.length > 1) {
     productName += ` 외 ${prodcutList.length - 1} 건`;
   }
@@ -196,7 +189,6 @@ async function modifyInfo() {
       requirement: $('#requirement').value,
     }),
   });
-  console.log(response.ok);
   if (response.ok) {
     alert('배송지정보가 변경되었습니다.');
     infoMode();
@@ -215,7 +207,6 @@ infoMode();
 document.querySelector('#address-button').addEventListener('click', () => {
   new daum.Postcode({
     oncomplete(data) {
-      // console.log(data);
       $('#postcode').value = data.zonecode;
       $('#address1').value = data.address;
       $('#detail-address').focus();
