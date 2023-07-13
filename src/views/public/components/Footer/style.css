@@ -1,80 +1,32 @@
-footer{
+footer {
   width: 100%;
-  height: 680px;
   background-color: #fafaff;
-  position: relative;
+  padding: 75px 0;
   display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
+  justify-content: space-around;
   align-items: center;
 }
-.foooter-wrap{
-  width: 1280px;
-  height: 400px;
-  margin-top: 40px;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #FAFAFF;
+
+.footer-wrap {
+  width: 90%;
+  max-width: 1280px;
+  border-bottom: 1px solid #fafaff;
 }
 
-.fnb-title{
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-.fnb .list{
-  font-size: 16px;
-  margin-bottom: 20px;
-  color: #000;
-  text-decoration: none;
-  display: block;
-  transition: color.25s ease-in-out;
-}
-
-.theme-switch{
-  appearance: none;
-  position: relative;
-  border: max(2px, 0.1em) solid gray;
-  border-radius: 1.25em;
-  width: 2.25em;
-  height: 1.25em;
-  cursor: pointer;
-}
-.theme-switch::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  transform: scale(0.8);
-  background-color: gray;
-  transition: left 250ms linear;
-}
-.theme-switch:checked::before {
-  background-color: white;
-  left: 1em;
-}
-.theme-switch:checked {
-  background-color: gray;
-  border-color: gray;
-}
-.foooter-detail-wrap{
-  width: 100%;
-  height: 280px;
+.footer-detail-wrap {
   text-align: center;
-  padding-top: 30px;
 }
-.company-name{
+.company-name {
   color: 0;
   font-size: 14px;
 }
-.foooter-detail-wrap .list{
-  color: #6C6C6C;
+.footer-detail-wrap .list {
+  color: #6c6c6c;
   font-size: 14px;
   margin-top: 14px;
+  display: block;
 }
-.foooter-detail-wrap a {
+.footer-detail-wrap a {
   margin-top: 14px;
   display: inline-block;
 }
