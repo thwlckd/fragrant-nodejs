@@ -127,8 +127,8 @@ const productService = {
       ? await productDAO.getProductByProductId(target)
       : await productDAO.getProductByProductName(target);
 
-    if (origin) updateInfo.brand.origin = origin;
-    if (korean) updateInfo.brand.korean = korean;
+    if (origin) updateInfo.name.origin = origin;
+    if (korean) updateInfo.name.korean = korean;
     if (note) updateInfo.note = note.split(',');
     if (capacity) updateInfo.capacity = capacity;
     if (price) updateInfo.price = price;
