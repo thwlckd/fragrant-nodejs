@@ -69,6 +69,8 @@ function createPagination(totalPage) {
   const { pathname, search } = window.location;
   const searchObj = search ? searchToObject(search) : {};
 
+  searchObj.page = searchObj.page || 1;
+
   const $target = $('#pagination');
   const $fragment = document.createDocumentFragment();
   const $pageWrapper = $create('ul', 'pageWrapper');
@@ -92,7 +94,7 @@ function createPagination(totalPage) {
     const $pageItem = $create('li');
     $pageItem.textContent = i;
 
-    if (searchObj.page && Number(searchObj.page) !== i) {
+    if (Number(searchObj.page) !== i) {
       $pageItem.style.cursor = 'pointer';
       $pageItem.addEventListener('click', () => {
         window.location.href = pathname + objectToSearch({ ...searchObj, page: i });
