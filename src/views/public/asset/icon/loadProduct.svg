@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width='26' height='49' viewbox='0 0 26 49'>
+  <defs>
+    <linearGradient id="myGradient" gradientTransform="rotate(20)">
+      <stop offset="5%"  stop-color="#eee">
+        <animate attributeName="stop-color" values="#EEEEEE; #BBBBBB; #EEEEEE" dur="1s" repeatCount="indefinite"></animate>
+      </stop>
+      <stop offset="95%" stop-color="#aaa">
+        <animate attributeName="stop-color" values="#EEEEEE; #CCCCCC; #EEEEEE" dur="1.5s" repeatCount="indefinite"></animate>
+      </stop>
+    </linearGradient>
+  </defs>
+
+  <rect x='0' y='0' width='26' height='26' rx='1' fill="url(#myGradient)" />
+  <rect x='0' y='28' width='26' height='3' rx='1' fill="url(#myGradient)" />
+  <rect x='0' y='33' width='26' height='3' rx='1' fill="url(#myGradient)" />
+  <rect x='0' y='38' width='26' height='2' rx='1' fill="url(#myGradient)" />
+  <rect x='0' y='42' width='26' height='2' rx='1' fill="url(#myGradient)" />
+  <rect x='0' y='46' width='26' height='3' rx='1' fill="url(#myGradient)" />
+</svg>
