@@ -50,6 +50,12 @@ authRouter.post(
   }),
 );
 
+authRouter.get(
+  '/is-sign-in',
+  passport.authenticate('jwt', { session: false }),
+  asyncHandler((req, res) => res.json({ isAdmin: req.user.isAdmin })),
+);
+
 authRouter.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 authRouter.get(
   '/google/callback',
