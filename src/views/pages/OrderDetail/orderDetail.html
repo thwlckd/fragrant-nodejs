@@ -13,17 +13,17 @@
   <body>
     <div class="order-detail-page">
       <section class="order-status">
-        <div class="order-status-current">
+        <div class="order-status0">
           <img src="/asset/icon/checklist.svg" alt="주문완료" class="order-status-img" />
           <p>주문완료</p>
         </div>
         <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
-        <div class="order-status-div status-prepare-product">
+        <div class="order-status1">
           <img src="/asset/icon/bag.gray.svg" alt="상품준비중" class="order-status-img" />
           <p>상품준비중</p>
         </div>
         <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
-        <div class="order-status-div">
+        <div class="order-status2">
           <img
             src="/asset/icon/truck.30px.svg"
             alt="배송중"
@@ -33,7 +33,7 @@
           <p>배송중</p>
         </div>
         <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
-        <div class="order-status-div">
+        <div class="order-status3">
           <img
             src="/asset/icon/gift.svg"
             alt="배송완료"
@@ -66,25 +66,11 @@
       </div>
 
       <!--배송지정보-->
-      <section class="shipping-address address-hidden">
+      <section class="shipping-address">
         <div class="address-header">
           <h2>배송지정보</h2>
-          <div>
-            <svg
-              width="23"
-              height="22"
-              viewBox="0 0 25 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5.55002 15.5999L9.75002 19.1999M12.75 22.1999H22.35M4.95002 15.5999L16.7814 3.35533C18.0553 2.08143 20.1207 2.08143 21.3946 3.35533C22.6685 4.62923 22.6685 6.69463 21.3946 7.96853L9.15002 19.7999L3.15002 21.5999L4.95002 15.5999Z"
-                stroke="black"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+          <div class="info">
+            <img src="/asset/icon/pencil.svg" />
             <button class="address-modify-btn">수정하기</button>
           </div>
         </div>
@@ -94,19 +80,25 @@
             <td>
               <input
                 type="text"
-                id="shippingName"
+                id="receiver"
                 style="font-size: 22px; border: none; width: 90%; height: 34px"
               />
             </td>
           </tr>
           <tr>
             <td>연락처</td>
-            <td type="cont" id="contact"></td>
+            <td>
+              <input
+                type="text"
+                id="contact"
+                style="font-size: 22px; border: none; width: 90%; height: 34px"
+              />
+            </td>
           </tr>
           <tr>
             <td>주소</td>
             <td>
-              <div id="adress" class="info"></div>
+              <div id="address" class="info"></div>
               <div class="form-group-address update">
                 <div id="address-info">
                   <div id="find-address">
@@ -117,22 +109,29 @@
                       placeholder="우편번호"
                       disabled
                     />
-                    <button type="button" name="address1" id="address-button">주소 찾기</button>
+                    <button type="button" name="addressBtn" id="address-button">주소 찾기</button>
                   </div>
-                  <input type="text" name="address2" id="address" disabled />
+                  <input type="text" name="address1" id="address1" readonly />
                   <input type="text" id="detail-address" placeholder="상세주소를 입력해주세요." />
-                  <p></p>
                 </div>
               </div>
             </td>
           </tr>
           <tr>
             <td>요청사항</td>
-            <td id="requirement"></td>
+            <td>
+              <input
+                type="text"
+                id="requirement"
+                style="font-size: 22px; border: none; width: 90%; height: 34px"
+              />
+            </td>
           </tr>
         </table>
-        <div class="cancel-button">
-          <button type="button" class="order-cancel-btn">주문취소</button>
+        <div class="modify-address-btns">
+          <button class="modify-cancel-btn update">취소</button>
+          <button class="modify-confirm-btn update">수정완료</button>
+          <button type="button" class="order-cancel-btn info">주문취소</button>
         </div>
       </section>
     </div>
