@@ -1,0 +1,179 @@
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+.cart-container {
+  display: flex;
+  margin: 100px auto;
+
+  flex-direction: column;
+  width: 60%;
+  
+}
+.cart-title {
+  font-size: 23px;
+  font-weight: bold;
+  padding-bottom: 13px;
+  border-bottom: 2px solid #393939;
+}
+
+.cart-wrap {
+    width:100%;
+    height: auto;
+}
+
+
+
+
+/* 선택 삭제 버튼 */
+.selectdelete-btn {
+  margin-top: 9px;
+  margin-left: 10px;
+  padding-top: 2px;
+  font-size: 16px;
+  border-radius: 2px;
+
+  color: #343434;
+  border: 1px solid #080808;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+
+.item {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  margin-top: 20px;
+   flex-direction: row;
+    border-bottom: 2px solid #c4c4c4;
+}
+
+
+
+
+
+.cart-img {
+  margin: 25px 30px 25px 30px;
+  position: relative;
+}
+
+img {
+  width: 100%;
+  display: flex;
+  
+  
+}
+
+.cart-info {
+  width: 60%;
+  flex-direction: column;
+  text-align: left;
+  margin-top: 35px;
+  font-size: 20px;
+  line-height: 32px;
+  position: relative;
+
+  display: flex;
+}
+
+.num  {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+
+  font-size: 17px;
+}
+
+
+
+.result-count {
+  display: flex;
+ 
+  
+  font-size: 20px;
+ 
+  gap: 10px;
+}
+
+.minus {
+  margin-right: 20px;
+}
+.plus {
+  margin-left: 20px;
+}
+#result {
+  width: 25px;
+  text-align: center;
+
+}
+
+
+
+/* 값 계산 섹션 */
+.cost {
+    margin-top: 20px;
+}
+
+.showCost {
+   width: 100%;
+    height: 30px;
+    background-color: #343434;
+    border-radius: 1px;
+    border: none;
+    position:relative;
+    display: flex;
+     justify-content: space-between;
+}
+
+.subCost {
+    width: 95%;
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    color: #ededed;
+    margin-top: 8px;
+ 
+}
+
+.totalCost {
+    width: 95%;
+    height: 20px;
+    font-size: 20px;
+    display: flex;
+    justify-content: end;
+     margin-top: 15px;
+} 
+
+
+.btn-control {
+    display: flex;
+    justify-content: right;
+    text-decoration: none;
+    position: relative;
+    top: 25px; 
+    
+}
+
+.buyBtn {
+  display: flex;
+  float: right;
+  width: 32%;
+  padding: 5px 45px;
+  border-radius: 4px;
+  background: #080808;
+  border: 1px solid #080808;
+  color: #ededed;
+  font-size: 22px;
+  cursor: pointer;
+}
