@@ -319,3 +319,52 @@ export const productCreateEventInit = async () => {
     }
   });
 };
+
+export const productListInit = async () => {
+  const $listWrap = $('#listWrap');
+
+  const $observerLocation = $('#observerLocation');
+
+  const options = {
+    root: $('#app'),
+    rootMargin: '0px',
+    threshold: 1.0,
+  };
+  let page = 1;
+  
+  const observer = new IntersectionObserver(async () => {
+    const { products } = await GET(`/api/products?page=${page}`);
+    console.log(products);
+    if (products.length !== 0) {
+      const $products = products.map((data) => {
+        const $productWrap = $create('a', 'product-wrap', {href: data.productId});
+
+        const $img = $create('img', 'product-img', { src: data.picture });
+        const $brand = $create('div', 'brand-name');
+        $brand.textContent = data.brand.name.korean;
+        const $origin = $create('div', 'origin-name');
+        $origin.textContent = data.name.origin;
+        const $desc = $create('div', 'desc');
+        $desc.textContent = data.description;
+        const $rest = $create('div', 'rest');
+        const $price = $create('div', 'price');
+        $price.textContent = `${data.price}₩`;
+        const $capacity = $create('div', 'capacity');
+        $capacity.textContent = data.capacity;
+
+        $rest.append($price, $capacity);
+        $productWrap.append($img, $brand, $origin, $desc, $rest);
+
+        return $productWrap;
+      });
+
+      $listWrap.append(...$products);
+      $listWrap.appendChild($observerLocation);
+      page += 1;
+    } else {
+      observer.disconnect();
+    }
+  }, options);
+
+  observer.observe($observerLocation);
+};

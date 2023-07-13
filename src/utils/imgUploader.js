@@ -28,13 +28,13 @@ const upload = multer({
       let dest = path.join('src', 'views', 'public', 'asset');
 
       switch (baseUrl) {
-        case '/brands':
+        case '/api/brands':
           dest += `/brands`;
           break;
-        case '/products':
+        case '/api/products':
           dest += `/products`;
           break;
-        case '/reviews':
+        case '/api/reviews':
           dest += `/reviews`;
           break;
         default:
