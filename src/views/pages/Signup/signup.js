@@ -16,19 +16,16 @@ signupForm.addEventListener('submit', (e) => {
       password: password.value,
       userName: memberName.value,
     }),
-  });
-})
-  
-// }).then((res) => {
-//   if (!res.ok) {
-//     if (res.status === 401) {
-//       alert('이메일을 인증해주세요');
-//     } else {
-//       alert(res.json());
-//       console.log(res.json())
-//     }
-//   }
-// });
+  })
+    .then((response) => {
+      if (response.ok) {
+        alert('회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
+        window.location.href = '/login';
+      } else {
+        alert('이메일 인증해주세요.');
+      }
+    });
+});
 
 // 메일인증요청
 const mailCheck = document.querySelector('#reqBtn');
@@ -42,7 +39,14 @@ mailCheck.addEventListener('click', (e) => {
     body: JSON.stringify({
       email: `${idInput.value}@${emailInput.value}`,
     }),
-  });
+  })
+    .then((res) => {
+      if (res.ok) {
+        alert('이메일이 전송되었습니다.');
+      } else {
+        alert('메일 전송에 실패했습니다.');
+      }
+    })
 });
 
 const emailList = document.querySelector('#eml');
@@ -125,7 +129,7 @@ comparePassword.oninput = () => {
 const nameError = document.querySelector('#mnm+.msg');
 // console.log(nameError);
 
-memberName.oninput = () => {
+memberName.onblur = () => {
   if (memberName.value !== '') {
     nameError.style.display = 'none';
   } else {
@@ -142,10 +146,11 @@ joinBtn.addEventListener('click', (e) => {
       idInput.value !== '' &&
       memberName.value !== '' &&
       passwordError.textContent === '' &&
-      passwordChkError.textContent === ''
+      passwordChkError.textContent === '' &&
+      emailInput.value !== ''
     )
   ) {
     e.preventDefault();
-    // console.log('입력해');
+    alert('다시 확인해주세요.');
   }
 });

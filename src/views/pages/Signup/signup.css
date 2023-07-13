@@ -37,12 +37,6 @@
   width: 200px;
 }
 
-/* 크롬브라우저 포커스 아웃라인 없애기 */
-/* input:focus,
-select:focus {
-    outline: none;
-} */
-
 input {
   width: 430px;
   height: 40px;
