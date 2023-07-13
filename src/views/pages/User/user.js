@@ -149,6 +149,11 @@ async function displayOrderList() {
     $orderList1.onclick = () => {
       location.href = `../orders/${_id}`;
     };
+
+    $('#order-complete').textContent = orderComplete;
+    $('#shipping-ready').textContent = shippingReady;
+    $('#on-shipping').textContent = onShipping;
+    $('#shipping-complete').textContent = shippingComplete;
   }
 }
 
