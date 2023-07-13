@@ -1,5 +1,9 @@
 .products-list {
+  width: 90%;
+  max-width: 1280px;
   padding: 50px 0;
+  position: relative;
+  margin: 0 auto;
 }
 
 .products-list:nth-child(even) {
@@ -8,6 +12,13 @@
 
 .products-list:nth-child(odd) {
   background-color: #fffdf8;
+}
+
+.products-list > a {
+  position: absolute;
+  right: 30px;
+  transform: translateY(200%);
+  color: #636363;
 }
 
 .products-title {
@@ -21,8 +32,8 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
+  width: 100%;
   max-width: 1280px;
-  width: 90%;
   margin: 0 auto;
 }
 
@@ -83,4 +94,13 @@
 
 .price {
   color: #e54e1e;
+}
+
+.random-wrapper {
+  display: flex;
+}
+
+.random-img-wrapper {
+  width: 100%;
+  background-color: #fafaff;
 }
