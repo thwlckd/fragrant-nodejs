@@ -20,7 +20,7 @@ const userController = {
     const { isAdmin } = await userService.getUserByEmail(email);
     setUserToken(res, email, isAdmin);
     if (isAdmin) {
-      res.status(201).redirect('/admin/users');
+      res.redirect(303,'/admin/users');
       return;
     }
     res.status(201).redirect('/');

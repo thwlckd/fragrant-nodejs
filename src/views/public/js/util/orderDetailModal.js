@@ -1,5 +1,4 @@
 import { $, $create } from '/js/util/dom.js';
-import { orderDetailInit } from '/js/util/init.js';
 
 const $modalBg = $('.modalBg');
 
