@@ -5,6 +5,10 @@ import {
   updateModal as orderUpdateModal,
   deleteModal as orderDeleteModal,
 } from '/js/util/orderDetailModal.js';
+import {
+  createModal as productCreateModal,
+  createErrModal as productCreateErrModal,
+} from '/js/util/productModal.js';
 
 export const brandInit = async () => {
   const $brandsWrap = $('.brands-wrap');
@@ -178,3 +182,127 @@ export const orderDetailInit = async () => {
 };
 
 export const noteInit = 1;
+
+export const productCreateFormInit = async () => {
+  const $brandOriginName = $('#brandOriginName');
+
+  const $note1 = $('#note1');
+  const $note2 = $('#note2');
+  const $note3 = $('#note3');
+
+  const { brands } = await GET('/api/brands');
+
+  // console.log(brands);
+  const $options = brands.map(({ _id, name: { origin } }) => {
+    const $option = $create('option', '', { value: _id });
+    $option.textContent = origin;
+    return $option;
+  });
+  $brandOriginName.append(...$options);
+
+  const { notes } = await GET('/api/notes');
+
+  // console.log(notes);
+
+  const $notes = () => {
+    const map = notes.map(({ _id, type }) => {
+      const $option = $create('option', '', { value: _id });
+      $option.textContent = type;
+      return $option;
+    });
+    return map;
+  };
+
+  const $notes1 = $notes();
+  const $notes2 = $notes();
+  const $notes3 = $notes();
+
+  $note1.append(...$notes1);
+  $note2.append(...$notes2);
+  $note3.append(...$notes3);
+};
+
+export const productCreateEventInit = async () => {
+  $('.modalBg').attachShadow({ mode: 'open' });
+
+  const $previewImg = $('#previewImg');
+  const $imgFile = $('#imgFile');
+
+  const $brandOriginName = $('#brandOriginName');
+  const $productOriginName = $('#productOriginName');
+  const $productKoreanName = $('#productKoreanName');
+  const $capacity = $('#capacity');
+  const $gender = $('#gender');
+  const $quantity = $('#quantity');
+  const $price = $('#price');
+  const $note1 = $('#note1');
+  const $note2 = $('#note2');
+  const $note3 = $('#note3');
+  const $desc = $('#desc');
+
+  const $createBtn = $('.createBtn');
+
+  $imgFile.addEventListener('change', () => {
+    if ($imgFile.files[0] && $imgFile.files) {
+      const reader = new FileReader();
+      reader.addEventListener('load', (e) => {
+        $previewImg.src = e.target.result;
+      });
+      reader.readAsDataURL($imgFile.files[0]);
+    }
+  });
+
+  $createBtn.addEventListener('click', async () => {
+    if (
+      $imgFile.files[0] &&
+      $imgFile.files &&
+      $brandOriginName.value !== '' &&
+      $productOriginName.value !== '' &&
+      $productKoreanName.value !== '' &&
+      $capacity.value !== '' &&
+      $price.value !== '' &&
+      $note1.value !== '' &&
+      $note2.value !== '' &&
+      $note3.value !== '' &&
+      $desc.value !== ''
+    ) {
+      const formData = new FormData();
+      formData.append('originName', $productOriginName.value);
+      formData.append('koreanName', $productKoreanName.value);
+      formData.append('capacity', $capacity.value);
+      formData.append('price', $price.value);
+      if ($gender.value !== '') {
+        formData.append('gender', $gender.value);
+      }
+      formData.append('note', `${$note1.value},${$note2.value},${$note3.value}`);
+      formData.append('brand', $brandOriginName.value);
+      formData.append('description', $desc.value);
+      if ($quantity.value !== '') {
+        formData.append('quantity', $quantity.value);
+      }
+      formData.append('picture', $imgFile.files[0]);
+
+      $productOriginName.value = '';
+      $productKoreanName.value = '';
+      $capacity.value = '';
+      $price.value = '';
+      $gender.value = $gender[0].value;
+      $note1.value = $note1[0].value;
+      $note2.value = $note2[0].value;
+      $note3.value = $note3[0].value;
+      $brandOriginName.value = $brandOriginName[0].value;
+      $desc.value = '';
+      $quantity.value = '';
+      $imgFile.value = '';
+      $previewImg.src = "/asset/empty_img.png"
+
+      await fetch('/api/products', {
+        method: 'POST',
+        body: formData,
+      });
+      productCreateModal();
+    } else {
+      productCreateErrModal();
+    }
+  });
+};
