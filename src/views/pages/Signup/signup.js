@@ -26,11 +26,11 @@ signupForm.addEventListener('submit', (e) => {
 //     } else {
 //       alert(res.json());
 //       console.log(res.json())
-
 //     }
 //   }
 // });
 
+// 메일인증요청
 const mailCheck = document.querySelector('#reqBtn');
 
 mailCheck.addEventListener('click', (e) => {
@@ -79,7 +79,6 @@ const passwordChkError = document.querySelector('#mpw2+.msg');
 
 // console.log(passwordError);
 // console.log(passwordChkError);
-
 const passwordErrorMsg = {
   error0: '비밀번호를 입력해주세요',
   error1: '비밀번호를 한번 더 입력해주세요.',
@@ -124,7 +123,7 @@ comparePassword.oninput = () => {
 
 // 이름 입력창 오류메시지
 const nameError = document.querySelector('#mnm+.msg');
-console.log(nameError);
+// console.log(nameError);
 
 memberName.oninput = () => {
   if (memberName.value !== '') {
@@ -147,6 +146,6 @@ joinBtn.addEventListener('click', (e) => {
     )
   ) {
     e.preventDefault();
-    console.log('입력해');
+    // console.log('입력해');
   }
 });

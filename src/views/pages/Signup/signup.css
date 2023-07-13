@@ -1,15 +1,11 @@
 .signup-wrapper {
   /* position: relative; */
-
   width: 900px;
   height: 600px;
   margin: 135px auto;
-
   border: 1px solid;
   border-image: linear-gradient(to bottom, #bc5a00, #fff) 1;
   box-sizing: border-box;
-
-  /* text-align: center; */
 }
 
 #signup {
@@ -95,6 +91,7 @@ input {
   font-size: 13px;
   border: 1px solid #979393;
   border-radius: 3px;
+  cursor: pointer;
 }
 
 .msg {
