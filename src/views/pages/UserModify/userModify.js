@@ -66,8 +66,11 @@ async function userModify() {
       },
     }),
   });
+  const data = response.json();
   if (response.ok) {
     alert('회원정보 변경이 완료되었습니다.');
+  } else {
+    alert(data.error);
   }
 }
 

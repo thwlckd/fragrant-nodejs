@@ -1,13 +1,7 @@
 import { $, $create, $append } from '/js/util/dom.js';
 
-$('.info').style.display = 'block';
-$('.update').style.display = 'none';
-
 const url = window.location.pathname.split('/');
 const id = url[url.length - 2];
-
-// console.log(url);
-// console.log(id);
 
 async function getOrders() {
   const orders = await fetch(`/api/orders/${id}`, {
@@ -25,38 +19,39 @@ async function getOrders() {
   return data;
 }
 
+//주문상품 리스트
 async function displayProductList() {
   const orderList = await getOrders();
   const prodcutList = orderList.products;
-
-  console.log(orderList);
-  console.log(prodcutList);
 
   const { orderTime, _id, orderStatus, price, orderer, requirement } = orderList;
   const paymentUnit = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   const paymentUmint1 = (price - 2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
-  //  const orderStausArr = ['주문완료', '상품준비중', '배송중', '배송완료'];
-  //   const orderStatusClass = ['order-status-current', 'status-prepare-product'];
-  $('.order-status-current').style.backgroundColor = 'black';
-  //배송상태 포커싱!!!
-  // const statusBg = $('.order-status-current');
-  // const statusImg = $('.order-status-current img');
-  // const statusTesxts = $('.order-status-current p');
-  // if (orderStatus === '주문완료') {
-  //   statusBg.classList.add('order-status-focus');
+  //배송현황 표시
+  const orderStausArr = ['주문완료', '상품준비중', '배송중', '배송완료'];
+  const currentStatus = $('.order-status' + orderStausArr.indexOf(orderStatus));
+  currentStatus.style.backgroundColor = 'rgb(67, 67, 67)';
+  currentStatus.querySelector('img').style.filter = 'brightness(150%)';
+  currentStatus.querySelector('p').style.color = '#f7f7f7';
 
+  //주문정보
   $('#order-date').textContent = `주문일자:\u00a0\ ${orderTime}`;
   $('#order-id').textContent = `주문번호:\u00a0\ ${_id}`;
   $('#order-status-text').textContent = orderStatus;
 
+  //금액 정보
   $('#payment-amount').textContent = `총 결제금액\u00a0\ | \u00a0\ ${paymentUnit} 원`;
   $('#payment-type').textContent = `상품금액 ${paymentUnit} 원 + 배송비 0 원`;
 
-  $('#shippingName').value = orderer.name;
-  $('#contact').textContent = orderer.phone;
+  //배송지 정보
+  $('#receiver').value = orderer.name;
+  $('#contact').value = orderer.phone;
   $('#address').textContent = `${orderer.address.address1} \u00a0\ ${orderer.address.address2}`;
-  $('#requirement').textContent = requirement;
+  $('#requirement').value = requirement;
+  $('#postcode').value = orderer.address.postalCode;
+  $('#address1').value = orderer.address.address1;
+  $('#detail-address').value = orderer.address.address2;
 
   //상품리스트
   const $productListSection = $('#product-list');
@@ -105,18 +100,19 @@ async function displayProductList() {
       $('.order-cancel-btn').classList.add('order-cancel-hidden');
     }
 
+    //배송비 계산
     if (price < 102500) {
       $('#payment-type').textContent = `상품금액 ${paymentUmint1} 원 + 배송비 2,500 원`;
     }
   }
 
+  //주문취소 모달 헤더 세팅
   let productName = prodcutList[0].name;
-  console.log(productName);
   if (prodcutList.length > 1) {
     productName += ` 외 ${prodcutList.length - 1} 건`;
   }
   $('.modal-box1 p').textContent = `[ ${productName} ]`;
-}
+} //end of 'function displayProductList()'
 
 //주문취소 모달
 const openOrderDel = () => {
@@ -151,24 +147,68 @@ $('.confirm-btn-cancel').addEventListener('click', deletOrder);
 
 displayProductList();
 
-//배송지 수정
-const open1 = () => {
-  $('.info').style.display = 'none';
-  $('.update').style.display = 'block';
-  // document.querySelector('.modal-modify').classList.remove('hidden');
+//배송지정보
+const infoDivs = document.querySelectorAll('.info');
+const updateDivs = document.querySelectorAll('.update');
+
+const infoMode = () => {
+  infoDivs.forEach((e) => {
+    e.style.display = 'block';
+  });
+  updateDivs.forEach((e) => {
+    e.style.display = 'none';
+  });
 };
 
-const close1 = () => {
-  document.querySelector('.modal-modify').classList.add('hidden');
+const modifyMode = () => {
+  infoDivs.forEach((e) => {
+    e.style.display = 'none';
+  });
+  updateDivs.forEach((e) => {
+    e.style.display = 'block';
+  });
 };
+
+//배송지정보 수정
+async function modifyInfo() {
+  const response = await fetch(`/api/orders/user/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      orderer: {
+        name: $('#receiver').value,
+        phone: $('#contact').value,
+        address: {
+          postalCode: $('#postcode').value,
+          address1: $('#address1').value,
+          address2: $('#detail-address').value,
+        },
+      },
+      requirement: $('#requirement').value,
+    }),
+  });
+  if (response.ok) {
+    alert('배송지정보가 변경되었습니다.');
+    infoMode();
+  } else {
+    alert('배송지정보 수정에 실패하였습니다.');
+  }
+}
+
+$('.address-modify-btn').addEventListener('click', modifyMode);
+$('.modify-cancel-btn').addEventListener('click', infoMode);
+$('.modify-confirm-btn').addEventListener('click', modifyInfo);
+
+infoMode();
 
 //카카오 주소 api 사용하여 주소 정보 입력
 document.querySelector('#address-button').addEventListener('click', () => {
   new daum.Postcode({
     oncomplete(data) {
-      // console.log(data);
       $('#postcode').value = data.zonecode;
-      $('#address').value = data.address;
+      $('#address1').value = data.address;
       $('#detail-address').focus();
     },
   }).open();

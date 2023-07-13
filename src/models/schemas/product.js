@@ -29,12 +29,10 @@ const ProductSchema = new Schema(
         origin: {
           type: String,
           required: true,
-          unique: true,
         },
         korean: {
           type: String,
           required: true,
-          unique: true,
         },
       },
       required: true,

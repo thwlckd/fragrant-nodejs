@@ -25,8 +25,6 @@ async function setUserInfo() {
   $('#user-email').textContent = email;
 }
 
-setUserInfo();
-
 //로그아웃
 async function userlogOut() {
   const logOut = await fetch('/api/auth/sign-out', {
@@ -67,15 +65,15 @@ async function getOrderList() {
 async function displayOrderList() {
   const orderList = await getOrderList();
 
-  console.log(orderList);
-
   const $orderListDiv = $('#order-history-list');
+  const orderCnt = orderList.length;
+
   let orderComplete = 0;
   let shippingReady = 0;
   let onShipping = 0;
   let shippingComplete = 0;
 
-  for (let i = orderList.length - 1; i >= 0; i -= 1) {
+  for (let i = orderCnt - 1; i >= 0; i -= 1) {
     const orderItem = orderList[i];
     const { orderTime, products, _id, price, orderStatus } = orderItem;
 
@@ -137,8 +135,6 @@ async function displayOrderList() {
 
     const $orderStatusText = $create('p', 'order-status-text');
     $orderStatusText.textContent = `${orderStatus}`;
-    // const $orderCancelBtn = $create('button', 'order-cancel-btn');
-    // $orderCancelBtn.textContent = '주문취소';
 
     $append($orderStatus, $orderStatusText);
 
@@ -149,7 +145,18 @@ async function displayOrderList() {
     $orderList1.onclick = () => {
       location.href = `../orders/${_id}`;
     };
+
+    $('#order-complete').textContent = orderComplete;
+    $('#shipping-ready').textContent = shippingReady;
+    $('#on-shipping').textContent = onShipping;
+    $('#shipping-complete').textContent = shippingComplete;
+  }
+
+  if (orderCnt === 0) {
+    $orderListDiv.classList.add('empty-message');
+    $orderListDiv.textContent = '주문 내역이 없습니다.';
   }
 }
 
+setUserInfo();
 displayOrderList();
