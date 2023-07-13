@@ -89,7 +89,7 @@ const makeCatList = async () => {
     const $wrapper = $create('div', 'random-wrapper');
 
     const $imgWrapper = $create('div', 'random-img-wrapper');
-    const $img = $create('img', '', { href: picture });
+    const $img = $create('img', '', { src: picture });
     $append($imgWrapper, $img);
 
     const $ranList = $create('ul', 'products');
@@ -110,9 +110,6 @@ const { pathname } = window.location;
 if (pathname === '/') {
   const $newProducts = $('#new-products');
   insertProducts($newProducts, '/api/products?perPage=3');
-
-  const $pbProducts = $('#PB-products');
-  insertProducts($pbProducts, '/api/products/brands/엘리스?perPage=4');
 
   makeCatList();
 }
