@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { productController } = require('../controllers');
 const asyncHandler = require('../middlewares/asyncHandler');
 const upload = require('../utils/imgUploader');
+const { adminOnly } = require('../middlewares');
 
 const productRouter = Router();
 
@@ -13,8 +14,18 @@ productRouter.get('/genders/:gender', asyncHandler(productController.getAllProdu
 
 productRouter.get('/:target', asyncHandler(productController.getProduct));
 
-productRouter.post('/', upload.single('picture'), asyncHandler(productController.createProduct));
-productRouter.patch('/', upload.single('picture'), asyncHandler(productController.updateProduct));
-productRouter.delete('/:target', asyncHandler(productController.deleteProduct));
+productRouter.post(
+  '/',
+  adminOnly,
+  upload.single('picture'),
+  asyncHandler(productController.createProduct),
+);
+productRouter.patch(
+  '/',
+  adminOnly,
+  upload.single('picture'),
+  asyncHandler(productController.updateProduct),
+);
+productRouter.delete('/:target', adminOnly, asyncHandler(productController.deleteProduct));
 
 module.exports = productRouter;
