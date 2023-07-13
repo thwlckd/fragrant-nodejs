@@ -1,10 +1,16 @@
 footer {
   width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
   background-color: #fafaff;
   padding: 75px 0;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  gap: 30px;
+}
+
+footer > img {
+  margin-left: 100px;
+  cursor: pointer;
 }
 
 .footer-wrap {
@@ -13,13 +19,11 @@ footer {
   border-bottom: 1px solid #fafaff;
 }
 
-.footer-detail-wrap {
-  text-align: center;
-}
 .company-name {
   color: 0;
   font-size: 14px;
 }
+
 .footer-detail-wrap .list {
   color: #6c6c6c;
   font-size: 14px;

@@ -227,16 +227,28 @@ function headerRenderer() {
   $menuWrapper.append($lnbWrapper);
 
   const $newLnb = $create('div', 'lnb');
-  const $pbLnb = $create('div', 'lnb');
   const $brandLnb = $create('div', 'lnb');
   const $scentsLnb = $create('div', 'lnb');
+  const $genderLnb = $create('div', 'lnb');
 
-  $lnbWrapper.append($newLnb, $pbLnb, $brandLnb, $scentsLnb);
+  $lnbWrapper.append($newLnb, $brandLnb, $scentsLnb, $genderLnb);
 
   categoryWithThumbRenderer([$newLnb, '신제품'], '/api/products?perPage=5');
-  categoryWithThumbRenderer([$pbLnb, 'PB'], '/api/products/brands/PB?perPage=5');
   categoryRenderer([$brandLnb, '브랜드', 'brands'], '/api/brands');
   categoryRenderer([$scentsLnb, 'scent', 'notes'], '/api/notes');
+
+  const $genderLnbTitle = $create('div', 'lnb-title');
+  $genderLnbTitle.textContent = 'gender';
+  $append($genderLnb, $genderLnbTitle);
+
+  ['Man', 'Woman', 'Unisex'].forEach((item) => {
+    const name = item;
+    const $item = $create('a', 'list', {
+      href: `/products/genders/${name.toLowerCase()}`,
+    });
+    $item.textContent = name;
+    $append($genderLnb, $item);
+  });
 
   searchRenderer();
 

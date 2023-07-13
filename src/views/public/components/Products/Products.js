@@ -61,13 +61,57 @@ const insertProducts = async ($target, url) => {
   return totalPage;
 };
 
+const fyShuffle = (arr) => {
+  const result = [];
+  while (arr.length) {
+    const lastIdx = arr.length - 1;
+    const roll = Math.floor(Math.random() * arr.length);
+    const temp = arr[lastIdx];
+    arr[lastIdx] = arr[roll];
+    arr[roll] = temp;
+    result.push(arr.pop());
+  }
+  return result;
+};
+
+const makeCatList = async () => {
+  const { brands } = await fetch('/api/brands').then((res) => res.json());
+  const list = fyShuffle(brands.filter(({ name: { korean } }) => korean !== '엘리스')).slice(0, 3);
+
+  list.forEach(({ name: { korean }, picture }, i) => {
+    const $random = $(`#random${i + 1}`);
+    const $ranTitle = $create('h2', 'products-title');
+    $ranTitle.textContent = korean;
+
+    const $anchor = $create('a', '', { href: `/products/brands/${korean}` });
+    $anchor.textContent = '더보기';
+
+    const $wrapper = $create('div', 'random-wrapper');
+
+    const $imgWrapper = $create('div', 'random-img-wrapper');
+    const $img = $create('img', '', { src: picture });
+    $append($imgWrapper, $img);
+
+    const $ranList = $create('ul', 'products');
+    $ranList.classList.add('random');
+    if (i % 2) {
+      $append($wrapper, $ranList, $imgWrapper);
+    } else {
+      $append($wrapper, $imgWrapper, $ranList);
+    }
+
+    insertProducts($ranList, `/api/products/brands/${korean}?perPage=4`).then(() => {
+      $append($random, $anchor, $ranTitle, $wrapper);
+    });
+  });
+};
+
 const { pathname } = window.location;
 if (pathname === '/') {
   const $newProducts = $('#new-products');
   insertProducts($newProducts, '/api/products?perPage=3');
 
-  const $pbProducts = $('#PB-products');
-  insertProducts($pbProducts, '/api/products/brands/PB?perPage=4');
+  makeCatList();
 }
 
 export default insertProducts;

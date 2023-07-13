@@ -2,9 +2,14 @@ import { $create, $append } from '/js/util/dom.js';
 
 const $footer = $create('footer');
 
+const $img = $create('img', '', { src: '/asset/favicon/android-icon-96x96.png' });
+$img.addEventListener('click', () => {
+  window.location.href = '/';
+});
+
 const $footerDetailWrap = $create('div', 'footer-detail-wrap');
 
-$footer.append($footerDetailWrap);
+$footer.append($img, $footerDetailWrap);
 
 const $companyName = $create('div', 'company-name');
 $companyName.textContent = '이엘아이씨이한국(유)';
@@ -26,7 +31,14 @@ $bizCheck.textContent = '사업자정보조회';
 const $license = $create('div', 'list');
 $license.textContent = 'Copyright © 2023 Elice All Rights Reserved';
 
-$append($footerDetailWrap, $companyName, $ceo, $address, $regNum, $bizNum, $bizCheck, $license);
+$append(
+  $footerDetailWrap,
+  $companyName,
+  $ceo,
+  $address,
+  // $regNum, $bizNum, $bizCheck,
+  $license,
+);
 
 // const $teamDetailWrap = $create('div', 'footer-detail-wrap');
 
