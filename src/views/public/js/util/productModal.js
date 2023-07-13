@@ -2,7 +2,7 @@ import { $, $create } from '/js/util/dom.js';
 
 const $modalBg = $('.modalBg');
 
-export const createModal = (id) => {
+export const createModal = () => {
   const $modalStyle = $create('style');
   $modalStyle.textContent = `
   .modal{
