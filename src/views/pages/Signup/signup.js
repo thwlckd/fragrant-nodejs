@@ -20,6 +20,20 @@ signupForm.addEventListener('submit', (e) => {
   });
 });
 
+const mailCheck = document.querySelector('#reqBtn');
+
+mailCheck.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  fetch('/api/auth/email', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email: `${idInput.value}@${emailInput.value}`,
+    }),
+  });
+});
+
 const emailList = document.querySelector('#eml');
 
 // select 옵션변경시
@@ -123,3 +137,5 @@ joinBtn.addEventListener('click', (e) => {
     console.log('입력해');
   }
 });
+
+
