@@ -242,6 +242,19 @@ export const productCreateEventInit = async () => {
 
   const $createBtn = $('.createBtn');
 
+  $capacity.addEventListener('change', () => {
+    switch (true) {
+      case $capacity.value < 10:
+        $capacity.value = 10;
+        break;
+      case $capacity.value > 100:
+        $capacity.value = 100;
+        break;
+      default:
+        break;
+    }
+  });
+
   $imgFile.addEventListener('change', () => {
     if ($imgFile.files[0] && $imgFile.files) {
       const reader = new FileReader();
@@ -269,7 +282,7 @@ export const productCreateEventInit = async () => {
       const formData = new FormData();
       formData.append('originName', $productOriginName.value);
       formData.append('koreanName', $productKoreanName.value);
-      formData.append('capacity', $capacity.value);
+      formData.append('capacity', `${$capacity.value}ML`);
       formData.append('price', $price.value);
       if ($gender.value !== '') {
         formData.append('gender', $gender.value);
@@ -294,7 +307,7 @@ export const productCreateEventInit = async () => {
       $desc.value = '';
       $quantity.value = '';
       $imgFile.value = '';
-      $previewImg.src = "/asset/empty_img.png"
+      $previewImg.src = '/asset/empty_img.png';
 
       await fetch('/api/products', {
         method: 'POST',
