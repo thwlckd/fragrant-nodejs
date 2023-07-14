@@ -244,10 +244,12 @@ input:focus {
 }
 
 .tab1_wrap {
-  line-height: 30px;
+  line-height: 45px;
+  width: 82%;
   position: relative;
   top: 40px;
   left: 180px;
+  overflow: scroll;
 }
 .tab1_content {
   font-size: 20px;
@@ -265,6 +267,10 @@ input:focus {
 
   position: relative;
   bottom: 15px;
+}
+.description {
+  
+  white-space: nowrap;
 }
 
 .tab2_title {
@@ -288,6 +294,7 @@ input:focus {
 .tab3_title {
   font-size: 19px;
   font-weight: bold;
+  width: 925px;
   border-bottom: 1px solid #a4a9b0;
   padding: 10px 0;
   margin-bottom: 20px;
