@@ -17,7 +17,7 @@ viewRouter.use('/login', serveStatic('Login'));
 viewRouter.use('/login/auth', serveStatic('EmailAuth'));
 viewRouter.use('/password', serveStatic('FindPassword'));
 viewRouter.use('/password/reset', serveStatic('PasswordReset'));
-viewRouter.use('/signup', serveStatic('SignUp'));
+viewRouter.use('/signup', serveStatic('Signup'));
 
 viewRouter.use('/products', serveStatic('Products'));
 viewRouter.use('/products/:productId', serveStatic('ProductDetail'));
