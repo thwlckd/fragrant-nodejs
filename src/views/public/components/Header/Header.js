@@ -153,7 +153,7 @@ async function searchRenderer() {
   const $infoText = $create('div', 'info-text');
   $infoText.textContent = '추천해 드릴까요?';
 
-  const recommandList = ['조말론', 'jo malone', '샤넬', '딥디크', 'dior', '엘리스'];
+  const recommandList = ['조말론', '딥디크', 'dior', '메종', '바이레도'];
 
   const $recommandWrapper = $create('div', 'recommand-wrapper');
 
@@ -172,7 +172,7 @@ async function gnbRightRenderer() {
   if (res.ok) {
     const { isAdmin } = await res.json();
     $accountIcon.addEventListener('click', () => {
-      window.location.href = '/users/mypage';
+      window.location.href = '/user/mypage';
     });
 
     $logoutIcon.addEventListener('click', async () => {

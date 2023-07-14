@@ -1,5 +1,3 @@
-// 페이지 상품에 들어갈 경로 설정 . 이미지 브랜드명 상품명
-
 import { $ } from '/js/util/dom.js';
 
 let sum;
@@ -119,6 +117,19 @@ cartBtn.addEventListener('click', () => {
 buyBtn.addEventListener('click', () => {
   fetch('/api/auth/is-sign-in').then((response) => {
     if (response.ok) {
+      localStorage.setItem(
+        'toOrder',
+        JSON.stringify([
+          {
+            id,
+            count: i,
+            name: itemname,
+            capacity: itemcapacity,
+            price: sum,
+            picture: itempicture,
+          },
+        ]),
+      );
       window.location.href = '/order';
     } else {
       alert('로그인을 해주세요.');
@@ -126,99 +137,3 @@ buyBtn.addEventListener('click', () => {
     }
   });
 });
-
-
-// // 페이지네이션
-// function searchToObject(searchParam) {
-//   const searchObj = searchParam
-//     .replace('?', '')
-//     .split('&')
-//     .reduce((acc, search) => {
-//       const [key, value] = search.split('=');
-//       acc[key] = value;
-//       return acc;
-//     }, {});
-
-//   return searchObj;
-// }
-// function objectToSearch(obj) {
-//   const searchParam = `?${Object.entries(obj)
-//     .map(([key, value]) => `${key}=${value}`)
-//     .join('&')}`;
-
-//   return searchParam;
-// }
-
-// function createPagination(totalPage) {
-//   const { search } = window.location;
-//   const searchObj = search ? searchToObject(search) : {};
-
-//   searchObj.page = searchObj.page || 1;
-
-//   const $target = $('#pagination');
-//   const $fragment = document.createDocumentFragment();
-//   const $pageWrapper = $create('ul', 'pageWrapper');
-
-//   const $prevPage = $create('div', 'prevPage');
-//   $append($fragment, $prevPage);
-
-//   const prevImage = '/asset/icon/left.svg';
-//   const $previmg = $create('img', '', { src: prevImage });
-//   $append($prevPage, $previmg);
-
-//   if (searchObj.page > 1) {
-//     $prevPage.style.cursor = 'pointer';
-//     $prevPage.addEventListener('click', () => {
-//       window.location.href = pathname + objectToSearch({ ...searchObj, page: +searchObj.page - 1 });
-//     });
-//   }
-
-//   $append($fragment, $pageWrapper);
-//   for (let j = 1; j <= totalPage; j += 1) {
-//     const $pageItem = $create('li');
-//     $pageItem.textContent = j;
-
-//     if (Number(searchObj.page) !== j) {
-//       $pageItem.style.cursor = 'pointer';
-//       $pageItem.addEventListener('click', () => {
-//         window.location.href = pathname + objectToSearch({ ...searchObj, page: j });
-//       });
-//     } else {
-//       $pageItem.classList.add('current');
-//     }
-
-//     $append($pageWrapper, $pageItem);
-//   }
-
-//   const $nextPage = $create('div', 'prevPage');
-//   $append($fragment, $nextPage);
-
-//   const nextImage = '/asset/icon/right.svg';
-//   const $nextImg = $create('img', '', { src: nextImage });
-//   $append($nextPage, $nextImg);
-
-//   if (searchObj.page < totalPage) {
-//     $nextPage.style.cursor = 'pointer';
-//     $nextPage.addEventListener('click', () => {
-//       window.location.href = pathname + objectToSearch({ ...searchObj, page: +searchObj.page + 1 });
-//     });
-//   }
-
-//   $append($target, $fragment);
-// }
-
-// // const totalPage = await insertProducts($target, `/api${pathname}${search}`);
-
-// if (totalPage) createPagination(totalPage);
-// else {
-//   $target.classList.add('no-result');
-//   const [current] = window.location.pathname.split('/').slice(-2);
-//   const decoded = decodeURIComponent(current);
-//   $target.textContent = `찾으시는
-//     < ${decoded} > 에 해당하는
-//     목록이 존재하지 않습니다.`;
-
-//   const $anchor = $create('a', '', { href: '/products' });
-//   $anchor.textContent = '-> 전체 목록으로 돌아가기 <-';
-//   $append($target, $anchor);
-// }
