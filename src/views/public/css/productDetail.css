@@ -249,6 +249,7 @@ input:focus {
   position: relative;
   top: 40px;
   left: 180px;
+  overflow: scroll;
 }
 .tab1_content {
   font-size: 20px;
@@ -269,6 +270,7 @@ input:focus {
 }
 .description {
   
+  white-space: nowrap;
 }
 
 .tab2_title {

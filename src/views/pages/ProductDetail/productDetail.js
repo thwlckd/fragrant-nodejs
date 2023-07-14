@@ -6,7 +6,7 @@ let sum;
 let itemname;
 let itemcapacity;
 let itempicture;
-
+let id;
 const productDetailRenderer = async (url) => {
   const {
     product: {
@@ -19,6 +19,7 @@ const productDetailRenderer = async (url) => {
         name: { origin: brandorigin },
       },
       description,
+      productId
     },
   } = await fetch(`/api${url}`).then((res) => res.json());
   const $krNameElementTitle = $('.name-kr');
@@ -57,10 +58,12 @@ const productDetailRenderer = async (url) => {
   const $descriptionElement = $('.description');
   $descriptionElement.textContent = description;
 
+
   sum = price;
   itemname = korean;
   itemcapacity = capacity;
   itempicture = picture;
+  id = productId;
 };
 const { pathname } = window.location;
 productDetailRenderer(pathname);
@@ -89,6 +92,7 @@ minus.addEventListener('click', () => {
   } else {
     totalCost.textContent = `\u00a0 ${0}`; // 판매가
   }
+  return i;
 });
 
 
@@ -97,30 +101,38 @@ minus.addEventListener('click', () => {
 const buyBtn = document.querySelector('.add-order-btn');
 const cartBtn = document.querySelector('.add-cart-btn');
 
+
 cartBtn.addEventListener('click', () => {
+  
   const items = {
-    name: itemname,
-    capacity: itemcapacity,
-    price: sum,
-    img: itempicture,
-    
+    productId: id,
+    count: i,
   };
 
   const getItem = window.localStorage.getItem('items') ? [] : window.localStorage.getItem('items');
   const itemsString = getItem.push(items);
   window.localStorage.setItem('items', itemsString);
-console.log(getItem);
-  // window.location.href = `/cart`;
+  console.log(getItem);
+  if(getItem){
+  alert ('장바구니에 상품이 담겼습니다. 장바구니로 이동합니다.');
+  window.location.href = `/cart`;
+} else {
+  alert('장바구니 담기에 실패하였습니다. 다시 시도해주세요.');
+  return false;
+} 
 });
 
-// buyBtn.addEventListener('click', () => {
-//   if (response.ok) {
-//     window.location.href = '/order';
-//   } else {
-//     alert('로그인을 해주세요.');
-//     window.location.href = '/login';
-//   }
-// });
+ buyBtn.addEventListener('click', () => {
+  fetch('')
+   .then((response) => response.json())
+   .then((data) => console.log(data));
+   if (response.ok) {
+   window.location.href = '/order';
+   } else {
+   alert('로그인을 해주세요.');
+    window.location.href = '/login';
+  }
+ });
 
 // // 페이지네이션
 // function searchToObject(searchParam) {
