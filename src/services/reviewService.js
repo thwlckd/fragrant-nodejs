@@ -9,7 +9,7 @@ const reviewService = {
 
     const totalPage = Math.ceil(total / perPage);
 
-    return { reviews, totalPage };
+    return { reviews, totalPage, total };
   },
 
   async createReview({ author, comment, productId }) {

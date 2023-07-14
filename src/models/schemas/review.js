@@ -11,7 +11,7 @@ const ReviewSchema = new Schema(
       required: true,
     },
     productId: {
-      type: Schema.Types.ObjectId,
+      type: Number,
       required: true,
     },
   },

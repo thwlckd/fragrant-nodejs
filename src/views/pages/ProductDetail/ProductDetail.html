@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/components/Footer/style.css" />
     <link rel="stylesheet" href="./productDetail.css" />
     <title>Document</title>
-    <script defer src="./review.js"></script>
+    <script src="./review.js" type="module"></script>
     <script src="./productDetail.js" type="module"></script>
     <script src="/components/Header/Header.js" type="module"></script>
     <script src="/components/Footer/Footer.js" type="module"></script>
@@ -20,19 +20,19 @@
         <div class="product">
           <div class="product_info">
             <position: absolute;iv class="product_image">
-            <img src="/asset/elice_newyork_1.png" alt="앨리스 뉴욕 향수 이미지" />
+            <img src="" />
           </div>
 
           <div class="product_content">
             <div class="product_name">
               <div class="eng_name">
                 <nav>
-                  <h1 class="brandname-origin">"ELICE"</h1>
-                  <h3 class="name-origin">"Elice Sydney Wild Achillea Cologne"</h3>
+                  <h1 class="brandname-origin"></h1>
+                  <h3 class="name-origin"></h3>
                 </nav>
               </div>
               <div class="kor_name">
-                <p class="name-kr">"엘리스 시드니 와일드 아킬리아 코롱"</p>
+                <p class="name-kr"></p>
               </div>
             </div>
 
@@ -248,15 +248,6 @@
 
         <div id="tab3" class="tab">
           <div class="tab3_title">상품사용후기</div>
-
-          <ul>
-            <li>
-              <div id="comments"></div>
-            </li>
-          </ul>
-
-          <section class="pagination" id="pagination"></section>
-
           <div class="write_box">
             <div class="write_info">
               <p>상품은 어떠셨나요?</p>
@@ -268,6 +259,8 @@
               <button id="submitBtn">등록</button>
             </div>
           </div>
+          <h2 id="reviews-title"></h2>
+          <ul id="reviews"></ul>
         </div>
       </section>
     </main>
