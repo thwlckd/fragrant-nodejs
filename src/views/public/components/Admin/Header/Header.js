@@ -13,8 +13,17 @@ const render = async () => {
     $header.classList.toggle('header-off');
   });
 
+  const $logout = $('#logout');
+  $logout.addEventListener('click', async () => {
+    await fetch('/api/auth/sign-out', {
+      method: 'POST',
+    });
+    alert("로그아웃 되었습니다");
+    window.location.href = "/admin/login/"
+  });
+
   // 임시코드
-  $header.classList.add('header-off');
+  // $header.classList.add('header-off');
 };
 
 render();

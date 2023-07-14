@@ -1,6 +1,6 @@
-import { productCreateFormInit, productCreateEventInit, productListInit } from '/js/util/init.js';
+import { productDetailFormInit } from '/js/util/init.js';
 
 const render = () => {
-
+  productDetailFormInit();
 };
 render();

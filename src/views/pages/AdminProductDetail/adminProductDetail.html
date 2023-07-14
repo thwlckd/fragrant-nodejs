@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>ELICE ADMIN</title>
   <link rel="stylesheet" href="/css/reset.css">
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="/components/Admin/Header/style.css">
@@ -12,7 +13,9 @@
 
 
 </head>
+
 <body>
+  <div class="modalBg"></div>
   <div id="app">
     <main>
       <!-- main header -->
@@ -42,12 +45,12 @@
               <tbody>
                 <tr>
                   <th>상품 ID <span class="smallSpan">*auto *required</span></th>
-                  <td><input type="text" placeholder="자동 추가" readonly></td>
+                  <td><input type="text" id="productId" placeholder="자동 추가" readonly></td>
                 </tr>
                 <tr>
                   <th>브랜드명(영문) <span class="smallSpan">*required</span></th>
                   <td>
-                    <select name="brandOriginName" id="brandOriginName">
+                    <select name="brandOriginName" id="brandOriginName" >
 
                     </select>
                   </td>
@@ -129,12 +132,20 @@
                 </tr>
               </tbody>
             </table>
-            <button class="createBtn">상품 추가하기</button>
+            
           </div>
+          
         </div>
+      </section>
+      <section class="btnGr">
+        <button class="updateBtn">수정하기</button>
+        <button class="saveBtn">저장하기</button>
+        <button class="deleteBtn">삭제하기</button>
+        <button class="cancelBtn">취소</button>
       </section>
     </main>
   </div>
-  
+
 </body>
+
 </html>
