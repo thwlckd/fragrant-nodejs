@@ -9,10 +9,11 @@ async function getUserInfo() {
       'Content-Type': 'application/json',
     },
   });
+  const data = await response.json();
   if (response.ok) {
-    return response.json();
+    return data;
   }
-  return null;
+  return alert(data.error);
 }
 
 async function setUserInfo() {
@@ -22,16 +23,12 @@ async function setUserInfo() {
 
   $('#user-id').value = email;
   $('#name').value = userName;
-  $('#contact').value = phone;
+
+  if (phone) $('#contact').value = phone;
   if (address) {
     $('#postcode').value = address.postalCode;
-  } else {
-    $('#postcode').value = '';
-  }
-  if (address) {
     $('#address').value = address.address1;
-  } else {
-    $('#address').value = '';
+    $('#detail-address').value = address.address2;
   }
 }
 
@@ -41,7 +38,6 @@ setUserInfo();
 document.getElementById('address-button').addEventListener('click', () => {
   new daum.Postcode({
     oncomplete(data) {
-      // console.log(data);
       $('#postcode').value = data.zonecode;
       $('#address').value = data.address;
       $('#detail-address').focus();
@@ -49,7 +45,7 @@ document.getElementById('address-button').addEventListener('click', () => {
   }).open();
 });
 
-//회원정보변경 버튼 클릭 시 변경사항 적용
+//회원정보변경
 async function userModify() {
   const response = await fetch('/api/users/user/info', {
     method: 'PATCH',
@@ -66,10 +62,11 @@ async function userModify() {
       },
     }),
   });
-  const data = response.json();
+
   if (response.ok) {
     alert('회원정보 변경이 완료되었습니다.');
   } else {
+    const data = await response.json();
     alert(data.error);
   }
 }
@@ -99,20 +96,19 @@ async function modifyPassword() {
     }),
   });
 
-  // console.log(response.json());
-  const data = await response.json();
   if (response.ok) {
     alert('비밀번호를 변경헀습니다.');
     clearPwInput();
   } else {
+    const data = await response.json();
     alert(data.error);
   }
 }
 
-onsubmit = (event) => {
+onsubmit = async (event) => {
   event.preventDefault();
   if (event.target.className === 'update-form-user') {
-    userModify();
+    await userModify();
   } else if (event.target.className === 'update-form-password') {
     modifyPassword();
   }
@@ -179,12 +175,11 @@ const deleteAccount = async () => {
       password: $('#current-pw-delete').value,
     }),
   });
-  const data = response.json();
-
-  if (response.ok) {
+  if (response.status === 404) {
     alert('회원탈퇴가 완료되었습니다.');
-    location.href = '/login';
+    window.location.href = '/';
   } else {
+    const data = await response.json();
     alert(data.error);
     $('#current-pw-delete').value = '';
   }

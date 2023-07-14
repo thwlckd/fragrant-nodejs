@@ -156,6 +156,12 @@ async function displayOrderList() {
     $orderListDiv.classList.add('empty-message');
     $orderListDiv.textContent = '주문 내역이 없습니다.';
   }
+
+  if (orderCnt > 4) {
+    $('.order-history').classList.add('border-line');
+  } else {
+    $('.order-history').classList.remove('border-line');
+  }
 }
 
 setUserInfo();
