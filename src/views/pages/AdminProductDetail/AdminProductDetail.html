@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELICE ADMIN</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/components/Admin/Header/style.css" />
+    <script src="/components/Admin/Header/Header.js" type="module"></script>
+    <script src="./adminProductDetail.js" type="module"></script>
+  </head>
+
+  <body>
+    <div class="modalBg"></div>
+    <div id="app">
+      <main>
+        <!-- main header -->
+        <section class="main-header">
+          <div>상품 상세 정보</div>
+          <small>Product Detail Info</small>
+          <hr />
+        </section>
+
+        <!-- create & update form -->
+        <section class="create-section">
+          <h2>상품 정보</h2>
+          <div class="form-wrap">
+            <div class="img-form">
+              <label for="imgFile">
+                <img src="/asset/empty_img.png" alt="empty" id="previewImg" />
+              </label>
+              <input type="file" id="imgFile" />
+              <div class="img_infoMsg">
+                <small>상품 이미지를 등록해주세요</small>
+                <small>최대 5MB까지 첨부할 수 있습니다</small>
+                <span class="smallSpan">*required</span>
+              </div>
+            </div>
+            <div class="input-form">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>상품 ID <span class="smallSpan">*auto *required</span></th>
+                    <td><input type="text" id="productId" placeholder="자동 추가" readonly /></td>
+                  </tr>
+                  <tr>
+                    <th>브랜드명(영문) <span class="smallSpan">*required</span></th>
+                    <td>
+                      <select name="brandOriginName" id="brandOriginName"></select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>상품명(영문) <span class="smallSpan">*required</span></th>
+                    <td>
+                      <input
+                        type="text"
+                        id="productOriginName"
+                        placeholder="ex) Elice OmbrÉ Leather Majenta"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>상품명(한글) <span class="smallSpan">*required</span></th>
+                    <td>
+                      <input
+                        type="text"
+                        id="productKoreanName"
+                        placeholder="ex) 엘리스  옴브레 레더 마젠타"
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>용량(ml) <span class="smallSpan"> *required</span></th>
+                    <td>
+                      <input type="number" id="capacity" placeholder="35" min="10" max="100" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>성별</th>
+                    <td>
+                      <select name="gender" id="gender">
+                        <option value="man">man</option>
+                        <option value="woman">woman</option>
+                        <option value="unisex">unisex</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>재고</th>
+                    <td>
+                      <input type="number" id="quantity" placeholder="ex) 100" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>가격 <span class="smallSpan">*required</span></th>
+                    <td>
+                      <input type="number" id="price" placeholder="ex) 237000" />
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="no-input-column">상품 정보</th>
+                    <td class="no-input-column"></td>
+                  </tr>
+                  <tr>
+                    <th>Fragrance Family <span class="smallSpan">*required</span></th>
+                    <td>
+                      <select name="note1" id="note1"></select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Scent Type <span class="smallSpan">*required</span></th>
+                    <td>
+                      <select name="note2" id="note2"></select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Key Notes <span class="smallSpan">*required</span></th>
+                    <td>
+                      <select name="note3" id="note3"></select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="textAreaField">
+                      Fragrance Description <span class="smallSpan">*required</span>
+                    </th>
+                    <td class="textAreaField">
+                      <textarea
+                        name="desc"
+                        id="desc"
+                        placeholder="향에 대한 설명을 적어주세요"
+                      ></textarea>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section class="btnGr">
+          <button class="updateBtn">수정하기</button>
+          <button class="saveBtn">저장하기</button>
+          <button class="deleteBtn">삭제하기</button>
+          <button class="cancelBtn">취소</button>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

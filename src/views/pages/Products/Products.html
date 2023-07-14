@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELICE</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="./products.css" />
+    <link rel="stylesheet" href="/components/Products/Products.css" />
+    <script src="./products.js" type="module"></script>
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+  </head>
+  <body>
+    <section class="category">
+      <a href="/products">전체상품</a>
+      <select class="brand-selector" id="brand-selector">
+        <option value="#">브랜드</option>
+      </select>
+      <select class="note-selector" id="note-selector">
+        <option value="#">노트</option>
+      </select>
+      <select class="gender-selector" id="gender-selector">
+        <option value="#">성별</option>
+      </select>
+    </section>
+    <section>
+      <ul class="products" id="products"></ul>
+    </section>
+    <section class="pagination" id="pagination"></section>
+  </body>
+</html>

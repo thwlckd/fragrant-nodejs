@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELICE</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="order.css" />
+    <script src="./order.js" type="module"></script>
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+  </head>
+  <body>
+    <h1 class="title">주문하기</h1>
+    <section class="shipping-info">
+      <h2 class="info-title">배송지 정보</h2>
+      <table class="info-table">
+        <tr>
+          <td class="bl rl">이름</td>
+          <td class="bl" colspan="2">
+            <input type="text" spellcheck="false" id="name" />
+          </td>
+        </tr>
+        <tr>
+          <td class="bl rl">휴대폰번호</td>
+          <td class="bl" colspan="2">
+            <input type="text" spellcheck="false" id="phone" />
+          </td>
+        </tr>
+        <tr>
+          <td class="bl rl" rowspan="3">주소</td>
+          <td class="address post-code">
+            <input type="text" spellcheck="false" id="post-code" readonly />
+          </td>
+          <td class="address">
+            <button class="btn-address-api" id="btn-address-api">우편번호찾기</button>
+          </td>
+        </tr>
+        <tr>
+          <td class="address" colspan="2">
+            <input type="text" spellcheck="false" id="address1" readonly />
+          </td>
+        </tr>
+        <tr>
+          <td class="bl address" colspan="2">
+            <input type="text" spellcheck="false" id="address2" />
+          </td>
+        </tr>
+        <tr>
+          <td class="bl rl">요청사항</td>
+          <td class="bl" colspan="2">
+            <input type="text" spellcheck="false" id="requirement" />
+          </td>
+        </tr>
+      </table>
+    </section>
+    <section class="product-list">
+      <h2 class="list-title">상품 목록</h2>
+    </section>
+    <section class="pay-info">
+      <p class="pay-detail">
+        상품금액 <span class="products-price">0</span>원 + 배송비
+        <span class="delivery-price">0</span>원
+      </p>
+      <p class="pay-total">
+        <span><span class="total-price">0</span>원</span>
+        총 결제 금액
+      </p>
+      <button class="pay-do">주문하기</button>
+    </section>
+  </body>
+</html>

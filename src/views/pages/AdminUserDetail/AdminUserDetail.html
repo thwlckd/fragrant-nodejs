@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Admin/Header/style.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>ELICE ADMIN</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
+    <script src="/components/Admin/Header/Header.js" type="module"></script>
+    <script src="./getUser.js" type="module"></script>
+    <script src="./getAddress.js" type="module"></script>
+    <script src="./validate.js" type="module"></script>
+    <!-- <script src="./getOrder.js" type="module"></script> -->
+  </head>
+
+  <body>
+    <div class="modalBg"></div>
+    <div id="app">
+      <main>
+        <!-- main header -->
+        <section class="main-header">
+          <div>유저 상세 정보</div>
+          <small>User detail</small>
+          <hr />
+        </section>
+
+        <!-- 유저 상세 정보 -->
+        <section class="user-detail">
+          <h2>개인 정보</h2>
+
+          <!-- username -->
+          <div id="username-form" class="input-box">
+            <label for="username">사용자 명 <span>username</span></label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="홍길동"
+              autocomplete="off"
+            />
+            <small></small>
+          </div>
+
+          <div class="input-wrap1">
+            <!-- e-mail -->
+            <div id="e-mail-form" class="input-box">
+              <label for="e-mail">이메일 <span>e-mail</span></label>
+              <input
+                type="text"
+                id="e-mail"
+                name="e-mail"
+                placeholder="example@example.com"
+                autocomplete="off"
+                readonly
+              />
+              <small></small>
+            </div>
+
+            <!-- phone-number -->
+            <div id="phone-number-form" class="input-box">
+              <label for="phone-number">전화번호 <span>phone-number(?)</span></label>
+              <input
+                type="text"
+                id="phone-number"
+                name="phone-number"
+                placeholder="-없이 입력"
+                autocomplete="off"
+              />
+              <small></small>
+            </div>
+          </div>
+
+          <!-- <div class="input-wrap2">
+          <div id="password-form" class="input-box">
+            <label for="password">새로운 비밀번호 <span>password</span></label>
+            <input type="password" id="password" name="password" placeholder="password를 입력" autocomplete="off">
+            <small></small>
+          </div>
+          <div id="pw-validate-form" class="input-box">
+            <label for="pw-validate">비밀번호 확인 <span>pw-validate</span></label>
+            <input type="password" id="pw-validate" name="pw-validate" placeholder="password를 재입력" autocomplete="off" readonly>
+            <small></small>
+          </div>
+
+        </div> -->
+
+          <!-- isAdmin -->
+          <!-- <div class="input-box">
+          <label for="isAdmin">권한 <span>isAdmin</span></label>
+          <select type="text" id="isAdmin" name="isAdmin">
+            <option value="true">true</option>
+            <option value="false">false</option>
+          </select>
+        </div> -->
+
+          <!-- address -->
+          <div class="input-box input-address">
+            <label for="address">주소 <span>address(?)</span></label>
+            <div>
+              <input type="text" id="postalCode" name="postalCode" readonly />
+              <button id="address-search">주소검색</button>
+            </div>
+            <input type="text" id="address1" name="address1" readonly />
+            <input
+              type="text"
+              id="address2"
+              name="address2"
+              placeholder="상세 주소를 입력하세요"
+              autocomplete="off"
+              readonly
+            />
+            <small></small>
+          </div>
+
+          <!-- btn -->
+          <div class="btn-gr">
+            <button id="init">초기화</button>
+            <button id="save">저장</button>
+            <button id="delete">삭제</button>
+          </div>
+        </section>
+
+        <!-- <hr> -->
+
+        <!-- 유저 주문 내역 -->
+        <!-- <section class="user-order">
+        <h2>주문 정보</h2>
+        <select name="order-date" id="order-date">
+          <option value="1">1개월</option>
+          <option value="3">3개월</option>
+          <option value="6">6개월</option>
+          <option value="12">1년</option>
+          <option value="24">2년</option>
+        </select>
+        <ul class="order-list-wrap">
+        </ul>
+
+      </section> -->
+      </main>
+    </div>
+
+    <!-- <template id="order-item-template">
+    <div class="order-item-wrap">
+      <div class="order-item-date">2023-07-09</div>
+      <div class="order-item-info-wrap">
+        <div class="order-item-info1">
+          <img src="/asset/perfume/MB_Brit_LP_stories_opt-2.png" alt="">
+          <div>
+            <div class="order-id">상품 ID : 1sa54d1zxc56a1sdasd231zxcsa</div>
+            <div class="order-name">상품명 : Elice Limited Collection Set for beginner</div>
+            <div class="order-capacity">용량 : 30ML</div>
+            <div class="order-price">가격 : 997,200₩</div>
+            <div class="order-id">갯수 : 1</div>
+          </div>
+        </div>
+        <div>
+          총 가격 : 997,200₩
+        </div>
+      </div>
+    </div>
+  </template> -->
+  </body>
+</html>
