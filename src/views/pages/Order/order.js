@@ -123,7 +123,7 @@ $('.pay-do').addEventListener('click', async () => {
 
     if (res.ok) {
       orderCompleted();
-      window.location.href = '/users/mypage';
+      window.location.href = '/user/mypage';
     }
   }
 });
