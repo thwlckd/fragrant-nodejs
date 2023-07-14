@@ -18,7 +18,6 @@ async function getUserInfo() {
 
 async function setUserInfo() {
   const userInfo = await getUserInfo();
-  console.log(userInfo);
   const { email, userName } = userInfo;
 
   $('#user-name').textContent = `${userName} 님`;

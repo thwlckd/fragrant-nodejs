@@ -35,6 +35,7 @@ async function setUserInfo() {
 setUserInfo();
 
 // 카카오 주소 api 사용하여 주소 정보 입력
+
 document.getElementById('address-button').addEventListener('click', () => {
   new daum.Postcode({
     oncomplete(data) {
