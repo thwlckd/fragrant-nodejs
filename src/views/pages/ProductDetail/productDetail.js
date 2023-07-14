@@ -1,6 +1,6 @@
 // 페이지 상품에 들어갈 경로 설정 . 이미지 브랜드명 상품명
 
-import { $} from '/js/util/dom.js';
+import { $ } from '/js/util/dom.js';
 
 let sum;
 let itemname;
@@ -19,7 +19,7 @@ const productDetailRenderer = async (url) => {
         name: { origin: brandorigin },
       },
       description,
-      productId
+      productId,
     },
   } = await fetch(`/api${url}`).then((res) => res.json());
   const $krNameElementTitle = $('.name-kr');
@@ -58,7 +58,6 @@ const productDetailRenderer = async (url) => {
   const $descriptionElement = $('.description');
   $descriptionElement.textContent = description;
 
-
   sum = price;
   itemname = korean;
   itemcapacity = capacity;
@@ -95,15 +94,10 @@ minus.addEventListener('click', () => {
   return i;
 });
 
-
-
-
 const buyBtn = document.querySelector('.add-order-btn');
 const cartBtn = document.querySelector('.add-cart-btn');
 
-
 cartBtn.addEventListener('click', () => {
-  
   const items = {
     productId: id,
     count: i,
@@ -113,26 +107,26 @@ cartBtn.addEventListener('click', () => {
   const itemsString = getItem.push(items);
   window.localStorage.setItem('items', itemsString);
   console.log(getItem);
-  if(getItem){
-  alert ('장바구니에 상품이 담겼습니다. 장바구니로 이동합니다.');
-  window.location.href = `/cart`;
-} else {
-  alert('장바구니 담기에 실패하였습니다. 다시 시도해주세요.');
-  return false;
-} 
+  if (getItem) {
+    alert('장바구니에 상품이 담겼습니다. 장바구니로 이동합니다.');
+    window.location.href = `/cart`;
+  } else {
+    alert('장바구니 담기에 실패하였습니다. 다시 시도해주세요.');
+    return false;
+  }
 });
 
- buyBtn.addEventListener('click', () => {
-  fetch('')
-   .then((response) => response.json())
-   .then((data) => console.log(data));
-   if (response.ok) {
-   window.location.href = '/order';
-   } else {
-   alert('로그인을 해주세요.');
-    window.location.href = '/login';
-  }
- });
+buyBtn.addEventListener('click', () => {
+  fetch('/api/auth/is-sign-in').then((response) => {
+    if (response.ok) {
+      window.location.href = '/order';
+    } else {
+      alert('로그인을 해주세요.');
+      window.location.href = '/login';
+    }
+  });
+});
+
 
 // // 페이지네이션
 // function searchToObject(searchParam) {
