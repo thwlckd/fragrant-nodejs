@@ -3,6 +3,10 @@
 import { $ } from '/js/util/dom.js';
 
 let sum;
+let itemname;
+let itemcapacity;
+let itempicture;
+
 const productDetailRenderer = async (url) => {
   const {
     product: {
@@ -35,7 +39,7 @@ const productDetailRenderer = async (url) => {
   const $priceElement = $('.totalCost');
   $priceElement.textContent = price; // 원가, 숫자타입이엇음
 
-  const $pictureElement = $('.product_info img');
+  const $pictureElement = $('.productnfo img');
   $pictureElement.src = picture;
 
   const $noteElement1 = $('.note1');
@@ -54,6 +58,10 @@ const productDetailRenderer = async (url) => {
   $descriptionElement.textContent = description;
 
   sum = price;
+  itemname= korean;
+  itemcapacity = capacity;
+  itempicture = picture;
+
 };
 const { pathname } = window.location;
 productDetailRenderer(pathname);
@@ -63,6 +71,8 @@ const plus = document.querySelector('.plus');
 const minus = document.querySelector('.minus');
 const result = document.querySelector('#result');
 const totalCost = document.querySelector('.totalCost');
+const buyBtn = document.querySelector('.add-order-btn');
+const cartBtn = document.querySelector('add-cart-btn');
 
 let i = 0;
 
@@ -83,4 +93,32 @@ minus.addEventListener('click', () => {
     totalCost.textContent = `\u00a0 ${0}`; // 판매가
   }
 });
+
+const items = {
+name: itemname,
+capacity: itemcapacity,
+price: sum,
+img: itempicture,
+}
+const itemsString =  JSON.stringify(items);
+window.localStorage.setItem("items", itemsString);
+
+
+
+
+cartBtn.addEventListener('click', () => {
+  window.location.href = '/cart';
+})
+
+ buyBtn.addEventListener('click', () => {
+  if(#) {    
+    window.location.href = ('/order');
+  }
+  else {
+    alert('로그인을 해주세요.')
+    window.location.replace = ('/login');
+  }
+ })
+ 
+
 

@@ -77,24 +77,6 @@ function pressBtn() {
 
 btn.onclick = pressBtn;
 /*
-const popBtn = document.getElementById('submitBtn');
-const modal = document.getElementById('modal');
-const closeModalBtn = document.getElementById('close-modal');
-// 모달창 열기
-popBtn.addEventListener('click', () => {
-  modal.style.display = 'block';
-  document.body.style.overflow = 'hidden'; // 스크롤바 제거
-});
-// 모달창 닫기
-closeModalBtn.addEventListener('click', () => {
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto'; // 스크롤바 보이기
-});
-
-*
-
-// 페이지네이션
-/*
 const perPage = 5;
 const pageBtnWrapper = document.querySelector('.pageBtnWrapper');
 const ul = document.querySelector('ul');
