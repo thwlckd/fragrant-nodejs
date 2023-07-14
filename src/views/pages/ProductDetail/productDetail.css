@@ -14,7 +14,6 @@ input:focus {
 }
 
 #main {
- 
   width: 1280px;
   margin: 100px auto;
   position: relative;
@@ -36,7 +35,6 @@ input:focus {
   position: relative;
 }
 
-
 .product_content {
   text-align: left;
   width: 48%;
@@ -46,16 +44,13 @@ input:focus {
   margin-top: 100px;
   display: flex;
   flex-direction: column;
-  
-  
 }
 
 .product_image {
   height: 95%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 .product_name {
@@ -77,8 +72,6 @@ input:focus {
   position: relative;
   bottom: 5px;
 }
-
-
 
 .delivery_box {
   position: relative;
@@ -121,19 +114,16 @@ input:focus {
 
   position: relative;
   top: 15px;
-
-  
 }
 .count_name {
   margin: 5px 0 0 10px;
   font-size: 20px;
-  
 }
 .capacity {
   font-size: 22px;
 }
 
-.num  {
+.num {
   display: flex;
   justify-content: space-between;
   margin: 16px 10px 0 10px;
@@ -145,7 +135,7 @@ input:focus {
 }
 .num_count {
   display: flex;
-  
+
   /* margin: 0 0 0 50px; */
   font-size: 20px;
 }
@@ -159,10 +149,7 @@ input:focus {
 #result {
   width: 25px;
   text-align: center;
-
 }
-
-
 
 .won {
   margin: 0 0 0 265px;
@@ -173,14 +160,11 @@ input:focus {
   height: inherit;
   text-align: center;
   width: 100%;
-  
 
   text-decoration: none;
   position: relative;
-  top: 35px; 
+  top: 35px;
   right: 3px;
-
-  
 }
 
 .add-cart-btn {
@@ -202,7 +186,7 @@ input:focus {
   border: 1px solid #080808;
   color: #ededed;
   font-size: 22px;
-} 
+}
 
 .menu_list {
   text-align: center;
@@ -251,6 +235,12 @@ input:focus {
   left: 180px;
   overflow: scroll;
 }
+
+.tab1_wrap::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .tab1_content {
   font-size: 20px;
   font-weight: bold;
@@ -269,7 +259,6 @@ input:focus {
   bottom: 15px;
 }
 .description {
-  
   white-space: nowrap;
 }
 
@@ -287,7 +276,6 @@ input:focus {
   line-height: 25px;
 }
 .kr-name-detail {
- 
   font-size: 16px;
   line-height: 25px;
 }
@@ -311,7 +299,6 @@ input:focus {
   flex-direction: row;
 }
 
-
 .write_box {
   display: flex;
   align-items: center;
@@ -329,12 +316,11 @@ input:focus {
   font-weight: bold;
 }
 
-
 textarea {
   display: flex;
   width: 660px;
   height: 140px;
- 
+
   outline: none;
   resize: none;
   font-size: 18px;
@@ -360,30 +346,29 @@ textarea::placeholder {
   cursor: pointer;
 }
 
-.eachComment{   
-    width: 100%; 
-    border-bottom: 1px solid #c1bcba;
+.eachComment {
+  width: 100%;
+  border-bottom: 1px solid #c1bcba;
 }
 
-.eachComment .name{
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 0.3em;
-    display: flex;
-    justify-content: left;
-    margin-top: 15px;
+.eachComment .name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+  display: flex;
+  justify-content: left;
+  margin-top: 15px;
 }
 
-.eachComment .inputValue{
-    font-size: 1.2em;
-    text-align: center;  
+.eachComment .inputValue {
+  font-size: 1.2em;
+  text-align: center;
 }
 
-.eachComment .time{
-    font-size: 1em;
-    color: #a19d9b;
-    
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    
+.eachComment .time {
+  font-size: 1em;
+  color: #a19d9b;
+
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
