@@ -1,5 +1,5 @@
 
-const checkBoxOnOff = (items) => {
+const checkBoxOnOff = (data) => {
   const allCheckBox = document.querySelector('#allCheck-box');
  
   allCheckBox.addEventListener('change', async () => {
@@ -47,7 +47,7 @@ const deleteLocalItem = async () => {
 const minuscountItem = async (id, isLogin) => {
   if (isLogin) {
     try {
-      const response = await fetch(`/api/user/cart/${id}/decrease`, {
+      const response = await fetch(`/api/${id}`, {
         method: 'PUT',
       });
 
@@ -90,9 +90,9 @@ const plusQuantityItem = async (id, isLogin) => {
       alert(error, '요청을 실패했습니다');
     }
   } else {
--     const books = JSON.parse(localStorage.getItem('carts')) || '';
-    const values = Object.values(books);
-    if (books) {
+-     const data = JSON.parse(localStorage.getItem('items')) || '';
+    const values = Object.values(data);
+    if (data) {
       const filteredBooks = values.filter((obj) => obj.id !== id);
       const findBook = values.find((obj) => obj.id == id);
       const index = values.findIndex((item) => item == findBook);
@@ -129,6 +129,8 @@ const getitemsFromLocalStrorage = () => {
   const items = JSON.parse(localStorage.getItem('items'));
   return items;
 };
+
+
 
 window.addEventListener('load', async () => {
   const isLogin = getTokenFromCookie();
