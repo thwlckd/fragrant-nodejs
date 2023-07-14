@@ -293,6 +293,7 @@ input:focus {
   margin-bottom: 20px;
 }
 
+// 페이지네이션 컨테이너는 페이지네이션 구현 안됨면 걍 지움
 
 .pagination-container {
   width: 50%;

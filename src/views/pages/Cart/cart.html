@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+     <link rel="stylesheet" href="./cart.css" />
+    <title>ELICE</title>
+    <script defer src="./cart.js"></script>
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+    </head>
+    
+    <body>
+        <main>
+
+             <section class="cart-container">
+                <p class="cart-title">장바구니</p>
+                <section class="cart-wrap">
+                    
+                    <div class="cart-header">                 
+                        <input type="checkbox" id="allCheck-box" class="allCheck" checked />
+                        <label for="allCheck-box">전체 선택</label>                 
+                    <input type="button" class="selectdelete-btn" value="선택 삭제" />
+                </div>
+
+                 <div class="item">   
+                    <input type="checkbox" class="selectBtn" />           
+                    <div class="cart-img">      
+                    <img src="https://via.placeholder.com/150" alt="150*150 이미지" /></div>
+                    <div class="cart-info">
+                    <div class="name-kr">앨리스 시드니 아킬리아 오드 코롱</div>
+                    <div class="capacity">35ml</div>
+                    
+                    <div class="num">
+                    <span class="won">₩
+                        <span class="priceCost">0</span>
+                    </span>
+
+                    <span class="result-count">
+                    <a href="#a" class="minus">-</a>
+                    <span id="result">1</span>
+                    <a href="#a" class="plus">+</a>
+                  </span> 
+                        
+                 </div>
+
+                </div>
+            </div> 
+
+            </section>
+
+                <section class="cost"></section>
+                <div class="showCost">
+                <div class="subCost">상품금액 2222000원 + 배송비 0원</div></div>
+                <div class="totalCost">총 결제 금액 2222200원</div>
+               
+                <div class="btn-control">
+                    <button class="buyBtn">구매하기</button>
+                </div>
+            </section>
+
+
+        </main>
+    </body>
+</html>
