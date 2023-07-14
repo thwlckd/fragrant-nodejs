@@ -4,6 +4,15 @@ import { POST } from '/js/util/user.js';
 const $email = $('#email');
 const $password = $('#password');
 const $loginBtn = $('#loginBtn');
+const signInCheck = async () => {
+  const res = await fetch('/api/auth/is-sign-in');
+  console.log(res);
+  if(res.ok){
+    window.location.href = '/admin/users';
+  }
+};
+
+signInCheck();
 
 $loginBtn.addEventListener('click', async () => {
   const postData = {
@@ -22,5 +31,5 @@ $loginBtn.addEventListener('click', async () => {
   console.log(login);
 
   // document.cookie = `userToken=${login.token}; path=/`;
-  // window.location.href = '/admin/users';
+  window.location.href = '/admin/users';
 });

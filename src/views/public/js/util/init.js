@@ -9,6 +9,11 @@ import {
   createModal as productCreateModal,
   createErrModal as productCreateErrModal,
 } from '/js/util/productModal.js';
+import {
+  updateModal as productDetailUpdateModal,
+  updateErrModal as productDetailUpdateErrModal,
+  deleteModal as productDetailDeleteModal,
+} from '/js/util/productDetailModal.js';
 
 export const brandInit = async () => {
   const $brandsWrap = $('.brands-wrap');
@@ -331,13 +336,13 @@ export const productListInit = async () => {
     threshold: 1.0,
   };
   let page = 1;
-  
+
   const observer = new IntersectionObserver(async () => {
     const { products } = await GET(`/api/products?page=${page}`);
     console.log(products);
     if (products.length !== 0) {
       const $products = products.map((data) => {
-        const $productWrap = $create('a', 'product-wrap', {href: data.productId});
+        const $productWrap = $create('a', 'product-wrap', { href: data.productId });
 
         const $img = $create('img', 'product-img', { src: data.picture });
         const $brand = $create('div', 'brand-name');
@@ -367,4 +372,185 @@ export const productListInit = async () => {
   }, options);
 
   observer.observe($observerLocation);
+};
+
+export const productDetailFormInit = async () => {
+  $('.modalBg').attachShadow({ mode: 'open' });
+
+  const $formWrap = $('.form-wrap');
+  $formWrap.classList.add('viewMode');
+
+  const $previewImg = $('#previewImg');
+  const $imgFile = $('#imgFile');
+
+  const $productId = $('#productId');
+  const $brandOriginName = $('#brandOriginName');
+  const $productOriginName = $('#productOriginName');
+  const $productKoreanName = $('#productKoreanName');
+  const $capacity = $('#capacity');
+  const $gender = $('#gender');
+  const $quantity = $('#quantity');
+  const $price = $('#price');
+  const $note1 = $('#note1');
+  const $note2 = $('#note2');
+  const $note3 = $('#note3');
+  const $desc = $('#desc');
+
+  const $updateBtn = $('.updateBtn');
+  const $saveBtn = $('.saveBtn');
+  const $deleteBtn = $('.deleteBtn');
+  const $cancelBtn = $('.cancelBtn');
+
+  const url = window.location.pathname;
+  const id = url.split('/').slice(-2)[0];
+  const endpoint = `/api/products/${id}`;
+
+  const { product } = await GET(endpoint);
+
+  const { brands } = await GET('/api/brands');
+
+  // console.log(brands);
+  const $options = brands.map(({ _id, name: { origin } }) => {
+    const $option = $create('option', '', { value: _id });
+    $option.textContent = origin;
+    return $option;
+  });
+  $brandOriginName.append(...$options);
+
+  const { notes } = await GET('/api/notes');
+
+  // console.log(notes);
+
+  const $notes = () => {
+    const map = notes.map(({ _id, type }) => {
+      const $option = $create('option', '', { value: _id });
+      $option.textContent = type;
+      return $option;
+    });
+    return map;
+  };
+
+  const $notes1 = $notes();
+  const $notes2 = $notes();
+  const $notes3 = $notes();
+
+  $note1.append(...$notes1);
+  $note2.append(...$notes2);
+  $note3.append(...$notes3);
+
+  $previewImg.src = product.picture;
+
+  $productId.value = product.productId;
+  const {
+    brand: { _id: brandId },
+  } = product;
+  $brandOriginName.value = [...$brandOriginName].filter(
+    (option) => option.value === brandId,
+  )[0].value;
+
+  $productOriginName.value = product.name.origin;
+  $productKoreanName.value = product.name.korean;
+  const [one] = product.capacity.split('ML');
+  $capacity.value = one;
+
+  $gender.value = product.gender;
+  $quantity.value = product.quantity;
+  $price.value = product.price;
+  console.log(product);
+  // const {
+  //   note: [{ _id: no1Id  }, { _id: no2Id }, { _id: no3Id }] ,
+  // } = product;
+
+  const { note: [{ _id: no1Id } = {}, { _id: no2Id } = {}, { _id: no3Id } = {}] = [] } = product;
+
+  $note1.value = [...$note1].filter((option) => option.value === no1Id)[0]
+    ? [...$note1].filter((option) => option.value === no1Id)[0].value
+    : [...$note1][0].value;
+  $note2.value = [...$note2].filter((option) => option.value === no2Id)[0]
+    ? [...$note2].filter((option) => option.value === no2Id)[0].value
+    : [...$note2][0].value;
+  $note3.value = [...$note3].filter((option) => option.value === no3Id)[0]
+    ? [...$note3].filter((option) => option.value === no3Id)[0].value
+    : [...$note3][0].value;
+
+  $desc.value = product.description;
+
+  $imgFile.addEventListener('change', () => {
+    if ($imgFile.files[0] && $imgFile.files) {
+      const reader = new FileReader();
+      reader.addEventListener('load', (e) => {
+        $previewImg.src = e.target.result;
+      });
+      reader.readAsDataURL($imgFile.files[0]);
+    }
+  });
+
+  const btnInit = () => {
+    $formWrap.classList.add('viewMode');
+    $updateBtn.style.display = 'block';
+    $saveBtn.style.display = 'none';
+    $deleteBtn.style.display = 'block';
+    $cancelBtn.style.display = 'none';
+  };
+
+  $updateBtn.addEventListener('click', () => {
+    $formWrap.classList.remove('viewMode');
+    $updateBtn.style.display = 'none';
+    $saveBtn.style.display = 'block';
+    $deleteBtn.style.display = 'none';
+    $cancelBtn.style.display = 'block';
+    $previewImg.src = '/asset/empty_img.png';
+  });
+
+  $saveBtn.addEventListener('click', async () => {
+    if (
+      $imgFile.files[0] &&
+      $imgFile.files &&
+      $brandOriginName.value !== '' &&
+      $productOriginName.value !== '' &&
+      $productKoreanName.value !== '' &&
+      $capacity.value !== '' &&
+      $price.value !== '' &&
+      $note1.value !== '' &&
+      $note2.value !== '' &&
+      $note3.value !== '' &&
+      $desc.value !== ''
+    ) {
+      const formData = new FormData();
+      formData.append('target', $productId.value);
+      formData.append('originName', $productOriginName.value);
+      formData.append('koreanName', $productKoreanName.value);
+      formData.append('capacity', `${$capacity.value}ML`);
+      formData.append('price', $price.value);
+      if ($gender.value !== '') {
+        formData.append('gender', $gender.value);
+      }
+      formData.append('note', `${$note1.value},${$note2.value},${$note3.value}`);
+      formData.append('brand', $brandOriginName.value);
+      formData.append('description', $desc.value);
+      if ($quantity.value !== '') {
+        formData.append('quantity', $quantity.value);
+      }
+      formData.append('picture', $imgFile.files[0]);
+
+      console.log(formData);
+
+      await fetch('/api/products', {
+        method: 'PATCH',
+        body: formData,
+      });
+      productDetailUpdateModal(btnInit);
+    } else {
+      productDetailUpdateErrModal();
+    }
+  });
+
+  $cancelBtn.addEventListener('click', () => {
+    $previewImg.src = product.picture;
+    btnInit();
+  });
+
+  $deleteBtn.addEventListener('click', () => {
+    productDetailDeleteModal($productId.value);
+  });
 };
