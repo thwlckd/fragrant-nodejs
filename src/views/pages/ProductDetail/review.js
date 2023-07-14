@@ -2,6 +2,7 @@ const inputText = document.querySelector('#commentText');
 const resultComment = document.querySelector('#comments');
 const btn = document.querySelector('#submitBtn');
 
+console.log(inputText);
 // 타임스탬프 만들기
 function generateTime() {
   const date = new Date();
