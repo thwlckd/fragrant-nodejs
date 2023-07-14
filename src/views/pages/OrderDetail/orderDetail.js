@@ -19,6 +19,10 @@ async function getOrders() {
   return data;
 }
 
+let receiver;
+let contact;
+let requirementMsg;
+
 //주문상품 리스트
 async function displayProductList() {
   const orderList = await getOrders();
@@ -27,6 +31,10 @@ async function displayProductList() {
   const { orderTime, _id, orderStatus, price, orderer, requirement } = orderList;
   const paymentUnit = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   const paymentUmint1 = (price - 2500).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  receiver = orderer.name;
+  contact = orderer.phone;
+  requirementMsg = requirement;
 
   //배송현황 표시
   const orderStausArr = ['주문완료', '상품준비중', '배송중', '배송완료'];
@@ -95,15 +103,16 @@ async function displayProductList() {
       $reviewBtn.classList.add('review-btn-hidden');
     }
 
-    const orderArray = ['배송중', '배송완료'];
-    if (orderArray.includes(orderStatus)) {
-      $('.order-cancel-btn').classList.add('order-cancel-hidden');
-    }
-
     //배송비 계산
     if (price < 102500) {
       $('#payment-type').textContent = `상품금액 ${paymentUmint1} 원 + 배송비 2,500 원`;
     }
+  }
+
+  const orderArray = ['배송중', '배송완료'];
+  if (orderArray.includes(orderStatus)) {
+    $('.order-cancel-btn').classList.add('btn-hidden');
+    $('.modify-btn').classList.add('btn-hidden');
   }
 
   //주문취소 모달 헤더 세팅
@@ -112,7 +121,7 @@ async function displayProductList() {
     productName += ` 외 ${prodcutList.length - 1} 건`;
   }
   $('.modal-box1 p').textContent = `[ ${productName} ]`;
-} //end of 'function displayProductList()'
+}
 
 //주문취소 모달
 const openOrderDel = () => {
@@ -127,6 +136,7 @@ $('.order-cancel-btn').addEventListener('click', openOrderDel);
 $('.close-btn-cancel').addEventListener('click', closeOrderDel);
 $('.background').addEventListener('click', closeOrderDel);
 
+//주문취소
 const deletOrder = async () => {
   const response = await fetch(`/api/orders/${id}`, {
     method: 'DELETE',
@@ -134,15 +144,16 @@ const deletOrder = async () => {
       'Content-Type': 'application/json',
     },
   });
-  const data = await response.json();
-  if (response.ok) {
+  if (response.status === 404) {
     alert('주문취소가 완료되었습니다.');
     window.location.href = '/user/myPage/';
   } else {
-    return alert(data.error);
+    const data = await response.json();
+    alert(data.error);
   }
   return null;
 };
+
 $('.confirm-btn-cancel').addEventListener('click', deletOrder);
 
 displayProductList();
@@ -151,21 +162,29 @@ displayProductList();
 const infoDivs = document.querySelectorAll('.info');
 const updateDivs = document.querySelectorAll('.update');
 
+//배송지정보 - info모드(디스플레이모드)
 const infoMode = () => {
   infoDivs.forEach((e) => {
     e.style.display = 'block';
+    $('#receiver').disabled = true;
+    $('#contact').disabled = true;
+    $('#requirement').disabled = true;
   });
   updateDivs.forEach((e) => {
     e.style.display = 'none';
   });
 };
 
+//배송지정보 - 수정모드
 const modifyMode = () => {
   infoDivs.forEach((e) => {
     e.style.display = 'none';
   });
   updateDivs.forEach((e) => {
     e.style.display = 'block';
+    $('#receiver').disabled = false;
+    $('#contact').disabled = false;
+    $('#requirement').disabled = false;
   });
 };
 
@@ -198,7 +217,12 @@ async function modifyInfo() {
 }
 
 $('.address-modify-btn').addEventListener('click', modifyMode);
-$('.modify-cancel-btn').addEventListener('click', infoMode);
+$('.modify-cancel-btn').addEventListener('click', () => {
+  infoMode();
+  $('#receiver').value = receiver;
+  $('#contact').value = contact;
+  $('#requirement').value = requirementMsg;
+});
 $('.modify-confirm-btn').addEventListener('click', modifyInfo);
 
 infoMode();

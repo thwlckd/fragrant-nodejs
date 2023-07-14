@@ -81,7 +81,7 @@
 .product-list-title {
   font-size: 28px;
   padding: 30px 0;
-  margin-top: 80px;
+  margin-top: 95px;
   border-bottom: 2px solid rgb(21, 21, 21);
 }
 
@@ -161,9 +161,14 @@
   cursor: pointer;
 }
 
+#address {
+  cursor: default;
+}
+
 .address-modify-btn {
   all: unset;
   font-size: 20px;
+  padding: 20px 0;
 }
 
 .shipping-address > table {
@@ -174,6 +179,7 @@
 }
 
 .shipping-address > table td {
+  width: auto;
   border-bottom: 1px solid darkgray;
   border-left: 1px solid darkgray;
   padding-left: 50px;
@@ -205,8 +211,8 @@
   cursor: pointer;
 }
 
-.order-cancel-hidden {
-  display: none;
+.btn-hidden {
+  display: none !important;
 }
 
 .modal-order-cancel {
@@ -316,9 +322,6 @@
   filter: brightness(150%);
 }
 
-.form-group user-name {
-}
-
 .form-group {
   width: 500px;
   display: flex;
@@ -334,13 +337,13 @@
 }
 
 #address-info {
-  margin: 10px 0;
+  margin: 4px 0 18px 0;
   display: flex;
   flex-direction: column;
 }
 
 #find-address {
-  width: 300px;
+  height: 80px;
 }
 
 .form-group-address label {
@@ -376,7 +379,6 @@
 .form-group input {
   width: 335px;
   height: 32px;
-  /* flex-grow: 0.1; */
   margin: 10px 0 10px 25px;
   padding: 6px;
   font-size: 16px;
@@ -390,12 +392,12 @@
 
 #address-button {
   width: auto;
-  padding: 5px 10px;
+  padding: 5px 13px;
   margin-left: 10px;
   background-color: #6e6e6e;
   color: white;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -403,6 +405,7 @@
 .modal-btn {
   align-items: center;
 }
+
 .detail-address {
   margin-top: 0;
 }
@@ -416,4 +419,36 @@
   font-size: 20px;
   margin-bottom: 40px;
   text-align: center;
+}
+
+#receiver,
+#contact,
+#requirement {
+  width: 300px;
+  height: 32px;
+  padding: 6px;
+  font-size: 20px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(246, 246, 246);
+}
+
+#receiver:disabled,
+#contact:disabled,
+#requirement:disabled {
+  all: unset;
+}
+
+.modify-confirm-btn {
+  padding: 10px 20px;
+  background-color: #0f0f0f;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 20px 0 50px 0;
 }

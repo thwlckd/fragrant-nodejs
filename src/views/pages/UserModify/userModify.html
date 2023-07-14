@@ -55,9 +55,15 @@
           <div id="address-info">
             <div id="find-address">
               <input type="text" name="postalCode" id="postcode" placeholder="우편번호" disabled />
-              <button type="button" name="address1" id="address-button">주소 찾기</button><br />
+              <button type="button" name="address1" id="address-button">주소 찾기</button>
             </div>
-            <input type="text" name="address2" id="address" disabled /><br />
+            <input
+              type="text"
+              name="address2"
+              id="address"
+              placeholder="주소찾기 버튼을 눌러주세요."
+              disabled
+            />
             <input type="text" id="detail-address" placeholder="상세주소를 입력해주세요." />
             <p></p>
           </div>
@@ -106,7 +112,12 @@
               <br />
               본인 확인을 위해 비밀번호를 입력해주세요.
             </p>
-            <input type="password" id="current-pw-delete" placeholder="비밀번호를 입력해주세요." />
+            <input
+              type="password"
+              id="current-pw-delete"
+              placeholder="비밀번호를 입력해주세요."
+              required
+            />
             <div class="modal-btn">
               <button class="close-btn">취소</button>
               <button class="delete-confirm-btn">탈퇴하기</button>
