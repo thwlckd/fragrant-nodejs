@@ -1,3 +1,4 @@
+const { userDAO } = require('../models/model');
 const { reviewService } = require('../services');
 
 const reviewController = {
@@ -6,21 +7,24 @@ const reviewController = {
 
     const { productId } = req.params;
 
-    const { reviews, totalPage } = await reviewService.getAllReviewByProductId(productId, {
+    const { reviews, totalPage, total } = await reviewService.getAllReviewByProductId(productId, {
       page: page || 1,
       perPage: perPage || 5,
     });
 
-    res.json({ reviews, totalPage });
+    res.json({ reviews, totalPage, total });
   },
 
   async createReview(req, res) {
-    const { author, comment } = req.body;
+    console.log(req.body);
+    const { userEmail } = req.user;
+    const { userName: author } = await userDAO.findOneByEmail(userEmail);
+    const { comment } = req.body;
     const { productId } = req.params;
 
     const review = await reviewService.createReview({ author, comment, productId });
 
-    res.statua(201).json({ review });
+    res.status(201).json({ review });
   },
 
   async deleteReviewsByProductId(req, res) {

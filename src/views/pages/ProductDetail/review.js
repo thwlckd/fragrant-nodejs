@@ -1,170 +1,91 @@
-const inputText = document.querySelector('#commentText');
-const resultComment = document.querySelector('#comments');
-const btn = document.querySelector('#submitBtn');
+import { $, $create, $append } from '/js/util/dom.js';
 
-console.log(inputText);
-// 타임스탬프 만들기
-function generateTime() {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const wDate = date.getDate();
-  const hour = date.getHours();
-  const min = date.getMinutes();
-  const sec = date.getSeconds();
-
-  const time = `${year}-${month}-${wDate} ${hour}:${min}:${sec}`;
-  return time;
-}
-
-
-// 랜덤 유저이름 만들기. 10글자로 제한. 이거는 수정
-function generateUserName() {
-  const alphabet = 'abcdefghijklmnopqrstuvwxyz';
-  let makeUsername = '';
-  for (let i = 0; i < 5; i += 1) {
-    const index = Math.floor(Math.random(10) * alphabet.length);
-    makeUsername += alphabet[index];
+fetch('/api/auth/is-sign-in').then((res) => {
+  if (!res.ok) {
+    $('.write_box').remove();
   }
-  for (let j = 0; j < 5; j += 1) {
-    makeUsername += '*';
-  }
-  return makeUsername;
-}
+});
 
+const productId = window.location.pathname.split('/').slice(-2)[0];
 
-// 댓글보여주기
-function showComment(comment) {
-  const userName = document.createElement('div');
-  const inputValue = document.createElement('span');
-  const showTime = document.createElement('div');
-  const countSpan = document.createElement('span');
-  const commentList = document.createElement('div');
- 
-  commentList.className = 'eachComment';
-  userName.className = 'name';
-  inputValue.className = 'inputValue';
-  showTime.className = 'time';
+let page = 1;
 
-  // 유저네임가져오기
-  userName.textContent = generateUserName();
-  // 입력값 넘기기
-  inputValue.textContent = comment;
-  // 타임스탬프
-  showTime.textContent = generateTime();
-  countSpan.textContent = 0;
+const $reviewList = $('#reviews');
+const $reviewTitle = $('#reviews-title');
+const $write = $('#submitBtn');
+const $newReview = $('#commentText');
 
-  // 댓글뿌려주기
-  commentList.appendChild(userName);
-  commentList.appendChild(inputValue);
-  commentList.appendChild(showTime);
+const getReviews = async (paged) => {
+  const { reviews, totalPage, total } = await fetch(`/api/reviews/${productId}?page=${paged}`).then(
+    (res) => res.json(),
+  );
 
-  resultComment.prepend(commentList);
-  console.dir(resultComment);
-}
+  return { reviews, totalPage, total };
+};
 
-// 버튼만들기+입력값 전달
-function pressBtn() {
-  const currentVal = inputText.value;
+const reviewsRenderer = async () => {
+  const { reviews, totalPage, total } = await getReviews(page);
+  if ($('.next')) $('.next').remove();
 
-  if (currentVal.length < 10) {
-    alert('최소 10자 이상 후기를 작성해주세요.');
-    
+  if (totalPage === 0) {
+    const $li = $create('li', 'no-result');
+    $li.textContent = '등록 된 리뷰가 없습니다.';
+    $reviewList.append($li);
   } else {
-    showComment(currentVal);
-    inputText.value = '';
-  }
-}
+    const $cnt = $create('span', 'review-cnt');
+    $cnt.textContent = total;
+    const $text = document.createTextNode(' 개의 리뷰');
 
-btn.onclick = pressBtn;
-/*
-const perPage = 5;
-const pageBtnWrapper = document.querySelector('.pageBtnWrapper');
-const ul = document.querySelector('ul');
-const prev = document.querySelector('.prev');
-const next = document.querySelector('.next'); 
-let pageNumberButtons;
+    $reviewTitle.replaceChildren($cnt, $text);
 
-let currentPage = 1; 
+    const $fragment = document.createDocumentFragment();
 
+    reviews.forEach(({ author, comment }) => {
+      const $item = $create('li', 'review-item');
+      const $author = $create('span', 'author');
+      $author.textContent = author;
 
-function getTotalPageCount()  {
-  return Math.ceil(showComment.length / perPage);
-};
+      const $comment = $create('p', 'review');
+      $comment.textContent = comment;
 
+      $append($item, $author, $comment);
+      $append($fragment, $item);
+    });
 
-function setPageButtons() {
-  pageBtnWrapper.textContent = '';
-  
-  for (let i = 1; i <= getTotalPageCount(); i+=1) {
-    pageBtnWrapper.textContent += <span class="pageButton">` ${i} `</span>;
-  }
-
-  pageBtnWrapper.firstChild.classList.add('selected');
-  pageNumberButtons = document.querySelectorAll('.pageButton');
-};
-
-const setPageOf = (pageNumber) => {
-  ul.textContent = '';
-
-  for (
-    let i = perPage * (pageNumber - 1) + 1;
-    i <= perPage * (pageNumber - 1) + 6 && i <= showComment.length;
-    i+=1
-  ) {
-    const li = document.createElement('li');
-    const comments = document.createElement('div');
-    comments.className = 'post-container';
-
-    li.append(comments);
-    ul.append(li);
-  }
-};
-
-
-function moveSelectedPageHighlight() {
-   pageNumberButtons = document.querySelectorAll('.number-button');
-
-  pageNumberButtons.forEach((pageButton) => {
-    if (pageButton.classList.contains('selected')) {
-      pageButton.classList.remove('selected');
+    if (totalPage > page) {
+      page += 1;
+      const $next = $create('li', 'next');
+      $next.textContent = '이전 리뷰 더보기';
+      const nextHandler = async () => {
+        await reviewsRenderer(page);
+        $next.removeEventListener('click', nextHandler);
+      };
+      $next.addEventListener('click', nextHandler);
+      $append($fragment, $next);
     }
-  });
 
-  pageNumberButtons[currentPage - 1].classList.add('selected');
+    $reviewList.append($fragment);
+  }
 };
 
-setPageButtons();
-setPageOf(currentPage);
+reviewsRenderer();
 
-
-
-
-
-
-pageNumberButtons.forEach((numberButton) => {
-  numberButton.addEventListener('click', (e) => {
-    currentPage = +e.target.textContent;
-    console.log(currentPage);
-    setPageOf(currentPage);
-    moveSelectedPageHighlight();
-  });
-});
-
-
-prevButton.addEventListener('click', () => {
-  if (currentPage > 1) {
-    currentPage -= 1;
-    setPageOf(currentPage);
-    moveSelectedPageHighlight();
+$write.addEventListener('click', async () => {
+  if ($newReview.value.length < 10) {
+    alert('10글자 이상 적어주세요.');
+  } else {
+    await fetch(`/api/reviews/${productId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        comment: $newReview.value,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        window.location.reload();
+      }
+    });
   }
 });
-
-nextButton.addEventListener('click', () => {
-  if (currentPage < getTotalPageCount()) {
-    currentPage += 1;
-    setPageOf(currentPage);
-    moveSelectedPageHighlight();
-  }
-});
-*/

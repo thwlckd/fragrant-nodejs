@@ -97,20 +97,21 @@ const cartBtn = document.querySelector('.add-cart-btn');
 
 cartBtn.addEventListener('click', () => {
   const items = {
-    productId: id,
-    count: i,
+    id,
+    count: Number(i),
   };
 
-  const getItem = window.localStorage.getItem('items') ? [] : window.localStorage.getItem('items');
-  const itemsString = getItem.push(items);
-  window.localStorage.setItem('items', itemsString);
-  console.log(getItem);
-  if (getItem) {
-    alert('장바구니에 상품이 담겼습니다. 장바구니로 이동합니다.');
-    window.location.href = `/cart`;
+  const getItem = JSON.parse(localStorage.getItem('cart')) || [];
+  const index = getItem.findIndex((v) => v.id === id);
+  if (index >= 0) {
+    getItem[index].count += items.count;
   } else {
-    alert('장바구니 담기에 실패하였습니다. 다시 시도해주세요.');
-    return false;
+    getItem.push(items);
+  }
+
+  window.localStorage.setItem('cart', JSON.stringify(getItem));
+  if (confirm('장바구니에 상품이 담겼습니다.\n장바구니로 이동 하시겠습니까?')) {
+    window.location.href = `/cart`;
   }
 });
 
@@ -131,8 +132,7 @@ buyBtn.addEventListener('click', () => {
         ]),
       );
       window.location.href = '/order';
-    } else {
-      alert('로그인을 해주세요.');
+    } else if (confirm('로그인이 필요한 서비스 입니다.\n로그인 페이지로 이동 하시겠습니까?')) {
       window.location.href = '/login';
     }
   });

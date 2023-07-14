@@ -59,7 +59,7 @@ function filterResponseOrder(toResponse) {
 }
 
 function timeFormat(orders) {
-  const dateList = String(orders.createdAt.toLocaleString()).split('. ');
+  const dateList = String(orders.createdAt.toLocaleString('ko-KR')).split('. ');
   if (dateList[1].length === 1) dateList[1] = `0${dateList[1]}`;
   if (dateList[2].length === 1) dateList[2] = `0${dateList[2]}`;
   const formattedTime = dateList[3].split(' ')[1].split(':', 2);
