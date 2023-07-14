@@ -130,11 +130,9 @@ function menuLeaveHandler() {
 }
 
 function getSearchHandler(e) {
-  e.preventDefault();
-
-  console.log(e);
   const { type, key } = e;
   if ((type === 'keydown' && key === 'Enter') || type === 'click') {
+    e.preventDefault();
     const searchValue = $searchInput.value;
 
     if (searchValue) window.location.href = `/products/search/${searchValue}`;
