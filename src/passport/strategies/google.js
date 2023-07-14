@@ -4,7 +4,7 @@ const { userDAO } = require('../../models/model');
 const config = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: '/api/auth/google/callback',
+  callbackURL: 'http://kdt-sw-5-team14.elicecoding.com/api/auth/google/callback',
 };
 
 async function findOrCreateUser({ name, email }) {

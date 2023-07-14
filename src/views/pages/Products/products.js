@@ -1,5 +1,5 @@
 import { $, $create, $append } from '/js/util/dom.js';
-import insertProducts from '/components/products/Products.js';
+import insertProducts from '/components/Products/Products.js';
 
 async function dropdownRenderer($target, url) {
   const { brands, notes } = await fetch(url).then((res) => res.json());
