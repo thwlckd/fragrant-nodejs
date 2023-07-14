@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/components/Admin/Header/style.css" />
+    <title>ELICE ADMIN</title>
+    <script src="/components/Admin/Header/Header.js" type="module"></script>
+    <script src="./getUsers.js" type="module"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <main>
+        <!-- main header -->
+        <section class="main-header">
+          <div>사용자 관리</div>
+          <small>User Management</small>
+          <hr />
+        </section>
+        <!-- 옵션 그룹 -->
+        <!-- <section class="list-option-wrap">
+        <div class="option-wrap-left">
+          <input type="text" placeholder="입력">
+          <select name="searchOption" id="searchOption">
+            <option value="email">email</option>
+            <option value="isAdmin">isAdmin</option>
+            <option value="username">username</option>
+            <option value="address">address</option>
+            <option value="phone">phone</option>
+          </select>
+          <button>검색</button>
+        </div>
+        <select name="searchOption" id="searchOption">
+          <option value="100">100개</option>
+          <option value="50">50개</option>
+          <option value="30">30개</option>
+          <option value="10">10개</option>
+        </select>
+      </section> -->
+
+        <!-- 메인 -->
+        <section class="user-table">
+          <table>
+            <thead>
+              <tr class="list-title">
+                <th>email<br /></th>
+                <th>username<br /></th>
+                <th>address<br /></th>
+                <th>phone<br /></th>
+                <!-- <th>선택</th> -->
+                <th>상세정보</th>
+                <!-- <th>삭제</th> -->
+              </tr>
+            </thead>
+            <tbody class="main-tbody">
+              <tr>
+                <th class="list-empty"></th>
+                <th class="list-empty"></th>
+                <th class="list-empty"></th>
+                <th class="list-empty"></th>
+                <!-- <th class="list-empty"> </th> -->
+                <th class="list-empty"></th>
+                <!-- <th class="list-empty"> </th> -->
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- 일괄삭제 버튼 -->
+        <button class="delete-all">선택 전체 삭제</button>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELICE</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="/components/Products/Products.css" />
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+    <script defer src="./slide.js"></script>
+    <script src="/components/Products/Products.js" type="module"></script>
+  </head>
+
+  <body>
+    <main>
+      <section class="jumbotron-wrap">
+        <article><a href="#viva_majenta"></a></article>
+        <article><a href="#veri_peri"></a></article>
+        <article><a href="#jomalone"></a></article>
+        <article><a href="#alice"></a></article>
+        <article><a href="#classic"></a></article>
+        <!-- left btn -->
+        <svg
+          width="7"
+          height="12"
+          viewBox="0 0 7 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="left-btn"
+        >
+          <path
+            d="M6 11L1 6L6 1"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <!-- right btn -->
+        <svg
+          width="7"
+          height="12"
+          viewBox="0 0 7 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="right-btn"
+        >
+          <path
+            d="M1 1L6 6L1 11"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <div class="jumbo-idx-wrap">
+          <div class="jumbo-idx"></div>
+          <div class="jumbo-idx"></div>
+          <div class="jumbo-idx"></div>
+          <div class="jumbo-idx"></div>
+          <div class="jumbo-idx"></div>
+        </div>
+        <div class="jumbo-playBtn">
+          <img src="/asset/icon/stop.svg" alt="playBtn" />
+        </div>
+      </section>
+      <section class="products-list">
+        <a href="/products">더보기</a>
+        <h2 class="products-title">New</h2>
+        <ul id="new-products" class="products new-products"></ul>
+      </section>
+      <section class="products-list" id="random1"></section>
+      <section class="products-list" id="random2"></section>
+      <section class="products-list" id="random3"></section>
+    </main>
+  </body>
+</html>

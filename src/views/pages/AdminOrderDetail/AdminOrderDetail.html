@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELICE ADMIN</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/components/Admin/Header/style.css" />
+    <script src="/components/Admin/Header/Header.js" type="module"></script>
+    <script src="./orderDetail.js" type="module"></script>
+  </head>
+
+  <body>
+    <div class="modalBg"></div>
+    <div id="app">
+      <main>
+        <!-- main header -->
+        <section class="main-header">
+          <div>주문 상세 정보</div>
+          <small>Orders Detail</small>
+          <hr />
+        </section>
+
+        <!-- main section -->
+        <section class="main-section">
+          <table>
+            <tbody>
+              <tr>
+                <th>주문 ID</th>
+                <td colspan="4" id="orderId">64a79e912291703e7f70035c</td>
+              </tr>
+              <tr>
+                <th rowspan="3">주문자 정보</th>
+                <th>이메일</th>
+                <td id="ordererEmail">test@gmail.com</td>
+                <th>이름</th>
+                <td id="ordererName">테스트</td>
+              </tr>
+              <tr>
+                <th>전화 번호</th>
+                <td id="ordererPhNum">010-1234-5678</td>
+                <th>우편 번호</th>
+                <td id="ordererPostalCode">32153</td>
+              </tr>
+              <tr>
+                <th>주소</th>
+                <td colspan="3" id="ordereraAddr">서울시 성동구 아차산로 17길 48 성수낙낙 2층</td>
+              </tr>
+
+              <tr>
+                <th rowspan="8" id="ordersStandard">주문 정보</th>
+              </tr>
+
+              <tr>
+                <th>요구 사항</th>
+                <td colspan="4" id="orderRequire">부재시 문 앞에 두고 가주세요</td>
+              </tr>
+              <tr>
+                <th>상태</th>
+                <td colspan="4" id="orderStatus">배송 준비</td>
+              </tr>
+              <tr>
+                <th>주문 일자</th>
+                <td colspan="4" id="orderTime">20203.07.09 06:36</td>
+              </tr>
+              <tr>
+                <th>총 가격</th>
+                <td colspan="4" id="orderPrice">750000₩</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="btn-gr">
+            <button class="updateBtn">수정하기</button>
+            <button class="deleteBtn">주문 삭제</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
+
+<!-- <tr id="ordersProductWrap"> -->
+<!-- <tr>
+                  <th>상품 ID</th>
+                  <td colspan="3" >123</td>
+                </tr>
+                <tr>
+                  <th>상품명</th>
+                  <td colspan="3">Elice Limited Collection Set for beginner</td>
+                </tr>
+                <tr>
+                  <th>개당 가격</th>
+                  <td colspan="3">250000₩</td>
+                </tr>
+                <tr>
+                  <th>갯수</th>
+                  <td colspan="3">1</td>
+                </tr>
+                <tr>
+                  <th>용량</th>
+                  <td colspan="3">35ML</td>
+                </tr>
+                <tr>
+                  <th>이미지</th>
+                  <td colspan="3"><img src="/asset/perfume/MB_Brit_LP_stories_opt-2.png" alt=""></td>
+                </tr> -->
+<!-- </tr> -->

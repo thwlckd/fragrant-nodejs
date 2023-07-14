@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="./cart.css" />
+    <title>ELICE</title>
+    <script src="./cart.js" type="module"></script>
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+  </head>
+
+  <body>
+    <main>
+      <section class="cart-container">
+        <p class="cart-title">장바구니</p>
+        <section class="cart-wrap">
+          <div class="cart-header">
+            <input type="checkbox" id="allCheck-box" class="allCheck" />
+            <label for="allCheck-box">전체 선택</label>
+            <input type="button" class="selectdelete-btn" value="선택 삭제" />
+          </div>
+        </section>
+
+        <section class="pay-info">
+          <p class="pay-detail">
+            상품금액 <span class="products-price">0</span>원 + 배송비
+            <span class="delivery-price">2500</span>원
+          </p>
+          <p class="pay-total">
+            <span><span class="total-price">0</span>원</span>
+            총 결제 금액
+          </p>
+          <button class="pay-do">주문하기</button>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
