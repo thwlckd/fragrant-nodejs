@@ -5,6 +5,7 @@ const orderController = {
   async postOrder(req, res) {
     const { products, orderer, price, orderStatus, requirement } = req.body;
     const { userEmail } = req.user;
+    orderer.email = userEmail;
     const order = await orderService.createOrderAndUpdateUserAddress(
       {
         products,
