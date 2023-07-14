@@ -172,7 +172,7 @@ async function gnbRightRenderer() {
   if (res.ok) {
     const { isAdmin } = await res.json();
     $accountIcon.addEventListener('click', () => {
-      window.location.href = '/mypage';
+      window.location.href = '/users/mypage';
     });
 
     $logoutIcon.addEventListener('click', async () => {
