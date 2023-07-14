@@ -1,4 +1,4 @@
-import { $create, $append } from '../../js/util/dom.js';
+import { $create, $append } from '/js/util/dom.js';
 
 const $menuIcon = $create('img', 'menu', { src: '/asset/icon/menu.svg' });
 
