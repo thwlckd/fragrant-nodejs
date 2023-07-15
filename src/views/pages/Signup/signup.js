@@ -16,38 +16,37 @@ signupForm.addEventListener('submit', (e) => {
       password: password.value,
       userName: memberName.value,
     }),
-  })
-    .then((response) => {
-      if (response.ok) {
-        alert('회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
-        window.location.href = '/login';
-      } else {
-        alert('이메일 인증해주세요.');
-      }
-    });
+  }).then((response) => {
+    if (response.ok) {
+      alert('회원 가입이 완료되었습니다. 로그인 페이지로 이동합니다.');
+      window.location.href = '/login';
+    } else {
+      // alert('이메일 인증해주세요.');
+      alert('이미 가입하셨거나, 알 수 없는 오류가 발생하였습니다.\n 다시 시도 해 주세요.');
+    }
+  });
 });
 
 // 메일인증요청
-const mailCheck = document.querySelector('#reqBtn');
+// const mailCheck = document.querySelector('#reqBtn');
 
-mailCheck.addEventListener('click', (e) => {
-  e.preventDefault();
+// mailCheck.addEventListener('click', (e) => {
+//   e.preventDefault();
 
-  fetch('/api/auth/email', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      email: `${idInput.value}@${emailInput.value}`,
-    }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        alert('이메일이 전송되었습니다.');
-      } else {
-        alert('메일 전송에 실패했습니다.');
-      }
-    })
-});
+//   fetch('/api/auth/email', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify({
+//       email: `${idInput.value}@${emailInput.value}`,
+//     }),
+//   }).then((res) => {
+//     if (res.ok) {
+//       alert('이메일이 전송되었습니다.');
+//     } else {
+//       alert('메일 전송에 실패했습니다.');
+//     }
+//   });
+// });
 
 const emailList = document.querySelector('#eml');
 

@@ -9,7 +9,7 @@ const authRouter = Router();
 
 authRouter.post(
   '/sign-up',
-  passport.authenticate('jwt', { session: false }),
+  // passport.authenticate('jwt', { session: false }),
   asyncHandler(userController.postSignUpInfo),
 );
 
