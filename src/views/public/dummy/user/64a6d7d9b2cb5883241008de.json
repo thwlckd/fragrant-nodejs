@@ -1,0 +1,16 @@
+{
+  "_id": "64a6d7d9b2cb5883241008de",
+  "email": "hyub@gmail.com",
+  "password": "$2b$10$LcU7Bh.oAdAaxwWplUlIWu1TzLbwN7EbupAawo5q/Dp47YbtPf8uy",
+  "isAdmin": false,
+  "userName": "박창협",
+  "createdAt": "2023-07-06T15:03:53.966Z",
+  "updatedAt": "2023-07-07T05:11:45.758Z",
+  "__v": 0,
+  "address": {
+    "postalCode": 1234567,
+    "address1": "최근 주문 주소지1",
+    "address2": "최근 주문 주소지2",
+    "_id": "64a79e912291703e7f700362"
+  }
+}

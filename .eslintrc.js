@@ -1,22 +1,17 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
     node: true,
+    es6: true,
   },
-  extends: [
-    "eslint:recommended",
-    "airbnb-base",
-    "prettier",
-    "plugin:prettier/recommended",
-  ],
+  plugins: ['import'],
+  extends: ['airbnb-base', 'prettier', 'plugin:import/recommended'],
   rules: {
-    "prettier/prettier": [
-      "error",
-      {
-        endOfLine: "auto",
-      },
-    ],
-    "no-console": "off",
+    'no-console': 'off',
+    'no-alert': 'off',
+    'no-param-reassign': 'off',
+    'import/extensions': 'off',
+    'import/no-unresolved': 'off',
+    'import/no-absolute-path': 'off',
   },
 };
