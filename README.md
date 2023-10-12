@@ -96,7 +96,7 @@ master
 ## 🎨 협업 툴
 
 - [Figma](https://www.figma.com/file/IPolbDxvgjWzAL8ww0jZBH): 와이어프레임, 디자인
-- [Notion](https://www.notion.so/hyub/Fragrant-d186546be61348379ea1b836332792e9) : 팀 페이지, 프로젝트 일정/현황 관리, 스크럼/문서 정리
+- [Notion](https://hyub.notion.site/Fragrant-d186546be61348379ea1b836332792e9?pvs=4) : 팀 페이지, 프로젝트 일정/현황 관리, 스크럼/문서 정리
 - [Gitlab](https://kdt-gitlab.elice.io/sw_track/class_05/web_project/team14/fragrant/-/tree/master) : Project Repository
 - Gather, Discord: 팀 커뮤니케이션
 - Elice 강의실(Zoom 대용): 담당 코치님들의 오피스아워(코칭)
