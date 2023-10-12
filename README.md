@@ -3,7 +3,10 @@
 - 향기로운 하루의 시작
 - 🚗 https://port-0-fragrant-2u73n2llm94szdt.sel5.cloudtype.app/
   - gcp vm 만료로 인한 cloudtype 재 배포
-  - aws ec2 배포 예정
+  - aws ec2 배포 예정   
+- 테스트계정
+  - id: ```test1234@gmail.com```
+  - pw: ```test1234!```
 
 ## 🌻 프로젝트 가이드 <a href="https://github.com/thwlckd/fragrant-nodejs/files/12522204/14.pdf">PPT 발표 자료</a>
 
