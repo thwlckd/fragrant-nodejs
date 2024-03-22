@@ -1,0 +1,274 @@
+* {
+  font-family: 'Alice', serif;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+/****************** main header *******************/
+main {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 35px 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 30px;
+}
+
+main>hr {
+  margin: 100px 0;
+}
+
+main> :not(.main-header) {
+  max-width: 1280px;
+  width: 100%;
+}
+
+.main-header {
+  width: 100%;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.main-header>div {
+  margin-bottom: 10px;
+}
+
+.main-header>small {
+  color: #999999;
+  font-size: smaller;
+  font-weight: normal;
+}
+
+/****************** brands section *******************/
+.brands {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.brands>h2 {
+  font-size: 32px;
+}
+
+.brands-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 80px;
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.brand-item {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 310px;
+  box-sizing: border-box;
+  background-color: #232323;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.brand-img {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}
+
+.brand-name {
+  width: 100%;
+  height: 30px;
+  color: white;
+  background-color: #383838;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 30px;
+}
+
+.brand-controller {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.brand-controller>button {
+  width: 80px;
+  height: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  outline: none;
+  color: white;
+  transition: filter.25s ease-in-out;
+  cursor: pointer;
+}
+.brand-controller>button:hover {
+  filter: brightness(150%);
+}
+
+.brand-view-btn {
+  background-color: #232323;
+}
+
+.brand-update-btn {
+  background-color: #464664;
+}
+
+.brand-delete-btn {
+  background-color: #C80000;
+}
+
+.brand-item:hover>.brand-controller {
+  display: flex;
+}
+
+.brand-create{
+  width: 250px;
+  height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F4F4F4;
+  cursor: pointer;
+  transition: filter.25s ease-in-out;
+}
+.brand-create:hover{
+  filter: brightness(90%);
+}
+
+/****************** notes section *******************/
+.notes {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 100px 0 100px 0;
+}
+
+.notes>h2 {
+  font-size: 32px;
+}
+
+.notes-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.notes-input-wrap {
+  display: flex;
+  gap: 10px;
+}
+
+.notes-input-wrap>input {
+  width: 200px;
+  height: 30px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border: 1px solid #999999;
+  outline: none;
+}
+
+.notes-input-wrap>button {
+  width: 50px;
+  height: 30px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border: none;
+
+  outline: none;
+  color: white;
+  background-color: #232323;
+  cursor: pointer;
+}
+
+.notes-list-wrap {
+  display: flex;
+  gap: 10px;
+}
+
+.notes-list {
+  width: 200px;
+  height: 300px;
+  overflow: auto;
+  border: 1px solid #999999;
+  box-sizing: border-box;
+}
+
+.note {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.note:hover {
+  filter: brightness(90%);
+}
+
+.note-select {
+  background-color: #232323;
+  color: white;
+}
+
+.notes-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notes-btn>button {
+  width: 50px;
+  height: 30px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+}
+
+.notes-btn>button:nth-child(1) {
+  background-color: #464664;
+  display: none;
+}
+
+.notes-btn>button:nth-child(2) {
+  background-color: #C80000;
+}
+
+/****************** 모달창 *******************/
+.modalBg {
+  display: none;
+}
+
+.modalBg-on {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 999999999;
+}
+

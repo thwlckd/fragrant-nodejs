@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주문 상세 내역</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="orderDetail.css" />
+    <script src="./orderDetail.js" type="module"></script>
+  </head>
+  <body>
+    <div class="order-detail-page">
+      <section class="order-status">
+        <div class="order-status0">
+          <img src="/asset/icon/checklist.svg" alt="주문완료" class="order-status-img" />
+          <p>주문완료</p>
+        </div>
+        <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
+        <div class="order-status1">
+          <img src="/asset/icon/bag.gray.svg" alt="상품준비중" class="order-status-img" />
+          <p>상품준비중</p>
+        </div>
+        <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
+        <div class="order-status2">
+          <img
+            src="/asset/icon/truck.30px.svg"
+            alt="배송중"
+            class="order-status-img"
+            style="width: 45px; height: 50px"
+          />
+          <p>배송중</p>
+        </div>
+        <img src="/asset/icon/chevron-right.svg" class="chevron-img" />
+        <div class="order-status3">
+          <img
+            src="/asset/icon/gift.svg"
+            alt="배송완료"
+            class="order-status-img"
+            style="width: 35px; height: 35px"
+          />
+          <p style="line-height: 45px; padding-top: 5px">배송완료</p>
+        </div>
+      </section>
+      <section class="order-info">
+        <h2>주문상세내역</h2>
+        <div>
+          <div>
+            <span id="order-date"></span>
+            <span id="order-id"></span>
+          </div>
+          <div id="order-status-text"></div>
+        </div>
+      </section>
+      <!--주문상품리스트-->
+      <section class="order-product">
+        <h2 class="product-list-title">주문상품</h2>
+        <ul id="product-list"></ul>
+      </section>
+
+      <!--결제정보-->
+      <div class="payment">
+        <span id="payment-amount"></span>
+        <span id="payment-type"></span>
+      </div>
+
+      <!--배송지정보-->
+      <section class="shipping-address">
+        <div class="address-header">
+          <h2>배송지정보</h2>
+          <div class="info modify-btn">
+            <img src="/asset/icon/pencil.svg" />
+            <button class="address-modify-btn">수정하기</button>
+          </div>
+        </div>
+        <table>
+          <tr>
+            <td>이름</td>
+            <td>
+              <input type="text" id="receiver" disabled />
+            </td>
+          </tr>
+          <tr>
+            <td>연락처</td>
+            <td>
+              <input type="text" id="contact" disabled />
+            </td>
+          </tr>
+          <tr>
+            <td>주소</td>
+            <td>
+              <div id="address" class="info"></div>
+              <div class="form-group-address update">
+                <div id="address-info">
+                  <div id="find-address">
+                    <input
+                      type="text"
+                      name="postalCode"
+                      id="postcode"
+                      placeholder="우편번호"
+                      disabled
+                    />
+                    <button type="button" name="addressBtn" id="address-button">주소 찾기</button>
+                  </div>
+                  <input type="text" name="address1" id="address1" readonly />
+                  <input type="text" id="detail-address" placeholder="상세주소를 입력해주세요." />
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>요청사항</td>
+            <td>
+              <input type="text" id="requirement" style="width: 480px" disabled />
+            </td>
+          </tr>
+        </table>
+        <div class="modify-address-btns">
+          <button class="modify-cancel-btn update">취소</button>
+          <button
+            class="modify-confirm-btn update"
+            style="color: #fcfcfc; background-color: #0f0f0f"
+          >
+            수정완료
+          </button>
+          <button type="button" class="order-cancel-btn info">주문취소</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 주문 취소 -->
+    <div class="modal-order-cancel hidden">
+      <div class="background"></div>
+      <div class="modal-box1">
+        <p></p>
+        <br />
+        <p>정말 주문을 취소하시겠어요?</p>
+        <div class="modal-btn">
+          <button class="close-btn-cancel">돌아가기</button>
+          <button class="confirm-btn-cancel">주문취소</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </body>
+</html>

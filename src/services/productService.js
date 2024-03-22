@@ -30,10 +30,14 @@ const productService = {
 
   // 브랜드
   async getAllProductsByBrand(target, { page, perPage }) {
-    const key = '_id';
-    const brandId = ObjectId.isValid(target)
-      ? target
-      : (await brandDAO.getBrandByBrandName(target))[key];
+    let brandId = target;
+    if (!ObjectId.isValid(target)) {
+      const key = '_id';
+      const brand = await brandDAO.getBrandByBrandName(target);
+      brandId = brand ? brand[key] : undefined;
+    }
+
+    if (!brandId) return { products: [], totalPage: 0 };
 
     const { products, total } = await productDAO.getAllProductsByBrandId(brandId, {
       page,
@@ -75,8 +79,8 @@ const productService = {
 
   async getProduct(target) {
     const product = !Number.isNaN(parseInt(target, 10))
-      ? await productDAO.findProductByProductId(target)
-      : await productDAO.findProductByProductName(target);
+      ? await productDAO.getProductByProductId(target)
+      : await productDAO.getProductByProductName(target);
 
     return product;
   },
@@ -123,8 +127,8 @@ const productService = {
       ? await productDAO.getProductByProductId(target)
       : await productDAO.getProductByProductName(target);
 
-    if (origin) updateInfo.brand.origin = origin;
-    if (korean) updateInfo.brand.korean = korean;
+    if (origin) updateInfo.name.origin = origin;
+    if (korean) updateInfo.name.korean = korean;
     if (note) updateInfo.note = note.split(',');
     if (capacity) updateInfo.capacity = capacity;
     if (price) updateInfo.price = price;

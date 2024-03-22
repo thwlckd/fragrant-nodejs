@@ -57,7 +57,10 @@ header{
 .icon-wrap > a{
   padding: 5px;
 }
-.icon-wrap >a:hover >img{
+.icon-wrap > a > img{
+  transition: filter.25s ease-in-out;
+}
+.icon-wrap > a:hover > img{
   filter: brightness(200%);
 }
 .wrap h2{
@@ -111,6 +114,7 @@ header{
   color: #999999;
   font-size: 20px;
   text-decoration: none;
+  transition: filter.25s ease-in-out;
 }
 .menus:hover{
   filter: brightness(200%);

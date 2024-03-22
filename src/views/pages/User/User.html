@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="user.css" />
+  </head>
+  <body>
+    <div class="mypage">
+      <h1 class="page-title">My page</h1>
+      <!-- 회원 정보 -->
+      <section class="user-info">
+        <div class="user-name" id="user-name"></div>
+        <div class="user-info-1">
+          <div class="user-email" id="user-email"></div>
+          <a class="change-info-btn" href="../modify">회원정보 변경</a>
+          <button type="button" class="logout-btn">로그아웃</button>
+        </div>
+        <hr />
+      </section>
+
+      <!--주문 현황-->
+      <section class="order-status-count">
+        <ul class="order-status-count-list">
+          <li>
+            <p>주문완료</p>
+            <p class="order-num" id="order-complete">0</p>
+          </li>
+          <li>
+            <p>상품준비중</p>
+            <p class="order-num" id="shipping-ready">0</p>
+          </li>
+          <li>
+            <p>배송중</p>
+            <p class="order-num" id="on-shipping">0</p>
+          </li>
+          <li>
+            <p>배송완료</p>
+            <p class="order-num" id="shipping-complete">0</p>
+          </li>
+        </ul>
+      </section>
+      <!-- 주문 내역 -->
+      <section class="order-history-section">
+        <h2 class="order-title">주문 내역</h2>
+        <hr class="hr-1" />
+
+        <div class="order-history">
+          <ul id="order-history-list"></ul>
+        </div>
+      </section>
+    </div>
+    <div class="modal hidden">
+      <div class="background"></div>
+      <div class="modal-box">
+        <p>
+          ((주문명))
+          <br />
+          정말 주문을 취소하시겠어요?
+        </p>
+        <div class="modal-btn">
+          <button class="close-btn">돌아가기</button>
+          <button class="delete-confirm-btn">주문취소하기</button>
+        </div>
+      </div>
+    </div>
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+    <script src="./user.js" type="module"></script>
+  </body>
+</html>

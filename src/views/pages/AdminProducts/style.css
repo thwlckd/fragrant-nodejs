@@ -1,0 +1,257 @@
+* {
+  font-family: 'Alice', serif;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+/****************** main header *******************/
+main {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 35px 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  gap: 30px;
+}
+
+main>hr {
+  margin: 100px 0;
+}
+
+main> :not(.main-header) {
+  max-width: 1280px;
+  width: 100%;
+}
+
+.main-header {
+  width: 100%;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.main-header>div {
+  margin-bottom: 10px;
+}
+
+.main-header>small {
+  color: #999999;
+  font-size: smaller;
+  font-weight: normal;
+}
+
+/****************** create Form *******************/
+.create-section h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.form-wrap {
+  border-top: 18px solid #474747;
+  /* padding: 10px 0; */
+  display: flex;
+}
+
+.img-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 220px;
+  width: 100%;
+  /* align-items: center; */
+  padding: 20px 20px 20px 0;
+  box-sizing: border-box;
+  gap: 10px;
+}
+.img-form > label{
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+}
+.img-form > label > img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.img-form > input[type="file"]{
+  display: none;
+}
+.img_infoMsg{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+.img_infoMsg > small{
+  font-size: smaller;
+}
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 1060px;
+  width: 100%;
+  gap: 10px;
+}
+
+.input-form>table {
+  width: 100%;
+}
+
+.input-form>table>tbody>tr>th {
+  width: 300px;
+  text-align: start;
+  vertical-align: middle;
+  border-right: 1px solid #999999;
+  border-bottom: 1px solid #999999;
+  height: 40px;
+  box-sizing:border-box;
+}
+
+.input-form>table>tbody>tr>td {
+  width: 700px;
+  text-align: start;
+  vertical-align: middle;
+  height: 40px;
+  padding: 0 10px;
+  box-sizing:border-box;
+  border-bottom: 1px solid #999999;
+}
+.input-form>table>tbody>tr>td>input, .input-form>table>tbody>tr>td>select, .input-form>table>tbody>tr>td>textarea {
+  border: none;
+  outline: none;
+  color: black;
+  resize: none;
+}
+.input-form>table>tbody>tr>td>input{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.textAreaField{
+  height: auto;
+}
+.input-form>table>tbody>tr>td>textarea{
+  width: 100%;
+  box-sizing: border-box;
+  height: 100px;
+}
+
+.smallSpan{
+  font-size: xx-small;
+  vertical-align: top;
+  color:chocolate;
+}
+.no-input-column{
+  background-color: #f0f0f0;
+  color: black;
+  text-align: center !important;
+}
+
+.createBtn{
+  width: 200px;
+  height: 30px;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #434343;
+  cursor: pointer;
+  transition: filter.25s ease-in-out;
+}
+.createBtn:hover{
+  filter: brightness(150%);
+}
+
+/****************** list *******************/
+.list-section h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+#listWrap{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 160px 80px;
+}
+#observerLocation{
+  width: 100%;
+  height: 30px;
+  position: relative;
+  top: -200px;
+}
+.product-wrap{
+  all: unset;
+  width: 260px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  background-color: white;
+  transition: filter.25s ease-in-out;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.product-wrap:hover{
+  filter: brightness(90%);
+}
+.product-img{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+.brand-name{
+  color: silver;
+  font-size: 14px;
+}
+.origin-name{
+  font-weight: bold;
+  margin-bottom: 10px;
+  height: 32px;
+  overflow: hidden;
+  white-space: wrap;
+  text-overflow: ellipsis;
+
+}
+.desc{
+  height: 32px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 원하는 줄 수로 변경 */
+  -webkit-box-orient: vertical;
+  word-break: break-all; /* 긴 단어를 강제로 줄바꿈 */
+}
+
+.rest{
+  border-top: 1px solid #999999;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.price{
+  color: tomato;
+}
+
+/****************** 모달창 *******************/
+.modalBg {
+  display: none;
+}
+
+.modalBg-on {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 999999999;
+}

@@ -6,7 +6,6 @@ const passport = require('passport');
 const { getToken } = require('./middlewares');
 const { router } = require('./routes');
 const { errorLogger, errorHandler } = require('./middlewares');
-
 const { viewRouter } = require('./routes');
 
 require('dotenv').config();

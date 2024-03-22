@@ -1,0 +1,128 @@
+.products-list {
+  width: 90%;
+  max-width: 1280px;
+  padding: 50px 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+.products-list:nth-child(even) {
+  background-color: #fff;
+}
+
+.products-list:nth-child(odd) {
+  background-color: #fffdf8;
+}
+
+.products-list > a {
+  position: absolute;
+  right: 30px;
+  transform: translateY(200%);
+  color: #636363;
+}
+
+.products-title {
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.product {
+  width: 280px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.product img {
+  width: 240px;
+  height: 240px;
+  background-color: #fafafa;
+  object-fit: contain;
+}
+
+.new-products img {
+  width: 335px;
+  height: 335px;
+}
+
+.new-products .product {
+  width: 375px;
+}
+
+.product a {
+  text-decoration: none;
+  color: #000;
+}
+
+.product .brand-name-kr {
+  min-height: 16px;
+  font-size: 14px;
+  margin: 10px 0;
+  color: #908e8a;
+  letter-spacing: 1px;
+}
+
+.product .name-origin {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.product .description {
+  min-height: 20px;
+  margin: 20px 0 10px;
+  width: 100%;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 38px;
+  letter-spacing: 1px;
+  line-height: 19px;
+}
+
+.product .price-info {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.price {
+  color: #e54e1e;
+}
+
+.random-wrapper {
+  display: flex;
+}
+
+.random-img-wrapper {
+  width: 100%;
+  background-color: #fafaff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.random-img-wrapper > img {
+  width: calc(100% - 20px);
+}

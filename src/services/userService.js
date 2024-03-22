@@ -1,21 +1,18 @@
 const { hashPassword, comparePassword } = require('../utils/authUtils');
+const { filterResponseUser } = require('../utils/utils');
 const { userDAO } = require('../models/model');
 
 const userService = {
   async postSignUpInfo(email, password, userName, isAdmin) {
-    const isDuplicatedEmail = await userDAO.findOneByEmail(email);
-    if (isDuplicatedEmail) {
-      throw new Error('이미 존재하는 이메일입니다.');
-    }
     const hashedPassword = await hashPassword(password);
     const toPost = { email, password: hashedPassword, userName, isAdmin };
     const user = await userDAO.create(toPost);
     return user;
   },
 
-  async getUser(userId) {
-    const user = await userDAO.findOne(userId);
-    return user;
+  async getUserById(userId) {
+    const user = await userDAO.findOneById(userId);
+    return filterResponseUser(user);
   },
 
   async getUserByEmail(email) {
@@ -25,36 +22,44 @@ const userService = {
 
   async getUsers() {
     const users = await userDAO.findAll();
-    return users;
+    return filterResponseUser(users);
   },
 
   async getUsersByUserName(userName) {
     const users = await userDAO.findAllByUserName(userName);
-    return users;
+    return filterResponseUser(users);
   },
 
-  async patchUser(userId, toUpdate) {
-    const { oldPassword, newPassword } = toUpdate;
-    if (oldPassword) {
-      const { password } = await userDAO.findOne(userId);
-      if (await comparePassword(oldPassword, password)) {
-        const hashedPassword = await hashPassword(newPassword);
-        await userDAO.updateOne(userId, { password: hashedPassword });
-        return true;
-      }
-      return false;
-    }
-    const user = await userDAO.updateOne(userId, toUpdate);
+  async patchUserById(userId, toUpdate) {
+    const user = await userDAO.updateOneById(userId, toUpdate);
     return user;
   },
 
-  async deleteUser(userId, originPassword) {
-    const { password } = await userDAO.findOne(userId);
-    if (!(await comparePassword(originPassword, password))) {
-      return null;
+  async patchUserPasswordById(userId, toUpdate) {
+    const { oldPassword, newPassword } = toUpdate;
+    if (oldPassword) {
+      const { password } = await userDAO.findOneById(userId);
+      if (await comparePassword(oldPassword, password)) {
+        const hashedPassword = await hashPassword(newPassword);
+        const user = await userDAO.updateOneById(userId, { password: hashedPassword });
+        return user;
+      }
+      return false;
     }
+    return false;
+  },
 
-    const user = await userDAO.deleteOne(userId);
+  async deleteUserByIdForAdmin(userId) {
+    const user = await userDAO.deleteOneById(userId);
+    return user;
+  },
+
+  async deleteUserByIdForUser(userId, originPassword) {
+    const { password } = await userDAO.findOneById(userId);
+    if (!(await comparePassword(originPassword, password))) {
+      return false;
+    }
+    const user = await userDAO.deleteOneById(userId);
     return user;
   },
 };

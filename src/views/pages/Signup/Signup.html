@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Header/style.css" />
+    <link rel="stylesheet" href="/components/Footer/style.css" />
+    <link rel="stylesheet" href="signup.css" />
+
+    <script src="/components/Header/Header.js" type="module"></script>
+    <script src="/components/Footer/Footer.js" type="module"></script>
+    <script src="signup.js" defer></script>
+  </head>
+
+  <body>
+    <main>
+      <div id="signup-content">
+        <div class="signup-wrapper">
+          <div id="signup">
+            <h2>회원가입</h2>
+          </div>
+
+          <div class="member">
+            <form action="/auth/sign-up" method="post" class="member-input">
+              <ul>
+                <li>
+                  <label for="mid">아이디(이메일)</label>
+                  <input type="text" id="mid" name="mid" placeholder="이메일을 확인해 주세요." />
+                  @
+                  <span class="input-mid">
+                    <input type="text" id="mid-email" name="mid-email" />
+                  </span>
+                  <select name="eml" id="eml">
+                    <option value="">선택해주세요</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="daum.net">daum.net</option>
+                    <option value="hotmail.com">hotmail.com</option>
+                    <option value="hanmail.net">hanmail.net</option>
+                    <option value="gmail.com">gmail.com</option>
+                    <option value="free">직접입력</option>
+                  </select>
+                  <!-- <button type="button" id="reqBtn">인증메일요청</button> -->
+                  <span class="msg">이메일을 입력하세요.</span>
+                </li>
+                <li>
+                  <label for="mpw">비밀번호</label>
+                  <input
+                    type="password"
+                    id="mpw"
+                    name="mpw"
+                    maxlength="20"
+                    placeholder="영문/숫자/특수문자 조합 8~15자"
+                  />
+                  <span class="msg">비밀번호를 입력해주세요.</span>
+                </li>
+                <li>
+                  <label for="mpw2">비밀번호확인</label>
+                  <input
+                    type="password"
+                    id="mpw2"
+                    name="mpw2"
+                    maxlength="20"
+                    placeholder="비밀번호 확인을 입력해 주세요"
+                  />
+                  <span class="msg">비밀번호를 한번 더 입력해주세요.</span>
+                </li>
+                <li>
+                  <label for="mnm">이름</label>
+                  <input
+                    type="text"
+                    id="mnm"
+                    name="mnm"
+                    maxlength="20"
+                    placeholder="이름을 입력해 주세요"
+                  />
+                  <span class="msg">이름을 입력해 주세요.</span>
+                </li>
+              </ul>
+              <!-- 가입하기 버튼 -->
+              <div class="join">
+                <input type="submit" id="joinbtn" value="회원가입" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

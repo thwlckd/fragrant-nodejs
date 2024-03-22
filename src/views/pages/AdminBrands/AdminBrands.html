@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELICE ADMIN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alice&family=Nanum+Gothic:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/components/Admin/Header/style.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="/components/Admin/Header/Header.js" type="module"></script>
+    <script src="./brands.js" type="module"></script>
+    <script src="./notes.js" type="module"></script>
+  </head>
+
+  <body>
+    <div class="modalBg"></div>
+    <div id="app">
+      <main>
+        <!-- main header -->
+        <section class="main-header">
+          <div>브랜드 & 노트 관리</div>
+          <small>Brands & Notes Management</small>
+          <hr />
+        </section>
+
+        <!-- brands section -->
+        <section class="brands">
+          <h2>브랜드</h2>
+          <div class="brands-wrap"></div>
+        </section>
+
+        <!-- notes section -->
+        <section class="notes">
+          <h2>노트</h2>
+          <div class="notes-wrap">
+            <div class="notes-input-wrap">
+              <input type="text" placeholder="입력" id="create-input" />
+              <button id="create">추가</button>
+            </div>
+            <div class="notes-list-wrap">
+              <div class="notes-list"></div>
+              <div class="notes-btn">
+                <button id="save">수정</button>
+                <button id="delete">삭제</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

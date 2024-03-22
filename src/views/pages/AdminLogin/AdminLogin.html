@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/asset/favicon/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./login.js" type="module"></script>
+    <title>ELICE ADMIN</title>
+  </head>
+  <body>
+    <header>ELICE</header>
+    <main>
+      <section>
+        <div class="input-wrap">
+          <input
+            type="text"
+            id="email"
+            placeholder="이메일"
+            required
+            autocomplete="off"
+            value="admin@gmail.com"
+          />
+          <input type="password" id="password" placeholder="비밀번호" required value="admin" />
+        </div>
+        <button id="loginBtn">로그인</button>
+      </section>
+    </main>
+  </body>
+</html>
